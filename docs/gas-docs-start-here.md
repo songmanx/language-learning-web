@@ -1,96 +1,72 @@
-﻿# GAS Docs Start Here
+# GAS Docs Start Here
 
-실제 Google Sheets + GAS 연결 준비 문서가 여러 개라서,
-지금 상황에 따라 어디부터 보면 되는지 먼저 안내하는 문서다.
+여러 문서가 있지만, 지금은 아래 3갈래로만 보면 된다.
 
-## 1. 처음부터 준비할 때
-
-이 문서부터 본다:
-
-- [google-sheets-setup-guide.md](/D:/smx_coding_d/language_learning_web/docs/google-sheets-setup-guide.md)
-
-이 문서는 아래를 처음부터 설명한다.
-
-- 시트 3개 만들기
-- 탭 이름 맞추기
-- 첫 행 헤더 넣기
-- Script Properties에 넣을 값 확인하기
-
-## 2. 배포 직전에 빠르게 확인할 때
+## 1. 정적 JSON만 갱신하고 싶을 때
 
 이 문서부터 본다:
 
-- [gas-5minute-checklist.md](/D:/smx_coding_d/language_learning_web/docs/gas-5minute-checklist.md)
+- [static-json-ops-quickref.md](D:/smx_coding_d/learning/language_learning_web/docs/static-json-ops-quickref.md)
 
-이 문서는 아래만 아주 짧게 확인한다.
+이 문서가 답해 주는 것:
 
-- 시트 3개
-- 탭 이름
-- Script Properties 3개
-- `.env`
-- 앱과 시트에서 바로 볼 것
+- `npm run refresh:json`은 언제 쓰는지
+- 로컬 갱신과 GitHub 자동 갱신 차이
+- 지금 프로젝트에서 가장 짧은 JSON 갱신 방법
 
-## 3. 배포 전에 조금 더 자세히 점검할 때
+더 자세한 설명이 필요하면:
 
-이 문서부터 본다:
+- [json-export-workflow.md](D:/smx_coding_d/learning/language_learning_web/docs/json-export-workflow.md)
 
-- [gas-deploy-checklist.md](/D:/smx_coding_d/language_learning_web/docs/gas-deploy-checklist.md)
-- [gas-click-by-click-guide.md](/D:/smx_coding_d/language_learning_web/docs/gas-click-by-click-guide.md)
-- [gas-connection-values-template.md](/D:/smx_coding_d/language_learning_web/docs/gas-connection-values-template.md)
-
-이 문서는 아래를 더 자세히 본다.
-
-- 헤더 전체
-- 데이터 입력 상태
-- Apps Script 프로젝트 준비
-- Web App 배포 전 체크
-- 실제 클릭 순서
-- 복사해 둘 값 정리
-
-## 4. 연결 후 실제 동작을 확인할 때
+## 2. 실제 GAS/Google Sheets 저장까지 확인하고 싶을 때
 
 이 문서부터 본다:
 
-- [real-connection-smoke-test.md](/D:/smx_coding_d/language_learning_web/docs/real-connection-smoke-test.md)
+- [live-ops-quickref.md](D:/smx_coding_d/learning/language_learning_web/docs/live-ops-quickref.md)
 
-이 문서는 아래를 순서대로 확인한다.
+이 문서가 답해 주는 것:
 
-- 로그인
-- 언어 목록
-- 단어 로드
-- 플레이 저장
-- `Game_Log`, `Answer_Log`, `Review_State`, `Daily_Stats`
+- `smoke:gas`, `verify:record`, `check:live` 중 무엇을 써야 하는지
+- API만 볼지, 시트 저장만 볼지, 둘 다 볼지
+- 현재 프로젝트 기본값으로 어디까지 자동으로 읽는지
 
-## 5. API와 시트 구조를 확인할 때
+더 자세한 설명이 필요하면:
+
+- [real-connection-smoke-test.md](D:/smx_coding_d/learning/language_learning_web/docs/real-connection-smoke-test.md)
+
+## 3. 처음부터 시트/GAS 설정을 다시 해야 할 때
+
+이 문서부터 본다:
+
+- [gas-5minute-checklist.md](D:/smx_coding_d/learning/language_learning_web/docs/gas-5minute-checklist.md)
+
+그 다음 필요하면:
+
+- [google-sheets-setup-guide.md](D:/smx_coding_d/learning/language_learning_web/docs/google-sheets-setup-guide.md)
+- [gas-deploy-checklist.md](D:/smx_coding_d/learning/language_learning_web/docs/gas-deploy-checklist.md)
+- [gas-click-by-click-guide.md](D:/smx_coding_d/learning/language_learning_web/docs/gas-click-by-click-guide.md)
+- [gas-connection-values-template.md](D:/smx_coding_d/learning/language_learning_web/docs/gas-connection-values-template.md)
+
+## 4. API/시트 구조를 확인하고 싶을 때
 
 이 문서들을 본다:
 
-- [api-spec.md](/D:/smx_coding_d/language_learning_web/docs/api-spec.md)
-- [sheet-schema.md](/D:/smx_coding_d/language_learning_web/docs/sheet-schema.md)
+- [api-spec.md](D:/smx_coding_d/learning/language_learning_web/docs/api-spec.md)
+- [sheet-schema.md](D:/smx_coding_d/learning/language_learning_web/docs/sheet-schema.md)
 
-이 문서들은 아래를 정리한다.
+## 5. 가장 쉬운 추천 순서
 
-- action 요청 형식
-- 응답 envelope
-- 저장 payload 구조
-- 시트 컬럼 매핑 규칙
+지금 프로젝트 기준으로는 아래 순서가 가장 짧다.
 
-## 6. 제일 쉬운 추천 순서
+1. [static-json-ops-quickref.md](D:/smx_coding_d/learning/language_learning_web/docs/static-json-ops-quickref.md)
+2. [live-ops-quickref.md](D:/smx_coding_d/learning/language_learning_web/docs/live-ops-quickref.md)
+3. 필요할 때만 상세 문서
 
-처음이면 아래 순서가 가장 쉽다.
+## 6. 같이 진행할 수 있는 단계
 
-1. [google-sheets-setup-guide.md](/D:/smx_coding_d/language_learning_web/docs/google-sheets-setup-guide.md)
-2. [gas-5minute-checklist.md](/D:/smx_coding_d/language_learning_web/docs/gas-5minute-checklist.md)
-3. [gas-deploy-checklist.md](/D:/smx_coding_d/language_learning_web/docs/gas-deploy-checklist.md)
-4. [gas-click-by-click-guide.md](/D:/smx_coding_d/language_learning_web/docs/gas-click-by-click-guide.md)
-5. [real-connection-smoke-test.md](/D:/smx_coding_d/language_learning_web/docs/real-connection-smoke-test.md)
+원하면 다음 단계들을 계속 같이 진행할 수 있다.
 
-## 7. 나중에 제가 같이 도와드릴 수 있는 단계
-
-설정 시작 전에 말씀해 주시면 아래를 한국어로 아주 쉽게 같이 진행할 수 있다.
-
-- 시트 만들기
-- Script Properties 넣기
-- Web App 배포
-- `.env` 연결
-- 첫 저장 확인
+- 정적 JSON 갱신
+- GitHub Actions 자동 갱신 확인
+- 실제 저장 확인
+- 시트/배포/GAS 설정 재점검

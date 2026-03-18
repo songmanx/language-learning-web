@@ -1,4 +1,4 @@
-﻿# CHANGELOG.md
+# CHANGELOG.md
 
 ## 2026-03-17
 
@@ -341,8 +341,7 @@
 - 저장 상태는 saving -> saved/pending으로 결과 화면에서 갱신되도록 조정해 마지막 클릭 뒤 멈춰 보이던 구간을 줄였다.
 - [src/features/game/resultState.ts](D:/smx_coding_d/learning/language_learning_web/src/features/game/resultState.ts), [src/pages/PlayPage.test.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.test.tsx)도 현재 흐름 기준으로 맞췄다.
 - 검증: 
-pm run test 39개 통과, 
-pm run build 통과
+pm run test 39개 통과, `npm run build` 통과
 - Phase 변경: 없음
 - 다음 작업 메모:
   - 실제 브라우저에서 마지막 문제 클릭 후 결과 전환 체감이 개선됐는지 확인하기
@@ -370,3 +369,322 @@ pm run build 통과
   - 사용자가 GitHub secret 2개와 workflow write 권한을 설정한 뒤 workflow를 수동 실행하기
   - 실행 결과에서 exporter -> validator -> auto commit 흐름이 모두 통과하는지 확인하기
 
+
+
+## 2026-03-18 (32)
+
+- [src/services/apiClient.ts](D:/smx_coding_d/learning/language_learning_web/src/services/apiClient.ts)에 GAS 연결 warm-up GET 요청을 추가해 로그인 전에 연결을 미리 깨우도록 했다.
+- [src/pages/LoginPage.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/LoginPage.tsx)에서 로그인 화면 진입 시 `apiClient.warmupConnection()`을 호출하도록 연결했다.
+- [src/services/apiClient.test.ts](D:/smx_coding_d/learning/language_learning_web/src/services/apiClient.test.ts)에 warm-up GET 회귀 테스트를 추가했다.
+- 검증: `npm run test` 40개 통과, `npm run build` 통과
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - 실제 브라우저에서 로그인 버튼 이후 대기 시간이 줄었는지 확인하기
+  - GitHub Actions 자동 갱신이 현재 JSON 구조를 그대로 유지하는지 확인하기
+
+## 2026-03-18 (33)
+
+- [src/pages/LoginPage.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/LoginPage.tsx)에서 로그인 성공 직후 `loadMeta()`를 바로 시작해 언어 선택 화면 진입 전에 메타 선로딩이 시작되도록 조정했다.
+- [src/stores/languageStore.ts](D:/smx_coding_d/learning/language_learning_web/src/stores/languageStore.ts)에 언어 메타 in-flight promise 재사용과 중복 로드 방지를 추가해 로그인 직후와 언어 선택 화면 진입 시 같은 요청이 두 번 가지 않도록 보강했다.
+- [src/pages/LoginPage.test.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/LoginPage.test.tsx), [src/stores/languageStore.test.ts](D:/smx_coding_d/learning/language_learning_web/src/stores/languageStore.test.ts)에 선로딩/중복 방지 회귀 테스트를 추가했다.
+- 검증: `npm run test -- src/pages/LoginPage.test.tsx src/stores/languageStore.test.ts` 통과, `npm run build` 통과
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - 실제 브라우저에서 로그인 버튼 이후 언어 선택 화면 전환 대기 시간이 더 줄었는지 확인하기
+  - GitHub Actions 자동 갱신이 현재 JSON 구조를 그대로 유지하는지 확인하기
+
+## 2026-03-18 (34)
+
+- [.github/workflows/export-static-json.yml](D:/smx_coding_d/learning/language_learning_web/.github/workflows/export-static-json.yml)의 GitHub Actions 버전을 `actions/checkout@v5`, `actions/setup-python@v6`로 올려 Node 20 deprecation 경고 대응 기반을 맞췄다.
+- 같은 workflow의 `--language-label` 값을 다시 정리해 export 단계에서 한글 라벨이 깨진 상태로 남지 않도록 보강했다.
+- 검증: workflow 파일 내용 확인 (`actions/checkout@v5`, `actions/setup-python@v6`, `일본어` 포함 여부 확인)
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - GitHub Actions를 다시 한 번 수동 실행해 경고/실패 없이 exporter -> validator -> auto commit 흐름이 유지되는지 확인하기
+  - 실제 시트 row 반영과 JSON 자동 갱신 주기 운영 방식을 점검하기
+
+## 2026-03-18 (35)
+
+- [scripts/run_gas_smoke_test.mjs](D:/smx_coding_d/learning/language_learning_web/scripts/run_gas_smoke_test.mjs)를 추가해 현재 `.env`의 `VITE_GAS_BASE_URL`과 CLI 계정값으로 `login -> getMeta -> getWords -> saveSession` smoke test를 한 번에 실행할 수 있게 했다.
+- [package.json](D:/smx_coding_d/learning/language_learning_web/package.json)에 `npm run smoke:gas -- --login-id ... --password ...` 실행 스크립트를 추가했다.
+- [real-connection-smoke-test.md](D:/smx_coding_d/learning/language_learning_web/docs/real-connection-smoke-test.md)에 새 smoke test 명령 진입점을 연결했다.
+- 검증: `npm run smoke:gas -- --help` 사용법 출력 확인, `npm run build` 통과
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - 실제 계정으로 `npm run smoke:gas -- --login-id ... --password ...`를 실행해 시트 row 반영 전 단계까지 한 번에 확인하기
+  - 그 다음 `Game_Log`, `Answer_Log`, `Review_State`, `Daily_Stats` 시트 row 반영 여부를 직접 대조하기
+
+## 2026-03-18 (36)
+
+- [run_gas_smoke_test.mjs](D:/smx_coding_d/learning/language_learning_web/scripts/run_gas_smoke_test.mjs)를 문서의 테스트 계정(`test` / `1234`)으로 실제 실행해 현재 배포된 GAS Web App 실연동 상태를 다시 확인했다.
+- smoke 결과는 `login ok (u001)`, `getMeta ok (일본어 / 94)`, `getWords ok (377)`, `saveSession ok (saved: true)`였다.
+- 검증: `npm run smoke:gas -- --login-id test --password 1234` 통과
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - `Game_Log`, `Answer_Log`, `Review_State`, `Daily_Stats` 시트에 이번 smoke 실행 row가 실제로 기록됐는지 직접 확인하기
+  - 기록 row가 맞으면 실연동 검증 준비 항목의 시트 반영 확인 범위를 문서에 더 좁혀 반영하기
+
+## 2026-03-18 (37)
+
+- [live-connection-order.md](D:/smx_coding_d/learning/language_learning_web/docs/live-connection-order.md)를 현재 실연동 순서와 smoke test 기준으로 다시 작성해 깨진 인코딩 상태를 정리했다.
+- [gas-click-by-click-guide.md](D:/smx_coding_d/learning/language_learning_web/docs/gas-click-by-click-guide.md)의 오래된 필드명(`password`, `active`, `Words`, `choices`)과 잘못된 문서 링크를 현재 구조 기준으로 수정했다.
+- [README.md](D:/smx_coding_d/learning/language_learning_web/README.md)에 현재 운영 모드, smoke test 성공 상태, `smoke:gas` 스크립트, 실연동 문서 링크 최신화를 반영했다.
+- 검증: 문서 파일 내용 및 링크 문자열 확인
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - 실제 시트의 `Game_Log`, `Answer_Log`, `Review_State`, `Daily_Stats` row 반영 여부를 직접 확인하고 문서의 확인 포인트를 더 좁혀 적기
+  - 필요하면 시트 확인 결과를 템플릿 문서에 바로 기록해 이후 재검증 시간을 줄이기
+
+## 2026-03-18 (38)
+
+- [gas-connection-values-template.md](D:/smx_coding_d/learning/language_learning_web/docs/gas-connection-values-template.md)에 현재 `.env` 값과 smoke test 성공 결과를 기록하고, 시트에서 바로 찾을 기대값(`u001`, `ja`, `94`, `377`, `practice`, `10`, `JA_N_0001`)을 추가했다.
+- [real-connection-smoke-test.md](D:/smx_coding_d/learning/language_learning_web/docs/real-connection-smoke-test.md)에 현재 smoke 예시 결과와 각 시트 탭별 구체적인 확인 값 예시를 보강했다.
+- 검증: 문서 내용 확인
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - 실제 시트 4개 탭에서 위 기대값과 맞는 row가 들어갔는지 확인하기
+  - 확인 결과를 템플릿 문서의 저장 여부 항목에 실제 값으로 채워 넣기
+
+## 2026-03-18 (39)
+
+- [verify_record_sheet_state.py](D:/smx_coding_d/learning/language_learning_web/scripts/verify_record_sheet_state.py)를 추가해 `Game_Log`, `Answer_Log`, `Review_State`, `Daily_Stats`의 최신 row가 smoke 기대값과 맞는지 CLI로 검증할 수 있게 했다.
+- [package.json](D:/smx_coding_d/learning/language_learning_web/package.json)에 `npm run verify:record` 명령을 추가했고, [real-connection-smoke-test.md](D:/smx_coding_d/learning/language_learning_web/docs/real-connection-smoke-test.md)에 실행 예시를 연결했다.
+- 검증: `python -m py_compile scripts/verify_record_sheet_state.py` 통과, `npm run verify:record -- --help` 출력 확인, `npm run build` 통과
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - 서비스 계정 JSON 파일 경로와 `JA_RECORD_SHEET_ID`로 `npm run verify:record -- --credentials ... --spreadsheet-id ...`를 실행해 실제 시트 최신 row를 확인하기
+  - 확인 결과를 템플릿 문서의 저장 여부 메모에 실제 값으로 기록하기
+
+## 2026-03-18 (40)
+
+- [run_full_connection_check.mjs](D:/smx_coding_d/learning/language_learning_web/scripts/run_full_connection_check.mjs)를 추가해 `smoke:gas`와 `verify:record`를 한 번에 실행하는 통합 실연동 점검 흐름을 만들었다.
+- [package.json](D:/smx_coding_d/learning/language_learning_web/package.json)에 `npm run check:live`를 추가했고, [real-connection-smoke-test.md](D:/smx_coding_d/learning/language_learning_web/docs/real-connection-smoke-test.md)에 실행 예시를 연결했다.
+- 검증: `npm run check:live -- --help` 출력 확인, `npm run build` 통과
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - 서비스 계정 JSON 경로와 record 시트 ID를 넣어 `npm run check:live -- --login-id test --password 1234 --credentials ... --spreadsheet-id ...`를 실행하기
+  - 시트 확인 결과를 템플릿 문서에 실제 값으로 채워 넣기
+
+## 2026-03-18 (41)
+
+- [run_full_connection_check.mjs](D:/smx_coding_d/learning/language_learning_web/scripts/run_full_connection_check.mjs)가 `docs/gas-connection-values-template.md`의 기본 테스트 계정/record 시트 ID와 `GOOGLE_SERVICE_ACCOUNT_PATH`, `JA_RECORD_SHEET_ID` 환경변수를 읽도록 보강했다.
+- [verify_record_sheet_state.py](D:/smx_coding_d/learning/language_learning_web/scripts/verify_record_sheet_state.py)도 `GOOGLE_SERVICE_ACCOUNT_PATH`, `JA_RECORD_SHEET_ID`, `VERIFY_*` 환경변수를 읽도록 바꿔 매번 긴 인자를 덜 치게 했다.
+- [real-connection-smoke-test.md](D:/smx_coding_d/learning/language_learning_web/docs/real-connection-smoke-test.md)에 환경변수 기반 짧은 실행 예시를 추가했다.
+- 검증: `npm run check:live -- --help` 출력 확인, `npm run verify:record -- --help` 출력 확인, `npm run build` 통과
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - `GOOGLE_SERVICE_ACCOUNT_PATH`만 잡고 `npm run check:live`로 실제 row 검증까지 한 번에 실행하기
+  - 검증 결과를 템플릿 문서의 저장 여부 메모에 채워 넣기
+
+## 2026-03-18 (42)
+
+- [verify_record_sheet_state.py](D:/smx_coding_d/learning/language_learning_web/scripts/verify_record_sheet_state.py)에 `--report-file` 옵션과 기본 출력 경로 `docs/live-check-latest.json`을 추가해 실제 row 검증 결과를 JSON 파일로 저장할 수 있게 했다.
+- [run_full_connection_check.mjs](D:/smx_coding_d/learning/language_learning_web/scripts/run_full_connection_check.mjs)가 통합 점검 시 `verify:record`에 같은 report 경로를 넘기도록 연결했다.
+- [real-connection-smoke-test.md](D:/smx_coding_d/learning/language_learning_web/docs/real-connection-smoke-test.md)에 결과 저장 파일 위치를 안내했다.
+- 검증: `python -m py_compile scripts/verify_record_sheet_state.py` 통과, `npm run verify:record -- --help` 출력 확인, `npm run build` 통과
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - `GOOGLE_SERVICE_ACCOUNT_PATH` 설정 후 `npm run check:live`를 실제 실행해 `docs/live-check-latest.json` 생성 여부와 검증 결과를 확인하기
+  - 그 결과를 템플릿 문서 저장 여부 메모에 반영하기
+
+## 2026-03-18 (43)
+
+- [sync_live_check_report.mjs](D:/smx_coding_d/learning/language_learning_web/scripts/sync_live_check_report.mjs)를 추가해 `docs/live-check-latest.json` 검증 결과를 [gas-connection-values-template.md](D:/smx_coding_d/learning/language_learning_web/docs/gas-connection-values-template.md)의 저장 여부 메모로 자동 반영할 수 있게 했다.
+- [run_full_connection_check.mjs](D:/smx_coding_d/learning/language_learning_web/scripts/run_full_connection_check.mjs)가 `smoke -> verify -> sync` 3단계 흐름을 순서대로 실행하도록 확장됐다.
+- [package.json](D:/smx_coding_d/learning/language_learning_web/package.json)에 `sync:live-report`를 추가했고, [real-connection-smoke-test.md](D:/smx_coding_d/learning/language_learning_web/docs/real-connection-smoke-test.md)에 자동 반영 결과를 안내했다.
+- 검증: `npm run sync:live-report -- --help` 출력 확인, `npm run check:live -- --help` 출력 확인, `npm run build` 통과
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - `GOOGLE_SERVICE_ACCOUNT_PATH`만 설정하고 `npm run check:live`를 실제 실행해 row 검증과 문서 자동 반영까지 끝내기
+  - 자동 반영된 문서 메모를 기준으로 실제 시트 상태를 확정하기
+
+## 2026-03-18 (44)
+
+- [run_full_connection_check.mjs](D:/smx_coding_d/learning/language_learning_web/scripts/run_full_connection_check.mjs)가 중간 단계 실패 시에도 `docs/live-check-latest.json`에 `failed_stage`, `error_message`를 기록하고, 가능한 경우 템플릿 메모 동기화까지 시도하도록 보강했다.
+- 검증: `npm run check:live -- --help` 출력 확인, `npm run build` 통과
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - `npm run check:live`를 다시 실제 실행해 실패/성공 어떤 경우든 `docs/live-check-latest.json`이 남는지 확인하기
+  - 생성된 결과 파일 기준으로 실연동 상태를 확정하기
+
+## 2026-03-19 (45)
+
+- [run_full_connection_check.mjs](D:/smx_coding_d/learning/language_learning_web/scripts/run_full_connection_check.mjs)가 Windows에서 `npm` 실행 시 `npm.cmd`를 사용하도록 바꿔 PowerShell의 `spawn npm ENOENT` 문제를 해결했다.
+- 검증: `npm run check:live -- --help` 통과, `npm run build` 통과
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - PowerShell에서 `npm run check:live`를 다시 실행해 실제 smoke -> verify -> sync 단계가 이어지는지 확인하기
+  - 생성된 `docs/live-check-latest.json` 기준으로 실연동 상태를 확정하기
+
+## 2026-03-19 (46)
+
+- [run_full_connection_check.mjs](D:/smx_coding_d/learning/language_learning_web/scripts/run_full_connection_check.mjs)와 [verify_record_sheet_state.py](D:/smx_coding_d/learning/language_learning_web/scripts/verify_record_sheet_state.py)가 프로젝트 루트의 service account JSON 파일을 자동 감지하도록 보강했다.
+- 검증: `npm run check:live -- --help` 통과, `python -m py_compile scripts/verify_record_sheet_state.py` 통과, `npm run build` 통과
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - 루트의 JSON 파일을 그대로 둔 상태에서 `npm run check:live`를 다시 실행해 실제 row 검증과 문서 반영이 이어지는지 확인하기
+  - 생성된 `docs/live-check-latest.json` 기준으로 실연동 상태를 확정하기
+
+## 2026-03-19 (47)
+
+- [run_full_connection_check.mjs](D:/smx_coding_d/learning/language_learning_web/scripts/run_full_connection_check.mjs)의 하위 프로세스 실행을 Windows에서 셸 기반으로 바꿔 `spawn EINVAL` 문제를 줄였다.
+- 검증: `npm run check:live -- --help` 통과, `npm run build` 통과
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - PowerShell에서 `npm run check:live`를 다시 실행해 실제 smoke -> verify -> sync 단계가 이어지는지 확인하기
+  - 생성된 `docs/live-check-latest.json` 기준으로 실연동 상태를 확정하기
+
+## 2026-03-19 (48)
+
+- [verify_record_sheet_state.py](D:/smx_coding_d/learning/language_learning_web/scripts/verify_record_sheet_state.py)가 `googleapiclient` 계열 패키지가 없을 때 `requirements-json-export.txt`를 자동 설치한 뒤 계속 진행하도록 보강했다.
+- 검증: `python -m py_compile scripts/verify_record_sheet_state.py` 통과, `npm run build` 통과
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - PowerShell에서 `npm run check:live`를 다시 실행해 `verify:record` 자동 설치 후 실제 row 검증까지 이어지는지 확인하기
+  - 생성된 `docs/live-check-latest.json` 기준으로 실연동 상태를 확정하기
+
+## 2026-03-19 (49)
+
+- [verify_record_sheet_state.py](D:/smx_coding_d/learning/language_learning_web/scripts/verify_record_sheet_state.py)의 403 권한 오류를 `japanese_record` 시트를 서비스 계정 이메일과 공유해야 한다는 더 직접적인 안내 메시지로 바꿨다.
+- [real-connection-smoke-test.md](D:/smx_coding_d/learning/language_learning_web/docs/real-connection-smoke-test.md)에 `verify:record`는 `japanese_record`도 서비스 계정과 공유되어야 한다는 점을 명시했다.
+- 검증: `python -m py_compile scripts/verify_record_sheet_state.py` 통과, `npm run build` 통과
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - `japanese_record` 시트를 서비스 계정 이메일과 공유한 뒤 `npm run check:live`를 다시 실행하기
+  - 생성된 `docs/live-check-latest.json` 기준으로 실연동 상태를 확정하기
+
+## 2026-03-19 (50)
+
+- [verify_record_sheet_state.py](D:/smx_coding_d/learning/language_learning_web/scripts/verify_record_sheet_state.py)의 `Review_State` 검증 기준을 실제 시트 스키마에 맞게 `status`와 `priority_score` 중심으로 조정했고, 콘솔 UTF-8 출력도 보강했다.
+- [sync_live_check_report.mjs](D:/smx_coding_d/learning/language_learning_web/scripts/sync_live_check_report.mjs)를 깨끗하게 다시 작성해 `docs/live-check-latest.json` 결과를 [gas-connection-values-template.md](D:/smx_coding_d/learning/language_learning_web/docs/gas-connection-values-template.md)에 정확히 반영하도록 정리했다.
+- 실제 검증 결과: `Game_Log`, `Answer_Log`, `Review_State`, `Daily_Stats` 모두 기대값 기준 통과, 템플릿 메모도 모두 `성공`으로 갱신됐다.
+- 검증: `npm run verify:record -- --credentials language-learning-web-490613-24f6ee1e065d.json --spreadsheet-id 1hhQxfszQD3ZdZnYuoNjWrRMymktaJ0ctgXp54aFIFF0 --player-id u001 --word-id JA_N_0001 --mode-type practice --score 10 --language-code ja --report-file docs/live-check-latest.json` 통과, `npm run sync:live-report -- --report-file docs/live-check-latest.json --template-file docs/gas-connection-values-template.md` 통과, `npm run build` 통과
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - Phase 3 남은 항목인 `Review/Stats 로컬 스냅샷 구조와 실제 시트 저장 구조 최종 대조`를 문서 기준으로 마무리하기
+  - Google Sheets -> 정적 JSON 자동 생성 흐름 안정화 범위에서 운영 문서와 검증 절차를 더 간단하게 정리하기
+
+## 2026-03-19 (51)
+
+- [sheet-schema.md](D:/smx_coding_d/learning/language_learning_web/docs/sheet-schema.md)에 `Local Snapshot vs Record Sheet` 섹션을 추가해 `ReviewPage`, `StatsPage`가 현재 실제 record 시트 재조회가 아니라 localStorage snapshot을 기준으로 동작한다는 점을 명시했다.
+- `ReviewSnapshot.reviewState[].lastResult`는 현재 `Review_State` 시트에 직접 저장되지 않는 UI 미리보기용 필드이고, `DailyStatsSnapshot.practiceSessionCount`, `totalScore`, `averageAccuracy`, `lastPlayedAt`도 현재 `Daily_Stats`와 1:1 매핑되지 않는 로컬 집계 필드라는 점을 문서에 정리했다.
+- [TASKS.md](D:/smx_coding_d/learning/language_learning_web/TASKS.md)에서 `Review/Stats 로컬 스냅샷 구조와 실제 시트 저장 구조 최종 대조` 항목을 완료 처리하고 현재 작업 메모를 갱신했다.
+- 검증: 관련 코드(`src/pages/PlayPage.tsx`, `src/services/sessionRecovery.ts`, `src/pages/ReviewPage.tsx`, `src/pages/StatsPage.tsx`)와 문서 대조
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - Google Sheets -> 정적 JSON 자동 생성 흐름 안정화 범위에서 운영 문서와 검증 절차를 더 단순하게 정리하기
+  - Phase 3 문서들에서 실제 운영 기준과 UI 로컬 snapshot 기준을 계속 분리해 유지하기
+
+## 2026-03-19 (52)
+
+- [package.json](D:/smx_coding_d/learning/language_learning_web/package.json)에 `npm run export:json`, `npm run validate:json` 스크립트를 추가해 정적 JSON export/검증을 더 짧게 실행할 수 있게 했다.
+- [export-static-json.yml](D:/smx_coding_d/learning/language_learning_web/.github/workflows/export-static-json.yml)의 일본어 라벨 값을 다시 `일본어`로 고쳐 workflow 한글 인코딩 흔들림을 줄였다.
+- [json-export-workflow.md](D:/smx_coding_d/learning/language_learning_web/docs/json-export-workflow.md)를 준비물, 로컬 실행, 프론트 연결, GitHub Actions 자동화 순서로 다시 정리해 정적 JSON 운영 절차를 더 짧고 초보자 기준으로 읽기 쉽게 만들었다.
+- [README.md](D:/smx_coding_d/learning/language_learning_web/README.md)에 새 스크립트와 정적 JSON 운영 문서 진입점을 반영했다.
+- 검증: `npm run build` 통과
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - GitHub Actions 기준 정적 JSON 자동 갱신이 계속 안정적으로 유지되는지만 주기적으로 확인하기
+  - Phase 3 문서 중 실제 운영 절차와 테스트 절차를 더 짧게 줄일 수 있는 부분을 이어서 정리하기
+
+## 2026-03-19 (53)
+
+- [run_static_json_refresh.mjs](D:/smx_coding_d/learning/language_learning_web/scripts/run_static_json_refresh.mjs)를 추가해 `export:json -> validate:json`를 한 번에 실행하는 로컬 정적 JSON 갱신 흐름을 만들었다.
+- [package.json](D:/smx_coding_d/learning/language_learning_web/package.json)에 `npm run refresh:json` 스크립트를 추가했다.
+- [json-export-workflow.md](D:/smx_coding_d/learning/language_learning_web/docs/json-export-workflow.md), [README.md](D:/smx_coding_d/learning/language_learning_web/README.md), [TASKS.md](D:/smx_coding_d/learning/language_learning_web/TASKS.md)에 새 통합 명령을 반영했다.
+- 검증: `npm run build` 통과
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - 정적 JSON 갱신은 앞으로 `refresh:json` 기준으로 반복 실행하고, GitHub Actions 자동 갱신과 결과 일치만 계속 확인하기
+
+## 2026-03-19 (54)
+
+- [run_static_json_refresh.mjs](D:/smx_coding_d/learning/language_learning_web/scripts/run_static_json_refresh.mjs)가 프로젝트 루트의 service account JSON 파일과 [gas-connection-values-template.md](D:/smx_coding_d/learning/language_learning_web/docs/gas-connection-values-template.md)의 JA Master Sheet ID를 자동 감지하도록 보강했다.
+- 현재 작업 환경에서는 별도 인자 없이도 `npm run refresh:json`만으로 `export:json -> validate:json`를 이어서 실행할 수 있게 됐다.
+- [json-export-workflow.md](D:/smx_coding_d/learning/language_learning_web/docs/json-export-workflow.md), [README.md](D:/smx_coding_d/learning/language_learning_web/README.md), [TASKS.md](D:/smx_coding_d/learning/language_learning_web/TASKS.md)에 새 기본 실행 방식 반영.
+- 검증: `npm run build` 통과, `npm run refresh:json -- --help` 출력 확인
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - 정적 JSON 갱신은 `npm run refresh:json` 한 줄 기준으로 운영하고, 이후에는 GitHub Actions 자동 갱신 결과와 로컬 결과가 같은지만 유지 확인하기
+
+## 2026-03-19 (55)
+
+- [json-export-workflow.md](D:/smx_coding_d/learning/language_learning_web/docs/json-export-workflow.md), [README.md](D:/smx_coding_d/learning/language_learning_web/README.md), [TASKS.md](D:/smx_coding_d/learning/language_learning_web/TASKS.md)에 `npm run refresh:json`은 로컬 `public/data` 갱신 전용이고, GitHub auto commit/push는 `Export Static JSON` workflow가 담당한다는 점을 명확히 적었다.
+- 검증: 문서 내용 확인
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - 정적 JSON 로컬 갱신과 GitHub Actions 자동 갱신의 역할을 계속 분리해 유지하기
+
+## 2026-03-19 (56)
+
+- [static-json-ops-quickref.md](D:/smx_coding_d/learning/language_learning_web/docs/static-json-ops-quickref.md)를 추가해 `npm run refresh:json`과 `Actions > Export Static JSON`의 역할 차이를 한 장으로 바로 볼 수 있게 정리했다.
+- [README.md](D:/smx_coding_d/learning/language_learning_web/README.md), [json-export-workflow.md](D:/smx_coding_d/learning/language_learning_web/docs/json-export-workflow.md), [TASKS.md](D:/smx_coding_d/learning/language_learning_web/TASKS.md)에 새 quick reference 진입점을 반영했다.
+- 검증: 문서 내용 확인
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - 남은 Phase 3 범위에서는 실제 운영 문서를 계속 짧게 줄이되, 기능 추가보다 운영 혼동 제거를 우선하기
+
+## 2026-03-19 (57)
+
+- [live-ops-quickref.md](D:/smx_coding_d/learning/language_learning_web/docs/live-ops-quickref.md)를 추가해 `smoke:gas`, `verify:record`, `check:live`의 역할 차이를 한 장으로 바로 볼 수 있게 정리했다.
+- [README.md](D:/smx_coding_d/learning/language_learning_web/README.md), [TASKS.md](D:/smx_coding_d/learning/language_learning_web/TASKS.md)에 새 quick reference 진입점을 반영했다.
+- 검증: 문서 내용 확인
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - 남은 Phase 3 범위에서는 실제 운영 명령과 문서 진입점을 더 줄이는 방향으로 계속 정리하기
+
+## 2026-03-19 (58)
+
+- [gas-docs-start-here.md](D:/smx_coding_d/learning/language_learning_web/docs/gas-docs-start-here.md)를 현재 운영 기준으로 다시 작성해 문서 진입점을 `정적 JSON`, `실연동`, `상세 설정` 3갈래로 줄였다.
+- 예전의 잘못된 절대 경로 표기와 과도한 단계 나열을 정리하고, quick reference 문서 중심으로 시작할 수 있게 바꿨다.
+- [TASKS.md](D:/smx_coding_d/learning/language_learning_web/TASKS.md)에 위 정리 상태를 반영했다.
+- 검증: 문서 내용 확인
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - 남은 Phase 3 범위에서는 실제로 자주 쓰는 문서만 남기고, 나머지는 상세 참고 문서 역할로 더 분리하기
+
+## 2026-03-19 (59)
+
+- [run_static_json_refresh.mjs](D:/smx_coding_d/learning/language_learning_web/scripts/run_static_json_refresh.mjs)에 실제 help 모드를 추가해 `npm run refresh:json -- --help` 실행 시 export/validate를 돌리지 않고 사용법만 출력하도록 정리했다.
+- [json-export-workflow.md](D:/smx_coding_d/learning/language_learning_web/docs/json-export-workflow.md), [static-json-ops-quickref.md](D:/smx_coding_d/learning/language_learning_web/docs/static-json-ops-quickref.md), [TASKS.md](D:/smx_coding_d/learning/language_learning_web/TASKS.md)에 help 사용 예시를 반영했다.
+- 검증: `npm run refresh:json -- --help` 출력 확인, `npm run build` 통과
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - Phase 3 남은 범위에서는 실제로 자주 쓰는 운영 명령의 기본 동작과 도움말을 계속 다듬되, 기능 추가보다 사용 흐름 단순화를 우선하기
+
+## 2026-03-19 (60)
+
+- [run_gas_smoke_test.mjs](D:/smx_coding_d/learning/language_learning_web/scripts/run_gas_smoke_test.mjs)가 `docs/gas-connection-values-template.md`의 테스트 계정 기본값을 읽도록 보강해 현재 작업 환경에서는 `npm run smoke:gas` 한 줄만으로 API smoke를 바로 실행할 수 있게 했다.
+- [live-ops-quickref.md](D:/smx_coding_d/learning/language_learning_web/docs/live-ops-quickref.md), [README.md](D:/smx_coding_d/learning/language_learning_web/README.md), [TASKS.md](D:/smx_coding_d/learning/language_learning_web/TASKS.md)에 새 기본 실행 방식을 반영했다.
+- 검증: `npm run smoke:gas -- --help` 출력 확인, `npm run build` 통과
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - 실연동 운영 명령 3개(`smoke:gas`, `verify:record`, `check:live`)를 현재처럼 기본값 기반으로 유지하면서, 이후에는 기능 범위 쪽 다음 작은 작업을 다시 잡기
+
+## 2026-03-19 (61)
+
+- [real-connection-smoke-test.md](D:/smx_coding_d/learning/language_learning_web/docs/real-connection-smoke-test.md)의 `Review_State` 확인 기준을 예전 `last_result`, `review_stage` 중심 설명에서 실제 시트 스키마의 `status`, `priority_score`, count 계열 중심 설명으로 수정했다.
+- 기본값 기반 `npm run smoke:gas`를 실제로 다시 실행해 `player_id=u001`, `일본어 94`, `377문항`, `saveSession saved:true`까지 재확인했다.
+- 검증: `npm run smoke:gas` 통과, `npm run build` 통과
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - 남은 Phase 3 범위에서는 실제 문서 기준과 실연동 명령 기본값이 계속 어긋나지 않게 유지하면서, 이후 기능 범위의 다음 작은 작업을 다시 잡기
+
+
+## 2026-03-19 (62)
+
+- [verify_record_sheet_state.py](D:/smx_coding_d/learning/language_learning_web/scripts/verify_record_sheet_state.py)가 [gas-connection-values-template.md](D:/smx_coding_d/learning/language_learning_web/docs/gas-connection-values-template.md)의 JA Record Sheet ID와 기대 기본값을 읽도록 보강해 현재 작업 환경에서는 `npm run verify:record` 한 줄만으로 record 시트 4개 탭 검증을 바로 실행할 수 있게 했다.
+- 기본값 기반 `npm run verify:record`를 실제로 다시 실행해 Game_Log, Answer_Log, Review_State, Daily_Stats가 모두 ok: true로 통과하는 것을 재확인했다.
+- 검증: `npm run verify:record` 통과, `npm run build` 통과
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - 실연동 운영 명령 3개(`smoke:gas`, `verify:record`, `check:live`)를 현재처럼 기본값 기반으로 유지하면서, 이후에는 기능 범위의 다음 작은 작업을 다시 잡기
+
+## 2026-03-19 (63)
+
+- [PlayPage.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.tsx)에 답안 입력 잠금을 추가해 답안을 빠르게 여러 번 눌러도 중복 처리되지 않도록 보강했다.
+- [PlayPage.test.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.test.tsx)에 연타 시 `saveSession`이 한 번만 호출되는 테스트를 추가했다.
+- 검증: `npm run test -- src/pages/PlayPage.test.tsx` 통과, `npm run build` 통과
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - 남은 Phase 3 범위에서는 출제/플레이 흐름의 작은 안정화 작업을 계속 쪼개서 진행하고, 큰 게임성 개편은 다음 범위로 넘기기

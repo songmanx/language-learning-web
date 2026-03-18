@@ -194,4 +194,28 @@ describe("apiClient remote mode", () => {
       },
     ]);
   });
+
+  it("warms up the GAS connection with a GET request", async () => {
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({
+        ok: true,
+        data: {
+          status: "ok",
+        },
+      }),
+    });
+    vi.stubGlobal("fetch", fetchMock);
+
+    const { apiClient } = await import("./apiClient");
+    await apiClient.warmupConnection();
+
+    expect(fetchMock).toHaveBeenCalledWith(
+      "https://example.com/gas",
+      expect.objectContaining({
+        method: "GET",
+        cache: "no-store",
+      }),
+    );
+  });
 });

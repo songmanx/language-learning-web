@@ -1,10 +1,10 @@
 ﻿import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
-import { beforeEach, describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { ResultPage } from "./ResultPage";
 import { PlayPage } from "./PlayPage";
-import { clearMockGasFailures, setMockGasFailure } from "../services/apiClient";
+import { apiClient, clearMockGasFailures, setMockGasFailure } from "../services/apiClient";
 import { readPendingSession } from "../services/sessionRecovery";
 import { useAuthStore } from "../stores/authStore";
 import { useLanguageStore } from "../stores/languageStore";
@@ -139,5 +139,31 @@ describe("PlayPage flow", () => {
       expect(pending?.reason).toBe("save failed");
       expect(pending?.payload.score).toBe(12);
     });
+  });
+
+  it("답안을 빠르게 여러 번 눌러도 세션 저장은 한 번만 처리한다", async () => {
+    const user = userEvent.setup();
+    const saveSessionMock = vi
+      .spyOn(apiClient, "saveSession")
+      .mockImplementation(
+        () =>
+          new Promise((resolve) => {
+            window.setTimeout(() => {
+              resolve({ ok: true });
+            }, 20);
+          }),
+      );
+
+    renderPlayFlow();
+
+    const answerButton = getFirstAnswerButton(TEXT.answer);
+
+    await user.click(answerButton);
+    await user.click(answerButton);
+
+    await screen.findByText(TEXT.reviewPreview);
+    expect(saveSessionMock).toHaveBeenCalledTimes(1);
+
+    saveSessionMock.mockRestore();
   });
 });

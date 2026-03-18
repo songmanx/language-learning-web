@@ -8,7 +8,14 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "export:json": "C:/Users/smx/AppData/Local/Programs/Python/Python313/python.exe scripts/export_google_sheets_json.py",
+    "validate:json": "C:/Users/smx/AppData/Local/Programs/Python/Python313/python.exe scripts/validate_static_json.py",
+    "refresh:json": "node scripts/run_static_json_refresh.mjs",
+    "smoke:gas": "node scripts/run_gas_smoke_test.mjs",
+    "verify:record": "C:/Users/smx/AppData/Local/Programs/Python/Python313/python.exe scripts/verify_record_sheet_state.py",
+    "check:live": "node scripts/run_full_connection_check.mjs",
+    "sync:live-report": "node scripts/sync_live_check_report.mjs"
   },
   "dependencies": {
     "framer-motion": "^12.5.0",

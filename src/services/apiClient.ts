@@ -44,6 +44,7 @@ const useStaticData = runtimeConfig.useStaticData;
 const staticDataMetaUrl = runtimeConfig.staticDataMetaUrl;
 const staticDataWordsBasePath = runtimeConfig.staticDataWordsBasePath;
 const mockFailures: MockFailureMap = {};
+let warmupPromise: Promise<void> | null = null;
 
 function mockDelay<T>(value: T, ms = 150): Promise<T> {
   return new Promise((resolve) => {
@@ -151,6 +152,23 @@ async function readStaticJson<T>(url: string): Promise<T> {
   return (await response.json()) as T;
 }
 
+async function warmupGasConnection() {
+  if (useMockApi || !baseUrl) {
+    return;
+  }
+
+  if (!warmupPromise) {
+    warmupPromise = fetch(baseUrl, {
+      method: "GET",
+      cache: "no-store",
+    })
+      .then(() => undefined)
+      .catch(() => undefined);
+  }
+
+  await warmupPromise;
+}
+
 export function setMockGasFailure(method: keyof MockFailureMap, message: string) {
   mockFailures[method] = message;
 }
@@ -166,6 +184,7 @@ export const apiClient = {
   useMockApi,
   useStaticData,
   readDataMode: runtimeConfig.readDataMode,
+  warmupConnection: warmupGasConnection,
   async login(request: LoginRequest): Promise<LoginSession> {
     if (!useMockApi) {
       const dto = await postToGas<LoginResponseDto>("login", request);

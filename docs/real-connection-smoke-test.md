@@ -14,6 +14,66 @@ VITE_GAS_USE_MOCK=false
 
 그리고 앱 상단 헤더에 `GAS 실연동 모드`가 보여야 한다.
 
+빠르게 API만 먼저 확인하고 싶다면 아래 명령도 사용할 수 있다.
+
+```bash
+npm run smoke:gas -- --login-id YOUR_LOGIN_ID --password YOUR_PASSWORD
+```
+
+이 명령은 현재 `.env`의 `VITE_GAS_BASE_URL`을 읽어 `login -> getMeta -> getWords -> saveSession`를 순서대로 확인한다.
+
+record 시트 4개 탭을 CLI로 바로 확인하고 싶다면 아래 명령도 쓸 수 있다.
+
+```bash
+npm run verify:record -- --credentials path\to\service-account.json --spreadsheet-id YOUR_JA_RECORD_SHEET_ID
+```
+
+기본 기대값은 현재 smoke 기준으로 `u001`, `JA_N_0001`, `practice`, `10`, `ja`다.
+
+중요:
+
+- 이 검증은 `japanese_record` 시트를 서비스 계정 이메일과도 공유해야 한다.
+- `japanese_master`만 공유되어 있고 `japanese_record`가 공유되지 않으면 `The caller does not have permission` 오류가 난다.
+
+두 단계를 한 번에 돌리고 싶다면 아래 통합 명령을 쓴다.
+
+```bash
+npm run check:live -- --login-id test --password 1234 --credentials path\to\service-account.json --spreadsheet-id YOUR_JA_RECORD_SHEET_ID
+```
+
+이 명령은 `smoke:gas` 실행 후 바로 `verify:record`까지 이어서 실행한다.
+
+현재 통합 명령은 아래 기본값도 자동으로 읽는다.
+
+- `docs/gas-connection-values-template.md`의 `login_id`, `password`, `JA Record Sheet Spreadsheet ID`
+- 환경변수 `GOOGLE_SERVICE_ACCOUNT_PATH`
+
+즉, 서비스 계정 JSON 경로만 환경변수로 잡아 두면 아래처럼 더 짧게 실행할 수 있다.
+
+PowerShell:
+
+```bash
+$env:GOOGLE_SERVICE_ACCOUNT_PATH="C:\path\to\service-account.json"
+npm run check:live
+```
+
+cmd:
+
+```bash
+set GOOGLE_SERVICE_ACCOUNT_PATH=C:\path\to\service-account.json
+npm run check:live
+```
+
+성공하면 검증 결과 JSON이 기본값으로 [live-check-latest.json](D:/smx_coding_d/learning/language_learning_web/docs/live-check-latest.json)에 저장된다.
+같이 [gas-connection-values-template.md](D:/smx_coding_d/learning/language_learning_web/docs/gas-connection-values-template.md)의 저장 여부 메모도 자동으로 갱신된다.
+
+현재 확인된 예시 결과:
+
+- `login`: `player_id=u001`, `nickname=테스트`
+- `getMeta`: `language_code=ja`, `label=일본어`, `total_words=94`
+- `getWords`: `377개`, 첫 단어 `JA_N_0001`
+- `saveSession`: `saved: true`
+
 ## 1. 앱 실행
 
 실행 명령:
@@ -126,6 +186,9 @@ npm run dev
 확인할 것:
 
 - 새 행이 1개 추가되었는지
+- `player_id`가 `u001`인지
+- `mode_type`이 `practice`인지
+- `final_score`가 `10`인지
 - `player_id`, `mode_type`, `quiz_type`, `final_score`가 맞는지
 - `total_time_sec`가 `0`이 아니라 실제 플레이 시간 비슷한 값으로 들어갔는지
 - `log_id`가 `player_id-YYYYMMDDTHHMMSS` 비슷한 형태로 들어갔는지
@@ -135,6 +198,8 @@ npm run dev
 확인할 것:
 
 - 답한 문제 수만큼 행이 들어갔는지
+- `word_id`가 `JA_N_0001`인지
+- `selected_answer`가 정답과 같고 `numeric_score`가 `10`인지
 - `selected_answer`, `result_grade`, `numeric_score` 값이 맞는지
 - `question_type`, `shown_prompt`, `response_time_ms`, `difficulty_snapshot`이 비어 있지 않은지
 - 같은 플레이의 `session_log_id`가 Game_Log의 `log_id`와 같은지
@@ -144,13 +209,17 @@ npm run dev
 확인할 것:
 
 - 플레이한 단어 기준으로 최신 상태가 들어갔는지
-- `priority_score`, `review_stage`, `last_result`가 채워졌는지
+- `word_id`가 `JA_N_0001`인지
+- `status=review` 또는 현재 단계값으로 들어갔는지
+- `priority_score`가 채워졌는지
+- `wrong_count_total`, `correct_count_total`, `last_seen_at`가 비어 있지 않은지
 
 ### Daily_Stats
 
 확인할 것:
 
 - 오늘 날짜 행이 생기거나 갱신되었는지
+- `sessions_count`, `solved_count`, `correct_count`가 최소 1 이상인지
 - `sessions_count`, `solved_count`, `correct_count`, `best_score`가 누적되는지
 - `study_minutes`가 `0`이 아니라 실제 플레이 시간 기준으로 올라가는지
 - `stat_date`가 `Asia/Seoul` 기준 날짜로 저장되는지

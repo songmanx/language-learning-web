@@ -51,6 +51,8 @@ type LanguageStore = LanguageSnapshot & {
   clearLoadError: () => void;
 };
 
+let metaLoadPromise: Promise<void> | null = null;
+
 const fallbackWords: WordItem[] = [
   {
     id: "fallback-1",
@@ -86,28 +88,43 @@ export const useLanguageStore = create<LanguageStore>((set, get) => ({
     set({ loadError: null });
   },
   async loadMeta() {
-    set({ isLoading: true, loadError: null });
-    appLogger.info("language", TEXT.metaLoadStart);
-
-    try {
-      const meta = await apiClient.getMeta();
-      set({
-        availableLanguages: meta,
-        isLoading: false,
-      });
-      appLogger.info("language", TEXT.metaLoadSuccess, {
-        count: meta.length,
-      });
-    } catch (error) {
-      logger("ERROR", TEXT.metaLoadFail, error instanceof Error ? { message: error.message } : undefined);
-      set({
-        availableLanguages: [
-          { languageCode: "ja", label: "\uC77C\uBCF8\uC5B4", totalWords: fallbackWords.length },
-        ],
-        loadError: TEXT.metaFallback,
-        isLoading: false,
-      });
+    if (get().availableLanguages.length > 0 && !get().loadError) {
+      return;
     }
+
+    if (metaLoadPromise) {
+      await metaLoadPromise;
+      return;
+    }
+
+    metaLoadPromise = (async () => {
+      set({ isLoading: true, loadError: null });
+      appLogger.info("language", TEXT.metaLoadStart);
+
+      try {
+        const meta = await apiClient.getMeta();
+        set({
+          availableLanguages: meta,
+          isLoading: false,
+        });
+        appLogger.info("language", TEXT.metaLoadSuccess, {
+          count: meta.length,
+        });
+      } catch (error) {
+        logger("ERROR", TEXT.metaLoadFail, error instanceof Error ? { message: error.message } : undefined);
+        set({
+          availableLanguages: [
+            { languageCode: "ja", label: "\uC77C\uBCF8\uC5B4", totalWords: fallbackWords.length },
+          ],
+          loadError: TEXT.metaFallback,
+          isLoading: false,
+        });
+      } finally {
+        metaLoadPromise = null;
+      }
+    })();
+
+    await metaLoadPromise;
   },
   selectLanguage(languageCode) {
     writeJsonStorage(getSelectedLanguageKey(getCurrentPlayerId()), languageCode);

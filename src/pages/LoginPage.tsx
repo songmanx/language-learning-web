@@ -1,9 +1,11 @@
 ﻿import { FormEvent, useState } from "react";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { apiClient } from "../services/apiClient";
 import { appLogger } from "../services/logger";
 import { useAuthStore } from "../stores/authStore";
+import { useLanguageStore } from "../stores/languageStore";
 
 const IS_MOCK_MODE = apiClient.useMockApi;
 const TEXT = {
@@ -31,10 +33,19 @@ const TEXT = {
 export function LoginPage() {
   const navigate = useNavigate();
   const login = useAuthStore((state) => state.login);
+  const loadMeta = useLanguageStore((state) => state.loadMeta);
   const [loginId, setLoginId] = useState(IS_MOCK_MODE ? "demo" : "");
   const [password, setPassword] = useState(IS_MOCK_MODE ? "1234" : "");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (IS_MOCK_MODE) {
+      return;
+    }
+
+    void apiClient.warmupConnection();
+  }, []);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -43,6 +54,7 @@ export function LoginPage() {
 
     try {
       await login(loginId, password);
+      void loadMeta();
       navigate("/languages");
     } catch (error) {
       const message = error instanceof Error ? error.message : "unknown error";

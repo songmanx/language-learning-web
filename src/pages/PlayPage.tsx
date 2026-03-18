@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import type { SessionResultState } from "../features/game/resultState";
 import { buildQuestionRound } from "../features/game/questionRound";
@@ -69,8 +69,10 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
   const [heartsLeft, setHeartsLeft] = useState(MAX_HEARTS);
   const [answerLog, setAnswerLog] = useState<PendingAnswer[]>([]);
   const [isSaving, setIsSaving] = useState(false);
+  const [isAnswerLocked, setIsAnswerLocked] = useState(false);
   const [sessionStartedAt] = useState(() => Date.now());
   const [questionStartedAt, setQuestionStartedAt] = useState(() => Date.now());
+  const answerLockRef = useRef(false);
 
   const isPracticeMode = mode === "practice";
   const modeTitle = isPracticeMode ? TEXT.practiceMode : TEXT.standardMode;
@@ -99,6 +101,8 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
 
   useEffect(() => {
     if (currentWord) {
+      answerLockRef.current = false;
+      setIsAnswerLocked(false);
       setQuestionStartedAt(Date.now());
     }
   }, [currentWord]);
@@ -212,6 +216,13 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
       return;
     }
 
+    if (answerLockRef.current) {
+      return;
+    }
+
+    answerLockRef.current = true;
+    setIsAnswerLocked(true);
+
     const correct = choice === currentQuestion.answer;
     const nextCombo = correct ? combo + 1 : 0;
     const earnedScore = correct ? 10 + nextCombo * 2 : 0;
@@ -317,7 +328,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
             className="min-h-16 rounded-[1.5rem] border border-white/10 bg-white/10 px-5 py-5 text-left text-[1.02rem] font-medium leading-7 transition hover:border-amber-300/60 hover:bg-white/12"
             type="button"
             onClick={() => void handleAnswer(choice)}
-            disabled={isSaving}
+            disabled={isSaving || isAnswerLocked}
           >
             {choice}
           </button>

@@ -391,6 +391,97 @@ One `answerLog` item becomes one row.
 - `difficulty_snapshot` 외의 고급 난이도 이력이나 `study_minutes` 세부 정책은 이후 더 정교화할 수 있다.
 - 실제 운영에서는 이후 프론트 payload 확장 또는 GAS 보강이 더 필요하다.
 
+## Local Snapshot vs Record Sheet
+
+복습센터와 기본 통계 화면은 현재 `japanese_record` 시트를 직접 다시 읽지 않는다.
+플레이 종료 시점의 프론트 계산 결과를 localStorage snapshot으로 저장하고, 화면은 그 snapshot을 우선 보여준다.
+
+관련 코드 기준:
+
+- `src/pages/PlayPage.tsx`
+- `src/services/sessionRecovery.ts`
+- `src/pages/ReviewPage.tsx`
+- `src/pages/StatsPage.tsx`
+
+### 1. Review snapshot
+
+로컬 복습 snapshot 타입:
+
+```ts
+type ReviewSnapshot = {
+  reviewState: ReviewStateRecord[];
+  savedAt: string;
+};
+
+type ReviewStateRecord = {
+  wordId: string;
+  priorityScore: number;
+  reviewStage: "new" | "learning" | "review";
+  lastResult: "correct" | "wrong";
+};
+```
+
+실제 `Review_State` 시트는 아래 성격이 더 강하다.
+
+- 누적 상태 저장소
+- streak / count / due date / memo 중심
+- machine key는 `status`, `wrong_count_total`, `correct_count_total`, `priority_score` 등
+
+즉, 로컬 snapshot과 실제 시트의 차이는 다음과 같다.
+
+| Local snapshot field | Record key | Relation |
+| --- | --- | --- |
+| `wordId` | `word_id` | 직접 대응 |
+| `priorityScore` | `priority_score` | 직접 대응 |
+| `reviewStage` | `status` | 이름만 다르고 같은 단계 의미 |
+| `lastResult` | 없음 | UI 미리보기용 로컬 필드 |
+| `savedAt` | 없음 | 로컬 저장 시각 |
+
+운영 원칙:
+
+- `Review_State`의 authoritative field는 시트의 `status`, count 계열, due date 계열이다.
+- `lastResult`는 결과 화면/복습센터 표시용 로컬 보조 정보로만 본다.
+- 따라서 현재 복습센터는 "최근 세션 기준 미리보기" 성격이고, 시트의 모든 누적 필드를 그대로 복원한 화면은 아니다.
+
+### 2. Daily stats snapshot
+
+로컬 통계 snapshot 타입:
+
+```ts
+type DailyStatsSnapshot = {
+  sessionCount: number;
+  practiceSessionCount: number;
+  totalScore: number;
+  bestScore: number;
+  totalQuestions: number;
+  correctAnswers: number;
+  averageAccuracy: number;
+  lastPlayedAt: string;
+};
+```
+
+실제 `Daily_Stats` 시트는 날짜별 누적 저장소다.
+
+즉, 로컬 snapshot과 실제 시트의 차이는 다음과 같다.
+
+| Local snapshot field | Record key | Relation |
+| --- | --- | --- |
+| `sessionCount` | `sessions_count` | 직접 대응에 가까움 |
+| `totalQuestions` | `solved_count` | 직접 대응에 가까움 |
+| `correctAnswers` | `correct_count` | 직접 대응에 가까움 |
+| `bestScore` | `best_score` | 직접 대응 |
+| `practiceSessionCount` | 없음 | UI 집계용 로컬 필드 |
+| `totalScore` | 없음 | UI 집계용 로컬 필드 |
+| `averageAccuracy` | 없음 | `correctAnswers / totalQuestions` 로컬 계산값 |
+| `lastPlayedAt` | 없음 | 로컬 최근 플레이 시각 |
+
+운영 원칙:
+
+- `Daily_Stats`는 날짜별 저장용 record다.
+- `StatsPage`는 현재 "최근 로컬 누적 snapshot"을 보여주는 화면이다.
+- `practiceSessionCount`, `totalScore`, `averageAccuracy`, `lastPlayedAt`는 현재 시트에 1:1로 저장되지 않는 UI 보조 지표다.
+- 실제 시트 값과 화면 값을 완전히 같게 맞추려면 이후 별도 조회 API 또는 snapshot 재구성 규칙이 더 필요하다.
+
 ## Recommended Next Alignment
 
 - `Code.gs`가 현재 uploaded workbook key row(2행)를 기준으로 읽고 쓰게 유지한다.

@@ -1,10 +1,11 @@
 ﻿import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
-import { beforeEach, describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { LoginPage } from "./LoginPage";
 import { clearMockGasFailures, setMockGasFailure } from "../services/apiClient";
 import { useAuthStore } from "../stores/authStore";
+import { useLanguageStore } from "../stores/languageStore";
 
 const TEXT = {
   title: "학습을 시작해 봅시다",
@@ -22,6 +23,13 @@ describe("LoginPage", () => {
       playerId: null,
       nickname: null,
     });
+    useLanguageStore.setState({
+      selectedLanguage: null,
+      availableLanguages: [],
+      words: [],
+      isLoading: false,
+      loadError: null,
+    });
   });
 
   it("데모 로그인 안내 문구를 보여준다", () => {
@@ -38,6 +46,19 @@ describe("LoginPage", () => {
 
   it("로그인 후 언어 선택 화면으로 이동한다", async () => {
     const user = userEvent.setup();
+    const loadMeta = vi.fn().mockResolvedValue(undefined);
+
+    useLanguageStore.setState({
+      selectedLanguage: null,
+      availableLanguages: [],
+      words: [],
+      isLoading: false,
+      loadError: null,
+      loadMeta,
+      selectLanguage: vi.fn(),
+      loadWords: vi.fn().mockResolvedValue(undefined),
+      clearLoadError: vi.fn(),
+    });
 
     render(
       <MemoryRouter initialEntries={["/login"]}>
@@ -53,6 +74,7 @@ describe("LoginPage", () => {
     await waitFor(() => {
       expect(screen.getByText("languages-route")).toBeInTheDocument();
     });
+    expect(loadMeta).toHaveBeenCalledTimes(1);
   });
 
   it("로그인 실패 시 오류 문구를 화면에 보여준다", async () => {

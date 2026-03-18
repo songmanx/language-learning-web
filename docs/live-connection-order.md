@@ -1,89 +1,68 @@
 # Live Connection Order
 
-이 문서는 실제 Google Apps Script + Google Sheets 연결을 할 때
-"무엇을 먼저 해야 하는지"를 아주 짧게 정리한 순서표다.
+이 문서는 실제 Google Sheets + GAS + 프론트를 어떤 순서로 연결하면 가장 덜 막히는지 정리한 문서다.
 
-## 결론 먼저
+## 가장 추천하는 진행 순서
 
-현재 프로젝트 기준으로는 아래 순서가 가장 안전하다.
+1. Google Sheets 3개를 준비한다.
+2. 시트 탭 이름과 첫 행 헤더를 문서 기준으로 맞춘다.
+3. Apps Script 프로젝트에 [Code.gs](D:/smx_coding_d/learning/language_learning_web/gas/Code.gs), [appsscript.json](D:/smx_coding_d/learning/language_learning_web/gas/appsscript.json)을 반영한다.
+4. Script Properties에 `USER_SHEET_ID`, `JA_MASTER_SHEET_ID`, `JA_RECORD_SHEET_ID`를 넣는다.
+5. Web App으로 배포한다.
+6. 프론트 `.env`에 배포 URL을 넣고 `VITE_GAS_USE_MOCK=false`로 바꾼다.
+7. 앱 로그인과 화면 흐름을 확인한다.
+8. 마지막으로 smoke test와 실제 시트 row 반영을 확인한다.
 
-1. Google Sheets 3개 만들기
-2. 시트 탭 이름과 첫 행 헤더 맞추기
-3. Apps Script 프로젝트에 `gas/Code.gs` 넣기
-4. Script Properties에 시트 ID 3개 넣기
-5. Apps Script를 Web App으로 배포하기
-6. 프론트 `.env`에 배포 URL 넣기
-7. `VITE_GAS_USE_MOCK=false`로 바꾸기
-8. 로그인부터 저장까지 실제 테스트하기
+## 지금 꼭 필요한 설정
 
-## 지금 당장 필요한 설정
+현재 프로젝트 기준으로 바로 필요한 것은 아래다.
 
-지금 바로 필요한 것은 아래뿐이다.
-
-- Google Sheets 만들기
-- Apps Script 만들기
+- Google Sheets 준비
+- Apps Script 코드 반영
 - Script Properties 입력
 - Web App 배포
 - 프론트 `.env` 연결
 
-## 아직 필요 없는 설정
+## 지금은 굳이 안 해도 되는 것
 
-초보자가 가장 많이 헷갈리는 부분이라 먼저 적어둔다.
+현재 구조에서는 아래를 먼저 붙잡지 않아도 된다.
 
-현재 단계에서는 아래를 보통 따로 하지 않아도 된다.
-
-- Google Sheets API 별도 활성화
-- Google Cloud에서 서비스 계정 만들기
-- OAuth 동의 화면 설정
-- 복잡한 API 키 발급
+- 별도 OAuth 화면 설정
+- 복잡한 외부 API 발급
+- 프론트 서버 쪽 별도 백엔드 구성
 
 이유:
 
-- 이 프로젝트는 Apps Script가 같은 계정 안의 스프레드시트를 직접 읽고 쓰는 구조이기 때문이다.
+- 현재 프로젝트는 GAS Web App이 Google Sheets를 직접 읽고 저장하는 구조다.
 
-## 각 단계에서 필요한 준비물
+## 단계별 준비물
 
-### 1. Google Sheets 만들기
+### 1. Google Sheets 준비
 
-필요한 것:
+준비물:
 
-- 구글 계정
+- 사용자 시트 1개
+- 일본어 master 시트 1개
+- 일본어 record 시트 1개
 
-결과물:
+관련 문서:
 
-- `lang_user_sheet`
-- `lang_ja_master_sheet`
-- `lang_ja_record_sheet`
+- [google-sheets-setup-guide.md](D:/smx_coding_d/learning/language_learning_web/docs/google-sheets-setup-guide.md)
 
-### 2. 헤더 입력
+### 2. Apps Script 코드 반영
 
-필요한 것:
+준비물:
 
-- [google-sheets-setup-guide.md](D:/smx_coding_d/language_learning_web/docs/google-sheets-setup-guide.md)
+- [Code.gs](D:/smx_coding_d/learning/language_learning_web/gas/Code.gs)
+- [appsscript.json](D:/smx_coding_d/learning/language_learning_web/gas/appsscript.json)
 
-결과물:
+결과:
 
-- 시트 탭 이름과 첫 행 헤더 완성
+- `login`, `getMeta`, `getWords`, `saveSession` 액션 준비
 
-### 3. Apps Script 코드 넣기
+### 3. Script Properties 입력
 
-필요한 것:
-
-- [Code.gs](D:/smx_coding_d/language_learning_web/gas/Code.gs)
-
-결과물:
-
-- `login`, `getMeta`, `getWords`, `saveSession` 액션 처리 준비
-
-### 4. Script Properties 입력
-
-필요한 것:
-
-- 사용자 시트 ID
-- 일본어 원본 시트 ID
-- 일본어 기록 시트 ID
-
-넣어야 하는 키:
+넣을 값:
 
 ```text
 USER_SHEET_ID
@@ -91,60 +70,87 @@ JA_MASTER_SHEET_ID
 JA_RECORD_SHEET_ID
 ```
 
-### 5. Web App 배포
+관련 문서:
 
-필요한 것:
+- [gas-connection-values-template.md](D:/smx_coding_d/learning/language_learning_web/docs/gas-connection-values-template.md)
 
-- Apps Script 프로젝트
+### 4. Web App 배포
 
-결과물:
+결과:
 
-- 배포 URL 1개
+- Web App URL 1개 확보
 
-### 6. 프론트 `.env` 연결
+관련 문서:
 
-넣어야 하는 값:
+- [gas-click-by-click-guide.md](D:/smx_coding_d/learning/language_learning_web/docs/gas-click-by-click-guide.md)
+- [gas-deploy-checklist.md](D:/smx_coding_d/learning/language_learning_web/docs/gas-deploy-checklist.md)
+
+### 5. 프론트 `.env` 연결
+
+넣을 값:
 
 ```bash
 VITE_GAS_BASE_URL=배포_URL
 VITE_GAS_USE_MOCK=false
 ```
 
-## 설정이 필요한 순간에 내가 어떻게 도와줄 수 있는지
+정적 JSON 읽기 가속 모드를 같이 쓸 때는 아래도 추가한다.
 
-아래 순간이 오면 제가 아주 쉽게 설명드릴 수 있다.
+```bash
+VITE_STATIC_DATA_META_URL=/data/languages.json
+VITE_STATIC_DATA_WORDS_BASE_PATH=/data
+```
 
-### Script Properties 넣을 때
+## 가장 빠른 확인 순서
 
-제가 설명해드릴 수 있는 것:
+1. 앱 헤더에 `GAS 실연동 모드` 또는 `정적 JSON 읽기 + GAS 저장 모드`가 보이는지 확인
+2. 테스트 계정으로 로그인
+3. `일본어`가 언어 목록에 보이는지 확인
+4. 홈 진입 후 플레이 또는 연습 시작
+5. 결과 화면까지 이동
+6. `Game_Log`, `Answer_Log`, `Review_State`, `Daily_Stats` row 확인
 
-- Script Properties 메뉴가 어디 있는지
-- 어떤 키에 어떤 값을 넣는지
-- 시트 ID를 주소에서 어디서 복사하는지
+## CLI로 더 빨리 확인하는 방법
 
-### Web App 배포할 때
+브라우저 전에 API만 먼저 확인하고 싶으면 아래 명령을 실행한다.
 
-제가 설명해드릴 수 있는 것:
+```bash
+npm run smoke:gas -- --login-id YOUR_LOGIN_ID --password YOUR_PASSWORD
+```
 
-- 배포 버튼을 어디서 누르는지
-- 실행 사용자를 무엇으로 해야 하는지
-- 접근 권한을 어떻게 고르는지
-- 복사해야 할 URL이 무엇인지
+이 명령은 현재 `.env`의 `VITE_GAS_BASE_URL`을 기준으로 아래를 순서대로 확인한다.
 
-### `.env` 연결할 때
+- `login`
+- `getMeta`
+- `getWords`
+- `saveSession`
 
-제가 설명해드릴 수 있는 것:
+관련 문서:
 
-- `.env` 파일에 정확히 무엇을 써야 하는지
-- mock 모드를 어떻게 끄는지
-- 연결 후 무엇부터 테스트하면 되는지
+- [real-connection-smoke-test.md](D:/smx_coding_d/learning/language_learning_web/docs/real-connection-smoke-test.md)
 
-## 가장 추천하는 진행 방식
+## 막히면 먼저 볼 것
 
-가장 덜 헷갈리는 방식은 이렇다.
+### 로그인이 안 될 때
 
-1. 먼저 시트 3개와 탭/헤더를 만든다.
-2. 그 다음 Apps Script에 코드와 Script Properties를 넣는다.
-3. 마지막에 Web App 배포 URL을 프론트에 연결한다.
+- `Users.login_id`
+- `Users.password_plain_or_hash`
+- `Users.is_active`
+- `USER_SHEET_ID`
 
-즉, URL 연결보다 먼저 시트 구조를 끝내는 쪽이 좋다.
+### 언어 목록이 비어 있을 때
+
+- `JA_MASTER_SHEET_ID`
+- 품사 시트 이름
+- 품사 시트 2행 machine key
+- `is_active` 값
+
+### 저장이 안 될 때
+
+- `JA_RECORD_SHEET_ID`
+- `Game_Log`, `Answer_Log`, `Review_State`, `Daily_Stats` 탭 이름
+- 최신 Web App 재배포 여부
+
+## 권장 흐름 한 줄 요약
+
+시트 준비 -> GAS 반영 -> Script Properties -> Web App 배포 -> `.env` 연결 -> smoke test -> 실제 row 확인

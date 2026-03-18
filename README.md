@@ -27,7 +27,8 @@ npm install
 - Phase 2 안정화 / 테스트 완료
 - 현재 Phase 3 핵심 기능 확장 진행 중
 - 복습센터 기본 화면과 연습 모드 진입 흐름 구현 완료
-- mock 기반 로그인, 단어 로드, 세션 저장 placeholder를 사용한다
+- 현재 기본 운영 모드는 `정적 JSON 읽기 + GAS 로그인/저장` 구조다
+- 실제 배포된 GAS Web App 기준 `login`, `getMeta`, `getWords`, `saveSession` smoke test 성공 상태다
 
 ## 프로젝트 핵심 정보
 
@@ -93,19 +94,28 @@ npm run build
 - `preview`: vite preview
 - `test`: vitest run
 - `test:watch`: vitest
+- `export:json`: Google Sheets master -> 정적 JSON export
+- `validate:json`: 생성된 정적 JSON 최소 구조 검증
+- `refresh:json`: 정적 JSON export + validate 한 번에 실행
+- `smoke:gas`: 현재 `.env`의 GAS URL로 실연동 smoke test 실행
+- `verify:record`: record 시트 4개 탭 최신 row 검증
+- `check:live`: `smoke:gas -> verify:record -> sync` 통합 점검
 
 ## 검증 결과
 
 - `npm install` 성공
 - `npm run test` 성공
 - `npm run build` 성공
+- `npm run smoke:gas -- --login-id test --password 1234` 성공
 
 ## 외부 연동 정보
 
 ### GAS API
-TBD:
-- 배포된 Web App URL
-- 엔드포인트 상세 응답 형식
+
+현재 연결 구조:
+
+- 읽기: `getMeta`, `getWords`는 정적 JSON 또는 GAS
+- 쓰기/인증: `login`, `saveSession`은 GAS
 
 예상 엔드포인트:
 - `login`
@@ -205,21 +215,53 @@ VITE_STATIC_DATA_WORDS_BASE_PATH=/data
 
 처음이면 아래 문서부터 보면 가장 쉽다.
 
-- [gas-docs-start-here.md](/D:/smx_coding_d/language_learning_web/docs/gas-docs-start-here.md)
+- [gas-docs-start-here.md](D:/smx_coding_d/learning/language_learning_web/docs/gas-docs-start-here.md)
 
 상황별 추천 문서:
 
-- 시트부터 준비할 때: [google-sheets-setup-guide.md](/D:/smx_coding_d/language_learning_web/docs/google-sheets-setup-guide.md)
-- 배포 직전 5분 체크: [gas-5minute-checklist.md](/D:/smx_coding_d/language_learning_web/docs/gas-5minute-checklist.md)
-- 배포 전 상세 체크: [gas-deploy-checklist.md](/D:/smx_coding_d/language_learning_web/docs/gas-deploy-checklist.md)
-- 연결 후 동작 확인: [real-connection-smoke-test.md](/D:/smx_coding_d/language_learning_web/docs/real-connection-smoke-test.md)
-- 정적 JSON 자동 생성: [json-export-workflow.md](/D:/smx_coding_d/learning/language_learning_web/docs/json-export-workflow.md)
+- 시트부터 준비할 때: [google-sheets-setup-guide.md](D:/smx_coding_d/learning/language_learning_web/docs/google-sheets-setup-guide.md)
+- 배포 직전 5분 체크: [gas-5minute-checklist.md](D:/smx_coding_d/learning/language_learning_web/docs/gas-5minute-checklist.md)
+- 배포 전 상세 체크: [gas-deploy-checklist.md](D:/smx_coding_d/learning/language_learning_web/docs/gas-deploy-checklist.md)
+- 연결 순서 빠르게 보기: [live-connection-order.md](D:/smx_coding_d/learning/language_learning_web/docs/live-connection-order.md)
+- 연결 후 동작 확인: [real-connection-smoke-test.md](D:/smx_coding_d/learning/language_learning_web/docs/real-connection-smoke-test.md)
+- 실연동 운영 요약표: [live-ops-quickref.md](D:/smx_coding_d/learning/language_learning_web/docs/live-ops-quickref.md)
+- 정적 JSON 자동 생성: [json-export-workflow.md](D:/smx_coding_d/learning/language_learning_web/docs/json-export-workflow.md)
+
+정적 JSON 갱신만 빠르게 다시 볼 때는 이 문서 하나만 보면 된다.
+
+- [json-export-workflow.md](D:/smx_coding_d/learning/language_learning_web/docs/json-export-workflow.md)
+
+실연동 명령만 빠르게 다시 볼 때는 이 문서 하나만 보면 된다.
+
+- [live-ops-quickref.md](D:/smx_coding_d/learning/language_learning_web/docs/live-ops-quickref.md)
 
 GitHub Actions 자동 갱신을 쓰려면 저장소 설정에서 아래 두 가지가 필요하다.
 
 - Repository secret: `GOOGLE_SERVICE_ACCOUNT_JSON`
 - Repository secret: `JA_MASTER_SHEET_ID`
 - `Settings > Actions > General > Workflow permissions > Read and write permissions`
+
+PowerShell에서 실연동 통합 점검을 실행할 때는 아래처럼 환경변수를 잡는다.
+
+```bash
+$env:GOOGLE_SERVICE_ACCOUNT_PATH="D:\smx_coding_d\learning\language_learning_web\language-learning-web-490613-24f6ee1e065d.json"
+npm run check:live
+```
+
+정적 JSON만 다시 갱신할 때는 현재 프로젝트 기준으로 아래 한 줄이면 된다.
+
+```bash
+npm run refresh:json
+```
+
+이 명령은 로컬의 `public/data`만 갱신한다.
+GitHub 자동 업로드까지 하려면 `Actions > Export Static JSON` workflow를 써야 한다.
+
+현재 프로젝트 기본값으로 실연동 API만 빠르게 확인할 때는 아래 한 줄이면 된다.
+
+```bash
+npm run smoke:gas
+```
 
 
 

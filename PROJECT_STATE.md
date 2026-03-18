@@ -1,9 +1,9 @@
-﻿# PROJECT_STATE.md
+# PROJECT_STATE.md
 
 ## 문서 목적
 
-이 문서는 `PROJECT_CONTEXT.md`의 설계 문서를 바탕으로, 지금 이 저장소에 실제로 구현되어 있는 상태만 정리한 현재 상태 스냅샷이다.  
-다른 PC의 Codex가 이 문서 하나만 읽어도 현재 구현 범위, 주요 파일, 데이터 구조, 다음 작업을 바로 이해할 수 있도록 작성한다.
+이 문서는 `PROJECT_CONTEXT.md`의 설계 문서가 아니라, 현재 저장소에 실제로 구현되어 있는 상태만 정리한 현재 상태 스냅샷이다.  
+다른 PC의 Codex가 이 문서 하나만 읽고도 지금 무엇이 구현되어 있고, 어떤 구조로 동작하며, 다음에 무엇을 이어서 개발해야 하는지 바로 파악할 수 있도록 작성한다.
 
 ## 현재 진행 Phase
 
@@ -11,260 +11,272 @@
 - 기준 문서: `TASKS.md`
 - 현재 방향:
   - 플레이 이후 흐름인 결과, 복습, 통계, 연습 모드를 안정화
-  - mock/real API 분기와 GAS/Google Sheets 실연동 준비를 진행
-  - 실제 시트 구조와 프론트 payload 매핑을 맞추는 중
+  - Google Sheets 실연동과 정적 JSON 운영 흐름을 정리
+  - 문서/운영 스크립트를 단순화해 다른 환경에서도 바로 이어서 검증할 수 있게 만드는 중
 
 ## 현재 구현된 기능
 
 ### 1. 인증과 진입 흐름
 
-- 로그인 화면 구현
-- 보호 라우트 구현
-- 로그인 성공 시 언어 선택 화면으로 이동
-- 실연동 모드에서는 demo 기본값을 강제로 넣지 않음
-- 로그인 실패 시 오류 문구를 화면에 표시
+- 로그인 화면 구현 완료
+- 보호 라우트 구현 완료
+- Zustand 기반 인증 상태 저장 완료
+- 로그인 성공 시 `/languages`로 이동
+- 실연동 모드에서는 GAS `GET` warm-up 후 로그인
+- 로그인 직후 언어 메타를 선로딩해 언어 선택 진입 대기 시간을 줄여 둠
 
 ### 2. 언어 선택과 데이터 로드
 
-- 언어 메타 로드
-- 일본어 1개 언어 기준 선택 화면 구현
-- 언어 선택 직후 홈 화면으로 먼저 이동
-- 단어 데이터는 백그라운드로 로드해 진입 체감 속도를 보정
-- 단어 로드 실패 시 cache 또는 fallback mock 데이터 사용
+- 언어 선택 화면 구현 완료
+- 현재 지원 언어는 일본어(`ja`) 1개
+- 언어 메타는 `getMeta()`로 로드
+- 단어 데이터는 `getWords("ja")`로 로드
+- 언어 선택 직후 홈으로 먼저 이동하고, 단어는 백그라운드 로드
+- 단어 로드 실패 시 localStorage cache 우선 fallback, 없으면 내장 fallbackWords 사용
 
 ### 3. 홈 화면
 
-- 선택 언어, 준비된 문제 수 표시
-- 플레이 시작
-- 연습 모드 시작
-- 복습센터 진입
-- 통계 화면 진입
-- 언어 다시 선택
-- 로그아웃
-- pending session 재저장 버튼
-- mock 모드 안내 표시
-- 상단에서 현재 연결 상태 표시
+- 현재 선택 언어 표시
+- 준비된 문제 수 표시
+- 기본 플레이 시작 버튼
+- 연습 모드 시작 버튼
+- 복습센터 이동 버튼
+- 통계 화면 이동 버튼
+- 언어 재선택 버튼
+- 로그아웃 버튼
+- pending session이 남아 있으면 홈에서 재저장 시도 가능
+- 현재 데이터 읽기 모드 안내 표시
+  - mock 모드 안내
+  - 정적 JSON + GAS 저장 모드 안내
 
-### 4. 플레이와 결과 처리
+### 4. 플레이 화면
 
-- 문제 유형 2종 구현
+- 기본 플레이(`/play`)와 연습 모드(`/practice`) 공용 화면 구현
+- HUD 요소 구현:
+  - 하트
+  - 점수
+  - 콤보
+  - 진행도
+  - 남은 문제 수
+- 문제 유형 2종 지원:
   - `word_to_meaning`
   - `meaning_to_word`
-- 점수, 하트, 콤보 계산
-- 세션 시간 추적
-- 문항별 응답 시간 추적
-- `뜻 -> 단어` 문제에서 현재 문제 DTO의 단어 보기만 사용하도록 수정 완료
-- 세션 종료 시 결과 화면으로 이동
-- 결과 화면에서 점수, 정답 수, 복습 상태 미리보기, CTA 표시
+- 마지막 문제 또는 하트 소진 시 세션 종료
+- 세션 종료 직후 결과 화면을 먼저 보여 주고 저장은 뒤에서 계속 진행
+- 답안 클릭 직후 입력 잠금 처리 구현
+  - 빠른 연타로 같은 문제가 중복 처리되지 않음
 
-### 5. 복습과 통계
+### 5. 결과 / 복습 / 통계 흐름
 
-- `Review_State` 계산 로직 구현
-- 복습센터 화면 구현
-- 우선순위 기반 복습 목록 정렬
-- 연습 모드 재진입
-- 기본 통계 화면 구현
-- 로컬 snapshot 기반 누적 통계 표시
+- 결과 화면 구현 완료
+  - 점수
+  - 정답 수
+  - 정확도
+  - 남은 하트
+  - 저장 상태(`saving`, `saved`, `pending`)
+  - 복습 상태 미리보기
+  - 다음 행동 제안
+- 복습센터 화면 구현 완료
+  - localStorage에 저장된 최근 `reviewState` snapshot 기준 정렬
+  - 우선순위 높은 단어부터 표시
+- 통계 화면 구현 완료
+  - localStorage에 저장된 `dailyStats` snapshot 기준 표시
+  - 누적 세션 수, 연습 세션 수, 누적 점수, 최고 점수, 정확도 등 표시
 
-### 6. 저장 실패 복구
+### 6. 저장 / 복구 / 로컬 snapshot
 
-- 세션 저장 실패 시 pending session 임시 저장
+- 세션 종료 시 `SaveSessionRequest` payload 생성
+- 저장 성공 시 결과 화면에서 `saved` 상태 표시
+- 저장 실패 시 pending session을 localStorage에 저장
 - 홈 화면에서 pending session 재저장 가능
-- `review snapshot`, `daily stats snapshot` 로컬 저장
+- `Review_State`용 snapshot localStorage 저장
+- `Daily_Stats`용 snapshot localStorage 저장
+- 단어 cache localStorage 저장
+- 선택 언어 localStorage 저장
 
-### 7. API와 실연동 준비
+### 7. 정적 JSON 운영
 
-- mock API / GAS Web App 런타임 분기 구현
-- `.env` 기반 runtime 설정 해석
-- 브라우저에서 GAS 호출 시 `text/plain;charset=utf-8` 방식으로 전송하여 CORS preflight 문제 회피
-- 실제 업로드된 Excel 헤더 기준으로 GAS 스켈레톤과 문서 정렬
-- 실연동 문서 세트 작성 완료
-- 현재 배포된 GAS Web App 기준 `login`, `getMeta`, `getWords`, `saveSession` 최소 smoke test 응답 확인 완료
+- 현재 읽기 경로는 정적 JSON 우선 구조로 전환됨
+- `public/data/languages.json`
+- `public/data/ja/words.json`
+- `.env` 기준 현재 동작:
+  - 로그인 / 저장: GAS
+  - 메타 / 단어 읽기: 정적 JSON
+- Google Sheets -> JSON export 스크립트 구현
+- JSON validate 스크립트 구현
+- 로컬 통합 명령 구현:
+  - `npm run export:json`
+  - `npm run validate:json`
+  - `npm run refresh:json`
+- GitHub Actions `Export Static JSON` workflow로 자동 export/validate/commit 가능
 
-### 8. 테스트 상태
+### 8. 실연동 운영/검증
 
-- Vitest + React Testing Library 기반 테스트 구성
-- 현재 주요 화면, 저장 흐름, 런타임 분기, 세션 복구, 문제 라운드 테스트 존재
-- 최근 확인 기준:
-  - `npm run test` 통과
-  - `npm run build` 통과
-  - 실제 GAS Web App에 `songmanx / 8686` 로그인 요청 성공
-  - 실제 GAS Web App에 `getMeta`, `getWords`, 최소 `saveSession` 요청 성공
-- 최근 테스트 수: 38개 통과 기준으로 관리 중
+- GAS Web App `login`, `getMeta`, `getWords`, `saveSession` smoke test 스크립트 구현
+- 기록 시트 4개 탭 검증 스크립트 구현
+  - `Game_Log`
+  - `Answer_Log`
+  - `Review_State`
+  - `Daily_Stats`
+- 통합 명령 구현:
+  - `npm run smoke:gas`
+  - `npm run verify:record`
+  - `npm run check:live`
+- 현재 프로젝트 환경에서는 기본값 기반 실행이 많이 단순화됨
+- `docs/live-check-latest.json`에 최근 실연동 검증 결과 저장
 
 ## 현재 프로젝트 폴더 구조
 
+현재 작업에 중요한 폴더만 적는다.
+
 ```text
-.
-├─ src/
-│  ├─ components/
-│  │  ├─ AppShell.tsx
-│  │  └─ ProtectedRoute.tsx
-│  ├─ features/
-│  │  └─ game/
-│  │     ├─ mockWords.ts
-│  │     ├─ questionRound.ts
-│  │     ├─ questionRound.test.ts
-│  │     ├─ resultState.ts
-│  │     ├─ session.ts
-│  │     └─ session.test.ts
-│  ├─ pages/
-│  │  ├─ LoginPage.tsx
-│  │  ├─ LanguageSelectPage.tsx
-│  │  ├─ HomePage.tsx
-│  │  ├─ PlayPage.tsx
-│  │  ├─ ResultPage.tsx
-│  │  ├─ ReviewPage.tsx
-│  │  ├─ StatsPage.tsx
-│  │  └─ 각 페이지 테스트 파일
-│  ├─ services/
-│  │  ├─ apiClient.ts
-│  │  ├─ apiTypes.ts
-│  │  ├─ gasClient.ts
-│  │  ├─ gasMappers.ts
-│  │  ├─ logger.ts
-│  │  ├─ runtimeConfig.ts
-│  │  ├─ sessionRecovery.ts
-│  │  ├─ storage.ts
-│  │  └─ storageKeys.ts
-│  ├─ stores/
-│  │  ├─ authStore.ts
-│  │  └─ languageStore.ts
-│  ├─ test/
-│  │  └─ setup.ts
-│  ├─ utils/
-│  │  └─ reviewState.ts
-│  ├─ App.tsx
-│  └─ main.tsx
-├─ gas/
-│  ├─ Code.gs
-│  ├─ appsscript.json
-│  └─ README.md
-├─ docs/
-│  ├─ api-spec.md
-│  ├─ sheet-schema.md
-│  ├─ google-sheets-setup-guide.md
-│  ├─ gas-click-by-click-guide.md
-│  ├─ gas-deploy-checklist.md
-│  ├─ gas-5minute-checklist.md
-│  ├─ gas-docs-start-here.md
-│  ├─ gas-connection-values-template.md
-│  ├─ real-connection-smoke-test.md
-│  └─ 기타 연결/설명 문서
-├─ 백업/
-│  ├─ user.xlsx
-│  ├─ japanese_master.xlsx
-│  └─ japanese_record.xlsx
-├─ AGENTS.md
-├─ TASKS.md
-├─ ROADMAP.md
-├─ PROJECT_CONTEXT.md
-├─ PROJECT_STATE.md
-├─ CHANGELOG.md
-├─ README.md
-├─ .env
-└─ .env.example
+language_learning_web/
+  .github/
+    workflows/
+      export-static-json.yml
+  docs/
+    api-spec.md
+    sheet-schema.md
+    json-export-workflow.md
+    real-connection-smoke-test.md
+    static-json-ops-quickref.md
+    live-ops-quickref.md
+    gas-docs-start-here.md
+    gas-connection-values-template.md
+    live-check-latest.json
+  gas/
+    Code.gs
+  public/
+    data/
+      languages.json
+      ja/
+        words.json
+  scripts/
+    export_google_sheets_json.py
+    validate_static_json.py
+    run_static_json_refresh.mjs
+    run_gas_smoke_test.mjs
+    verify_record_sheet_state.py
+    run_full_connection_check.mjs
+    sync_live_check_report.mjs
+  src/
+    components/
+    features/game/
+    pages/
+    services/
+    stores/
+    utils/
+    App.tsx
+    main.tsx
+  AGENTS.md
+  PROJECT_CONTEXT.md
+  PROJECT_STATE.md
+  ROADMAP.md
+  TASKS.md
+  CHANGELOG.md
+  package.json
+  .env
 ```
 
 ## 주요 파일 및 역할
 
-### 라우팅/앱 셸
+### 라우팅 / 앱 프레임
 
 - `src/App.tsx`
-  - 전체 라우트 정의
+  - 전체 라우팅 정의
   - `/login`, `/languages`, `/home`, `/play`, `/practice`, `/result`, `/review`, `/stats`
 - `src/components/AppShell.tsx`
-  - 공통 레이아웃
-  - 상단 연결 상태 배지 표시
+  - 공통 레이아웃과 상단 상태 영역
 - `src/components/ProtectedRoute.tsx`
-  - 로그인 상태가 아니면 접근 차단
+  - 로그인 여부에 따른 보호 라우트
 
-### 상태 관리
+### 페이지
 
-- `src/stores/authStore.ts`
-  - 로그인 세션, `playerId`, `nickname`, `token`, `isLoggedIn`, `logout`
-- `src/stores/languageStore.ts`
-  - 선택 언어, 언어 메타, 단어 목록, 로딩/오류, `loadMeta`, `loadWords`, `selectLanguage`
+- `src/pages/LoginPage.tsx`
+  - 로그인 폼
+  - GAS warm-up
+  - 로그인 성공 후 언어 메타 선로딩
+- `src/pages/LanguageSelectPage.tsx`
+  - 사용 가능 언어 목록 표시 및 선택
+- `src/pages/HomePage.tsx`
+  - 시작 허브
+  - pending session 재저장
+  - 현재 읽기 모드 안내
+- `src/pages/PlayPage.tsx`
+  - 실제 문제 풀이 핵심 화면
+  - 점수/콤보/하트 계산
+  - 결과 화면 선이동 + 저장 후상태 업데이트
+  - 최근 수정: 답안 입력 잠금
+- `src/pages/ResultPage.tsx`
+  - 세션 요약과 저장 상태 표시
+- `src/pages/ReviewPage.tsx`
+  - 로컬 review snapshot 기반 복습 목록
+- `src/pages/StatsPage.tsx`
+  - 로컬 daily stats snapshot 기반 통계 화면
 
 ### 게임 로직
 
 - `src/features/game/questionRound.ts`
-  - 문제 유형별 prompt, instruction, type label, choices 생성
-  - `meaning_to_word`는 현재 DTO의 `choices` 그대로 사용
+  - 현재 문항 DTO를 실제 UI 문제 형식으로 변환
 - `src/features/game/session.ts`
-  - 세션 종료 payload 생성
-  - 실제 답변 수 기준으로 `totalQuestions` 정합성 유지
+  - `SaveSessionRequest` payload 생성
 - `src/features/game/resultState.ts`
-  - 결과 화면에 필요한 표시용 상태 계산
+  - 결과 화면으로 넘기는 상태 타입
 - `src/utils/reviewState.ts`
-  - 답변 로그로부터 `Review_State` 레코드 계산
+  - 정답/오답 기준 reviewState 계산
 
-### 화면
+### 상태 관리
 
-- `src/pages/LoginPage.tsx`
-  - 로그인 입력, 오류 표시, 실연동 모드 문구 처리
-- `src/pages/LanguageSelectPage.tsx`
-  - 언어 카드 표시, 선택 시 홈 이동 + 백그라운드 단어 로드
-- `src/pages/HomePage.tsx`
-  - 플레이/연습/복습/통계/재저장 진입
-  - 단어가 비어 있으면 진입 직전 재로드
-- `src/pages/PlayPage.tsx`
-  - 플레이 루프, 정답 처리, 점수/하트/콤보, 세션 저장
-- `src/pages/ResultPage.tsx`
-  - 결과 요약, 저장 상태, 복습 상태 미리보기
-- `src/pages/ReviewPage.tsx`
-  - 로컬 review snapshot 기반 복습 목록
-- `src/pages/StatsPage.tsx`
-  - 로컬 daily stats snapshot 기반 통계
+- `src/stores/authStore.ts`
+  - 로그인 상태, 토큰, playerId, nickname
+- `src/stores/languageStore.ts`
+  - 선택 언어
+  - 언어 메타
+  - 단어 목록
+  - 메타/단어 로드
+  - cache fallback
 
-### API/실연동
+### API / 저장 / 설정
 
-- `src/services/apiTypes.ts`
-  - 프론트 내부 타입과 DTO 타입 정의
 - `src/services/apiClient.ts`
-  - mock / real 모드 분기
-  - 브라우저에서 GAS Web App으로 실제 요청 전송
-- `src/services/gasClient.ts`
-  - mock GAS 역할의 프론트 측 클라이언트
-- `src/services/gasMappers.ts`
-  - GAS 응답 DTO -> 프론트 타입 매핑
+  - mock / GAS / static JSON 분기 진입점
+  - 현재는 `readDataMode`가 `json`
 - `src/services/runtimeConfig.ts`
-  - `.env`의 `VITE_GAS_BASE_URL`, `VITE_GAS_USE_MOCK` 해석
+  - `.env` 값 파싱
 - `src/services/sessionRecovery.ts`
-  - cache, pending session, review snapshot, stats snapshot 저장/조회
+  - pending session / review snapshot / daily stats snapshot / words cache 관리
+- `src/services/storage.ts`
+  - JSON localStorage read/write 래퍼
+- `src/services/gasMappers.ts`
+  - GAS DTO -> 프론트 타입 매핑
+- `src/services/apiTypes.ts`
+  - 핵심 데이터 타입 정의
 
-### GAS
+### GAS / 운영 스크립트
 
 - `gas/Code.gs`
-  - `doPost`, `doGet`
-  - `login`, `getMeta`, `getWords`, `saveSession` action 처리
-  - 실제 Excel 헤더 기준 시트 읽기/쓰기
-- `gas/appsscript.json`
-  - Apps Script 매니페스트
-- `gas/README.md`
-  - GAS 사용 및 시트 구성 안내
-
-### 문서
-
-- `docs/api-spec.md`
-  - 현재 프론트와 GAS가 기대하는 action 기반 요청/응답 구조
-- `docs/sheet-schema.md`
-  - 실제 업로드된 Excel 헤더 기준 시트 구조와 저장 매핑
-- `docs/real-connection-smoke-test.md`
-  - 실연동 후 로그인/로드/저장 확인 순서
-- `docs/gas-click-by-click-guide.md`
-  - Apps Script 설정과 배포를 초보자 기준으로 안내
+  - 실제 GAS endpoint
+  - `login`, `getMeta`, `getWords`, `saveSession`
+- `scripts/export_google_sheets_json.py`
+  - Google Sheets master workbook -> 정적 JSON export
+- `scripts/validate_static_json.py`
+  - 생성된 JSON 검증
+- `scripts/run_static_json_refresh.mjs`
+  - export + validate 통합
+- `scripts/run_gas_smoke_test.mjs`
+  - GAS smoke test
+- `scripts/verify_record_sheet_state.py`
+  - record workbook 검증
+- `scripts/run_full_connection_check.mjs`
+  - smoke + verify + report sync 통합
 
 ## 데이터 구조
 
-## 프론트 핵심 타입
+### 1. 프론트 핵심 타입
 
-현재 프론트 타입은 `src/services/apiTypes.ts` 기준으로 아래 구조를 사용한다.
+`src/services/apiTypes.ts` 기준:
 
 ```ts
-type QuestionType = "word_to_meaning" | "meaning_to_word";
-type SessionMode = "standard" | "practice";
-
 type WordItem = {
   id: string;
   prompt: string;
@@ -272,12 +284,12 @@ type WordItem = {
   answer: string;
   meaning: string;
   difficulty: string;
-  questionType: QuestionType;
+  questionType: "word_to_meaning" | "meaning_to_word";
 };
 
 type AnswerLog = {
   wordId: string;
-  questionType: QuestionType;
+  questionType: "word_to_meaning" | "meaning_to_word";
   shownPrompt: string;
   difficultySnapshot: string;
   responseTimeMs: number;
@@ -297,8 +309,8 @@ type ReviewStateRecord = {
 type SaveSessionRequest = {
   playerId: string;
   languageCode: string;
-  modeType: SessionMode;
-  quizType: QuestionType | "mixed";
+  modeType: "standard" | "practice";
+  quizType: "word_to_meaning" | "meaning_to_word" | "mixed";
   totalTimeSec: number;
   score: number;
   heartsLeft: number;
@@ -309,99 +321,71 @@ type SaveSessionRequest = {
 };
 ```
 
-## 브라우저 localStorage 구조
+### 2. 현재 정적 JSON 구조
 
-- words cache
-  - 계정 + 언어 기준으로 분리
-- pending session
-  - 저장 실패 시 원본 payload 보존
-- review snapshot
-  - 결과/복습 화면용 최근 `Review_State`
-- daily stats snapshot
-  - 통계 화면용 누적 정보
+`public/data/languages.json`
 
-대표 구조:
+- 현재 일본어 1개
+- 현재 `total_words: 94`
 
-```ts
-type PendingSessionRecord = {
-  payload: SaveSessionRequest;
-  savedAt: string;
-  reason: string;
-};
-```
+`public/data/ja/words.json`
 
-## Google Sheets 구조
+- 현재 일본어 문제 DTO 목록
+- 현재 question count는 377
+- `choices`는 master 시트 원본 컬럼이 아니라 exporter/GAS가 만든 문제용 보기 배열
 
-현재 프로젝트는 사용자 파일 1개 + 언어별 파일 2개 구조를 전제로 한다.
+### 3. Google Sheets 구조
 
-### 1. 사용자 파일
+#### User workbook
 
-- 파일: `user.xlsx` 기준
-- 주요 시트: `Users`
-- 현재 GAS 로그인에서 사용하는 핵심 컬럼:
-  - `login_id`
-  - `password_plain_or_hash`
+- workbook: `lang_user_sheet`
+- sheet: `Users`
+- 현재 로그인 참조 컬럼:
   - `player_id`
   - `display_name`
+  - `login_id`
+  - `password_plain_or_hash`
   - `is_active`
 
-현재 확인된 실제 계정 예시:
+#### Japanese master workbook
 
-- `songmanx / 8686`
-- `quilt3 / 2446`
-
-### 2. 일본어 master 파일
-
-- 파일: `japanese_master.xlsx`
-- 현재 구조:
+- workbook 예시: `japanese_master`
+- source sheets:
   - `명사`
   - `동사`
   - `い형용사`
   - `な형용사`
   - `부사`
   - `기타`
-- 공통 특징:
-  - 1행: 한글 표시명
-  - 2행: machine key
-  - 3행부터 데이터
+- 현재 source 인식 기준:
+  - `word_id`
+  - `jp_kanji`
+  - `is_active`
+  를 포함하는 시트
 
-현재 문제 생성에 실제로 중요하게 쓰는 컬럼:
+주요 컬럼:
 
 - `word_id`
 - `jp_kanji`
 - `jp_furigana`
-- `jp_furigana_2`
+- `jp_furigana_2` (일부 시트만)
 - `meaning_ko_1`
 - `meaning_ko_2`
 - `meaning_ko_3`
 - `difficulty`
 - `is_active`
+- `notes`
 
-현재 GAS의 문제 생성 방향:
+#### Japanese record workbook
 
-- `jp_kanji -> 뜻 맞추기`
-- `뜻 -> jp_kanji 맞추기`
-- `jp_furigana -> 뜻 맞추기`
-- `뜻 -> jp_furigana 맞추기`
-- `jp_furigana_2 -> 뜻 맞추기`
-- `jp_furigana_2`에 대해서는 아직 `뜻 -> 후리가나2` 문제는 만들지 않음
+핵심 연동 탭:
 
-### 3. 일본어 record 파일
+- `Game_Log`
+- `Answer_Log`
+- `Review_State`
+- `Daily_Stats`
 
-- 파일: `japanese_record.xlsx`
-- 주요 시트:
-  - `Game_Log`
-  - `Answer_Log`
-  - `Review_State`
-  - `Daily_Stats`
-- 공통 특징:
-  - 1행: 한글 표시명
-  - 2행: machine key
-  - 3행부터 데이터
-
-#### Game_Log
-
-현재 GAS가 쓰는 핵심 key:
+`Game_Log` machine keys:
 
 - `log_id`
 - `played_at`
@@ -418,9 +402,7 @@ type PendingSessionRecord = {
 - `total_time_sec`
 - `settings_json`
 
-#### Answer_Log
-
-현재 GAS가 쓰는 핵심 key:
+`Answer_Log` machine keys:
 
 - `answer_log_id`
 - `played_at`
@@ -437,9 +419,7 @@ type PendingSessionRecord = {
 - `difficulty_snapshot`
 - `note`
 
-#### Review_State
-
-현재 GAS가 upsert하는 핵심 key:
+`Review_State` machine keys:
 
 - `player_id`
 - `word_id`
@@ -457,9 +437,7 @@ type PendingSessionRecord = {
 - `mastered_at`
 - `memo`
 
-#### Daily_Stats
-
-현재 GAS가 upsert하는 핵심 key:
+`Daily_Stats` machine keys:
 
 - `stat_date`
 - `player_id`
@@ -472,169 +450,167 @@ type PendingSessionRecord = {
 - `streak_days`
 - `notes`
 
-현재 집계 규칙:
+### 4. 현재 로컬 snapshot 구조
 
-- `stat_date`: `Asia/Seoul` 기준 `YYYY-MM-DD`
-- `study_minutes`: `Math.ceil(totalTimeSec / 60)` 누적
-- `sessions_count`: 세션마다 1 증가
+로컬 snapshot은 실제 Google Sheets 구조와 다르다.
+
+`sessionRecovery.ts` 기준:
+
+- words cache
+- pending session
+- review snapshot
+- daily stats snapshot
+
+특히 `ReviewPage`, `StatsPage`는 현재 Google Sheets를 다시 읽지 않는다.  
+최근 세션 기준 localStorage snapshot을 읽어 보여 준다.
 
 ## 핵심 로직 설명
 
-### 1. 로그인
+### 1. 현재 API 읽기/쓰기 분리 구조
 
-1. `LoginPage`에서 `authStore.login` 호출
-2. `apiClient.login()`이 mock 또는 real 모드로 분기
-3. real 모드면 GAS `login` action 호출
-4. 성공 시 `playerId`, `nickname`, `token` 저장
-5. 실패 시 화면에 오류 메시지 출력
+현재 `.env` 기준:
 
-### 2. 언어 메타와 단어 로드
+- 메타 읽기: 정적 JSON
+- 단어 읽기: 정적 JSON
+- 로그인: GAS
+- 세션 저장: GAS
 
-1. `LanguageSelectPage` 진입 시 `loadMeta()`
-2. 언어 선택 시 `selectLanguage(languageCode)` 실행
-3. 홈으로 먼저 이동
-4. `loadWords(languageCode)`는 백그라운드로 시작
-5. `HomePage` 또는 진입 시점에 단어가 없으면 다시 `loadWords()` 실행
-6. `loadWords()` 실패 시
-   - 계정/언어별 cache 사용
-   - 그래도 없으면 fallback mock words 사용
+즉, read-heavy 경로는 JSON, write/auth 경로는 GAS로 분리돼 있다.
 
-### 3. 문제 생성
+### 2. 플레이 -> 저장 흐름
 
-`PlayPage`는 현재 `WordItem`을 기반으로 `buildQuestionRound()`를 호출한다.
-
-- `word_to_meaning`
-  - prompt: 일본어
-  - choices: 뜻 보기
-  - answer: 뜻
-- `meaning_to_word`
-  - prompt: 뜻
-  - choices: 일본어 단어 보기
-  - answer: 일본어 단어
-
-중요:
-
-- 이전에는 `뜻 -> 단어` 문제에서 전체 단어 풀을 다시 섞어 뜻/단어가 섞일 수 있었음
-- 현재는 해당 문제 DTO의 `choices`를 그대로 써서 이 문제가 수정됨
-
-### 4. 플레이 루프
-
-1. 정답 선택
-2. 정답 여부 계산
-3. 점수, 콤보, 하트 갱신
+1. `PlayPage`가 현재 단어를 `questionRound`로 변환
+2. 사용자가 답안 클릭
+3. 점수/콤보/하트 계산
 4. `AnswerLog` 누적
-5. 마지막 문제이거나 하트 소진이면 세션 종료
-6. 아니면 다음 문제 진행
+5. 마지막 문제 또는 하트 소진 시 `buildSaveSessionPayload()` 호출
+6. `reviewState`와 `dailyStats` snapshot을 localStorage에 먼저 기록
+7. 결과 화면으로 즉시 이동(`saveStatus: "saving"`)
+8. `apiClient.saveSession()` 시도
+9. 성공 시 결과 화면 상태를 `saved`로 교체
+10. 실패 시 pending session 저장 후 결과 화면 상태를 `pending`로 교체
 
-### 5. 세션 종료와 저장
+### 3. reviewState 계산
 
-1. `session.ts`에서 `SaveSessionRequest` 생성
-2. `reviewState.ts`로 `ReviewStateRecord[]` 계산
-3. `sessionRecovery.ts`로 review snapshot, daily stats snapshot 저장
-4. `apiClient.saveSession()` 호출
-5. 실패 시 pending session 저장
-6. 결과 화면으로 이동
+`computeReviewState()` 기준:
 
-### 6. GAS 저장 처리
+- 정답:
+  - `priorityScore = max(10, 40 - comboAfterAnswer * 5)`
+  - combo 2 이상이면 `review`
+  - 아니면 `learning`
+- 오답:
+  - `priorityScore = 100`
+  - `learning`
 
-`gas/Code.gs`의 `saveSession`은 아래 순서로 처리한다.
+현재 프론트 reviewState는 UI/저장 payload 기준 구조이고, GAS가 이를 실제 `Review_State.status` 등 시트 구조로 변환한다.
 
-1. payload 검증
-   - `playerId`, `languageCode`, `modeType`, `quizType`, `totalTimeSec`
-   - `answerLog`, `reviewState`
-   - `totalQuestions === answerLog.length`
-2. `session_id` 생성
-3. `Game_Log` append
-4. `Answer_Log` append
-5. `Review_State` upsert
-6. `Daily_Stats` upsert
+### 4. GAS 저장 매핑
 
-### 7. 실연동 모드
+`gas/Code.gs` 기준:
 
-현재 `.env` 기준 실연동을 지원한다.
+- `saveSession` 호출 시
+  - `appendGameLog_()`
+  - `appendAnswerLog_()`
+  - `upsertReviewState_()`
+  - `upsertDailyStats_()`
+  순서로 기록
 
-- `VITE_GAS_BASE_URL`
-- `VITE_GAS_USE_MOCK`
+중요한 현재 규칙:
 
-현재 작업 환경에서는 실연동 URL이 입력된 상태에서 테스트했고, 브라우저 요청은 `text/plain;charset=utf-8`로 보내도록 되어 있다.
+- `session_id`는 GAS에서 생성
+- `choices`는 master 원본 컬럼이 아니라 문제 생성 단계에서 만들어짐
+- `Daily_Stats.study_minutes`는 `Math.ceil(totalTimeSec / 60)` 누적
+- `Review_State.status`는 프론트 `reviewStage`를 GAS가 변환
+
+### 5. 운영 스크립트 흐름
+
+정적 JSON:
+
+- 로컬 갱신: `npm run refresh:json`
+- GitHub 자동 갱신: `Actions > Export Static JSON`
+
+실연동 검증:
+
+- API만 확인: `npm run smoke:gas`
+- record 시트만 확인: `npm run verify:record`
+- 둘 다: `npm run check:live`
+
+## 현재 확인된 동작 상태
+
+현재 프로젝트 기준으로 이미 확인된 상태:
+
+- `npm run build` 통과
+- `npm run smoke:gas` 통과
+- `npm run verify:record` 통과
+- `npm run check:live` 통과
+- 정적 JSON export/validate 통과
+- GitHub Actions `Export Static JSON` 통과
+- 실제 일본어 master 기준:
+  - source rows: 94
+  - generated question count: 377
+
+현재 실환경 관련 값은 아래 문서에 모아 둠:
+
+- `docs/gas-connection-values-template.md`
+- `docs/live-check-latest.json`
 
 ## 아직 구현되지 않은 기능
 
-### 기능 미구현
+현재 코드 기준 미구현 또는 후순위 항목:
 
-- 품사 선택 UI
-- 방식 선택 UI
-- 실제 master 구조를 반영한 단계별 출제 흐름 완성
-- 실제 시트 저장 결과를 화면 통계와 완전히 동기화하는 구조
-- 고급 통계 시각화
 - 이미지 문제
+- 음성 문제 실제 플레이 로직
 - 듣기 모드 고도화
 - 자기채점 작문 완성형
-- 업적 시스템
 - 다국어 실제 확장
+- 고급 통계 시각화
+- 업적 시스템
 - 관리자 UI
 - PWA
+- 실제 Google Sheets 데이터를 다시 읽는 복습/통계 화면
+  - 현재는 로컬 snapshot 기반
 
-### 실연동 미완료 항목
+## 현재 주의할 점
 
-- 실제 Google Sheets 운영 구조 최종 확정
-- 실제 GAS Web App과 프론트의 end-to-end 저장 검증 완료
-- 실제 시트에서 `Game_Log`, `Answer_Log`, `Review_State`, `Daily_Stats` row 반영 여부 직접 확인
-- Review/Stats 로컬 snapshot과 시트 저장 구조의 최종 대조
-- 언어 추가 시 master/record 파일 확장 규칙의 실제 운영 검증
-
-## 현재 알려진 상태와 주의점
-
-- 로컬 테스트와 빌드는 통과 상태다.
-- 프론트는 실연동 준비가 많이 되어 있지만, 실제 운영 검증은 아직 진행 중이다.
-- 문서 수가 많으므로 실제 작업 시작 전에는 `TASKS.md`를 우선 보고, 필요할 때만 관련 실연동 문서를 여는 편이 효율적이다.
-- `백업/` 폴더의 Excel 파일은 실제 구조 대조용이며 수정 대상이 아니다.
-- 실제 Google Sheets 데이터 내용은 사용자가 직접 관리한다.
+- `PROJECT_CONTEXT.md`의 일부 문장은 현재 구현보다 보수적으로 적혀 있다.
+  - 실제로는 GAS URL, master/record 구조, smoke/verify 흐름이 상당 부분 확정되었다.
+- `public/data/languages.json`은 현재 터미널 출력에서 한글이 깨져 보일 수 있으나, 실제 앱에서는 정적 JSON 경로로 사용 중이다.
+- 루트에 service account JSON 파일이 존재하지만, 다른 PC에서는 동일 파일이 없을 수 있다.
+  - 다른 PC에서는 별도 credentials 또는 GitHub Secret 기반 환경을 준비해야 한다.
+- `ReviewPage`, `StatsPage`는 아직 Google Sheets 실시간 조회 화면이 아니다.
 
 ## 다음 개발 작업
 
-우선순위는 `TASKS.md` 기준으로 아래 순서를 권장한다.
+현재 `TASKS.md` 기준 다음 우선순위는 아래와 같다.
 
-1. 실제 실연동 저장 검증
-   - 로그인, 언어 메타 로드, 단어 로드 API 응답 확인 완료
-   - 최소 `saveSession` API 응답 확인 완료
-   - 다음은 `Game_Log`, `Answer_Log`, `Review_State`, `Daily_Stats` 실제 row 확인
+### 1. Phase 3 남은 운영 정리
 
-2. 문제 생성/출제 흐름 확장
-   - 품사 선택
-   - 방식 선택
-   - 현재 다중 품사 master 구조에 맞는 문제 출제 흐름 보강
+- GAS / Google Sheets 문서 최신 상태 유지
+- 정적 JSON 자동 생성 흐름 안정화 유지
+- Phase 3 산출 문서 최신화 유지
 
-3. 정적 JSON 운영 흐름 정리
-   - GitHub Secrets 설정
-   - GitHub Actions 첫 실행
-   - public/data/languages.json, public/data/ja/words.json 생성 확인
-   - 프론트 .env를 JSON 읽기 모드로 전환
+### 2. 플레이/출제 소작업
 
-4. Review/Stats 정합성 보강
-   - 로컬 snapshot 구조와 실제 시트 저장 구조 최종 대조
-   - 필요한 경우 프론트 표시값과 GAS 저장 규칙 조정
+- 현재 master 구조에 맞는 출제 흐름의 추가 보강
+- 플레이 화면의 작은 안정화/피드백 개선
+- 큰 게임성 개편 없이 Phase 3 범위의 작은 UX 개선부터 진행
 
-5. 문서 최신화 유지
-   - `TASKS.md`
-   - `CHANGELOG.md`
-   - `docs/api-spec.md`
-   - `docs/sheet-schema.md`
+### 3. 다음 Codex가 바로 해도 되는 시작점
 
-## 이어받는 Codex를 위한 빠른 시작 가이드
+다른 Codex가 바로 이어받는다면 아래 순서를 추천한다.
 
-다른 Codex가 바로 시작하려면 아래 순서를 권장한다.
+1. `TASKS.md`로 현재 Phase와 작업 우선순위 확인
+2. `PROJECT_CONTEXT.md`로 설계 목표 확인
+3. 이 `PROJECT_STATE.md`로 현재 구현 상태 확인
+4. 필요 시 아래 명령으로 상태 검증
 
-1. `AGENTS.md`
-2. `TASKS.md`
-3. 이 문서 `PROJECT_STATE.md`
-4. 필요 시 `PROJECT_CONTEXT.md`
-5. 실연동 작업이면 `docs/api-spec.md`, `docs/sheet-schema.md`, `gas/Code.gs`
+```powershell
+npm run build
+npm run smoke:gas
+npm run verify:record
+npm run refresh:json
+```
 
-현재 가장 중요한 포인트는 다음 두 가지다.
+## 한 줄 요약
 
-- 프론트와 GAS의 저장 payload 매핑은 이미 많이 맞춰져 있다.
-- 다음 실질 작업은 문서 추가보다 실제 실연동 검증과 출제 흐름 보강이다.
-
-
-
+현재 프로젝트는 “로그인/저장은 GAS, 메타/단어 읽기는 정적 JSON” 구조로 전환된 일본어 학습 웹앱이며, 로그인 -> 언어 선택 -> 홈 -> 플레이 -> 결과 -> 복습/통계의 전체 흐름과 실연동 검증 스크립트까지 이미 갖춰진 Phase 3 상태다.
