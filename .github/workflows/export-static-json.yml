@@ -1,0 +1,81 @@
+name: Export Static JSON
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */6 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  export-json:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install exporter dependencies
+        run: pip install -r requirements-json-export.txt
+
+      - name: Validate required GitHub secrets
+        shell: bash
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          JA_MASTER_SHEET_ID: ${{ secrets.JA_MASTER_SHEET_ID }}
+        run: |
+          if [ -z "$GOOGLE_SERVICE_ACCOUNT_JSON" ]; then
+            echo "Missing required secret: GOOGLE_SERVICE_ACCOUNT_JSON"
+            exit 1
+          fi
+          if [ -z "$JA_MASTER_SHEET_ID" ]; then
+            echo "Missing required secret: JA_MASTER_SHEET_ID"
+            exit 1
+          fi
+
+      - name: Write service account credentials
+        shell: bash
+        run: |
+          mkdir -p .tmp
+          printf '%s' '${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}' > .tmp/google-service-account.json
+
+      - name: Export Japanese master sheet to static JSON
+        run: >
+          python scripts/export_google_sheets_json.py
+          --credentials .tmp/google-service-account.json
+          --spreadsheet-id "${{ secrets.JA_MASTER_SHEET_ID }}"
+          --output-dir public/data
+          --language-code ja
+          --language-label "일본어"
+
+      - name: Validate generated static JSON
+        run: >
+          python scripts/validate_static_json.py
+          --data-dir public/data
+          --language-code ja
+
+      - name: Commit exported JSON when changed
+        shell: bash
+        run: |
+          if git diff --quiet -- public/data; then
+            echo "No static JSON changes detected."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/data
+          git commit -m "chore: refresh static language json"
+          git push
+
+      - name: Cleanup temporary credentials
+        if: always()
+        shell: bash
+        run: rm -rf .tmp

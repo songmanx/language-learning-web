@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+:root {
+  color: #f5f1e8;
+  background:
+    radial-gradient(circle at top, rgba(220, 154, 72, 0.28), transparent 36%),
+    linear-gradient(180deg, #1d2a2c 0%, #0d1617 100%);
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: transparent;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+button {
+  cursor: pointer;
+}
