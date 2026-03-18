@@ -688,3 +688,11 @@ pm run test 39개 통과, `npm run build` 통과
 - Phase 변경: 없음
 - 다음 작업 메모:
   - 남은 Phase 3 범위에서는 출제/플레이 흐름의 작은 안정화 작업을 계속 쪼개서 진행하고, 큰 게임성 개편은 다음 범위로 넘기기
+
+## 2026-03-19 (64)
+
+- [.gitignore](D:/smx_coding_d/learning/language_learning_web/.gitignore)를 추가해 `node_modules`, `dist`, `.env`, service account JSON, Python cache, 로컬 temp 결과 파일이 Git 추적 대상에 섞이지 않도록 정리했다.
+- 검증: 파일 작성 확인
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - push 전에 이미 추적 중인 민감 파일이 있는지 확인하고, 필요하면 `cached`에서 제거한 뒤 동기화 진행
