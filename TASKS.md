@@ -155,3 +155,5 @@ Phase 3: 핵심 기능 확장
 
 
 
+- 최근에는 `.gitignore`에 맞춰 `.env`, service account JSON, `docs/live-check-latest.json`, `dist/`, `node_modules/`의 Git 추적을 `cached` 기준으로 정리해 push 전 정리 단계로 넘어갔다.
+- 다음에는 staged 삭제 목록을 다시 확인하고, 민감 파일이 재추적되지 않는 상태에서 커밋 단위를 정리하면 된다.

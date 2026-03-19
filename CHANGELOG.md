@@ -696,3 +696,11 @@ pm run test 39개 통과, `npm run build` 통과
 - Phase 변경: 없음
 - 다음 작업 메모:
   - push 전에 이미 추적 중인 민감 파일이 있는지 확인하고, 필요하면 `cached`에서 제거한 뒤 동기화 진행
+## 2026-03-19 (65)
+
+- Git 인덱스에서 `.env`, service account JSON, `docs/live-check-latest.json`, `dist/`, `node_modules/`를 `git rm --cached`로 정리해 `.gitignore` 규칙이 실제로 적용되도록 맞췄다.
+- 로컬 파일은 유지한 채 추적만 해제했으며, staged 변경 수 기준으로 기존에 잘못 추적되던 파일 약 9,196건이 정리 대상으로 잡힌 것을 확인했다.
+- 검증 `git ls-files` 확인, `git status --short | Measure-Object`
+- Phase 변경 없음
+- 다음 작업 메모:
+  - staged 삭제 목록을 한 번 더 확인한 뒤 커밋 단위를 정리하고 push 전에 민감 파일이 다시 추적되지 않는지 재확인
