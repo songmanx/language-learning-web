@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getSessionConfigLabels } from "../features/game/sessionConfig";
 import { apiClient } from "../services/apiClient";
 import { appLogger } from "../services/logger";
 import { getRuntimeConfig } from "../services/runtimeConfig";
 import type { PendingSessionRecord } from "../services/sessionRecovery";
-import { clearPendingSession, readPendingSession } from "../services/sessionRecovery";
+import { clearPendingSession, readPendingSession, readSessionConfigSnapshot } from "../services/sessionRecovery";
 import { useAuthStore } from "../stores/authStore";
 import { useLanguageStore } from "../stores/languageStore";
 
@@ -16,6 +17,11 @@ const TEXT = {
   unselected: "\uBBF8\uC120\uD0DD",
   language: "\uC120\uD0DD \uC5B8\uC5B4",
   preparedWords: "\uC900\uBE44\uB41C \uBB38\uC81C \uC218",
+  lastLoadout: "\uB9C8\uC9C0\uB9C9 \uC138\uC158 \uAD6C\uC131",
+  partOfSpeech: "\uD488\uC0AC",
+  difficulty: "\uB09C\uC774\uB3C4",
+  quizMode: "\uCD9C\uC81C",
+  lastUpdated: "\uCD5C\uC2E0 \uBC18\uC601",
   pendingSession: "\uC784\uC2DC \uC800\uC7A5\uB41C \uC138\uC158\uC774 \uC788\uC2B5\uB2C8\uB2E4.",
   pendingSavedAt: "\uB9C8\uC9C0\uB9C9 \uC800\uC7A5 \uC2DC\uB3C4",
   pendingReason: "\uC0AC\uC720",
@@ -49,6 +55,11 @@ export function HomePage() {
   const [pendingSession, setPendingSession] = useState<PendingSessionRecord | null>(null);
   const [retryMessage, setRetryMessage] = useState<string | null>(null);
   const [isRetrying, setIsRetrying] = useState(false);
+  const sessionConfigSnapshot =
+    playerId && selectedLanguage ? readSessionConfigSnapshot(playerId, selectedLanguage) : null;
+  const sessionConfigLabels = sessionConfigSnapshot
+    ? getSessionConfigLabels(sessionConfigSnapshot.sessionConfig)
+    : null;
 
   const selectedLanguageLabel =
     availableLanguages.find((language) => language.languageCode === selectedLanguage)?.label ??
@@ -82,7 +93,9 @@ export function HomePage() {
       await loadWords();
     }
 
-    navigate(targetPath);
+    navigate(targetPath, {
+      state: sessionConfigSnapshot ? { sessionConfig: sessionConfigSnapshot.sessionConfig } : undefined,
+    });
   }
 
   async function handleRetrySave() {
@@ -127,6 +140,27 @@ export function HomePage() {
         <p className="mt-2 text-sm leading-6 text-stone-300">
           {TEXT.language}: {selectedLanguageLabel} / {TEXT.preparedWords}: {words.length}
         </p>
+        {sessionConfigSnapshot && sessionConfigLabels ? (
+          <div className="mt-4 rounded-[1.4rem] border border-white/10 bg-white/5 p-4">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <p className="text-sm font-semibold text-stone-100">{TEXT.lastLoadout}</p>
+              <span className="text-xs text-stone-400">
+                {TEXT.lastUpdated}: {new Date(sessionConfigSnapshot.savedAt).toLocaleString("ko-KR")}
+              </span>
+            </div>
+            <div className="mt-3 flex flex-wrap gap-2">
+              <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-stone-300">
+                {TEXT.partOfSpeech}: {sessionConfigLabels.partOfSpeech}
+              </span>
+              <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-stone-300">
+                {TEXT.difficulty}: {sessionConfigLabels.difficulty}
+              </span>
+              <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-stone-300">
+                {TEXT.quizMode}: {sessionConfigLabels.quizMode}
+              </span>
+            </div>
+          </div>
+        ) : null}
       </div>
 
       {runtimeConfig.useMockApi ? (

@@ -1,4 +1,5 @@
 import { readFile } from "node:fs/promises";
+import { readTemplateDefaults } from "./template_defaults.mjs";
 
 function parseDotEnv(content) {
   const env = {};
@@ -28,24 +29,6 @@ async function loadEnvFile() {
     return parseDotEnv(content);
   } catch {
     return {};
-  }
-}
-
-async function readTemplateDefaults() {
-  try {
-    const content = await readFile("docs/gas-connection-values-template.md", "utf8");
-    const loginId = content.match(/- `login_id`:(.+)/)?.[1]?.trim() ?? "";
-    const password = content.match(/- `password`:(.+)/)?.[1]?.trim() ?? "";
-
-    return {
-      loginId,
-      password,
-    };
-  } catch {
-    return {
-      loginId: "",
-      password: "",
-    };
   }
 }
 
@@ -146,6 +129,13 @@ function printUsage() {
   console.log("Usage:");
   console.log("  npm run smoke:gas -- --login-id YOUR_ID --password YOUR_PASSWORD");
   console.log("  npm run smoke:gas");
+  console.log("");
+  console.log("Defaults:");
+  console.log("  - baseUrl: .env VITE_GAS_BASE_URL");
+  console.log("  - loginId/password: machine-defaults block in docs/gas-connection-values-template.md");
+  console.log("");
+  console.log("Checks:");
+  console.log("  - login -> getMeta -> getWords -> saveSession");
 }
 
 async function main() {

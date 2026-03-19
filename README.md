@@ -217,6 +217,18 @@ VITE_STATIC_DATA_WORDS_BASE_PATH=/data
 
 - [gas-docs-start-here.md](D:/smx_coding_d/learning/language_learning_web/docs/gas-docs-start-here.md)
 
+현재 기준 가장 짧은 시작 순서:
+
+1. 시트/GAS를 처음 준비할 때: [google-sheets-setup-guide.md](D:/smx_coding_d/learning/language_learning_web/docs/google-sheets-setup-guide.md)
+2. 배포 직전 빠른 점검: [gas-5minute-checklist.md](D:/smx_coding_d/learning/language_learning_web/docs/gas-5minute-checklist.md)
+3. 배포 후 실제 저장 확인: [live-ops-quickref.md](D:/smx_coding_d/learning/language_learning_web/docs/live-ops-quickref.md)
+
+현재 문서 기준 핵심 운영 원칙:
+
+- 일본어 master workbook은 `Words` 단일 탭이 아니라 `명사`, `동사`, `い형용사`, `な형용사`, `부사`, `기타` 같은 source 시트를 묶어 읽는다.
+- GAS는 `word_id`, `jp_kanji` machine key가 있는 시트를 source 시트로 인식한다.
+- 시트 헤더는 가능하면 `1행 표시명 / 2행 machine key / 3행부터 데이터` 구조로 맞추는 것이 현재 구현과 가장 잘 맞는다.
+
 상황별 추천 문서:
 
 - 시트부터 준비할 때: [google-sheets-setup-guide.md](D:/smx_coding_d/learning/language_learning_web/docs/google-sheets-setup-guide.md)
@@ -229,7 +241,7 @@ VITE_STATIC_DATA_WORDS_BASE_PATH=/data
 
 정적 JSON 갱신만 빠르게 다시 볼 때는 이 문서 하나만 보면 된다.
 
-- [json-export-workflow.md](D:/smx_coding_d/learning/language_learning_web/docs/json-export-workflow.md)
+- [static-json-ops-quickref.md](D:/smx_coding_d/learning/language_learning_web/docs/static-json-ops-quickref.md)
 
 실연동 명령만 빠르게 다시 볼 때는 이 문서 하나만 보면 된다.
 

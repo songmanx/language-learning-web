@@ -270,6 +270,9 @@ Frontend payload:
 type SaveSessionRequest = {
   playerId: string;
   languageCode: string;
+  modeType: "standard" | "practice";
+  quizType: "word_to_meaning" | "meaning_to_word" | "mixed";
+  totalTimeSec: number;
   score: number;
   heartsLeft: number;
   totalQuestions: number;
@@ -280,6 +283,11 @@ type SaveSessionRequest = {
 ```
 
 Current GAS mapping direction against uploaded workbook:
+
+현재 GAS 스켈레톤 기준 저장 실패 규칙:
+
+- `playerId`, `languageCode`, `modeType`, `quizType`, `totalTimeSec`가 비어 있으면 `SAVE_FAILED`
+- `totalQuestions !== answerLog.length`이면 `SAVE_FAILED`
 
 ### Game_Log row
 
@@ -355,6 +363,19 @@ One `answerLog` item becomes one row.
 | existing/default | `earned_badges` | preserved |
 | existing/default | `streak_days` | preserved |
 | existing/default | `notes` | preserved |
+
+## Error / Response Alignment
+
+현재 GAS 스켈레톤의 action별 실패 코드는 아래처럼 정렬돼 있다.
+
+| Action | Error code |
+| --- | --- |
+| `login` | `AUTH_FAILED` |
+| `getMeta` | `META_LOAD_FAILED` |
+| `getWords` | `WORDS_LOAD_FAILED` |
+| `saveSession` | `SAVE_FAILED` |
+
+모든 응답은 `ok: true/false` envelope를 사용한다.
 
 ## Operational Rules
 

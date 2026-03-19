@@ -356,6 +356,7 @@ Current GAS-aligned rule:
 
 - `totalQuestions !== answerLog.length`이면 GAS는 `SAVE_FAILED` 오류로 저장을 거부한다.
 - per-language `record` workbook direction now allows `Game_Log` to omit `language_code`
+- 현재 GAS 스켈레톤은 `getMeta`, `getWords`, `saveSession` 실패를 각각 `META_LOAD_FAILED`, `WORDS_LOAD_FAILED`, `SAVE_FAILED`로 감싸 응답한다.
 
 Success DTO:
 
@@ -462,7 +463,7 @@ Mock save behavior:
   - `getMeta`는 `일본어` 라벨을 반환한다.
   - `getWords`는 master 다중 시트를 합쳐 question DTO를 만들고 `choices`를 `string[]`로 생성한다.
   - `saveSession`은 `Asia/Seoul` 기준 날짜로 `stat_date`를 만든다.
-  - `saveSession`은 `player_id + timestamp` 기반 `session_id`를 만든다.
+  - `saveSession`은 `player_id + timestamp` 기반 `log_id`를 만들고, `Answer_Log.session_log_id`로 연결한다.
 - 현재 시트 구조 변경 메모:
   - source `master` workbook은 언어별 다중 시트 원본 구조로 바뀌는 방향이다.
-  - 업로드된 실제 Excel 헤더는 이 세션에서 직접 열리지 않아 아직 본문 검증이 끝난 상태는 아니다.
+  - 현재 문서 기준은 `gas/Code.gs`와 `docs/sheet-schema.md`에 맞춰 다중 source 시트 / 2행 machine key 구조로 정렬돼 있다.

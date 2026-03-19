@@ -1,4 +1,5 @@
 import type { SaveSessionRequest, WordItem, ReviewStateRecord } from "./apiTypes";
+import type { SessionConfig } from "../features/game/sessionConfig";
 import { readJsonStorage, removeStorageItem, writeJsonStorage } from "./storage";
 import { buildScopedStorageKey } from "./storageKeys";
 
@@ -24,6 +25,11 @@ export type DailyStatsSnapshot = {
   lastPlayedAt: string;
 };
 
+export type SessionConfigSnapshot = {
+  sessionConfig: SessionConfig;
+  savedAt: string;
+};
+
 export function getWordsCacheKey(playerId: string | null, languageCode: string) {
   return buildScopedStorageKey("words-cache", { playerId, languageCode });
 }
@@ -42,6 +48,10 @@ export function getReviewSnapshotKey(playerId: string, languageCode: string) {
 
 export function getDailyStatsSnapshotKey(playerId: string, languageCode: string) {
   return buildScopedStorageKey("daily-stats", { playerId, languageCode });
+}
+
+export function getSessionConfigSnapshotKey(playerId: string, languageCode: string) {
+  return buildScopedStorageKey("session-config", { playerId, languageCode });
 }
 
 export function readCachedWords(playerId: string | null, languageCode: string) {
@@ -104,4 +114,22 @@ export function writeDailyStatsSnapshot(
   snapshot: DailyStatsSnapshot,
 ) {
   writeJsonStorage(getDailyStatsSnapshotKey(playerId, languageCode), snapshot);
+}
+
+export function readSessionConfigSnapshot(playerId: string, languageCode: string) {
+  return readJsonStorage<SessionConfigSnapshot | null>(
+    getSessionConfigSnapshotKey(playerId, languageCode),
+    null,
+  );
+}
+
+export function writeSessionConfigSnapshot(
+  playerId: string,
+  languageCode: string,
+  sessionConfig: SessionConfig,
+) {
+  writeJsonStorage(getSessionConfigSnapshotKey(playerId, languageCode), {
+    sessionConfig,
+    savedAt: new Date().toISOString(),
+  });
 }

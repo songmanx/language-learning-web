@@ -1,23 +1,39 @@
-﻿import { render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { MemoryRouter, Route, Routes } from "react-router-dom";
+import { MemoryRouter, Route, Routes, useLocation } from "react-router-dom";
 import { beforeEach, describe, expect, it } from "vitest";
 import { ReviewPage } from "./ReviewPage";
-import { writeReviewSnapshot } from "../services/sessionRecovery";
+import { writeReviewSnapshot, writeSessionConfigSnapshot } from "../services/sessionRecovery";
 import { useAuthStore } from "../stores/authStore";
 import { useLanguageStore } from "../stores/languageStore";
 
 const TEXT = {
-  reviewCenter: "\uBCF5\uC2B5\uC13C\uD130",
-  noReviewData: "\uBCF5\uC2B5 \uB370\uC774\uD130\uAC00 \uC544\uC9C1 \uC5C6\uC2B5\uB2C8\uB2E4",
-  practiceStart: "\uC5F0\uC2B5 \uBAA8\uB4DC \uC2DC\uC791",
-  playNow: "\uBC14\uB85C \uD50C\uB808\uC774\uD558\uAE30",
-  learningStage: "\uD559\uC2B5 \uC911",
-  reviewStage: "\uBCF5\uC2B5 \uB300\uAE30",
-  priorityLabel: "\uC6B0\uC120\uC21C\uC704",
-  lastResultLabel: "\uC9C1\uC804 \uACB0\uACFC",
-  wrongResult: "\uC624\uB2F5",
+  reviewCenter: "복습센터",
+  noReviewData: "복습 데이터가 아직 없습니다",
+  practiceStart: "연습 모드 시작",
+  playNow: "바로 플레이하기",
+  backHome: "홈으로 돌아가기",
+  snapshotStatus: "복습 스냅샷",
+  quickActionsTitle: "바로 이동",
+  recommendedRoute: "추천 경로",
+  totalItems: "전체 항목",
+  topPriority: "최상위 우선순위",
+  updatedAt: "최신 반영",
+  lastLoadout: "연결 세션 구성",
+  recommendedBadge: "추천",
+  learningStage: "학습 중",
+  reviewStage: "복습 대기",
+  priorityLabel: "우선순위",
+  lastResultLabel: "직전 결과",
+  wrongResult: "오답",
 } as const;
+
+function RouteProbe() {
+  const location = useLocation();
+  const state = location.state as { sessionConfig?: { quizMode?: string } } | null;
+
+  return <div>{state?.sessionConfig?.quizMode ?? "no-config"}</div>;
+}
 
 describe("ReviewPage", () => {
   beforeEach(() => {
@@ -35,9 +51,14 @@ describe("ReviewPage", () => {
       isLoading: false,
       loadError: null,
     });
+    writeSessionConfigSnapshot("player-demo", "ja", {
+      partOfSpeech: "noun",
+      difficulty: "2",
+      quizMode: "meaning_to_word",
+    });
   });
 
-  it("우선순위 기준으로 복습 목록을 보여준다", () => {
+  it("우선순위 기준으로 복습 목록과 마지막 세션 구성을 보여준다", () => {
     writeReviewSnapshot("player-demo", "ja", [
       {
         wordId: "ja-2",
@@ -60,6 +81,16 @@ describe("ReviewPage", () => {
     );
 
     expect(screen.getByRole("heading", { name: TEXT.reviewCenter })).toBeInTheDocument();
+    expect(screen.getByText(TEXT.snapshotStatus)).toBeInTheDocument();
+    expect(screen.getByText(TEXT.quickActionsTitle)).toBeInTheDocument();
+    expect(screen.getByText(TEXT.recommendedBadge)).toBeInTheDocument();
+    expect(screen.getByText(new RegExp(`${TEXT.recommendedRoute}: ${TEXT.practiceStart}`))).toBeInTheDocument();
+    expect(screen.getByText(TEXT.totalItems)).toBeInTheDocument();
+    expect(screen.getByText(TEXT.topPriority)).toBeInTheDocument();
+    expect(screen.getByText(TEXT.updatedAt)).toBeInTheDocument();
+    expect(screen.getByText(TEXT.lastLoadout)).toBeInTheDocument();
+    expect(screen.getByText(/출제: 뜻 -> 단어/)).toBeInTheDocument();
+    expect(screen.queryByText(/흐름:/)).not.toBeInTheDocument();
     expect(screen.getAllByText(TEXT.learningStage).length).toBeGreaterThan(0);
     expect(screen.getAllByText(TEXT.reviewStage).length).toBeGreaterThan(0);
     expect(screen.getByText(new RegExp(`${TEXT.priorityLabel}: 100`))).toBeInTheDocument();
@@ -79,32 +110,37 @@ describe("ReviewPage", () => {
     expect(screen.getByText(new RegExp(TEXT.noReviewData))).toBeInTheDocument();
   });
 
-  it("복습센터에서 연습 모드 시작 버튼을 누를 수 있다", async () => {
+  it("복습센터 액션은 마지막 세션 구성을 전달한다", async () => {
     const user = userEvent.setup();
 
     render(
       <MemoryRouter initialEntries={["/review"]}>
         <Routes>
           <Route path="/review" element={<ReviewPage />} />
-          <Route path="/practice" element={<div>practice-route</div>} />
+          <Route path="/practice" element={<RouteProbe />} />
+          <Route path="/play" element={<RouteProbe />} />
         </Routes>
       </MemoryRouter>,
     );
 
     await user.click(screen.getByRole("button", { name: TEXT.practiceStart }));
-
-    expect(screen.getByText("practice-route")).toBeInTheDocument();
+    expect(screen.getByText("meaning_to_word")).toBeInTheDocument();
   });
 
-  it("복습센터에서 바로 플레이하기 버튼을 누를 수 있다", async () => {
+  it("복습센터에서 홈으로 돌아갈 수 있다", async () => {
     const user = userEvent.setup();
 
     render(
-      <MemoryRouter>
-        <ReviewPage />
+      <MemoryRouter initialEntries={["/review"]}>
+        <Routes>
+          <Route path="/review" element={<ReviewPage />} />
+          <Route path="/home" element={<div>home-route</div>} />
+        </Routes>
       </MemoryRouter>,
     );
 
-    await user.click(screen.getByRole("button", { name: TEXT.playNow }));
+    await user.click(screen.getByRole("button", { name: TEXT.backHome }));
+
+    expect(screen.getByText("home-route")).toBeInTheDocument();
   });
 });

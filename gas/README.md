@@ -26,7 +26,13 @@
 - 사용자 스프레드시트: `lang_user_sheet`
   - 탭: `Users`
 - 일본어 원본 스프레드시트: `lang_ja_master_sheet`
-  - 탭: `Words`
+  - source 탭:
+    - `명사`
+    - `동사`
+    - `い형용사`
+    - `な형용사`
+    - `부사`
+    - `기타`
 - 일본어 기록 스프레드시트: `lang_ja_record_sheet`
   - 탭:
     - `Game_Log`
@@ -34,7 +40,9 @@
     - `Review_State`
     - `Daily_Stats`
 
-첫 행 헤더는 `docs/google-sheets-setup-guide.md`와 `docs/sheet-schema.md` 기준으로 맞추는 것을 권장한다.
+현재 GAS는 `1행 표시명 / 2행 machine key / 3행부터 데이터` 구조를 가장 안정적으로 읽는다.
+특히 master workbook은 `word_id`, `jp_kanji` machine key가 있는 시트를 source 시트로 인식한다.
+헤더 기준은 `docs/google-sheets-setup-guide.md`와 `docs/sheet-schema.md`를 우선 따른다.
 
 ## 아직 필요한 수동 작업
 

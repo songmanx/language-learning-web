@@ -1,5 +1,120 @@
 # CHANGELOG.md
 
+## 2026-03-19
+
+- `src/pages/PlayPage.tsx`에서 답변 직후 전환 시간을 `420ms`로 조정하고, 선택지 강조와 문제 카드 상태 톤, 진행 바 전환을 더 또렷하게 보강했다.
+- `src/pages/ResultPage.tsx`, `src/pages/ReviewPage.tsx`에서 추천 CTA 카드의 컬러 대비와 hover 톤을 강화해 다음 액션 식별성을 높였다.
+- 검증:
+  - `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx src/pages/ReviewPage.test.tsx` 16 passed
+  - `npm run build` passed
+
+## 2026-03-19
+
+- `src/pages/PlayPage.tsx`에서 보상 칩과 상태 카드의 강조 톤을 더 강하게 주고, 문제/선택지 카드의 대비와 그림자를 높여 전환감과 보상감이 더 느껴지도록 보강했다.
+- `src/pages/ResultPage.tsx`, `src/pages/ReviewPage.tsx`에서 제목/보조 제목의 위계를 더 선명하게 정리하고 남은 보조 영역 패딩을 추가 축소했다.
+- 검증:
+  - `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx src/pages/ReviewPage.test.tsx` 16 passed
+  - `npm run build` passed
+
+## 2026-03-19
+
+- `src/pages/PlayPage.tsx`에서 문제 카드와 선택지 카드의 배경/그림자/대비를 보강해 시각 톤을 더 게임형으로 끌어올렸다.
+- `src/pages/ResultPage.tsx`, `src/pages/ReviewPage.tsx`에서 남아 있던 보조 버튼/보조 리스트 영역의 패딩과 카드 밀도를 더 줄였다.
+- 검증:
+  - `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx src/pages/ReviewPage.test.tsx` 16 passed
+  - `npm run build` passed
+
+## 2026-03-19
+
+- `src/pages/PlayPage.tsx`에서 상단 HUD를 작은 상태 카드형으로 정리해 더 게임형 느낌의 정보판으로 보이게 조정했다.
+- `src/pages/ResultPage.tsx`, `src/pages/ReviewPage.tsx`에서 액션 영역을 기존 하단 별도 카드 대신 핵심 요약 카드와 더 강하게 묶어 섹션 수를 줄였다.
+- 검증:
+  - `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx src/pages/ReviewPage.test.tsx` 16 passed
+  - `npm run build` passed
+
+## 2026-03-19
+
+- `src/pages/PlayPage.tsx`에서 상단 HUD 칩 수를 줄이고 점수/콤보를 한 줄로 묶어 더 짧게 보이도록 정리했다.
+- `src/pages/ResultPage.tsx`, `src/pages/ReviewPage.tsx`에서 하단 액션 버튼 영역을 더 단순한 2열 흐름으로 재배치했다.
+- 검증:
+  - `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx src/pages/ReviewPage.test.tsx` 16 passed
+  - `npm run build` passed
+
+## 2026-03-19
+
+- `src/pages/PlayPage.tsx`에서 답변 직후 하단 피드백 박스를 더 작게 줄이고, 핵심 상태만 짧은 칩 형태로 보이도록 정리했다.
+- `src/pages/ResultPage.tsx`에서 다음 액션/세션 평가 영역을 한 카드로 묶어 결과 화면의 상단 카드 수를 줄였다.
+- `src/pages/ReviewPage.tsx`에서 복습 스냅샷과 다음 액션 영역을 한 카드로 합쳐 모바일 첫 화면 밀도를 낮췄다.
+- 검증:
+  - `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx src/pages/ReviewPage.test.tsx` 16 passed
+  - `npm run build` passed
+
+## 2026-03-19
+
+- `src/pages/PlayPage.tsx`에서 상단 HUD를 더 얇게 압축하고, 답변 직후에는 짧은 보상 칩만 보이도록 정리했다.
+- `src/pages/PlayPage.tsx`에서 문제 카드와 선택지 카드 높이를 줄여 첫 화면에서 문제 본문이 더 빨리 보이도록 조정했다.
+- `src/pages/ResultPage.tsx`, `src/pages/ReviewPage.tsx`에서 상태 안내와 CTA 설명 문구를 짧게 줄여 화면 밀도를 낮췄다.
+- `src/pages/PlayPage.test.tsx`에서 선택지 카드 탐색 조건을 현재 UI 크기 기준으로 보정했다.
+- 검증:
+  - `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx src/pages/ReviewPage.test.tsx` 16 passed
+  - `npm run build` passed
+
+## 2026-03-19
+
+- `npm run test`, `npm run build`, `npm run refresh:json`, `npm run check:live`를 한 번에 다시 확인해 Phase 3 종료 조건을 검증했다.
+- `ROADMAP.md`를 Phase 4 진행 상태 기준으로 갱신하고, `TASKS.md`를 Phase 4 우선순위 기준으로 전면 재정리했다.
+- 검증:
+  - `npm run test` 49 passed
+  - `npm run build` 통과
+  - `npm run refresh:json` 통과
+  - `npm run check:live` 통과
+- Phase 변경: Phase 3 -> Phase 4
+- 다음 작업 메모:
+  - `PlayPage` 중심으로 품사/난이도/출제 방식 선택과 게임 UI 전면 개편을 묶어서 시작
+
+## 2026-03-19
+
+- `scripts/run_static_json_refresh.mjs`가 machine-defaults 블록에서 JA master 시트 ID와 언어 라벨을 직접 읽도록 정리하고, `docs/static-json-ops-quickref.md`도 현재 흐름 기준으로 다시 정리했다.
+- `npm run refresh:json`을 다시 실행해 `export:json -> validate:json` 흐름이 실제로 통과하고 `public/data/languages.json`, `public/data/ja/words.json`이 갱신되는 것을 확인했다.
+- 검증: `npm run refresh:json`
+- Phase 변경 없음
+- 다음 작업 메모:
+  - 남은 큰 작업인 Phase 3 종료 기준 재정리와 현재 범위 최종 점검으로 전환
+
+## 2026-03-19
+
+- `docs/gas-connection-values-template.md`에 machine-defaults 블록을 추가하고, `scripts/run_gas_smoke_test.mjs`, `scripts/run_full_connection_check.mjs`, `scripts/run_static_json_refresh.mjs`, `scripts/sync_live_check_report.mjs`, `scripts/verify_record_sheet_state.py`가 같은 기본값을 읽도록 정리했다.
+- `package.json`의 Python 스크립트 실행 경로를 현재 PowerShell 환경에서 동작하는 `python ...` 형식으로 정리해 `verify:record`와 JSON 스크립트 실행을 안정화했다.
+- 검증: `npm run verify:record`, `npm run check:live`
+- Phase 변경 없음
+- 다음 작업 메모:
+  - 남은 큰 작업인 정적 JSON 자동 생성 흐름 마무리와 Phase 3 종료 기준 재정리로 전환
+
+## 2026-03-19
+
+- Phase 3 실연동 문서 묶음을 한 번 더 점검하고 `TASKS.md` 상단에 현재 우선순위를 다시 정리했다.
+- 실연동 문서는 현재 구조 기준 정리 완료 상태로 보고, 다음 우선순위를 실제 시트 구조 점검 / 정적 JSON 자동 생성 마무리 / Phase 3 종료 기준 재정리로 묶었다.
+- 검증: 문서 내용 확인
+- Phase 변경 없음
+- 다음 작업 메모:
+  - 문서 미세 수정 반복 대신 남은 Phase 3 큰 작업 묶음으로 전환
+
+## 2026-03-19
+
+- `docs/gas-docs-start-here.md`, `docs/live-ops-quickref.md`를 현재 source 시트, 헤더 구조, 자동 기본값, 실연동 명령 구분 기준으로 다시 정리했다.
+- 실연동 문서 진입 순서와 `smoke:gas`/`verify:record`/`check:live` 차이를 더 짧고 현재 기준에 맞게 정리했다.
+- 검증: 문서 내용 확인
+- Phase 변경 없음
+- 다음 작업 메모:
+  - Phase 3 실연동 문서 묶음을 닫을지 점검하고, 닫히면 현재 범위를 재정리해 다음 큰 기능 작업 준비
+
+- `docs/gas-click-by-click-guide.md`, `docs/live-connection-order.md`를 현재 source 시트, 헤더 구조, 기본 CLI 점검 순서 기준으로 다시 정리했다.
+- 오래된 `첫 행 헤더`, `품사 시트` 표현을 `헤더 구조`, `source 시트` 기준으로 통일하고 문서 진입 순서도 다시 맞췄다.
+- 검증: 문서 내용 확인
+- Phase 변경 없음
+- 다음 작업 메모:
+-  - Phase 3 실연동 문서 묶음 최종 점검 후 현재 범위 재정리 또는 다음 큰 기능 작업 준비
+
 ## 2026-03-17
 
 - Phase 1 MVP 기본 흐름을 구현했다.
@@ -704,3 +819,382 @@ pm run test 39개 통과, `npm run build` 통과
 - Phase 변경 없음
 - 다음 작업 메모:
   - staged 삭제 목록을 한 번 더 확인한 뒤 커밋 단위를 정리하고 push 전에 민감 파일이 다시 추적되지 않는지 재확인
+
+## 2026-03-19 (66)
+
+- [PlayPage.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.tsx)에서 단어 로드 실패 후 `words`가 비어 있을 때도 오류 메시지를 숨기지 않고, 언어가 있으면 `단어 다시 불러오기`, 공통으로 `홈으로 이동` 액션을 보여주도록 빈 상태 UX를 보강했다.
+- [PlayPage.test.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.test.tsx)에 로드 오류 빈 상태와 재시도 버튼 동작을 검증하는 테스트를 추가했다.
+- 검증 `npm run test -- src/pages/PlayPage.test.tsx`
+- Phase 변경 없음
+- 다음 작업 메모:
+  - Phase 3 범위 안에서 플레이 화면의 작은 피드백 보강이나 출제 흐름 미세 조정을 같은 방식으로 이어가기
+
+## 2026-03-19 (67)
+
+- [PlayPage.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.tsx)에서 선택 언어가 없는 빈 상태에도 `홈으로 이동` 버튼을 보여주도록 보강해 플레이 진입 막힘을 줄였다.
+- [PlayPage.test.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.test.tsx)에 선택 언어가 없을 때 홈 이동 버튼만 보이는지 확인하는 테스트를 추가했다.
+- 검증 `npm run test -- src/pages/PlayPage.test.tsx`
+- Phase 변경 없음
+- 다음 작업 메모:
+  - 같은 Phase 3 범위에서 플레이 화면의 작은 피드백 보강이나 출제 흐름 미세 조정을 계속 진행
+
+## 2026-03-19 (68)
+
+- [PlayPage.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.tsx)에서 단어 재시도 로딩 중에는 버튼 문구를 `단어 다시 불러오는 중...`으로 바꿔 현재 상태가 바로 보이도록 피드백을 보강했다.
+- [PlayPage.test.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.test.tsx)에 재시도 로딩 중 버튼 문구와 비활성 상태를 확인하는 테스트를 추가했다.
+- 검증 `npm run test -- src/pages/PlayPage.test.tsx`
+- Phase 변경 없음
+- 다음 작업 메모:
+  - 같은 Phase 3 범위에서 플레이 화면의 작은 피드백 보강이나 출제 흐름 미세 조정을 계속 진행
+
+## 2026-03-19 (69)
+
+- [PlayPage.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.tsx)에서 답변 선택 직후 `답변 확인 중...` 피드백을 잠깐 보여주고, 마지막 문제가 아닐 때는 아주 짧은 템포 후 다음 문제로 넘어가도록 보강했다.
+- [PlayPage.test.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.test.tsx)에 답변 직후 확인 피드백과 다음 문제 전환 흐름을 검증하는 테스트를 추가하고, 기존 2문항 전환 테스트를 현재 UX 흐름에 맞게 조정했다.
+- 검증 `npm run test -- src/pages/PlayPage.test.tsx`
+- Phase 변경 없음
+- 다음 작업 메모:
+  - 같은 Phase 3 범위에서 플레이 화면의 작은 피드백 보강이나 출제 흐름 미세 조정을 계속 진행
+
+## 2026-03-19 (70)
+
+- [PlayPage.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.tsx)에서 답변 선택 직후 `정답이에요!` / `오답이었어요. 다음 문제로 넘어갈게요.` 피드백을 함께 보여주도록 보강했다.
+- [PlayPage.test.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.test.tsx)에 정답 피드백 노출 확인을 추가하고, 오답 시 하트 차감과 함께 피드백이 잠깐 보이는 흐름 테스트를 추가했다.
+- 검증 `npm run test -- src/pages/PlayPage.test.tsx`
+- Phase 변경 없음
+- 다음 작업 메모:
+  - 같은 Phase 3 범위에서 플레이 화면의 버튼 상태나 전환 체감을 더 다듬는 소작업을 이어간다.
+
+## 2026-03-19 (71)
+
+- [PlayPage.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.tsx)에서 답변 직후 사용자가 누른 선택지를 강조 표시하고, 피드백 아래에 `선택한 답`으로 잠깐 함께 보여주도록 보강했다.
+- [PlayPage.test.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.test.tsx)에 선택 직후 `aria-pressed` 상태와 `선택한 답` 표시가 다음 문제 전환 전까지만 유지되는 흐름을 검증하도록 보강했다.
+- 검증 `npm run test -- src/pages/PlayPage.test.tsx`
+- Phase 변경 없음
+- 다음 작업 메모:
+  - 같은 Phase 3 범위에서 플레이 화면의 버튼 상태나 문제 전환 체감을 더 다듬는 소작업을 이어간다.
+
+## 2026-03-19 (72)
+
+- [PlayPage.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.tsx)에서 선택한 답 강조 색을 정답이면 초록, 오답이면 빨강 계열로 나눠 피드백과 시각적으로 바로 맞물리도록 보강했다.
+- [PlayPage.test.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.test.tsx)에 정답/오답 선택 직후 버튼 강조 클래스가 기대 색상으로 바뀌는 확인을 추가했다.
+- 검증 `npm run test -- src/pages/PlayPage.test.tsx`
+- Phase 변경 없음
+- 다음 작업 메모:
+  - 같은 Phase 3 범위에서 플레이 화면의 버튼 상태나 문제 전환 체감을 더 다듬는 소작업을 이어간다.
+
+## 2026-03-19 (73)
+
+- [PlayPage.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.tsx)에서 오답 선택 직후에는 `정답: ...` 문구를 함께 보여줘 사용자가 바로 정답을 확인할 수 있도록 보강했다.
+- [PlayPage.test.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.test.tsx)에 오답 피드백 구간에서 `정답: 고양이`가 잠깐 보였다가 다음 문제로 넘어가면 사라지는 흐름 확인을 추가했다.
+- 검증 `npm run test -- src/pages/PlayPage.test.tsx`
+- Phase 변경 없음
+- 다음 작업 메모:
+  - 같은 Phase 3 범위에서 플레이 화면의 버튼 상태나 문제 전환 체감을 더 다듬는 소작업을 이어간다.
+
+## 2026-03-19 (74)
+
+- [PlayPage.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.tsx)에서 오답 선택 직후에는 사용자가 고른 버튼뿐 아니라 실제 정답 선택지도 초록 계열로 함께 강조되도록 보강했다.
+- [PlayPage.test.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.test.tsx)에 오답 직후 사용자가 누른 선택지는 빨강, 실제 정답 선택지는 초록으로 동시에 드러나는 확인을 추가했다.
+- 검증 `npm run test -- src/pages/PlayPage.test.tsx`
+- Phase 변경 없음
+- 다음 작업 메모:
+  - 같은 Phase 3 범위에서 플레이 화면의 버튼 상태나 문제 전환 체감을 더 다듬는 소작업을 이어간다.
+
+## 2026-03-19 (75)
+
+- [PlayPage.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.tsx)에서 답변 확인 중에는 선택되지 않은 나머지 보기들을 더 옅게 보여주도록 정리해, 시선이 선택 결과와 정답 피드백에 더 잘 모이게 했다.
+- [PlayPage.test.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.test.tsx)에 정답/오답 확인 구간에서 선택되지 않은 보기의 배경이 옅어지는 확인을 추가했다.
+- 검증 `npm run test -- src/pages/PlayPage.test.tsx`
+- Phase 변경 없음
+- 다음 작업 메모:
+  - 같은 Phase 3 범위에서 플레이 화면의 버튼 상태나 문제 전환 체감을 더 다듬는 소작업을 이어간다.
+
+## 2026-03-19 (76)
+
+- [PlayPage.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.tsx)에서 답변 확인 중 버튼 안에 `선택` / `정답` 배지를 함께 보여주도록 보강해 색상만 보지 않아도 상태를 바로 읽을 수 있게 했다.
+- [PlayPage.test.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.test.tsx)에 선택된 버튼의 `선택` 배지와 정답 버튼의 `정답` 배지가 실제로 붙는 흐름 확인을 추가했다.
+- 검증 `npm run test -- src/pages/PlayPage.test.tsx`
+- Phase 변경 없음
+- 다음 작업 메모:
+  - 같은 Phase 3 범위에서 플레이 화면의 버튼 상태나 문제 전환 체감을 더 다듬는 소작업을 이어간다.
+
+## 2026-03-19 (77)
+
+- [PlayPage.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.tsx)에서 다음 문제로 넘어가기 직전 `곧 다음 문제로 넘어가요.` 안내를 함께 보여줘, 답변 후 짧은 대기 구간의 의미를 더 자연스럽게 이해할 수 있게 했다.
+- [PlayPage.test.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.test.tsx)에 정답/오답 확인 구간 모두에서 전환 안내 문구가 노출되는 확인을 추가했다.
+- 검증 `npm run test -- src/pages/PlayPage.test.tsx`
+- Phase 변경 없음
+- 다음 작업 메모:
+  - 같은 Phase 3 범위에서 플레이 화면의 버튼 상태나 문제 전환 체감을 더 다듬는 소작업을 이어간다.
+
+## 2026-03-19 (78)
+
+- [PlayPage.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.tsx)에서 마지막 문제나 하트 소진으로 세션이 끝나는 경우에는 `곧 다음 문제로 넘어가요.` 대신 `결과를 정리하고 있어요.` 안내를 잠깐 보여주도록 보강했다.
+- [PlayPage.test.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.test.tsx)는 기존 흐름 회귀 위주로 유지하고, 마지막 문제 저장/결과 이동 흐름이 계속 통과하는지 함께 확인했다.
+- 검증 `npm run test -- src/pages/PlayPage.test.tsx`
+- Phase 변경 없음
+- 다음 작업 메모:
+  - 같은 Phase 3 범위에서 플레이 화면의 피드백 문구 배치나 결과 직전 체감을 더 다듬는 소작업을 이어간다.
+
+## 2026-03-19 (79)
+
+- [PlayPage.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.tsx)에서 답변 직후 피드백 묶음을 옅은 배경과 테두리가 있는 별도 박스로 감싸, 출제 카드/버튼 영역과 시각적으로 더 잘 분리되도록 정리했다.
+- [PlayPage.test.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.test.tsx)에 피드백 박스 컨테이너가 강조용 배경 클래스를 갖는지 확인을 추가했다.
+- 검증 `npm run test -- src/pages/PlayPage.test.tsx`
+- Phase 변경 없음
+- 다음 작업 메모:
+  - 같은 Phase 3 범위에서 플레이 화면의 피드백 문구 배치나 결과 직전 체감을 더 다듬는 소작업을 이어간다.
+
+## 2026-03-19 (80)
+
+- [PlayPage.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.tsx)에서 피드백 박스 안의 문구 순서를 정리해 `정답이에요!` / `오답이었어요...` 같은 핵심 결과가 먼저 보이고, `답변 확인 중...`은 보조 문구로 내려가도록 다듬었다.
+- [PlayPage.test.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.test.tsx)는 기존 피드백 박스 검증을 유지한 채 흐름 회귀가 없는지 다시 확인했다.
+- 검증 `npm run test -- src/pages/PlayPage.test.tsx`
+- Phase 변경 없음
+- 다음 작업 메모:
+  - 같은 Phase 3 범위에서 플레이 화면의 피드백 문구 간격이나 결과 직전 체감을 더 다듬는 소작업을 이어간다.
+
+## 2026-03-19 (81)
+
+- [PlayPage.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.tsx)에서 피드백 박스 안의 보조 정보 묶음에 얇은 구분선을 추가해, 핵심 결과와 상세 정보가 더 또렷하게 나뉘도록 정리했다.
+- [PlayPage.test.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.test.tsx)에 `선택한 답` 문구가 들어 있는 하단 보조 정보 묶음에 구분선 클래스가 붙는지 확인을 추가했다.
+- 검증 `npm run test -- src/pages/PlayPage.test.tsx`
+- Phase 변경 없음
+- 다음 작업 메모:
+  - 같은 Phase 3 범위에서 플레이 화면의 피드백 박스 간격이나 결과 직전 체감을 더 다듬는 소작업을 이어간다.
+## 2026-03-19 (82)
+
+- [PlayPage.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.tsx)에서 상단 진행도 아래에 세션 진행 바를 추가하고, 답변 직후 피드백 박스 안에 획득 점수·현재 콤보·남은 하트 요약 카드를 함께 보여주도록 정리했다.
+- [PlayPage.test.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.test.tsx)에서 진행 바 `aria-valuenow` 변화와 피드백 요약 카드 노출을 함께 검증하고, 전환 직후 상태 해제는 `waitFor`로 안정화했다.
+- 검증 `npm run test -- src/pages/PlayPage.test.tsx`
+- Phase 변경 없음
+- 다음 작업 메모:
+  - 같은 Phase 3 범위에서 `PlayPage` 결과 직전 전환감이나 HUD 밀도를 조금 더 다듬는 묶음 작업으로 이어간다.
+## 2026-03-19 (83)
+
+- [PlayPage.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.tsx)에서 상단 HUD에 마지막 문제/결과 이동 상태 배지와 전환 상태 칩을 추가하고, 진행 바에 `aria-valuetext`를 붙여 현재 진행도를 더 분명하게 읽을 수 있게 했다.
+- [PlayPage.test.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.test.tsx)에서 마지막 문제 배지, 진행 바 접근성 값, 정답/오답 전환 상태 칩 노출을 함께 검증하도록 보강했다.
+- 검증 `npm run test -- src/pages/PlayPage.test.tsx`
+- Phase 변경 없음
+- 다음 작업 메모:
+  - 같은 Phase 3 범위에서 `PlayPage` 결과 직전 전환감과 HUD 밀도를 조금 더 다듬는 다음 묶음 작업으로 이어간다.
+## 2026-03-19 (84)
+
+- [PlayPage.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.tsx)에서 상단 상태 칩과 남은 문제 배지에 상태별 색을 주고, 피드백 박스 우측 보조 문구는 중복 안내 대신 `획득 +점수` 요약으로 바꿔 전환 정보를 더 간결하게 정리했다.
+- [PlayPage.test.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.test.tsx)에서 마지막 문제 배지 색, 정답/오답 상태 칩 색, 피드백 박스의 점수 요약 문구를 함께 검증하도록 보강했다.
+- 검증 `npm run test -- src/pages/PlayPage.test.tsx`
+- Phase 변경 없음
+- 다음 작업 메모:
+  - 같은 Phase 3 범위에서 `PlayPage` 결과 직전 전환감과 HUD 정보 밀도를 조금 더 다듬는 다음 묶음 작업으로 이어간다.
+## 2026-03-19 (85)
+
+- [PlayPage.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.tsx)에서 답변 직후 상단 HUD 카드에도 변화값을 붙여, 정답이면 점수/콤보 카드가 강조되고 오답이면 하트 카드가 강조되도록 전환 피드백을 확장했다.
+- [PlayPage.test.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.test.tsx)에서 점수/콤보/하트 카드 강조와 `유지`, `리셋`, `+점수` 변화값 노출을 함께 검증하도록 보강했다.
+- 검증 `npm run test -- src/pages/PlayPage.test.tsx`
+- Phase 변경 없음
+- 다음 작업 메모:
+  - 같은 Phase 3 범위에서 `PlayPage` 결과 직전 전환감과 HUD 정보 밀도를 조금 더 다듬는 다음 묶음 작업으로 이어간다.
+## 2026-03-19 (86)
+
+- [PlayPage.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.tsx)에서 답변 직후 HUD 카드 아래에 짧은 상태 스트립을 추가하고, 콤보 변화값 표기를 `콤보 +1`처럼 더 직관적으로 정리했다.
+- [PlayPage.test.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.test.tsx)에서 정답/오답 상태 스트립, `획득 +점수 · 콤보 N` 요약, `콤보 +1`/`리셋` 변화값 노출을 함께 검증하도록 보강했다.
+- 검증 `npm run test -- src/pages/PlayPage.test.tsx`
+- Phase 변경 없음
+- 다음 작업 메모:
+  - 같은 Phase 3 범위에서 `PlayPage` 결과 직전 전환감과 HUD 정보 밀도를 조금 더 다듬는 다음 묶음 작업으로 이어간다.
+## 2026-03-19 (87)
+
+- [PlayPage.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.tsx)에서 진행 바 색을 정답/오답/결과 이동 상태에 맞게 전환하고, 피드백 박스에 반응 시간 카드를 추가해 답변 직후 요약 정보를 4칸으로 확장했다.
+- [PlayPage.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.tsx)에서 HUD 카드 아래 상태 스트립과 콤보 변화값 정리를 유지한 채, 전환 직후 읽을 정보가 상단과 피드백 박스에 자연스럽게 이어지도록 밀도를 조정했다.
+- [PlayPage.test.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.test.tsx)에서 진행 바 색 전환, 반응 시간 카드, 확장된 피드백 카드 구성을 함께 검증하도록 보강했다.
+- 검증 `npm run test -- src/pages/PlayPage.test.tsx`
+- Phase 변경 없음
+- 다음 작업 메모:
+  - 같은 Phase 3 범위에서 `PlayPage` 결과 직전 전환감과 HUD 정보 밀도를 더 줄이고 정리하는 다음 묶음 작업으로 이어간다.
+## 2026-03-19 (88)
+
+- [PlayPage.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.tsx)에서 진행 바 색을 정답/오답/결과 이동 상태에 맞게 전환하고, 피드백 박스에 반응 시간 카드를 추가해 답변 직후 요약 정보를 한 번에 보이도록 확장했다.
+- [PlayPage.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.tsx)에서 HUD 카드 아래 상태 스트립, 카드 변화값, 피드백 카드 구성이 서로 자연스럽게 이어지도록 결과 직전 정보 밀도를 한 묶음으로 정리했다.
+- [PlayPage.test.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.test.tsx)에서 진행 바 색 전환, 반응 시간 카드, 확장된 피드백 카드 구성을 함께 검증하도록 보강했다.
+- 검증 `npm run test -- src/pages/PlayPage.test.tsx`
+- Phase 변경 없음
+- 다음 작업 메모:
+  - 같은 Phase 3 범위에서 `PlayPage` 결과 직전 정보 밀도를 더 줄이고 정리하는 다음 묶음 작업으로 이어간다.
+## 2026-03-19 (89)
+
+- [PlayPage.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.tsx)에서 HUD 요약에 반응 시간을 합치고, 피드백 상단 보조 문구는 점수 중복 대신 `반응 시간`으로 바꿔 결과 직전 정보 중복을 줄였다.
+- [PlayPage.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.tsx)에서 선택/정답 정보는 칩 형태로 압축하고, 피드백 카드 그리드도 2열 기준으로 정리해 정보 밀도를 더 낮췄다.
+- [PlayPage.test.tsx](D:/smx_coding_d/learning/language_learning_web/src/pages/PlayPage.test.tsx)에서 반응 시간 기반 HUD 요약, 압축된 선택/정답 칩, 정리된 피드백 카드 레이아웃을 함께 검증하도록 갱신했다.
+- 검증 `npm run test -- src/pages/PlayPage.test.tsx`
+- Phase 변경 없음
+- 다음 작업 메모:
+  - 같은 Phase 3 범위에서 `PlayPage` 결과 직전 정보 밀도를 더 줄이고 정리하는 다음 묶음 작업으로 이어간다.
+## 2026-03-19
+
+- `ResultPage`에 세션 상태 칩, 세션 스냅샷 카드, 추천 액션 카드, 복습 미리보기 칩 UI를 묶어서 보강했다.
+- 추천 액션 카드의 접근성 이름을 정리하고 `ResultPage` 테스트를 현재 CTA 구조에 맞게 통과시켰다.
+- 검증: `npm run test -- src/pages/ResultPage.test.tsx` 3 passed
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - `ReviewPage`, `StatsPage`에서 결과 화면과 이어지는 진입 안내/요약 연결을 한 묶음으로 보강
+## 2026-03-19
+
+- `ReviewPage`, `StatsPage`에 결과 화면 다음 단계로 이어지는 스냅샷 상태 카드, 요약 카드, 추천 액션 카드 묶음을 추가했다.
+- 복습 목록과 통계 카드의 정보 배치를 칩/카드 중심으로 정리하고, 홈/플레이/복습 이동 흐름 테스트를 현재 구조에 맞게 갱신했다.
+- 검증: `npm run test -- src/pages/ReviewPage.test.tsx src/pages/StatsPage.test.tsx` 9 passed
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - Phase 3 범위에서 문서/GAS 준비 작업 전, 결과-복습-통계 화면의 연결감을 기준으로 남은 화면 문구와 CTA 밀도를 한 번 더 정리
+## 2026-03-19
+
+- `ResultPage`, `ReviewPage`, `StatsPage`의 CTA 섹션을 `바로 이동`과 `추천 경로` 요약 기준으로 맞춰 세 화면의 다음 행동 흐름을 공통 톤으로 정리했다.
+- 결과/복습/통계 화면 테스트를 현재 공통 CTA 구조 기준으로 갱신하고 함께 통과시켰다.
+- 검증: `npm run test -- src/pages/ResultPage.test.tsx src/pages/ReviewPage.test.tsx src/pages/StatsPage.test.tsx` 12 passed
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - Phase 3 범위에서 남은 화면 문구 밀도 정리 후 문서 UTF-8/정합성 정리 또는 GAS 준비 문서 최신화로 연결
+## 2026-03-19
+
+- `README`, `docs/google-sheets-setup-guide.md`, `docs/gas-deploy-checklist.md`, `docs/live-ops-quickref.md`, `gas/README.md`를 현재 다중 master 시트/2행 machine key/GAS 저장 키 기준으로 정리했다.
+- 실연동 시작 순서와 README 진입점을 다시 맞추고, `Words` 단일 탭 기준으로 남아 있던 오래된 설명을 현재 구현 기준으로 교체했다.
+- 검증: 문서 내용 확인
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - 남은 실연동 문서들(`gas-docs-start-here`, `real-connection-smoke-test`, `gas-5minute-checklist`)의 표현도 같은 기준으로 한 번 더 정리
+## 2026-03-19
+
+- `docs/gas-docs-start-here.md`, `docs/gas-5minute-checklist.md`, `docs/real-connection-smoke-test.md`를 현재 다중 source 시트/2행 machine key/기본 CLI 실행 흐름 기준으로 정리했다.
+- 실연동 시작 순서와 기본 명령 사용법을 더 짧게 읽히도록 맞췄고, `Words` 단일 탭처럼 읽힐 수 있는 표현을 source 시트 기준으로 통일했다.
+- 검증: 문서 내용 확인
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - `api-spec.md`, `sheet-schema.md`, `gas/Code.gs`를 한 번에 대조해 남은 문서-구현 차이를 정리
+## 2026-03-19
+
+- `gas/Code.gs`에서 `getMeta`, `getWords`, `saveSession` 실패를 각각 `META_LOAD_FAILED`, `WORDS_LOAD_FAILED`, `SAVE_FAILED`로 정리해 API 문서와 실제 응답 규칙을 맞췄다.
+- `docs/api-spec.md`, `docs/sheet-schema.md`를 현재 GAS 저장 키, `log_id/session_log_id` 연결, source 시트 규칙, 저장 실패 조건 기준으로 다시 맞췄다.
+- 검증: 문서 내용 확인, GAS 스켈레톤 코드 검토
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - Phase 3 마무리 전 `api-spec` 예시 payload와 실제 smoke/verify 스크립트 출력 기준을 한 번 더 대조
+## 2026-03-19
+
+- `scripts/run_full_connection_check.mjs`가 이제 `gas-connection-values-template.md`의 기대 `player_id`, `word_id`, `mode_type`, `score`, `language_code`도 기본값으로 읽도록 보강했다.
+- `live-ops-quickref.md`, `real-connection-smoke-test.md`를 현재 `check:live` 기본값 동작 기준에 맞게 다시 정리했다.
+- 검증: 스크립트 코드/문서 내용 확인
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - 실연동 점검 스크립트 usage/help 문구와 템플릿 문서 표현을 한 번 더 압축 정리
+## 2026-03-19
+
+- `smoke:gas`, `verify:record`, `check:live`의 help/usage 문구를 현재 자동 기본값 동작 기준으로 정리했다.
+- `gas-connection-values-template.md`를 `smoke 기본값 / verify-check 기대값 / 최근 결과 메모` 구조로 압축해 실연동 문서 묶음의 기준 문서 역할을 더 분명하게 했다.
+- 검증: `node scripts/run_gas_smoke_test.mjs --help`, `python scripts/verify_record_sheet_state.py --help`, `node scripts/run_full_connection_check.mjs --help`
+- Phase 변경: 없음
+- 다음 작업 메모:
+  - Phase 3 실연동 문서 묶음 마무리 후, 실제 앱/게임 구조 쪽 큰 작업으로 넘어가기 전 남은 범위 재정렬
+## 2026-03-19
+
+- `PlayPage`에 품사 / 난이도 / 출제 방식 세션 설정 UI를 추가하고, 선택값 기준으로 실제 문제 풀을 다시 구성하도록 연결했다.
+- `SessionResultState`, `ResultPage`를 확장해 세션 설정 상태가 결과 화면과 다시 플레이 / 연습 모드 진입까지 이어지도록 정리했다.
+- `src/features/game/sessionConfig.ts`를 추가해 세션 설정 기본값, 품사 추론, 필터링, 표시 라벨 로직을 분리했다.
+- 검증:
+  - `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx` 14 passed
+  - `npm run build` passed
+- Phase 변경 없음
+- 다음 작업 메모:
+  - `PlayPage` HUD / 레이아웃 전면 개편
+  - 세션 설정과 문제 생성 규칙 고도화
+
+## 2026-03-19
+
+- `src/pages/PlayPage.tsx`를 Mission Control 상단 HUD, 진행 바, 상태 칩, loadout 카드, 피드백 콘솔 중심의 하이엔드형 플레이 레이아웃으로 전면 개편했다.
+- 답안 버튼을 A/B/C/D 선택 카드 구조로 재배치하고, 우측 `세션 설정` 패널과 메인 문제 카드가 함께 보이도록 정리해 모바일/데스크톱 모두에서 정보 위계를 다시 잡았다.
+- `src/pages/PlayPage.test.tsx`를 새 HUD 구조와 접근 가능한 버튼 이름 기준으로 정리해 개편 후 플레이 피드백 회귀를 계속 검증하도록 맞췄다.
+- 검증:
+  - `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx` 14 passed
+  - `npm run build` passed
+- Phase 변경 없음
+- 다음 작업 메모:
+  - `PlayPage` 문제 생성 규칙과 distractor 품질 개선
+  - 세션 설정값을 홈/결과/복습 흐름까지 더 자연스럽게 연결
+  - 게임 중 전환 효과, 보상감, 모바일 HUD 밀도 추가 보강
+
+## 2026-03-19
+
+- `src/features/game/questionRound.ts`에서 출제 라운드 생성 규칙을 보강해, 중복/빈 choice를 제거하고 정답을 보장한 뒤 같은 난이도/품사 distractor를 우선 고르도록 정리했다.
+- 유효한 데이터 풀로 먼저 보기를 구성하고, choice 수가 부족할 때만 기존 DTO choice를 마지막 fallback으로 보태도록 바꿔 품질과 안정성을 함께 잡았다.
+- `src/features/game/questionRound.test.ts`를 새로 정리하고, `src/pages/PlayPage.test.tsx`도 특정 distractor 문구가 아니라 실제 선택/피드백 동작 기준으로 맞춰 회귀를 계속 검증하게 했다.
+- 검증:
+  - `npm run test -- src/features/game/questionRound.test.ts src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx` 17 passed
+  - `npm run build` passed
+- Phase 변경 없음
+- 다음 작업 메모:
+  - 세션 설정값을 홈/결과/복습 흐름까지 더 자연스럽게 연결
+  - 게임 중 전환 효과, 보상감, 모바일 HUD 밀도 추가 보강
+  - 출제 방식별 문제 순서/세션 흐름 제어와 distractor 품질 고도화
+
+## 2026-03-19
+
+- `src/features/game/sessionConfig.ts`에 `questionOrder`를 추가하고, 혼합 출제에서 `균형 흐름 / 단어 우선 / 뜻 우선` 순서로 세션 큐를 재구성할 수 있게 했다.
+- `src/services/sessionRecovery.ts`에 마지막 세션 설정 스냅샷 저장을 추가하고, `HomePage`, `ResultPage`, `ReviewPage`, `PlayPage`가 최근 세션 구성을 보여주거나 그대로 이어받아 다시 플레이/연습에 진입하도록 연결했다.
+- `src/pages/HomePage.test.tsx`, `src/pages/ReviewPage.test.tsx`, `src/pages/ResultPage.test.tsx`, `src/pages/PlayPage.test.tsx`를 새 세션 설정 흐름 기준으로 보강했다.
+- 검증:
+  - `npm run test -- src/pages/HomePage.test.tsx src/pages/ReviewPage.test.tsx src/pages/ResultPage.test.tsx src/pages/PlayPage.test.tsx` 23 passed
+  - `npm run build` passed
+- Phase 변경 없음
+- 다음 작업 메모:
+  - 출제 방식별 문제 순서와 난이도 체감 흐름을 더 세밀하게 고도화
+  - 게임 중 전환 효과, 보상감, 모바일 HUD 밀도 추가 보강
+  - 복습센터에서 세션 설정 기반 추천 액션을 더 직접적으로 연결
+## 2026-03-19
+
+- `src/features/game/sessionConfig.ts`에 복습 스냅샷 우선순위를 반영하는 큐 정렬을 추가해 기본 플레이는 같은 난이도 안에서 복습 대상이 더 앞쪽에 오고, 연습 모드는 복습 대상부터 먼저 여는 흐름으로 보강했다.
+- `src/pages/PlayPage.tsx`에 복습 우선 / 오프닝 / 난이도 흐름 브리핑을 추가해 세션 설정과 실제 출제 큐 연결이 화면에 바로 드러나도록 정리했다.
+- `src/features/game/sessionConfig.test.ts`, `src/pages/PlayPage.test.tsx`를 보강해 standard/practice 큐 흐름과 브리핑 회귀를 검증했다.
+- 검증:
+  - `npm run test -- src/features/game/sessionConfig.test.ts src/pages/PlayPage.test.tsx src/pages/HomePage.test.tsx src/pages/ReviewPage.test.tsx src/pages/ResultPage.test.tsx` 31 passed
+  - `npm run build` passed
+- Phase 변경 없음
+- 다음 작업 메모:
+  - 전환 효과, 보상감, 모바일 HUD 밀도 보강
+  - 복습센터 추천 액션을 세션 설정/복습 우선 큐와 더 직접적으로 연결
+## 2026-03-19
+
+- `src/pages/PlayPage.tsx`에서 시작 전/시작 후 큰 레이아웃을 세로 단일 흐름으로 다시 정리하고, 게임 시작 후에는 우측 `세션 설정` 패널이 더 이상 노출되지 않도록 정리했다.
+- 시작 전 설정 화면의 요약 영역도 세로 흐름 기준으로 다시 배치해 좁은 폭에서 가독성을 높였다.
+- `src/pages/PlayPage.test.tsx`를 새 레이아웃/진입 흐름 기준으로 정리했다.
+- 검증:
+  - `npm run test -- src/pages/PlayPage.test.tsx src/pages/HomePage.test.tsx src/pages/ResultPage.test.tsx` 21 passed
+  - `npm run build` passed
+- Phase 변경 없음
+- 다음 작업 연결 메모:
+  - `PlayPage` 전환 효과, 보상감, 모바일 HUD 밀도 보강
+  - 설명성 문구 추가 정리와 실제 플레이 체감 개선
+
+## 2026-03-19
+
+- `src/pages/PlayPage.tsx`에서 플레이 진입 시 문제를 바로 렌더링하지 않고 세션 설정 화면을 먼저 보여주도록 시작 흐름을 정리했다.
+- 시작 전 설정 화면은 선택 그룹, 현재 설정 칩, 준비 문제 수 중심으로 다시 배치하고 과한 설명성 문구와 중복 요약 카드를 줄였다.
+- `src/pages/PlayPage.test.tsx`를 새 시작 흐름 기준으로 정리했다.
+- 검증:
+  - `npm run test -- src/pages/PlayPage.test.tsx src/pages/HomePage.test.tsx src/pages/ResultPage.test.tsx` 21 passed
+  - `npm run build` passed
+- Phase 변경 없음
+- 다음 작업 연결 메모:
+  - `PlayPage` 전환 효과, 보상감, 모바일 HUD 밀도 보강
+  - 복습센터 추천 액션을 세션 설정/복습 우선 큐와 직접 연결
+## 2026-03-19
+
+- `src/features/game/sessionConfig.ts`에서 `questionOrder`와 혼합 출제를 제거하고, 출제 방식을 `단어(한자) -> 뜻`, `단어(후리가나) -> 뜻`, `단어(음성) -> 뜻`, `뜻 -> 단어` 4개로 재구성했다.
+- `src/pages/PlayPage.tsx`에서 시작 전 설정 화면을 세로 단일 흐름으로 압축하고, 게임 시작 후에는 세션 설정 섹션을 숨긴 채 상단 HUD와 문제 카드 중심 화면만 남기도록 정리했다.
+- `src/pages/PlayPage.tsx`에서 과도한 설명 문구와 보조 카드들을 제거해 첫 화면 안에 문제와 보기 카드가 바로 보이도록 정리했다.
+- `src/features/game/sessionConfig.test.ts`, `src/pages/PlayPage.test.tsx`, `src/pages/HomePage.test.tsx`, `src/pages/ReviewPage.test.tsx`, `src/pages/ResultPage.test.tsx`를 새 설정 구조와 압축형 UI 기준으로 재작성했다.
+- 검증:
+  - `npm run test -- src/features/game/sessionConfig.test.ts src/pages/PlayPage.test.tsx src/pages/HomePage.test.tsx src/pages/ReviewPage.test.tsx src/pages/ResultPage.test.tsx` 23 passed
+  - `npm run build` passed
+- Phase 변경 없음
+- 다음 작업 연결 메모:
+  - `PlayPage` 전환 효과와 보상감 연출 보강
+  - 결과/복습 화면 CTA 설명 밀도 추가 축소

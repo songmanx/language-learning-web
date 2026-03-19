@@ -10,7 +10,7 @@
 - 그래서 우선 필요한 것은 다음 네 가지다.
   - 스프레드시트 만들기
   - 시트 탭 만들기
-  - 첫 행 헤더 입력하기
+  - 헤더 구조 입력하기
   - Apps Script에 스프레드시트 ID 넣기
 
 ## 준비물
@@ -33,6 +33,16 @@
 - `lang_ja_master_sheet`
 - `lang_ja_record_sheet`
 
+## 헤더 구조를 먼저 이해하기
+
+현재 GAS는 아래 구조를 가장 안정적으로 읽는다.
+
+- 1행: 한글 표시명
+- 2행: machine key
+- 3행부터: 실제 데이터
+
+사용자 시트, master 시트, record 시트 모두 이 구조를 권장한다.
+
 ## 1. 사용자 스프레드시트 만들기
 
 스프레드시트 이름:
@@ -43,13 +53,19 @@
 
 - `Users`
 
-첫 행 헤더:
+1행 표시명 예시:
 
 ```text
-login_id,password,player_id,nickname,active
+로그인ID,비밀번호,플레이어ID,닉네임,활성여부
 ```
 
-예시 데이터:
+2행 machine key:
+
+```text
+login_id,password_plain_or_hash,player_id,display_name,is_active
+```
+
+3행 예시 데이터:
 
 ```text
 demo,1234,player-demo,데모,true
@@ -57,8 +73,8 @@ demo,1234,player-demo,데모,true
 
 주의:
 
-- `active`는 `true` 또는 `false`처럼 고정해서 쓰는 것이 안전하다.
-- 현재 로그인 로직은 `login_id`, `password`, `active`를 먼저 확인한다.
+- 현재 로그인 로직은 `login_id`, `password_plain_or_hash`, `is_active`를 우선 확인한다.
+- 예전 문서의 `password`, `active`, `nickname`도 일부 fallback으로 읽지만, 지금은 위 machine key가 기준이다.
 
 ## 2. 일본어 원본 데이터 스프레드시트 만들기
 
@@ -66,30 +82,33 @@ demo,1234,player-demo,데모,true
 
 - `lang_ja_master_sheet`
 
-시트 탭 이름:
+권장 source 시트 탭:
 
-- `Words`
+- `명사`
+- `동사`
+- `い형용사`
+- `な형용사`
+- `부사`
+- `기타`
 
-첫 행 헤더:
+중요:
+
+- 현재 GAS는 `Words` 단일 탭을 기준으로 하지 않는다.
+- `word_id`, `jp_kanji` machine key가 있는 시트를 source 시트로 인식해 여러 탭을 합쳐 읽는다.
+
+권장 헤더 구조 예시:
 
 ```text
-word_id,prompt,choices,answer,meaning,question_type
+1행 표시명: 단어ID,일본어표기,후리가나,뜻1,뜻2,뜻3,난이도,활성여부,메모
+2행 key   : word_id,jp_kanji,jp_furigana,meaning_ko_1,meaning_ko_2,meaning_ko_3,difficulty,is_active,notes
+3행 데이터: JA_N_0001,猫,ねこ,고양이,,,A,true,
 ```
 
-예시 데이터:
+추가 메모:
 
-```text
-ja-1,ねこ,cat|dog|bird|fish,cat,cat,word_to_meaning
-ja-2,cat,ねこ|いぬ|とり|さかな,ねこ,cat,meaning_to_word
-```
-
-주의:
-
-- `choices`는 현재 `|` 구분 문자열로 넣는 방식을 권장한다.
-- GAS가 이 값을 배열로 바꿔서 프론트에 내려주면 된다.
-- `question_type`에는 아래 두 값만 사용한다.
-  - `word_to_meaning`
-  - `meaning_to_word`
+- `jp_furigana_2`는 있을 때만 추가로 둘 수 있다.
+- master workbook에는 `choices` 컬럼이 없다.
+- 객관식 보기는 GAS가 source pool에서 골라 `choices: string[]`로 만든다.
 
 ## 3. 일본어 기록 스프레드시트 만들기
 
@@ -106,34 +125,30 @@ ja-2,cat,ねこ|いぬ|とり|さかな,ねこ,cat,meaning_to_word
 
 ### 3-1. Game_Log
 
-첫 행 헤더:
-
 ```text
-session_id,player_id,language_code,score,hearts_left,total_questions,correct_answers,saved_at
+1행 표시명: 로그ID,플레이시각,플레이어ID,모드,문제구성,총문항수,정답수,부분정답수,오답수,최대콤보,최종점수,남은하트,총시간(초),설정JSON
+2행 key   : log_id,played_at,player_id,mode_type,quiz_type,total_questions,correct_count,partial_count,wrong_count,max_combo,final_score,hearts_left,total_time_sec,settings_json
 ```
 
 ### 3-2. Answer_Log
 
-첫 행 헤더:
-
 ```text
-session_id,player_id,language_code,word_id,selected_answer,correct,combo_after_answer,earned_score,saved_at
+1행 표시명: 답안로그ID,플레이시각,플레이어ID,세션로그ID,단어ID,문제유형,표시문구,선택답,결과등급,점수,반응시간(ms),당시콤보,난이도스냅샷,메모
+2행 key   : answer_log_id,played_at,player_id,session_log_id,word_id,question_type,shown_prompt,selected_answer,result_grade,numeric_score,response_time_ms,combo_at_time,difficulty_snapshot,note
 ```
 
 ### 3-3. Review_State
 
-첫 행 헤더:
-
 ```text
-player_id,language_code,word_id,priority_score,review_stage,last_result,updated_at
+1행 표시명: 플레이어ID,단어ID,상태,누적오답수,누적부분정답수,누적정답수,오답연속,정답연속,ease점수,우선순위,마지막학습,next_due,수동표시,완료시각,메모
+2행 key   : player_id,word_id,status,wrong_count_total,partial_count_total,correct_count_total,wrong_streak,correct_streak,ease_score,priority_score,last_seen_at,next_due_at,manual_flag,mastered_at,memo
 ```
 
 ### 3-4. Daily_Stats
 
-첫 행 헤더:
-
 ```text
-player_id,language_code,stat_date,session_count,practice_session_count,total_score,best_score,total_questions,correct_answers,average_accuracy,last_played_at,updated_at
+1행 표시명: 기준일,플레이어ID,푼문제수,정답수,학습분,세션수,최고점수,획득배지,연속일수,메모
+2행 key   : stat_date,player_id,solved_count,correct_count,study_minutes,sessions_count,best_score,earned_badges,streak_days,notes
 ```
 
 ## 탭 이름과 헤더를 이렇게 고정하는 이유
@@ -141,10 +156,10 @@ player_id,language_code,stat_date,session_count,practice_session_count,total_sco
 현재 프론트와 문서 기준으로 가장 안정적인 조합은 아래와 같다.
 
 - 사용자 탭: `Users`
-- 단어 탭: `Words`
+- master 탭: `명사`, `동사`, `い형용사`, `な형용사`, `부사`, `기타`
 - 기록 탭: `Game_Log`, `Answer_Log`, `Review_State`, `Daily_Stats`
 
-헤더 이름이 달라지면 GAS에서 컬럼 매핑을 따로 더 복잡하게 맞춰야 하므로,
+탭 이름이나 2행 machine key가 달라지면 GAS에서 매핑이 어긋날 수 있으므로,
 처음에는 문서와 같은 이름으로 정확히 만드는 것이 가장 안전하다.
 
 ## 4. 스프레드시트 ID 찾는 방법
@@ -206,15 +221,16 @@ JA_RECORD_SHEET_ID
 
 - Apps Script 배포 URL
 - 실제 시트 탭 이름이 문서와 같은지 여부
-- `choices`를 `|` 구분 문자열로 넣었는지 여부
+- master 시트를 다중 탭으로 만들었는지 여부
+- 2행 machine key를 문서와 같게 넣었는지 여부
 - 테스트용 계정 1개를 만들었는지 여부
 
 ## 9. 가장 흔한 실수
 
 - 시트 탭 이름이 문서와 다름
-- 첫 행 헤더 철자가 다름
-- `active` 값이 비어 있음
-- `choices` 형식이 제각각임
+- 2행 machine key 철자가 다름
+- `is_active` 값이 비어 있음
+- master 시트를 `Words` 단일 탭으로 만들어 current GAS와 기준이 어긋남
 
 ## 10. 다음 설정이 필요해지는 시점
 

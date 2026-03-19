@@ -1,159 +1,230 @@
 # TASKS.md
 
+## 2026-03-19 Phase 4 전환/CTA 보강 메모
+
+- 완료:
+  - `PlayPage` 답변 직후 전환 시간을 `420ms`로 늘리고 선택지 강조, 문제 카드 상태 톤, 진행 바 전환을 더 분명하게 조정
+  - `ResultPage` / `ReviewPage` CTA 카드에 추천 액션별 컬러 대비와 hover 톤을 추가해 우선 액션 식별성 강화
+- 검증:
+  - `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx src/pages/ReviewPage.test.tsx`
+  - `npm run build`
+- 다음 작업:
+  - `PlayPage` 답변 직후 상태 스트립과 상단 HUD를 더 자연스럽게 연결하고 문제 전환 애니메이션을 한 단계 더 게임형으로 보강
+  - `ResultPage` / `ReviewPage` 핵심 CTA를 더 상단 맥락과 붙여서 첫 화면 판단 속도 개선
+
+## 2026-03-19 Phase 4 보상/위계 보강 메모
+
+- 완료:
+  - `PlayPage` 보상 칩, 상태 카드, 문제/선택지 카드 대비 강화
+  - `ResultPage` / `ReviewPage` 제목 위계와 보조 영역 패딩 추가 정리
+- 검증:
+  - `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx src/pages/ReviewPage.test.tsx`
+  - `npm run build`
+- 다음 작업:
+  - `PlayPage` 답변 직후 전환 속도와 상태 변화 애니메이션을 더 뚜렷하게 조정
+  - `ResultPage` / `ReviewPage` CTA 컬러 체계와 핵심 요약 대비를 더 선명하게 정리
+
+## 2026-03-19 Phase 4 카드 톤/밀도 정리 메모
+
+- 완료:
+  - `PlayPage` 문제 카드와 선택지 카드의 시각 톤 강화
+  - `ResultPage` / `ReviewPage` 남은 보조 카드 패딩과 밀도 추가 축소
+- 검증:
+  - `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx src/pages/ReviewPage.test.tsx`
+  - `npm run build`
+- 다음 작업:
+  - `PlayPage` 답변 직후 전환 효과와 보상 연출을 더 게임형으로 강화
+  - `ResultPage` / `ReviewPage` 텍스트 위계와 색 톤을 더 선명하게 정리
+
+## 2026-03-19 Phase 4 HUD 카드/섹션 통합 메모
+
+- 완료:
+  - `PlayPage` 상단 HUD를 작은 상태 카드형으로 정리
+  - `ResultPage` / `ReviewPage` 액션 영역을 핵심 요약 카드와 더 가깝게 통합
+- 검증:
+  - `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx src/pages/ReviewPage.test.tsx`
+  - `npm run build`
+- 다음 작업:
+  - `PlayPage` 문제 카드와 선택지 시각 톤을 더 하이엔드하게 강화
+  - `ResultPage` / `ReviewPage` 남은 보조 카드 밀도도 추가로 줄이기
+
+## 2026-03-19 Phase 4 HUD/액션 정리 메모
+
+- 완료:
+  - `PlayPage` 상단 HUD 정보량을 더 줄이고 점수/콤보를 한 줄로 압축
+  - `ResultPage` / `ReviewPage` 하단 액션 버튼 영역을 더 단순한 흐름으로 재배치
+- 검증:
+  - `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx src/pages/ReviewPage.test.tsx`
+  - `npm run build`
+- 다음 작업:
+  - `PlayPage` HUD 시각 스타일을 더 게임형으로 다듬기
+  - `ResultPage` / `ReviewPage` 남은 카드 묶음도 더 과감하게 통합하기
+
+## 2026-03-19 Phase 4 화면 압축 메모
+
+- 완료:
+  - `PlayPage` 답변 직후 피드백 박스를 축소하고 HUD 중심 흐름으로 정리
+  - `ResultPage` 다음 액션/세션 평가 카드 통합
+  - `ReviewPage` 복습 스냅샷/다음 액션 카드 통합
+- 검증:
+  - `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx src/pages/ReviewPage.test.tsx`
+  - `npm run build`
+- 다음 작업:
+  - `PlayPage` 상단 HUD 정보량을 한 번 더 줄이고 상태 표현을 더 게임형으로 정리
+  - `ResultPage` / `ReviewPage` 하단 액션 버튼 영역도 더 단순하게 재배치
+
+## 2026-03-19 Phase 4 UI 정리 메모
+
+- 완료:
+  - `PlayPage` 상단 HUD를 더 얇게 압축하고 답변 직후 보상 칩만 짧게 노출
+  - 문제 카드 / 선택지 카드 높이를 줄여 첫 화면 문제 가시성 개선
+  - `ResultPage`, `ReviewPage` 상태 문구와 CTA 설명 밀도 축소
+- 검증:
+  - `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx src/pages/ReviewPage.test.tsx`
+  - `npm run build`
+- 다음 작업:
+  - `PlayPage` 피드백 박스 자체를 더 작게 줄이고 HUD와 자연스럽게 합치기
+  - `ResultPage` / `ReviewPage` 카드 수와 레이아웃을 한 번 더 줄여 모바일 첫 화면 집중도 높이기
+
 ## 현재 진행 Phase
 
-Phase 3: 핵심 기능 확장
+Phase 4: 고급 기능 추가
 
-## Phase 목표
+## 현재 판단
 
-플레이 이후 학습 흐름을 끊지 않도록 복습센터, 연습 모드, 기본 통계, 결과 화면 보강을 안정적으로 제공한다.  
-실제 GAS/Google Sheets 연동 전까지는 mock 기반 흐름과 문서, 화면 문구, 테스트 안정성을 먼저 정리한다.
+- Phase 3 종료 조건은 충족된 상태다.
+- 확인 완료:
+  - `npm run test`
+  - `npm run build`
+  - `npm run refresh:json`
+  - `npm run check:live`
+- 이제 우선순위는 문서 미세 수정이 아니라 게임 경험 전면 개편이다.
 
-## 이번 Phase에서 완료된 항목
+## Phase 4 목표
 
-- 복습센터 화면 구현 및 우선순위 정렬 표시
-- 연습 모드 진입 흐름 구현
-- 기본 통계 화면 구현
-- 결과 화면 CTA 및 복습 상태 미리보기 보강
-- `word_to_meaning`, `meaning_to_word` 2종 문제 유형 반영
-- 세션 저장 실패 시 pending session 임시 저장/재저장 흐름 구현
-- mock/real 런타임 분기 및 상단 연결 상태 표시 추가
-- 홈, 로그인, 언어 선택, 플레이, 결과, 복습, 통계 화면의 한글 문구 정리
-- 주요 테스트 파일 UTF-8 정리 및 테스트 안정화
-- GAS 스켈레톤, API 문서, Google Sheets 준비 문서 초안 작성
-- 실제 record 시트 열에 맞춰 세션 저장 payload의 mode/quiz/question/prompt 매핑 보강
-- 실제 record 시트 열에 맞춰 세션 저장 payload의 시간 정보 매핑 보강
-- 실제 record 시트 열에 맞춰 difficulty/study time 매핑 보강
-- 실제 smoke test 문서를 현재 다중 품사 master / record 열 기준으로 재정렬
-- 실연동 모드 로그인 UX 보강 및 테스트 환경 mock 고정
-- 브라우저 실연동 요청의 GAS CORS preflight 회피 처리
-- `뜻 -> 단어` 문제에서 현재 문제의 단어 보기만 쓰도록 보정
-- 언어 선택 직후 홈으로 먼저 이동하고 단어 로드는 백그라운드로 돌려 진입 체감 속도 보정
-- 실제 배포된 GAS Web App 기준 `login`, `getMeta`, `getWords`, `saveSession` smoke test 및 record 시트 4개 탭 row 반영 검증 완료
+현재 학습 루프를 유지한 채, 플레이 감각과 선택 흐름을 전면 개편해 실제 게임다운 체감으로 끌어올린다.
 
-## 이번 Phase에서 아직 남은 핵심 작업
+## 이번 Phase 핵심 범위
 
-- GAS/Google Sheets 실제 시트 구조 확정
-- Google Sheets -> 정적 JSON 자동 생성 흐름 안정화
-- Phase 3 산출물 기준 문서 최신화 유지
+- 하이엔드 게임 감성 UI 전면 개편
+- 플레이 HUD / 전환 / 이펙트 / 보상감 강화
+- 품사 / 난이도 / 출제 방식 선택 플로우 재구성
+- 문제 생성 로직 / distractor 품질 / 출제 규칙 재설계
+- 업적 시스템 기초
+- 이미지 문제 / 듣기 모드 / 자기채점 작문 준비 구조
 
-## 바로 다음 작업 우선순위
+## 바로 다음 큰 작업 우선순위
 
-### 1. 실연동 준비 마무리
-- GAS action별 요청/응답 형식 재확인 및 예시 고정
-- Google Sheets 탭/헤더 권장안 문서 기준 확정
-- 프론트 payload와 시트 컬럼 매핑 운영 규칙 정리
-- GAS 스켈레톤에 문서 기준 저장 규칙 반영 시작
-- API 문서 예시를 현재 GAS 스켈레톤 기준으로 정렬
-- 사용자 요청 기준 master/record 시트 구조 변경 사항 문서 반영
-- 업로드된 실제 Excel 헤더 기준 문서/가스 매핑 대조 반영
+### 1. 플레이 구조 재설계
 
-### 2. 실연동 검증 준비
-- mock 모드와 GAS 모드 전환 체크리스트 유지
-- 실제 연결 후 smoke test 순서 검증
-- 배포/연결 체크 문서를 현재 GAS 동작 기준으로 정렬
-- 실제 설정 직전용 초간단 체크 문서 추가
-- 실연동 문서 진입점 안내 문서 추가
-- 실제 클릭 순서 문서 추가
-- 시트 ID / 배포 URL / 테스트 계정 값 정리 템플릿 추가
+- 품사 선택 UI
+- 난이도 선택 UI
+- 출제 방식 선택 UI
+- 선택값을 세션 설정과 결과 화면까지 이어주는 구조 정리
 
-### 3. 문서 최신화 유지
-- 핵심 문서 UTF-8 상태 유지
-- API/시트 문서와 실제 구현 차이 발생 시 바로 반영
-- README에서 실연동 시작 문서 진입점 유지
+### 2. 플레이 화면 전면 개편
 
-## 현재 확인 기준
+- 현재 `PlayPage`를 하이엔드 게임 감성 기준으로 재구성
+- 상단 HUD, 진행도, 피드백, 결과 직전 전환을 전면 정리
+- 모바일 우선 레이아웃 유지
 
-- `npm run test` 통과
-- `npm run build` 통과
-- `npm run smoke:gas -- --login-id test --password 1234` 통과
-- `npm run verify:record -- --credentials ... --spreadsheet-id ...` 기준 `Game_Log`, `Answer_Log`, `Review_State`, `Daily_Stats` 모두 통과
-- 로그인 → 언어 선택 → 홈 → 플레이 → 결과 → 복습/통계 흐름 동작
-- pending session 재저장 동작
-- 복습 상태/기본 통계 화면 표시 확인
+### 3. 문제 생성 품질 개선
 
-## 보류 또는 다음 Phase로 넘길 항목
+- 랜덤 출제 규칙 재점검
+- 오답 보기 품질 개선
+- 문제 유형별 prompt / answer / choices 생성 규칙 재설계
+- 품사 / 난이도 / 출제 방식과 문제 풀 연결
 
-- 고급 통계 시각화
-- 이미지 문제
-- 듣기 모드 고도화
-- 자기채점 작문 완성형
-- 업적 시스템
-- 다국어 실제 확장
-- 관리자 UI
-- PWA
+## 이번 Phase에서 먼저 보류할 것
 
-## 현재 작업 메모
+- 관리자 UI 완성형
+- 다국어 추가
+- PWA 마무리
+- Cloudflare 운영 정리
 
-- 현재 앱 동작과 테스트는 안정적이다.
-- 최근 작업은 사용자 노출 한글 문구, 테스트 인코딩, 핵심 문서 UTF-8 복구에 집중했다.
-- 최근에는 API action 형식과 시트 매핑 문서도 실제 프론트 기준으로 더 구체화했다.
-- 최근에는 Google Sheets 탭 이름과 첫 행 헤더 권장안도 문서 기준으로 다시 정리했다.
-- 최근에는 `choices`, `Daily_Stats`, `session_id` 운영 규칙도 문서 기준으로 더 좁혀 정리했다.
-- 최근에는 GAS 스켈레톤에도 `Asia/Seoul` 날짜 규칙, `session_id`, `choices` 정규화, payload 검증을 반영하기 시작했다.
-- 최근에는 API 문서 예시도 현재 GAS 스켈레톤 기준으로 다시 정리했다.
-- 최근에는 smoke test 문서와 배포 체크 문서도 현재 GAS 동작 기준으로 다시 정리했다.
-- 최근에는 실제 설정 직전용 `5분 체크리스트`도 추가했다.
-- 최근에는 실연동 문서들의 진입점을 한곳으로 묶는 안내 문서도 추가했다.
-- 최근에는 README에서도 실연동 시작 문서로 바로 들어갈 수 있게 연결을 추가했다.
-- 최근에는 실제 클릭 순서대로 따라 하는 문서도 추가했다.
-- 최근에는 시트 ID, 배포 URL, 테스트 계정 값을 적어둘 템플릿도 추가했다.
-- 최근에는 사용자 요청 기준으로 다중 품사 master 시트 구조와 `Game_Log` 열 변경 방향도 문서에 반영했다.
-- 최근에는 업로드된 실제 Excel 헤더를 직접 읽어 user/master/record 구조를 문서와 GAS에 반영했다.
-- 최근에는 세션 저장 payload에도 `modeType`, `quizType`, `questionType`, `shownPrompt`를 실어 실제 record 시트와 더 정확히 맞추기 시작했다.
-- 최근에는 `totalTimeSec`, `responseTimeMs`도 세션 저장 payload와 GAS 기록에 연결해 `total_time_sec`, `response_time_ms` 기본값 의존을 줄였다.
-- 최근에는 `difficulty`, `difficultySnapshot`, `study_minutes`도 실제 값 기반으로 연결해 `difficulty_snapshot`, `study_minutes` 기본값 의존을 더 줄였다.
-- 최근에는 API/시트 문서에서 `choices` 생성 방식, `study_minutes` 집계, 미구현 audio 방향 설명을 현재 `gas/Code.gs` 동작 기준으로 다시 맞췄다.
-- 최근에는 smoke test 문서도 `password_plain_or_hash`, `is_active`, 다중 품사 master 시트, 실제 record 열 확인 기준으로 다시 맞췄다.
-- 최근에는 실연동 모드 로그인 화면이 demo 기본값에 묶이지 않도록 수정했고, 로그인 실패 시 오류 문구가 화면에 보이게 정리했다.
-- 최근에는 GAS Web App 브라우저 요청이 `Failed to fetch`로 막히지 않도록 `text/plain;charset=utf-8` 전송 방식으로 조정했다.
-- 최근에는 `뜻 -> 단어` 문제의 보기 생성이 뜻/단어를 섞지 않도록 현재 DTO의 `choices`만 쓰게 고쳤다.
-- 최근에는 언어 선택 직후 홈으로 먼저 이동하고 단어를 백그라운드로 불러오도록 바꿔 버튼 클릭 후 체감 지연을 줄였다.
-- 최근에는 로그인 화면 진입 시 GAS warm-up 요청을 먼저 보내고, 로그인 성공 직후 언어 메타도 선로딩해 로그인 버튼 이후 대기 체감을 더 줄이도록 보강했다.
-- 최근에는 정적 JSON 자동 갱신 workflow의 액션 버전을 `actions/checkout@v5`, `actions/setup-python@v6`로 올리고, export 단계의 언어 라벨 인코딩도 다시 정리했다.
-- 최근에는 `.env`의 GAS URL과 테스트 계정으로 `login -> getMeta -> getWords -> saveSession`를 한 번에 확인하는 로컬 smoke test 스크립트도 추가했다.
-- 최근에는 실제 배포된 GAS Web App에 `login`, `getMeta`, `getWords`, 최소 `saveSession` smoke test를 보내 응답 성공까지 확인했다.
-- 최근에는 문서에 적어 둔 테스트 계정(`test` / `1234`)으로 새 smoke script를 실제 실행해 `u001`, `일본어 94`, `377문항`, `saveSession saved:true`까지 다시 확인했다.
-- 최근에는 깨진 [live-connection-order.md](D:/smx_coding_d/learning/language_learning_web/docs/live-connection-order.md)를 현재 구조 기준으로 다시 썼고, `gas-click-by-click-guide.md`, `README.md`의 오래된 필드명/문서 링크도 정리했다.
-- 최근에는 `gas-connection-values-template.md`, `real-connection-smoke-test.md`에도 현재 smoke 결과 기대값(`u001`, `94`, `377`, `practice`, `10`, `JA_N_0001`)을 적어 실제 시트 row 대조 기준을 더 구체화했다.
-- 최근에는 `verify_record_sheet_state.py`와 `npm run verify:record`를 추가해 record 시트 4개 탭 최신 row를 CLI로 바로 검증할 수 있게 했다.
-- 최근에는 `check:live` 통합 명령도 추가해 `smoke:gas -> verify:record`를 한 번에 실행할 수 있게 했다.
-- 최근에는 `check:live`와 `verify:record`가 문서 템플릿 기본값과 `GOOGLE_SERVICE_ACCOUNT_PATH`, `JA_RECORD_SHEET_ID` 환경변수를 읽도록 보강해 실제 실행 입력량을 더 줄였다.
-- 최근에는 `verify:record` 결과를 `docs/live-check-latest.json`에도 저장하도록 보강해 실제 row 검증 결과를 파일로 남길 수 있게 했다.
-- 최근에는 `sync:live-report`를 추가하고 `check:live` 마지막 단계에서 자동 실행되게 해서, 검증 결과가 `gas-connection-values-template.md` 저장 여부 메모에도 자동 반영되도록 만들었다.
-- 최근에는 `check:live`가 중간 단계에서 실패해도 `live-check-latest.json`에 실패 단계와 오류 메시지를 남기고, 템플릿 메모도 가능한 범위까지 갱신하도록 보강했다.
-- 최근에는 Windows PowerShell에서 `spawn npm ENOENT`로 막히지 않도록 `check:live` 내부 실행기를 `npm.cmd` 대응으로 보강했다.
-- 최근에는 프로젝트 루트의 service account JSON 파일도 자동 감지하게 해서 `GOOGLE_SERVICE_ACCOUNT_PATH` 없이도 `check:live`, `verify:record`가 바로 실행될 수 있게 보강했다.
-- 최근에는 Windows 환경에서 `spawn EINVAL`로 막히지 않도록 `check:live` 내부 프로세스 실행을 셸 기반으로 보강했다.
-- 최근에는 `verify:record` 실행 시 `googleapiclient`가 없으면 `requirements-json-export.txt`를 자동 설치한 뒤 계속 진행하도록 보강했다.
-- 최근에는 `verify:record`의 403 권한 오류를 `japanese_record` 시트를 서비스 계정 이메일과 공유해야 한다는 안내 문구로 더 직접적으로 바꿨다.
-- 최근에는 실제 `japanese_record` 시트 공유 후 `verify:record`를 다시 실행해 `Game_Log`, `Answer_Log`, `Review_State`, `Daily_Stats`가 모두 기대값 기준으로 통과하는 것을 확인했다.
-- 최근에는 `ReviewPage`, `StatsPage`가 실제 record 시트 재조회 대신 로컬 snapshot을 읽는 구조라는 점과, `lastResult`, `practiceSessionCount`, `totalScore`, `averageAccuracy`, `lastPlayedAt`가 현재 UI 보조 필드라는 점을 `docs/sheet-schema.md`에 정리했다.
-- public/data 초기 JSON 스냅샷을 현재 배포된 GAS 응답으로 생성했고, `.env`도 정적 JSON 읽기 모드로 전환했다.
-- 홈 화면에 정적 JSON 읽기 모드 안내를 추가했고, `apiClient.getMeta()`의 정적 JSON 경로 테스트도 보강했다.
-- GitHub Actions에서 exporter 직후 정적 JSON 구조를 검사하도록 validation 스크립트와 검증 단계를 추가했다.
-- 최근에는 `npm run export:json`, `npm run validate:json` 스크립트를 추가하고 `json-export-workflow.md`를 더 짧은 운영 절차 중심으로 다시 정리해 정적 JSON 갱신 흐름을 단순화했다.
-- 최근에는 `npm run refresh:json` 통합 명령도 추가해 로컬에서는 export와 validate를 한 번에 끝낼 수 있게 정리했다.
-- 최근에는 `refresh:json`이 프로젝트 루트의 service account JSON과 템플릿 문서의 JA Master Sheet ID를 자동으로 읽도록 보강해 현재 작업 환경에서는 `npm run refresh:json` 한 줄만으로 갱신/검증이 가능해졌다.
-- 최근에는 `refresh:json`은 로컬 `public/data` 갱신 전용이고, GitHub auto commit/push는 `Export Static JSON` workflow가 담당한다는 점도 문서와 README에 명확히 적었다.
-- 최근에는 로컬 갱신과 GitHub 자동 갱신의 차이를 한 장으로 보는 `static-json-ops-quickref.md`도 추가해 운영 기준을 더 빠르게 확인할 수 있게 했다.
-- 최근에는 `refresh:json -- --help`가 실제 도움말만 출력하고 export/validate를 돌리지 않도록 정리해 운영 명령 동작도 더 직관적으로 맞췄다.
-- 최근에는 `smoke:gas`, `verify:record`, `check:live`의 역할 차이를 한 장으로 보는 `live-ops-quickref.md`도 추가해 실연동 운영 기준을 더 빠르게 확인할 수 있게 했다.
-- 최근에는 `smoke:gas`도 템플릿 문서의 테스트 계정 기본값을 자동으로 읽도록 보강해 현재 작업 환경에서는 `npm run smoke:gas` 한 줄만으로 API smoke를 바로 돌릴 수 있게 했다.
-- 최근에는 `verify:record`도 템플릿 문서의 JA Record Sheet ID와 기대값을 자동으로 읽도록 보강했고, 실제로 `npm run verify:record` 기본 실행이 record 시트 4개 탭 모두 ok: true로 통과하는 것도 다시 확인했다.
-- 최근에는 `real-connection-smoke-test.md`의 `Review_State` 확인 기준도 실제 시트 스키마(`status`, `priority_score`, count 계열) 기준으로 다시 맞췄고, `npm run smoke:gas` 기본 실행이 실제로 `u001`, `94`, `377`, `saved:true`까지 다시 통과하는 것도 확인했다.
-- 최근에는 `gas-docs-start-here.md`도 현재 기준으로 다시 정리해 이제는 `정적 JSON`, `실연동`, `상세 설정` 3갈래로만 문서 진입점을 보게 줄였다.
-- 최근에는 `PlayPage`에서 답안 클릭 직후 즉시 입력 잠금을 걸어 빠른 연타가 중복 처리되지 않도록 보강했고, `saveSession`이 한 번만 호출되는 테스트도 추가했다.
-- 현재 `validate_static_json.py` 실행 기준 `languages.json total_words: 94`, `words.json question_count: 377` 검증 통과 상태다.
-- GitHub Actions 시작 전에 필요한 secret 2개와 workflow write 권한 설정도 문서와 workflow 초반 체크에 반영했다.
-- 다음 턴부터는 GitHub Actions 자동 갱신과 실제 앱 체감 속도 확인을 같이 진행하는 작업이 가장 효율적이다.
+## 현재 리스크 메모
 
+- 터미널 출력에서는 일부 한글이 깨져 보일 수 있지만, 실제 파일 UTF-8 내용과 검증 결과는 정상이다.
+- Node child process의 `shell: true` 경고는 남아 있지만 현재 검증 흐름의 blocker는 아니다.
+- Phase 4는 소문구 보정보다 화면 구조와 게임 UX를 크게 바꾸는 작업 단위로 진행해야 한다.
 
+## 다음 작업 메모
 
+- 다음 턴부터는 `PlayPage` 중심 Phase 4 첫 묶음으로 바로 들어간다.
+- 작업 단위는 작게 쪼개지 말고, 선택 플로우 + HUD 뼈대 + 문제 세션 설정 연결처럼 체감 큰 범위로 묶는다.
+## 2026-03-19 Phase 4 진행 메모
 
+- `PlayPage` 1차 묶음 완료:
+  - 품사 / 난이도 / 출제 방식 세션 설정 UI 추가
+  - 선택값 기준 문제 풀 필터링 적용
+  - 결과 화면으로 세션 설정 상태 전달 및 재도전/연습 재사용 연결
+- 검증 완료:
+  - `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx`
+  - `npm run build`
+- `PlayPage` 2차 묶음 완료:
+  - Mission Control 상단 HUD, 진행 바, 상태 칩, 피드백 콘솔 중심의 전면 레이아웃 개편
+  - 질문 카드, A/B/C/D 선택 카드, loadout 카드, 우측 세션 설정 패널 구조로 플레이 몰입감 강화
+  - 개편된 HUD 구조 기준으로 `PlayPage.test.tsx` 검증식 정리
+- 검증 완료:
+  - `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx`
+  - `npm run build`
+- 문제 생성 품질 1차 묶음 완료:
+  - `questionRound`에서 중복/빈 choice 제거, 정답 보장, 같은 난이도/품사 distractor 우선 선택 적용
+  - 유효한 데이터 풀로 먼저 보기를 구성하고, 부족할 때만 기존 DTO choice를 fallback으로 보강
+  - `questionRound.test.ts`와 `PlayPage.test.tsx`를 새 출제 규칙 기준으로 정리
+- 검증 완료:
+  - `npm run test -- src/features/game/questionRound.test.ts src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx`
+  - `npm run build`
+- 세션 설정 흐름 연결 1차 묶음 완료:
+  - `questionOrder` 설정을 추가해 `균형 흐름 / 단어 우선 / 뜻 우선` 세션 순서 제어 지원
+  - 마지막 세션 설정을 저장해 홈/결과/복습에서 같은 구성으로 다시 플레이/연습 진입 가능
+  - 홈/복습/결과 화면에 최근 세션 구성 요약 표시
+- 검증 완료:
+  - `npm run test -- src/pages/HomePage.test.tsx src/pages/ReviewPage.test.tsx src/pages/ResultPage.test.tsx src/pages/PlayPage.test.tsx`
+  - `npm run build`
+- 다음 큰 작업:
+  - 게임 중 전환 효과, 보상감, 모바일 HUD 밀도 추가 보강
+  - 출제 방식별 문제 순서와 난이도 체감 흐름을 더 세밀하게 고도화
+  - 게임 중 전환 효과, 보상감, 모바일 HUD 밀도 추가 보강
+  - 복습센터에서 세션 설정 기반 추천 액션을 더 직접적으로 연결
+## 2026-03-19 Phase 4 추가 메모
 
+- 출제 흐름 2차 묶음 완료:
+  - `buildSessionWordQueue`에 복습 스냅샷 우선순위를 연결해 기본 플레이는 같은 난이도 안에서 복습 대상이 앞쪽으로 오고, 연습 모드는 복습 대상부터 먼저 여는 큐로 보강
+  - `PlayPage`에 복습 우선 / 오프닝 / 난이도 흐름 브리핑을 추가해 세션 설정이 실제 출제 큐에 어떻게 반영되는지 보이도록 정리
+  - `sessionConfig.test.ts`, `PlayPage.test.tsx`에 standard/practice 큐 흐름 회귀 테스트 추가
+- 검증 완료:
+  - `npm run test -- src/features/game/sessionConfig.test.ts src/pages/PlayPage.test.tsx src/pages/HomePage.test.tsx src/pages/ReviewPage.test.tsx src/pages/ResultPage.test.tsx`
+  - `npm run build`
+- 다음 큰 작업:
+  - 전환 효과, 보상감, 모바일 HUD 밀도 보강
+  - 복습센터 추천 액션을 세션 설정/복습 우선 큐와 더 직접적으로 연결
+## 2026-03-19 Phase 4 시작 UX 메모
 
+- `PlayPage` 시작 진입 정리:
+  - 플레이 진입 직후에는 문제를 바로 보여주지 않고 세션 설정 화면을 먼저 노출
+  - `게임 시작` / `연습 시작`을 눌렀을 때만 실제 문제 라운드 시작
+- `PlayPage` 시작 화면 밀도 축소:
+  - 시작 전 화면은 선택 그룹 + 현재 설정 칩 + 준비 문제 수 중심으로 단순화
+  - 버튼 설명성 문구와 과한 요약 카드 제거
+- `PlayPage` 게임 화면 레이아웃 정리:
+  - 시작 전/시작 후 모두 큰 섹션 배치를 세로 단일 흐름으로 정리
+  - 게임 시작 후 우측 `세션 설정` 패널 제거
+- 검증 완료:
+  - `npm run test -- src/pages/PlayPage.test.tsx src/pages/HomePage.test.tsx src/pages/ResultPage.test.tsx`
+  - `npm run build`
+- 다음 큰 작업:
+  - 전환 효과, 보상감, 모바일 HUD 밀도 보강
+  - 복습센터 추천 액션을 세션 설정/복습 우선 큐와 더 직접적으로 연결
+## 2026-03-19 Phase 4 플레이 압축 메모
 
-
-- 최근에는 `.gitignore`에 맞춰 `.env`, service account JSON, `docs/live-check-latest.json`, `dist/`, `node_modules/`의 Git 추적을 `cached` 기준으로 정리해 push 전 정리 단계로 넘어갔다.
-- 다음에는 staged 삭제 목록을 다시 확인하고, 민감 파일이 재추적되지 않는 상태에서 커밋 단위를 정리하면 된다.
+- `PlayPage` 설정 화면에서 `문제 흐름`을 제거하고 출제 방식을 `단어(한자) -> 뜻`, `단어(후리가나) -> 뜻`, `단어(음성) -> 뜻`, `뜻 -> 단어` 4개로 고정
+- 게임 시작 후에는 세션 설정 섹션을 숨기고, 상단 HUD를 진행도/하트/점수/콤보/상태 칩 중심의 압축형으로 정리
+- 문제 카드와 보기 카드가 첫 화면 안에 바로 보이도록 불필요한 설명 문구와 보조 카드 제거
+- 관련 테스트를 새 설정 구조 기준으로 재정리
+- 검증 완료:
+  - `npm run test -- src/features/game/sessionConfig.test.ts src/pages/PlayPage.test.tsx src/pages/HomePage.test.tsx src/pages/ReviewPage.test.tsx src/pages/ResultPage.test.tsx`
+  - `npm run build`
+- 다음 작업:
+  - `PlayPage` 전환 효과와 보상감 연출 보강
+  - 결과/복습 화면의 CTA 설명 밀도 추가 축소

@@ -1,6 +1,7 @@
 import { spawn } from "node:child_process";
-import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { readdirSync } from "node:fs";
 import path from "node:path";
+import { readTemplateDefaults } from "./template_defaults.mjs";
 
 const args = process.argv.slice(2);
 const npmCommand = process.platform === "win32" ? "npm.cmd" : "npm";
@@ -26,7 +27,7 @@ Usage:
 
 Default behavior:
   - Detect service account JSON from project root
-  - Read JA Master Sheet ID from docs/gas-connection-values-template.md
+  - Read JA Master Sheet ID and language label from machine-defaults in docs/gas-connection-values-template.md
   - Run export:json and validate:json in sequence
 `);
 }
@@ -42,53 +43,6 @@ function findServiceAccountJson() {
   });
 
   return jsonCandidate ? path.join(projectRoot, jsonCandidate.name) : null;
-}
-
-function readMasterSheetIdFromTemplate() {
-  const templatePath = path.join(projectRoot, "docs", "gas-connection-values-template.md");
-  if (!existsSync(templatePath)) {
-    return null;
-  }
-
-  const content = readFileSync(templatePath, "utf-8");
-  const match = content.match(/### JA Master Sheet[\s\S]*?Spreadsheet ID:\s*([A-Za-z0-9_-]+)/);
-  return match?.[1] ?? null;
-}
-
-function buildExportArgs() {
-  if (isHelpMode()) {
-    return [];
-  }
-
-  const nextArgs = [...args];
-
-  if (!hasOption("--credentials")) {
-    const autoDetectedCredentials = findServiceAccountJson();
-    if (autoDetectedCredentials) {
-      nextArgs.push("--credentials", autoDetectedCredentials);
-    }
-  }
-
-  if (!hasOption("--spreadsheet-id")) {
-    const spreadsheetId = process.env.JA_MASTER_SHEET_ID || readMasterSheetIdFromTemplate();
-    if (spreadsheetId) {
-      nextArgs.push("--spreadsheet-id", spreadsheetId);
-    }
-  }
-
-  if (!hasOption("--output-dir")) {
-    nextArgs.push("--output-dir", DEFAULT_OUTPUT_DIR);
-  }
-
-  if (!hasOption("--language-code")) {
-    nextArgs.push("--language-code", DEFAULT_LANGUAGE_CODE);
-  }
-
-  if (!hasOption("--language-label")) {
-    nextArgs.push("--language-label", DEFAULT_LANGUAGE_LABEL);
-  }
-
-  return nextArgs;
 }
 
 function runStep(label, commandArgs) {
@@ -115,6 +69,46 @@ function runStep(label, commandArgs) {
   });
 }
 
+async function buildExportArgs() {
+  if (isHelpMode()) {
+    return [];
+  }
+
+  const templateDefaults = await readTemplateDefaults();
+  const nextArgs = [...args];
+
+  if (!hasOption("--credentials")) {
+    const autoDetectedCredentials = findServiceAccountJson();
+    if (autoDetectedCredentials) {
+      nextArgs.push("--credentials", autoDetectedCredentials);
+    }
+  }
+
+  if (!hasOption("--spreadsheet-id")) {
+    const spreadsheetId = process.env.JA_MASTER_SHEET_ID || templateDefaults.masterSheetId;
+    if (spreadsheetId) {
+      nextArgs.push("--spreadsheet-id", spreadsheetId);
+    }
+  }
+
+  if (!hasOption("--output-dir")) {
+    nextArgs.push("--output-dir", DEFAULT_OUTPUT_DIR);
+  }
+
+  if (!hasOption("--language-code")) {
+    nextArgs.push("--language-code", process.env.EXPORT_LANGUAGE_CODE || templateDefaults.languageCode || DEFAULT_LANGUAGE_CODE);
+  }
+
+  if (!hasOption("--language-label")) {
+    nextArgs.push(
+      "--language-label",
+      process.env.EXPORT_LANGUAGE_LABEL || templateDefaults.languageLabel || DEFAULT_LANGUAGE_LABEL,
+    );
+  }
+
+  return nextArgs;
+}
+
 async function main() {
   try {
     if (isHelpMode()) {
@@ -122,7 +116,7 @@ async function main() {
       return;
     }
 
-    const exportArgs = buildExportArgs();
+    const exportArgs = await buildExportArgs();
 
     if (!exportArgs.includes("--credentials")) {
       throw new Error("credentials is required. Put a service account JSON in the project root or pass --credentials.");

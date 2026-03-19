@@ -8,61 +8,64 @@
 - `lang_ja_master_sheet` 스프레드시트를 만들었다.
 - `lang_ja_record_sheet` 스프레드시트를 만들었다.
 - `lang_user_sheet` 안에 `Users` 탭이 있다.
-- `lang_ja_master_sheet` 안에 `Words` 탭이 있다.
+- `lang_ja_master_sheet` 안에 `명사`, `동사`, `い형용사`, `な형용사`, `부사`, `기타` 중 필요한 source 탭이 있다.
 - `lang_ja_record_sheet` 안에 `Game_Log` 탭이 있다.
 - `lang_ja_record_sheet` 안에 `Answer_Log` 탭이 있다.
 - `lang_ja_record_sheet` 안에 `Review_State` 탭이 있다.
 - `lang_ja_record_sheet` 안에 `Daily_Stats` 탭이 있다.
 
-## 2. 첫 행 헤더 체크
+## 2. 헤더 구조 체크
+
+- 모든 시트는 가능하면 `1행 표시명 / 2행 machine key / 3행부터 데이터` 구조를 쓴다.
+- 현재 GAS는 2행 machine key를 기준으로 컬럼을 읽는다.
 
 ### Users
 
 ```text
-login_id,password,player_id,nickname,active
+login_id,password_plain_or_hash,player_id,display_name,is_active
 ```
 
-### Words
+### 일본어 master source 시트 공통 key 예시
 
 ```text
-word_id,prompt,choices,answer,meaning,question_type
+word_id,jp_kanji,jp_furigana,meaning_ko_1,meaning_ko_2,meaning_ko_3,difficulty,is_active,notes
 ```
 
 ### Game_Log
 
 ```text
-session_id,player_id,language_code,score,hearts_left,total_questions,correct_answers,saved_at
+log_id,played_at,player_id,mode_type,quiz_type,total_questions,correct_count,partial_count,wrong_count,max_combo,final_score,hearts_left,total_time_sec,settings_json
 ```
 
 ### Answer_Log
 
 ```text
-session_id,player_id,language_code,word_id,selected_answer,correct,combo_after_answer,earned_score,saved_at
+answer_log_id,played_at,player_id,session_log_id,word_id,question_type,shown_prompt,selected_answer,result_grade,numeric_score,response_time_ms,combo_at_time,difficulty_snapshot,note
 ```
 
 ### Review_State
 
 ```text
-player_id,language_code,word_id,priority_score,review_stage,last_result,updated_at
+player_id,word_id,status,wrong_count_total,partial_count_total,correct_count_total,wrong_streak,correct_streak,ease_score,priority_score,last_seen_at,next_due_at,manual_flag,mastered_at,memo
 ```
 
 ### Daily_Stats
 
 ```text
-player_id,language_code,stat_date,session_count,practice_session_count,total_score,best_score,total_questions,correct_answers,average_accuracy,last_played_at,updated_at
+stat_date,player_id,solved_count,correct_count,study_minutes,sessions_count,best_score,earned_badges,streak_days,notes
 ```
 
 ## 3. 데이터 입력 체크
 
 - `Users` 시트에 테스트용 계정 1개 이상을 넣었다.
-- `Words` 시트에 일본어 단어 데이터 1개 이상을 넣었다.
-- `Words.choices`는 `|` 구분 문자열 또는 올바른 JSON 배열 문자열이다.
-- `Words.question_type`는 `word_to_meaning` 또는 `meaning_to_word`만 사용했다.
+- master source 시트에 일본어 단어 데이터 1개 이상을 넣었다.
+- `word_id`, `jp_kanji`, 대표 뜻 컬럼이 실제로 들어 있다.
+- `is_active`가 비어 있지 않다.
 
 ## 4. Apps Script 프로젝트 체크
 
-- [Code.gs](D:/smx_coding_d/language_learning_web/gas/Code.gs) 내용을 Apps Script 프로젝트에 붙여넣었다.
-- [appsscript.json](D:/smx_coding_d/language_learning_web/gas/appsscript.json) 기본 설정을 맞췄다.
+- [Code.gs](D:/smx_coding_d/learning/language_learning_web/gas/Code.gs) 내용을 Apps Script 프로젝트에 붙여넣었다.
+- [appsscript.json](D:/smx_coding_d/learning/language_learning_web/gas/appsscript.json) 기본 설정을 맞췄다.
 - Script Properties 화면을 열 수 있다.
 
 ## 5. Script Properties 체크
@@ -99,6 +102,8 @@ VITE_GAS_USE_MOCK=false
 - 문제와 선택지가 정상적으로 보이는지 확인한다.
 - 플레이 1회 후 결과 화면이 뜨는지 확인한다.
 - `Game_Log`, `Answer_Log`에 새 행이 들어가는지 확인한다.
+- `Answer_Log.shown_prompt`, `response_time_ms` 값이 들어가는지 확인한다.
+- `Game_Log.mode_type`, `quiz_type`, `total_time_sec` 값이 들어가는지 확인한다.
 
 ## 9. 지금 당장 필요 없는 것
 

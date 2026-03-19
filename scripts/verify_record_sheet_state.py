@@ -55,13 +55,24 @@ def read_template_defaults() -> dict[str, str]:
             "language_code": "",
         }
 
+    block_match = re.search(r"<!-- machine-defaults:start -->[\s\S]*?```text\s*([\s\S]*?)```[\s\S]*?<!-- machine-defaults:end -->", content)
+    values: dict[str, str] = {}
+
+    if block_match:
+        for raw_line in block_match.group(1).splitlines():
+            line = raw_line.strip()
+            if not line or "=" not in line:
+                continue
+            key, value = line.split("=", 1)
+            values[key.strip()] = value.strip()
+
     return {
-        "spreadsheet_id": (re.search(r"### JA Record Sheet[\s\S]*?Spreadsheet ID:\s*([A-Za-z0-9_-]+)", content) or [None, ""])[1],
-        "player_id": (re.search(r"- 기대 `player_id`:\s*`([^`]+)`", content) or [None, ""])[1],
-        "word_id": (re.search(r"- 기대 첫 단어 ID:\s*`([^`]+)`", content) or [None, ""])[1],
-        "mode_type": (re.search(r"- 기대 저장 모드:\s*`([^`]+)`", content) or [None, ""])[1],
-        "score": (re.search(r"- 기대 점수:\s*`([^`]+)`", content) or [None, ""])[1],
-        "language_code": (re.search(r"- 기대 언어:\s*`([^`]+)`", content) or [None, ""])[1],
+        "spreadsheet_id": values.get("JA_RECORD_SHEET_ID", ""),
+        "player_id": values.get("PLAYER_ID", ""),
+        "word_id": values.get("FIRST_WORD_ID", ""),
+        "mode_type": values.get("MODE_TYPE", ""),
+        "score": values.get("SCORE", ""),
+        "language_code": values.get("LANGUAGE_CODE", ""),
     }
 
 
@@ -69,6 +80,10 @@ def parse_args() -> argparse.Namespace:
     defaults = read_template_defaults()
     parser = argparse.ArgumentParser(
         description="Verify the latest Japanese record-sheet rows after a smoke test run.",
+        epilog=(
+            "Defaults: credentials from GOOGLE_SERVICE_ACCOUNT_PATH or project-root service account JSON, "
+            "spreadsheet-id/player-id/word-id/mode-type/score/language-code from docs/gas-connection-values-template.md."
+        ),
     )
     parser.add_argument("--credentials", help="Path to the service account JSON file.")
     parser.add_argument("--spreadsheet-id", help="Japanese record spreadsheet id.")

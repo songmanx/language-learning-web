@@ -1,6 +1,6 @@
 import { spawn } from "node:child_process";
-import { readFile, readdir } from "node:fs/promises";
-import { writeFile } from "node:fs/promises";
+import { readFile, readdir, writeFile } from "node:fs/promises";
+import { readTemplateDefaults } from "./template_defaults.mjs";
 
 function parseArgs(argv) {
   const args = {};
@@ -38,28 +38,6 @@ function ensureValue(value, label) {
   return value;
 }
 
-async function readTemplateDefaults() {
-  try {
-    const content = await readFile("docs/gas-connection-values-template.md", "utf8");
-    const loginId = content.match(/- `login_id`:(.+)/)?.[1]?.trim() ?? "";
-    const password = content.match(/- `password`:(.+)/)?.[1]?.trim() ?? "";
-    const spreadsheetId =
-      content.match(/### JA Record Sheet[\s\S]*?Spreadsheet ID: ([A-Za-z0-9_-]+)/)?.[1]?.trim() ?? "";
-
-    return {
-      loginId,
-      password,
-      spreadsheetId,
-    };
-  } catch {
-    return {
-      loginId: "",
-      password: "",
-      spreadsheetId: "",
-    };
-  }
-}
-
 async function detectCredentialPath() {
   try {
     const entries = await readdir(".", { withFileTypes: true });
@@ -85,6 +63,15 @@ function printUsage() {
   console.log(
     "  npm run check:live -- --login-id YOUR_ID --password YOUR_PASSWORD --credentials path\\\\to\\\\service-account.json --spreadsheet-id YOUR_JA_RECORD_SHEET_ID",
   );
+  console.log("  npm run check:live");
+  console.log("");
+  console.log("Defaults:");
+  console.log("  - loginId/password/spreadsheetId: machine-defaults block in docs/gas-connection-values-template.md");
+  console.log("  - playerId/wordId/modeType/score/languageCode: machine-defaults block in docs/gas-connection-values-template.md");
+  console.log("  - credentials: GOOGLE_SERVICE_ACCOUNT_PATH or project-root service account JSON");
+  console.log("");
+  console.log("Runs:");
+  console.log("  - smoke:gas -> verify:record -> sync:live-report");
 }
 
 function runCommand(command, args) {
@@ -128,28 +115,21 @@ async function main() {
     "credentials",
   );
   const spreadsheetId = ensureValue(
-    args["spreadsheet-id"] ?? process.env.JA_RECORD_SHEET_ID ?? templateDefaults.spreadsheetId,
+    args["spreadsheet-id"] ?? process.env.JA_RECORD_SHEET_ID ?? templateDefaults.recordSheetId,
     "spreadsheet-id",
   );
-  const playerId = args["player-id"] ?? "u001";
-  const wordId = args["word-id"] ?? "JA_N_0001";
-  const modeType = args["mode-type"] ?? "practice";
-  const score = args.score ?? "10";
-  const languageCode = args["language-code"] ?? "ja";
+  const playerId = args["player-id"] ?? process.env.VERIFY_PLAYER_ID ?? templateDefaults.playerId ?? "u001";
+  const wordId = args["word-id"] ?? process.env.VERIFY_WORD_ID ?? templateDefaults.firstWordId ?? "JA_N_0001";
+  const modeType = args["mode-type"] ?? process.env.VERIFY_MODE_TYPE ?? templateDefaults.modeType ?? "practice";
+  const score = args.score ?? process.env.VERIFY_SCORE ?? templateDefaults.score ?? "10";
+  const languageCode =
+    args["language-code"] ?? process.env.VERIFY_LANGUAGE_CODE ?? templateDefaults.languageCode ?? "ja";
   const reportFile = args["report-file"] ?? process.env.VERIFY_REPORT_FILE ?? "docs/live-check-latest.json";
   let currentStage = "smoke:gas";
 
   try {
     console.log("[check] 1/3 smoke:gas");
-    await runCommand("npm", [
-      "run",
-      "smoke:gas",
-      "--",
-      "--login-id",
-      loginId,
-      "--password",
-      password,
-    ]);
+    await runCommand("npm", ["run", "smoke:gas", "--", "--login-id", loginId, "--password", password]);
 
     currentStage = "verify:record";
     console.log("[check] 2/3 verify:record");

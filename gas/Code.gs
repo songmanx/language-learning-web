@@ -73,47 +73,62 @@ function handleLogin_(body) {
 }
 
 function handleGetMeta_() {
-  var masterSpreadsheet = openSpreadsheetByKey_(SHEET_KEYS.JA_MASTER);
-  var sourceRows = getActiveSourceRows_(masterSpreadsheet);
+  try {
+    var masterSpreadsheet = openSpreadsheetByKey_(SHEET_KEYS.JA_MASTER);
+    var sourceRows = getActiveSourceRows_(masterSpreadsheet);
 
-  return [
-    {
-      language_code: "ja",
-      label: "일본어",
-      total_words: sourceRows.length,
-    },
-  ];
+    return [
+      {
+        language_code: "ja",
+        label: "일본어",
+        total_words: sourceRows.length,
+      },
+    ];
+  } catch (error) {
+    throwApiError_("META_LOAD_FAILED", error && error.message ? error.message : "언어 메타 정보를 불러오지 못했습니다.");
+  }
 }
 
 function handleGetWords_(body) {
-  var languageCode = String(body.languageCode || "");
+  try {
+    var languageCode = String(body.languageCode || "");
 
-  if (languageCode !== "ja") {
-    return [];
+    if (languageCode !== "ja") {
+      return [];
+    }
+
+    var masterSpreadsheet = openSpreadsheetByKey_(SHEET_KEYS.JA_MASTER);
+    var sourceRows = getActiveSourceRows_(masterSpreadsheet);
+    return buildQuestionDtosFromSourceRows_(sourceRows);
+  } catch (error) {
+    throwApiError_("WORDS_LOAD_FAILED", error && error.message ? error.message : "문제 데이터를 불러오지 못했습니다.");
   }
-
-  var masterSpreadsheet = openSpreadsheetByKey_(SHEET_KEYS.JA_MASTER);
-  var sourceRows = getActiveSourceRows_(masterSpreadsheet);
-  return buildQuestionDtosFromSourceRows_(sourceRows);
 }
 
 function handleSaveSession_(body) {
-  var payload = body.payload || {};
-  validateSavePayload_(payload);
+  try {
+    var payload = body.payload || {};
+    validateSavePayload_(payload);
 
-  var recordSpreadsheet = openSpreadsheetByKey_(SHEET_KEYS.JA_RECORD);
-  var now = new Date();
-  var sessionId = buildSessionId_(payload.playerId, now);
-  var savedAt = formatTimestamp_(now);
+    var recordSpreadsheet = openSpreadsheetByKey_(SHEET_KEYS.JA_RECORD);
+    var now = new Date();
+    var sessionId = buildSessionId_(payload.playerId, now);
+    var savedAt = formatTimestamp_(now);
 
-  appendGameLog_(recordSpreadsheet, sessionId, savedAt, payload);
-  appendAnswerLog_(recordSpreadsheet, sessionId, savedAt, payload);
-  upsertReviewState_(recordSpreadsheet, savedAt, payload);
-  upsertDailyStats_(recordSpreadsheet, now, savedAt, payload);
+    appendGameLog_(recordSpreadsheet, sessionId, savedAt, payload);
+    appendAnswerLog_(recordSpreadsheet, sessionId, savedAt, payload);
+    upsertReviewState_(recordSpreadsheet, savedAt, payload);
+    upsertDailyStats_(recordSpreadsheet, now, savedAt, payload);
 
-  return {
-    saved: true,
-  };
+    return {
+      saved: true,
+    };
+  } catch (error) {
+    if (error && error.apiCode) {
+      throw error;
+    }
+    throwApiError_("SAVE_FAILED", error && error.message ? error.message : "세션 저장에 실패했습니다.");
+  }
 }
 
 function appendGameLog_(spreadsheet, sessionId, savedAt, payload) {

@@ -3,6 +3,13 @@
 이 문서는 실제 GAS Web App과 Google Sheets를 연결한 뒤,
 짧게 정상 동작만 확인하는 순서를 정리한 문서다.
 
+현재 가장 짧은 추천 순서:
+
+1. [gas-5minute-checklist.md](D:/smx_coding_d/learning/language_learning_web/docs/gas-5minute-checklist.md)로 시트/배포 준비 점검
+2. `npm run smoke:gas`
+3. `npm run verify:record`
+4. 한 번에 돌릴 때만 `npm run check:live`
+
 ## 시작 전에
 
 프론트 `.env`에 아래 값이 들어 있어야 한다.
@@ -20,12 +27,24 @@ VITE_GAS_USE_MOCK=false
 npm run smoke:gas -- --login-id YOUR_LOGIN_ID --password YOUR_PASSWORD
 ```
 
+현재 프로젝트 기본값이 준비되어 있으면 아래처럼 더 짧게 실행해도 된다.
+
+```bash
+npm run smoke:gas
+```
+
 이 명령은 현재 `.env`의 `VITE_GAS_BASE_URL`을 읽어 `login -> getMeta -> getWords -> saveSession`를 순서대로 확인한다.
 
 record 시트 4개 탭을 CLI로 바로 확인하고 싶다면 아래 명령도 쓸 수 있다.
 
 ```bash
 npm run verify:record -- --credentials path\to\service-account.json --spreadsheet-id YOUR_JA_RECORD_SHEET_ID
+```
+
+프로젝트 루트 service account JSON과 템플릿 문서 값이 맞춰져 있으면 아래 기본 명령만으로도 된다.
+
+```bash
+npm run verify:record
 ```
 
 기본 기대값은 현재 smoke 기준으로 `u001`, `JA_N_0001`, `practice`, `10`, `ja`다.
@@ -46,6 +65,7 @@ npm run check:live -- --login-id test --password 1234 --credentials path\to\serv
 현재 통합 명령은 아래 기본값도 자동으로 읽는다.
 
 - `docs/gas-connection-values-template.md`의 `login_id`, `password`, `JA Record Sheet Spreadsheet ID`
+- `docs/gas-connection-values-template.md`의 기대 `player_id`, `word_id`, `mode_type`, `score`, `language_code`
 - 환경변수 `GOOGLE_SERVICE_ACCOUNT_PATH`
 
 즉, 서비스 계정 JSON 경로만 환경변수로 잡아 두면 아래처럼 더 짧게 실행할 수 있다.
@@ -120,7 +140,7 @@ npm run dev
 실패하면 먼저 볼 것:
 
 - `JA_MASTER_SHEET_ID`
-- 품사 시트 존재 여부:
+- source 시트 존재 여부:
   - `명사`
   - `동사`
   - `い형용사`
@@ -144,7 +164,7 @@ npm run dev
 
 실패하면 먼저 볼 것:
 
-- 각 품사 시트 2행 machine key 철자
+- 각 source 시트 2행 machine key 철자
 - `word_id`, `jp_kanji`, `jp_furigana`, `meaning_ko_1`, `difficulty`, `is_active` 값 존재 여부
 - `jp_furigana_2`는 있어도 되고 비어 있어도 된다.
 
