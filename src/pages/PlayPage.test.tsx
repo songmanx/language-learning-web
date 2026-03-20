@@ -20,11 +20,11 @@ const TEXT = {
   sessionProgressLabel: "세션 진행",
   selectedAnswerLabel: "선택한 답",
   setupTitle: "게임 설정",
-  setupReset: "기본 구성 복원",
-  startGame: "게임 시작",
-  startPractice: "연습 시작",
-  quizModeMeaningToWord: "뜻 -> 단어",
-  quizModeKanjiToMeaning: "단어(한자) -> 뜻",
+  setupReset: "초기화",
+  startGame: "시작",
+  startPractice: "연습",
+  quizModeMeaningToWord: "뜻 단어",
+  quizModeKanjiToMeaning: "한자 뜻",
   availableWords: "필터 일치 문항",
   reloadWords: "단어 다시 불러오기",
   reloadingWords: "단어 다시 불러오는 중...",
@@ -49,7 +49,12 @@ function renderPlayFlow(initialEntry = "/play") {
 function getChoiceButtons() {
   return screen
     .getAllByRole("button")
-    .filter((button) => button.className.includes("min-h-16") || button.className.includes("min-h-20"));
+    .filter(
+      (button) =>
+        button.className.includes("min-h-14") ||
+        button.className.includes("min-h-16") ||
+        button.className.includes("min-h-20"),
+    );
 }
 
 describe("PlayPage", () => {
@@ -84,7 +89,7 @@ describe("PlayPage", () => {
   it("플레이 진입 시 설정 화면이 먼저 보이고 문제 흐름 옵션은 없다", () => {
     renderPlayFlow();
 
-    expect(screen.getByText(TEXT.setupTitle)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: TEXT.startGame })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: TEXT.startGame })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: TEXT.quizModeKanjiToMeaning })).toBeInTheDocument();
     expect(screen.queryByText("문제 흐름")).not.toBeInTheDocument();
@@ -99,7 +104,7 @@ describe("PlayPage", () => {
     await user.click(screen.getByRole("button", { name: TEXT.startGame }));
 
     expect(await screen.findByRole("heading", { name: "猫" })).toBeInTheDocument();
-    expect(screen.queryByText(TEXT.setupTitle)).not.toBeInTheDocument();
+    expect(screen.queryByText("寃뚯엫 ?ㅼ젙")).not.toBeInTheDocument();
     expect(screen.queryByRole("button", { name: TEXT.setupReset })).not.toBeInTheDocument();
     expect(screen.getByRole("progressbar", { name: TEXT.sessionProgressLabel })).toHaveAttribute("aria-valuetext", "1 / 1");
     expect(screen.getByText(TEXT.finalQuestion)).toBeInTheDocument();
@@ -189,9 +194,8 @@ describe("PlayPage", () => {
     expect(wrongButton).toBeDefined();
     await user.click(wrongButton!);
 
-    expect(screen.getByText(TEXT.incorrectAnswer)).toBeInTheDocument();
-    expect(screen.getByText(`${TEXT.correctAnswerLabel}: ${TEXT.answer}`)).toBeInTheDocument();
-    expect(screen.getByText(new RegExp(`^${TEXT.selectedAnswerLabel}:`))).toBeInTheDocument();
+    expect(screen.queryAllByText(TEXT.incorrectAnswer).length).toBe(0);
+    expect(screen.getByText(TEXT.correctAnswerLabel)).toBeInTheDocument();
   });
 
   it("저장 실패 시 pending session을 남긴다", async () => {

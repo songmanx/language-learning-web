@@ -10,9 +10,9 @@ import { useLanguageStore } from "../stores/languageStore";
 const TEXT = {
   reviewCenter: "복습센터",
   noReviewData: "복습 데이터가 아직 없습니다",
-  practiceStart: "연습 모드 시작",
-  playNow: "바로 플레이하기",
-  backHome: "홈으로 돌아가기",
+  practiceStart: "연습",
+  playNow: "플레이",
+  backHome: "홈",
   snapshotStatus: "복습 스냅샷",
   quickActionsTitle: "바로 이동",
   recommendedRoute: "추천 경로",
@@ -82,7 +82,6 @@ describe("ReviewPage", () => {
 
     expect(screen.getByRole("heading", { name: TEXT.reviewCenter })).toBeInTheDocument();
     expect(screen.getByText(TEXT.snapshotStatus)).toBeInTheDocument();
-    expect(screen.getByText(TEXT.quickActionsTitle)).toBeInTheDocument();
     expect(screen.getByText(TEXT.recommendedBadge)).toBeInTheDocument();
     expect(screen.getByText(new RegExp(`${TEXT.recommendedRoute}: ${TEXT.practiceStart}`))).toBeInTheDocument();
     expect(screen.getByText(TEXT.totalItems)).toBeInTheDocument();
@@ -93,8 +92,8 @@ describe("ReviewPage", () => {
     expect(screen.queryByText(/흐름:/)).not.toBeInTheDocument();
     expect(screen.getAllByText(TEXT.learningStage).length).toBeGreaterThan(0);
     expect(screen.getAllByText(TEXT.reviewStage).length).toBeGreaterThan(0);
-    expect(screen.getByText(new RegExp(`${TEXT.priorityLabel}: 100`))).toBeInTheDocument();
-    expect(screen.getByText(new RegExp(`${TEXT.lastResultLabel}: ${TEXT.wrongResult}`))).toBeInTheDocument();
+    expect(screen.getByText(/우선:\s*100/)).toBeInTheDocument();
+    expect(screen.getByText(/결과:\s*오답/)).toBeInTheDocument();
     const items = screen.getAllByText(/ja-/).map((node) => node.textContent);
     expect(items[0]).toBe("ja-1");
     expect(items[1]).toBe("ja-2");

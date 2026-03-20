@@ -1,5 +1,178 @@
 # CHANGELOG.md
 
+## 2026-03-20
+
+- `PlayPage` 시작 전 라벨을 더 짧게 줄이고 시작/초기화 버튼, 출제 방식 표기를 모바일 첫 화면 기준으로 압축
+- `ResultPage` 상단 요약 카드 안으로 추천 경로와 CTA를 합쳐 첫 화면 섹션 수를 축소
+- `ReviewPage` 상단 헤더와 스냅샷/액션 블록을 하나의 카드로 합쳐 세로 흐름을 더 단순화
+- 테스트 `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx src/pages/ReviewPage.test.tsx` 통과, `npm run build` 통과
+
+## 2026-03-20
+
+- `PlayPage` 시작 전 상단 보조 문구를 제거하고 타이틀 비중을 더 축소
+- `ResultPage` 상단 저장 안내 문구와 추천 보조 칩을 줄여 첫 화면 정보량을 추가 축소
+- `ReviewPage` 상단 설명 줄과 상태 보조 문구를 걷어내고 추천 칩 수를 더 줄임
+- 테스트 `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx src/pages/ReviewPage.test.tsx` 통과, `npm run build` 통과
+
+## 2026-03-20
+
+- `PlayPage` 시작 전 초기화 버튼 폭과 요약 줄 문구를 더 짧게 줄여 첫 화면 고정 흐름을 추가 압축
+- `ResultPage` 복습 미리보기 행 높이와 칩 라벨을 `우선`/`단계`/`결과` 중심으로 축약
+- `ReviewPage` 우선 복습 목록 행 높이와 칩 라벨을 더 짧게 줄이고 하단 버튼 높이도 추가 축소
+- 테스트 `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx src/pages/ReviewPage.test.tsx` 통과, `npm run build` 통과
+
+## 2026-03-20
+
+- `PlayPage` 시작 전 상단 여백, 옵션 버튼, 준비 문제 카드 높이를 더 줄여 첫 화면 고정에 더 가깝게 정리
+- `ResultPage` 세션 스냅샷/복습 미리보기 카드와 수치 카드 높이를 추가 축소
+- `ReviewPage` 요약 카드/다음 학습 흐름/우선 복습 목록 높이를 추가 축소
+- 테스트 `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx src/pages/ReviewPage.test.tsx` 통과, `npm run build` 통과
+
+## 2026-03-20
+
+- `PlayPage` 시작 전 헤더, 옵션 그룹, 준비 문제 카드 높이를 한 단계 더 축소
+- `ResultPage` CTA와 하단 액션 버튼을 세로 흐름으로 고정해 모바일 가로 분할 느낌 제거
+- `ReviewPage` CTA를 세로 흐름으로 고정하고 전체 스크롤 길이를 추가 압축
+- 테스트 `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx src/pages/ReviewPage.test.tsx` 통과, `npm run build` 통과
+
+## 2026-03-20
+
+- `PlayPage` 시작 전 요약 줄 구분을 더 짧게 정리하고 첫 화면 고정 흐름을 추가 압축
+- `ResultPage` CTA 라벨을 `재도전`/`연습`/`복습` 중심으로 축약하고 버튼 높이를 추가 축소
+- `ReviewPage` CTA 라벨을 `연습`/`플레이`/`홈` 중심으로 축약하고 버튼 높이를 추가 축소
+- 테스트 `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx src/pages/ReviewPage.test.tsx` 통과, `npm run build` 통과
+
+## 2026-03-20
+
+- `PlayPage` 시작 전 설정 화면의 카운트 블록과 요약 줄을 추가 압축
+- `ResultPage` 하단 버튼 라벨과 추천/세션 구성 칩 표기를 추가 축약
+- `ReviewPage` 추천/세션 구성 칩과 우선 복습 라벨을 추가 축약
+- 테스트: `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx src/pages/ReviewPage.test.tsx` 통과, `npm run build` 통과
+
+## 2026-03-20
+
+- `PlayPage` 시작 전 설정 화면의 타이틀 비중과 요약 줄 길이를 추가 축소
+- `ResultPage` 추천 칩, 세션 구성 칩, CTA 버튼 타이포와 설명 문구를 추가 압축
+- `ReviewPage` 추천 칩, 세션 구성 칩, CTA 버튼 타이포와 설명 문구를 추가 압축
+- 테스트: `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx src/pages/ReviewPage.test.tsx` 통과, `npm run build` 통과
+
+## 2026-03-20
+
+- `PlayPage` 시작 전 설정 화면의 상단 여백, 타이틀 블록, 그룹 간격, 요약 영역을 추가 압축
+- `ResultPage` CTA 설명 문구와 세션 구성 칩 패딩, 하단 카드 높이를 추가 축소
+- `ReviewPage` CTA 설명 문구, 추천 경로 칩, 세션 구성 칩, 우선 복습 목록 카드 밀도를 추가 압축
+- 테스트: `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx src/pages/ReviewPage.test.tsx` 통과, `npm run build` 통과
+
+## 2026-03-20
+
+- `PlayPage` 시작 전 설정 화면의 타이틀 블록, 옵션 그룹, 문제 수/시작 버튼 영역 높이를 추가로 축소
+- `ResultPage` CTA 버튼, 복습 미리보기 카드, 하단 버튼, 요약 수치 카드 높이를 추가 축소
+- `ReviewPage` CTA 버튼, 우선 복습 목록 카드, 요약 수치 카드 높이를 추가 축소
+- 테스트: `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx src/pages/ReviewPage.test.tsx` 통과, `npm run build` 통과
+
+## 2026-03-20
+
+- `PlayPage` 시작 전 설정 화면의 헤더, 선택 그룹, 문제 수/시작 버튼 영역을 추가 압축해 첫 화면 고정에 더 가깝게 조정
+- `ResultPage` 다음 액션 요약에 `세션 평가`를 칩 형태로 흡수하고 CTA 카드 높이와 설명 밀도를 추가 축소
+- `ReviewPage` 상단 요약/CTA/다음 학습 흐름 카드와 우선 복습 목록 높이를 한 단계 더 줄임
+- 테스트: `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx src/pages/ReviewPage.test.tsx` 통과, `npm run build` 통과
+
+## 2026-03-20
+
+- `PlayPage` 시작 전 설정 화면을 추가 압축하고 시작 버튼을 카운트 영역에 통합해 첫 화면 고정에 더 가깝게 조정
+- `ResultPage`의 세션 스냅샷과 복습 미리보기를 하나의 하단 섹션으로 통합
+- `ReviewPage`의 우선 복습 목록을 상단 요약 카드 안으로 흡수해 별도 하단 섹션을 제거
+- 테스트: `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx src/pages/ReviewPage.test.tsx` 통과, `npm run build` 통과
+
+## 2026-03-20
+
+- `src/pages/PlayPage.tsx`에서 시작 전 설정 화면 전체 밀도를 추가로 낮춰 첫 화면에 더 많이 들어오도록 조정했다.
+- `src/pages/ResultPage.tsx`, `src/pages/ReviewPage.tsx`에서 하단 섹션 카드 높이와 간격을 더 줄여 세로 스크롤 길이를 축소했다.
+- 테스트:
+  - `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx src/pages/ReviewPage.test.tsx` 16 passed
+  - `npm run build` passed
+
+## 2026-03-20
+
+- `src/pages/PlayPage.tsx`에서 선택 버튼 문구와 패딩을 줄이고 2열 그리드형으로 정리해 설정 화면 가독성을 높였다.
+- `src/pages/ResultPage.tsx`, `src/pages/ReviewPage.tsx`에서 상단 핵심 카드 영역을 세로 고정으로 정리해 좁은 화면 가로 배열을 제거했다.
+- 테스트:
+  - `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx src/pages/ReviewPage.test.tsx` 16 passed
+  - `npm run build` passed
+
+## 2026-03-20
+
+- `src/pages/PlayPage.tsx`에서 설정 선택 버튼을 더 짧은 문구와 2열 그리드형으로 정리해 시작 화면 가독성을 높였다.
+- `src/pages/ResultPage.tsx`, `src/pages/ReviewPage.tsx`에서 상단 카드 레이아웃을 세로 고정으로 보정해 좁은 화면에서도 가로 분할이 생기지 않도록 했다.
+- 테스트:
+  - `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx src/pages/ReviewPage.test.tsx` 16 passed
+  - `npm run build` passed
+
+## 2026-03-20
+
+- `src/pages/PlayPage.tsx`에서 시작 전 설정 화면을 더 압축하고, 답 선택 후 텍스트 피드백을 줄여 더 빠르게 다음 문제로 넘어가도록 조정했다.
+- `src/pages/ResultPage.tsx`, `src/pages/ReviewPage.tsx`에서 상단 카드 레이아웃을 모바일 세로 흐름으로 고정해 좁은 화면 가로 분할을 줄였다.
+- 테스트:
+  - `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx src/pages/ReviewPage.test.tsx` 16 passed
+  - `npm run build` passed
+
+## 2026-03-20
+
+- `src/pages/PlayPage.tsx`에서 상단 HUD를 더 단순화해 진행 정보는 칩으로, 핵심 수치는 작은 카드로 정리했다.
+- `src/pages/ResultPage.tsx`, `src/pages/ReviewPage.tsx`에서 추천 경로와 CTA를 상단 요약 영역에 더 붙여 섹션 수와 버튼 밀도를 줄였다.
+- 테스트:
+  - `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx src/pages/ReviewPage.test.tsx` 16 passed
+  - `npm run build` passed
+
+## 2026-03-20
+
+- `src/pages/PlayPage.tsx`에서 HUD 수치 카드, 상태 스트립, 선택지 카드 높이를 더 줄여 플레이 첫 화면 문제 노출량을 늘렸다.
+- `src/pages/ResultPage.tsx`, `src/pages/ReviewPage.tsx`에서 하단 보조 카드와 버튼 영역 패딩을 줄여 모바일 밀도를 추가로 낮췄다.
+- 테스트:
+  - `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx src/pages/ReviewPage.test.tsx` 16 passed
+  - `npm run build` passed
+
+## 2026-03-20
+
+- `src/pages/PlayPage.tsx`에서 상단 HUD와 상태 스트립 높이를 더 줄이고 문제 카드 헤더를 압축해 첫 화면 문제 가시성을 높였다.
+- `src/pages/PlayPage.tsx`에서 하단 피드백을 항상 같은 높이의 얇은 스트립으로 고정해 답 선택 직후 UI가 튀는 느낌을 줄였다.
+- 테스트:
+  - `npm run test -- src/pages/PlayPage.test.tsx` 9 passed
+  - `npm run build` passed
+
+## 2026-03-20
+
+- `src/pages/PlayPage.tsx`에서 상단 HUD와 문제 카드 사이에 연결 레일과 상단 톤 바를 추가해 전환 결을 강화했다.
+- `src/pages/PlayPage.tsx`에서 선택지 카드를 상태별 액센트 바로 재정리해 정답/오답/정답 공개 구분을 더 또렷하게 만들었다.
+- 테스트:
+  - `npm run test -- src/pages/PlayPage.test.tsx` 9 passed
+  - `npm run build` passed
+
+## 2026-03-20
+
+- `src/pages/PlayPage.tsx`에서 상단 HUD와 상태 스트립 밀도를 더 줄이고, 문제 카드 상단 중복 칩과 헤더 크기를 정리해 문제 본문 집중도를 높였다.
+- `src/pages/ResultPage.tsx`, `src/pages/ReviewPage.tsx`에서 상단 요약 카드와 CTA 영역의 패딩, 보조 문구, 수치 카드 크기를 함께 압축했다.
+- 검증:
+  - `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx src/pages/ReviewPage.test.tsx` 16 passed
+  - `npm run build` passed
+
+## 2026-03-20
+
+- `src/pages/PlayPage.tsx`에서 하단 피드백 박스의 중복 문구를 줄이고, 선택 답/정답/반응 시간 같은 보조 확인 정보 위주로 역할을 정리했다.
+- `src/pages/ResultPage.tsx`, `src/pages/ReviewPage.tsx`에서 핵심 CTA를 상단 요약 영역에 붙여 첫 화면에서 추천 경로를 더 빨리 읽을 수 있게 재배치했다.
+- `src/pages/ResultPage.test.tsx`는 `바로 이동` 별도 섹션 제목이 사라진 현재 구조에 맞게 기대를 조정했다.
+- 검증:
+  - `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx src/pages/ReviewPage.test.tsx` 16 passed
+  - `npm run build` passed
+
+## 2026-03-20
+
+- `src/pages/PlayPage.tsx`에 문제 카드 전환 상태를 추가해 답변 직후와 다음 문제 진입 시 HUD, 문제 카드, 선택지 그리드의 반응을 더 자연스럽게 연결했다.
+- `src/pages/PlayPage.test.tsx`는 새 상태 스트립 구조로 인해 같은 피드백 문구가 두 군데 나타나는 케이스를 허용하도록 기대를 조정했다.
+- 검증:
+  - `npm run test -- src/pages/PlayPage.test.tsx` 9 passed
+  - `npm run build` passed
+
 ## 2026-03-19
 
 - `src/pages/PlayPage.tsx`에서 답변 직후 전환 시간을 `420ms`로 조정하고, 선택지 강조와 문제 카드 상태 톤, 진행 바 전환을 더 또렷하게 보강했다.

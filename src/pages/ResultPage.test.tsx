@@ -8,14 +8,13 @@ import { useLanguageStore } from "../stores/languageStore";
 
 const TEXT = {
   resultSummary: "결과 요약",
-  moveReview: "복습센터로 이동",
+  moveReview: "복습",
   noResultData: "결과 데이터가 없어 홈으로 돌아갑니다.",
   homeShort: "홈으로",
-  nextActionTitle: "다음 학습 제안",
   quickActionsTitle: "바로 이동",
   recommendedRoute: "추천 경로",
-  playAgain: "다시 플레이",
-  practiceStart: "연습 모드 시작",
+  playAgain: "재도전",
+  practiceStart: "연습",
   accuracy: "정답률",
   heartsLeft: "남은 하트",
   performanceTitle: "세션 평가",
@@ -94,19 +93,17 @@ describe("ResultPage", () => {
 
     expect(screen.getByRole("heading", { name: TEXT.resultSummary })).toBeInTheDocument();
     expect(screen.getByText(TEXT.statusTitle)).toBeInTheDocument();
-    expect(screen.getByText(TEXT.nextActionTitle)).toBeInTheDocument();
-    expect(screen.getByText(TEXT.quickActionsTitle)).toBeInTheDocument();
     expect(screen.getByText(new RegExp(`${TEXT.recommendedRoute}: ${TEXT.playAgain}`))).toBeInTheDocument();
-    expect(screen.getByText(TEXT.performanceTitle)).toBeInTheDocument();
+    expect(screen.getByText(new RegExp(`${TEXT.performanceTitle}: ${TEXT.excellent}`))).toBeInTheDocument();
     expect(screen.getByText(TEXT.sessionSnapshot)).toBeInTheDocument();
     expect(screen.getByText(TEXT.sessionConfigTitle)).toBeInTheDocument();
     expect(screen.getByText(TEXT.sessionMode)).toBeInTheDocument();
     expect(screen.getByText(TEXT.quizType)).toBeInTheDocument();
     expect(screen.getByText(TEXT.totalTime)).toBeInTheDocument();
     expect(screen.getByText(TEXT.averageResponse)).toBeInTheDocument();
-    expect(screen.getByText(TEXT.accuracy)).toBeInTheDocument();
+    expect(screen.getAllByText(TEXT.accuracy).length).toBeGreaterThan(0);
     expect(screen.getByText(TEXT.heartsLeft)).toBeInTheDocument();
-    expect(screen.getByText(TEXT.excellent)).toBeInTheDocument();
+    expect(screen.getByText(new RegExp(TEXT.excellent))).toBeInTheDocument();
     expect(screen.getByText(TEXT.reviewPreview)).toBeInTheDocument();
     expect(screen.getByText(new RegExp(`${TEXT.partOfSpeech}: 명사`))).toBeInTheDocument();
     expect(screen.getByText(new RegExp(`${TEXT.difficulty}: 난이도 2`))).toBeInTheDocument();
@@ -114,8 +111,8 @@ describe("ResultPage", () => {
     expect(screen.queryByText(/문제 흐름/)).not.toBeInTheDocument();
     expect(screen.getByText(TEXT.primaryRecommended)).toBeInTheDocument();
     expect(screen.getByText(new RegExp(`${TEXT.selectedLanguage}:\\s*일본어`))).toBeInTheDocument();
-    expect(screen.getByText(new RegExp(`${TEXT.stage}: ${TEXT.learningStage}`))).toBeInTheDocument();
-    expect(screen.getByText(new RegExp(`${TEXT.last}: ${TEXT.correctResult}`))).toBeInTheDocument();
+    expect(screen.getByText(/단계:\s*학습 중/)).toBeInTheDocument();
+    expect(screen.getByText(/결과:\s*정답/)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: TEXT.moveReview })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: TEXT.playAgain })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: TEXT.practiceStart })).toBeInTheDocument();

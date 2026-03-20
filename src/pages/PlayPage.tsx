@@ -30,6 +30,7 @@ import { useLanguageStore } from "../stores/languageStore";
 type PendingAnswer = AnswerLog;
 type PlayMode = "standard" | "practice";
 type AnswerFeedback = "correct" | "incorrect" | null;
+type QuestionVisualPhase = "steady" | "impact" | "enter";
 type AnswerSummary = {
   earnedScore: number;
   comboAfter: number;
@@ -42,11 +43,12 @@ type PlayPageProps = {
 };
 
 const MAX_HEARTS = 3;
-const NEXT_QUESTION_DELAY_MS = 420;
+const NEXT_QUESTION_DELAY_MS = 220;
+const QUESTION_ENTER_DELAY_MS = 180;
 const CHOICE_MARKERS = ["A", "B", "C", "D"];
 const TEXT = {
-  practiceMode: "\uC5F0\uC2B5 \uBAA8\uB4DC",
-  standardMode: "\uAE30\uBCF8 \uD50C\uB808\uC774",
+  practiceMode: "\uC5F0\uC2B5",
+  standardMode: "\uAE30\uBCF8",
   savingStart: "\uC138\uC158 \uC800\uC7A5 \uC2DC\uC791",
   savingSuccess: "\uC138\uC158 \uC800\uC7A5 \uC131\uACF5",
   savingFail: "\uC138\uC158 \uC800\uC7A5\uC5D0 \uC2E4\uD328\uD588\uC2B5\uB2C8\uB2E4.",
@@ -97,8 +99,8 @@ const TEXT = {
   partOfSpeechTitle: "\uD488\uC0AC",
   difficultyTitle: "\uB09C\uC774\uB3C4",
   quizModeTitle: "\uCD9C\uC81C \uBC29\uC2DD",
-  setupSummary: "\uC120\uD0DD \uC870\uD569",
-  setupReset: "\uAE30\uBCF8 \uAD6C\uC131 \uBCF5\uC6D0",
+  setupSummary: "\uC870\uD569",
+  setupReset: "\uCD08\uAE30\uD654",
   availableQuestions: "\uC9C4\uC785 \uAC00\uB2A5 \uBB38\uC81C",
   availableWords: "\uD544\uD130 \uC77C\uCE58 \uBB38\uD56D",
   noFilteredWords:
@@ -107,24 +109,24 @@ const TEXT = {
   sessionConfigTitle: "\uC138\uC158 \uAD6C\uC131",
   sessionConfigDifficulty: "\uB09C\uC774\uB3C4",
   sessionConfigQuizMode: "\uCD9C\uC81C",
-  partOfSpeechAll: "\uC804\uCCB4 \uD488\uC0AC",
+  partOfSpeechAll: "\uC804\uCCB4",
   partOfSpeechNoun: "\uBA85\uC0AC",
   partOfSpeechVerb: "\uB3D9\uC0AC",
   partOfSpeechAdjective: "\uD615\uC6A9\uC0AC",
   partOfSpeechAdverb: "\uBD80\uC0AC",
   partOfSpeechOther: "\uAE30\uD0C0",
-  difficultyAll: "\uC804\uCCB4 \uB09C\uC774\uB3C4",
+  difficultyAll: "\uC804\uCCB4",
   difficulty1: "\uB09C\uC774\uB3C4 1",
   difficulty2: "\uB09C\uC774\uB3C4 2",
   difficulty3: "\uB09C\uC774\uB3C4 3+",
-  quizModeKanjiToMeaning: "\uB2E8\uC5B4(\uD55C\uC790) -> \uB73B",
-  quizModeFuriganaToMeaning: "\uB2E8\uC5B4(\uD6C4\uB9AC\uAC00\uB098) -> \uB73B",
-  quizModeAudioToMeaning: "\uB2E8\uC5B4(\uC74C\uC131) -> \uB73B",
-  quizModeMeaningToWord: "\uB73B -> \uB2E8\uC5B4",
+  quizModeKanjiToMeaning: "\uD55C\uC790 \uB73B",
+  quizModeFuriganaToMeaning: "\uD6C4\uB9AC \uB73B",
+  quizModeAudioToMeaning: "\uC74C\uC131 \uB73B",
+  quizModeMeaningToWord: "\uB73B \uB2E8\uC5B4",
   feedbackDeckTitle: "\uD310\uC815 \uCF58\uC194",
-  setupEyebrow: "\uAC8C\uC784 \uC124\uC815",
-  startGame: "\uAC8C\uC784 \uC2DC\uC791",
-  startPractice: "\uC5F0\uC2B5 \uC2DC\uC791",
+  setupEyebrow: "",
+  startGame: "\uC2DC\uC791",
+  startPractice: "\uC5F0\uC2B5",
   backHomeCompact: "\uD648",
   setupModeLabel: "\uBAA8\uB4DC",
   setupCountLabel: "\uC900\uBE44 \uBB38\uC81C",
@@ -257,7 +259,9 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
   const [sessionStartedAt, setSessionStartedAt] = useState(() => Date.now());
   const [questionStartedAt, setQuestionStartedAt] = useState(() => Date.now());
   const [isSessionStarted, setIsSessionStarted] = useState(false);
+  const [questionVisualPhase, setQuestionVisualPhase] = useState<QuestionVisualPhase>("steady");
   const answerLockRef = useRef(false);
+  const questionPhaseTimeoutRef = useRef<number | null>(null);
 
   const isPracticeMode = mode === "practice";
   const modeTitle = isPracticeMode ? TEXT.practiceMode : TEXT.standardMode;
@@ -287,6 +291,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
       setSessionStartedAt(Date.now());
       setQuestionStartedAt(Date.now());
       setIsSessionStarted(false);
+      setQuestionVisualPhase("steady");
     }
   }, [incomingSessionConfig]);
 
@@ -321,6 +326,9 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
 
   useEffect(() => {
     if (currentWord) {
+      if (questionPhaseTimeoutRef.current) {
+        window.clearTimeout(questionPhaseTimeoutRef.current);
+      }
       answerLockRef.current = false;
       setIsAnswerLocked(false);
       setIsFinishingSession(false);
@@ -328,8 +336,21 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
       setSelectedChoice(null);
       setAnswerSummary(null);
       setQuestionStartedAt(Date.now());
+      setQuestionVisualPhase("enter");
+      questionPhaseTimeoutRef.current = window.setTimeout(() => {
+        setQuestionVisualPhase("steady");
+        questionPhaseTimeoutRef.current = null;
+      }, QUESTION_ENTER_DELAY_MS);
     }
   }, [currentWord]);
+
+  useEffect(() => {
+    return () => {
+      if (questionPhaseTimeoutRef.current) {
+        window.clearTimeout(questionPhaseTimeoutRef.current);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     if (!playerId || !selectedLanguage) {
@@ -355,6 +376,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
     setSessionStartedAt(Date.now());
     setQuestionStartedAt(Date.now());
     setIsSessionStarted(false);
+    setQuestionVisualPhase("steady");
   }
 
   function updateSessionConfig(partial: Partial<SessionConfig>) {
@@ -378,6 +400,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
     setSessionStartedAt(Date.now());
     setQuestionStartedAt(Date.now());
     setIsSessionStarted(true);
+    setQuestionVisualPhase("steady");
   }
 
   const progressLabel = useMemo(
@@ -387,13 +410,6 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
   const progressPercent =
     configuredWords.length === 0 ? 0 : ((currentIndex + 1) / configuredWords.length) * 100;
   const remainingCount = configuredWords.length - currentIndex - 1;
-  const progressStatusLabel = isFinishingSession
-    ? TEXT.finishingStatusChip
-    : answerFeedback === "correct"
-      ? TEXT.correctStatusChip
-      : answerFeedback === "incorrect"
-        ? TEXT.incorrectStatusChip
-        : null;
   const remainingLabel = isFinishingSession
     ? TEXT.movingResult
     : remainingCount === 0
@@ -414,29 +430,23 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
     isAnswerLocked && !isSaving
       ? "border-white/10 bg-white/5 text-stone-500 opacity-55"
       : "border-white/10 bg-white/10 hover:-translate-y-0.5 hover:scale-[1.01] hover:border-amber-300/60 hover:bg-white/12";
-  const feedbackStatusLabel = isFinishingSession
-    ? TEXT.finishingFeedbackStatus
-    : answerFeedback === "correct"
-      ? TEXT.correctFeedbackStatus
-      : TEXT.incorrectFeedbackStatus;
-  const feedbackHint = isFinishingSession ? TEXT.preparingResult : TEXT.movingNextQuestion;
   const responseTimeText = answerSummary ? formatResponseTime(answerSummary.responseTimeMs) : null;
-  const feedbackTopDetail = responseTimeText ? `${TEXT.responseTimeLabel} ${responseTimeText}` : feedbackHint;
-  const hudSummaryLabel = !isAnswerLocked
-    ? null
-    : isFinishingSession
-      ? TEXT.finishingHudSummary
-      : answerFeedback === "correct"
-        ? TEXT.correctHudSummary
-        : TEXT.incorrectHudSummary;
   const scoreSummaryLabel = `${score}${combo > 0 ? ` / ${TEXT.comboLabel} ${combo}` : ""}`;
-  const rewardFlashLabel = !answerSummary
-    ? null
-    : answerFeedback === "correct"
-      ? `${TEXT.rewardCorrect} +${answerSummary.earnedScore}`
-      : TEXT.rewardHeartLoss;
-  const comboFlashLabel = !answerSummary ? null : `${TEXT.rewardCombo} ${answerSummary.comboAfter}`;
   const focusTone = getStatusTone(answerFeedback, isFinishingSession);
+  const statusRailLabel = `${modeTitle} / ${sessionConfigLabels.quizMode}`;
+  const statusRailMeta = `${TEXT.heartsLabel} ${heartsLeft} / ${TEXT.scoreLabel} ${score}`;
+  const questionCardStateClassName =
+    questionVisualPhase === "impact"
+      ? "scale-[0.99] opacity-95"
+      : questionVisualPhase === "enter"
+        ? "translate-y-1 opacity-70"
+        : "translate-y-0 opacity-100";
+  const choicesStateClassName =
+    questionVisualPhase === "impact"
+      ? "translate-y-0.5 opacity-90"
+      : questionVisualPhase === "enter"
+        ? "translate-y-1 opacity-75"
+        : "translate-y-0 opacity-100";
 
   async function finishGame(nextAnswerLog: PendingAnswer[], nextScore: number, nextHeartsLeft: number) {
     if (!playerId || !selectedLanguage) {
@@ -556,6 +566,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
     answerLockRef.current = true;
     setIsAnswerLocked(true);
     setSelectedChoice(choice);
+    setQuestionVisualPhase("impact");
 
     const correct = choice === currentQuestion.answer;
     setAnswerFeedback(correct ? "correct" : "incorrect");
@@ -708,25 +719,11 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
     >
       <div className="space-y-3">
         <div className="overflow-hidden rounded-[1.6rem] border border-white/10 bg-stone-950/65">
-          <div className="space-y-3 px-4 py-4 sm:px-5">
+          <div className="space-y-2.5 px-4 py-3 sm:px-5">
             <div className="flex flex-wrap items-center gap-2 text-[11px] font-semibold">
-              <span className="rounded-full border border-amber-200/20 bg-amber-300/12 px-3 py-1 text-amber-100">
-                {sessionConfigLabels.quizMode}
-              </span>
               <span className={`rounded-full border px-3 py-1 ${remainingChipClassName}`}>{remainingLabel}</span>
-              {rewardFlashLabel ? (
-                <span
-                  className={`rounded-full border px-3 py-1 shadow-[0_0_24px_rgba(255,255,255,0.08)] animate-[pulse_1.2s_ease-in-out_2] ${focusTone.chip}`}
-                >
-                  {rewardFlashLabel}
-                </span>
-              ) : null}
-              {progressStatusLabel ? (
-                <span className={`rounded-full border px-3 py-1 ${focusTone.chip}`}>{progressStatusLabel}</span>
-              ) : null}
             </div>
-            <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-              <HudStatCard label={TEXT.progress} value={progressLabel} accentClassName="text-amber-100" />
+            <div className="grid grid-cols-3 gap-1.5">
               <HudStatCard label={TEXT.heartsLabel} value={String(heartsLeft)} accentClassName="text-rose-100" />
               <HudStatCard label={TEXT.scoreLabel} value={scoreSummaryLabel} accentClassName="text-sky-100" />
               <HudStatCard
@@ -735,151 +732,124 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
                 accentClassName={responseTimeText ? "text-emerald-100" : "text-stone-300"}
               />
             </div>
-            {comboFlashLabel || hudSummaryLabel ? (
-              <div className="flex flex-wrap items-center gap-2 text-[11px] text-stone-300">
-                {comboFlashLabel ? (
-                  <span className="rounded-full border border-white/10 bg-white/8 px-3 py-1 text-stone-100 shadow-[0_0_18px_rgba(255,255,255,0.05)]">
-                    {comboFlashLabel}
+            <div className={`rounded-[0.95rem] border px-3 py-2 transition duration-300 ${focusTone.panel}`} aria-live="polite">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <div className="flex min-w-0 flex-wrap items-center gap-2">
+                  <span className="rounded-full border border-white/10 bg-white/8 px-2.5 py-1 text-[10px] font-semibold text-amber-100">
+                    {TEXT.progress} {progressLabel}
                   </span>
-                ) : null}
-                {hudSummaryLabel ? (
-                  <span className={`rounded-full border px-3 py-1 font-semibold ${focusTone.chip}`}>
-                    {hudSummaryLabel}
+                  <span className="rounded-full border border-white/10 bg-black/20 px-2.5 py-1 text-[10px] font-semibold text-stone-200">
+                    {sessionConfigLabels.quizMode}
                   </span>
-                ) : null}
+                  <span className={`truncate text-[13px] font-semibold ${focusTone.text}`}>{statusRailLabel}</span>
+                </div>
+                <span className="text-[10px] text-stone-400">{statusRailMeta}</span>
               </div>
-            ) : null}
+            </div>
           </div>
 
           <div className="px-4 pb-4 sm:px-5">
-                <div
-                  className="h-2 overflow-hidden rounded-full bg-white/10"
-                  role="progressbar"
-                  aria-label={TEXT.sessionProgressLabel}
-                  aria-valuemin={1}
-                  aria-valuemax={Math.max(configuredWords.length, 1)}
-                  aria-valuenow={Math.min(currentIndex + 1, Math.max(configuredWords.length, 1))}
-                  aria-valuetext={progressLabel}
-                >
             <div
-                    className={`h-full rounded-full transition-all duration-500 ease-out ${focusTone.progress}`}
-                    style={{ width: `${progressPercent}%` }}
-                  />
-                </div>
-                {hudSummaryLabel ? (
-                  <div className="flex flex-wrap items-center gap-2 text-[11px] text-stone-300">
-                    <span className={`rounded-full border px-3 py-1 font-semibold ${focusTone.chip}`}>
-                      {hudSummaryLabel}
-                    </span>
-                    {answerSummary ? <span>{TEXT.earnedScoreSummary} +{answerSummary.earnedScore} / {TEXT.comboLabel} {combo}</span> : null}
-                  </div>
-                ) : null}
-              </div>
-
-          </div>
-
-          <div
-            className={`overflow-hidden rounded-[1.9rem] border bg-[radial-gradient(circle_at_top,_rgba(251,191,36,0.14),_rgba(255,255,255,0.03)_35%,_rgba(12,10,9,0.92)_78%)] shadow-[0_22px_80px_rgba(0,0,0,0.32)] transition duration-300 ${
-              answerFeedback === "correct"
-                ? "border-emerald-300/30 shadow-[0_24px_88px_rgba(16,185,129,0.18)]"
-                : answerFeedback === "incorrect"
-                  ? "border-rose-300/30 shadow-[0_24px_88px_rgba(244,63,94,0.16)]"
-                  : "border-white/10"
-            }`}
-          >
-            <div className="border-b border-white/10 bg-gradient-to-r from-amber-200/10 via-white/6 to-transparent px-4 py-4 sm:px-5">
-              <div className="space-y-2">
-                <div className="space-y-2">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="rounded-full border border-amber-200/20 bg-amber-300/12 px-3 py-1 text-xs font-semibold text-amber-100">
-                      {sessionConfigLabels.quizMode}
-                    </span>
-                    <span className="rounded-full border border-white/10 bg-white/8 px-3 py-1 text-xs text-stone-300">
-                      {TEXT.difficultyTitle} {sessionConfigLabels.difficulty}
-                    </span>
-                  </div>
-                  <h2 className="text-[1.7rem] font-black leading-tight tracking-[-0.045em] text-white drop-shadow-[0_6px_24px_rgba(0,0,0,0.28)] sm:text-[2.3rem]">
-                    {currentQuestion.prompt}
-                  </h2>
-                </div>
-              </div>
-            </div>
-
-            <div className="px-4 py-4 sm:px-5 sm:py-5">
-              <div className="grid gap-3">
-                {currentQuestion.choices.map((choice, index) => (
-                  <ChoiceCard
-                    key={`${currentWord.id}-${choice}-${index}`}
-                    marker={CHOICE_MARKERS[index] ?? String(index + 1)}
-                    choice={choice}
-                    className={
-                      selectedChoice === choice
-                        ? selectedChoiceClassName
-                        : answerFeedback === "incorrect" && currentQuestion.answer === choice
-                          ? revealedCorrectChoiceClassName
-                          : idleChoiceClassName
-                    }
-                    isDisabled={isSaving || isAnswerLocked}
-                    isSelected={selectedChoice === choice}
-                    onClick={() => void handleAnswer(choice)}
-                  >
-                    {isAnswerLocked && selectedChoice === choice ? (
-                      <span className="rounded-full border border-current/30 px-2 py-1 text-[11px] font-semibold">
-                        {TEXT.selectedBadge}
-                      </span>
-                    ) : null}
-                    {answerFeedback === "incorrect" && currentQuestion.answer === choice ? (
-                      <span className="rounded-full border border-current/30 px-2 py-1 text-[11px] font-semibold">
-                        {TEXT.correctAnswerLabel}
-                      </span>
-                    ) : null}
-                  </ChoiceCard>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {isAnswerLocked && !isSaving ? (
-            <div
-              className={`rounded-[1.4rem] border px-4 py-3 shadow-[0_14px_40px_rgba(0,0,0,0.18)] transition duration-300 ${focusTone.panel}`}
-              aria-live="polite"
+              className="h-2 overflow-hidden rounded-full bg-white/10"
+              role="progressbar"
+              aria-label={TEXT.sessionProgressLabel}
+              aria-valuemin={1}
+              aria-valuemax={Math.max(configuredWords.length, 1)}
+              aria-valuenow={Math.min(currentIndex + 1, Math.max(configuredWords.length, 1))}
+              aria-valuetext={progressLabel}
             >
-              <div className="flex flex-wrap items-center gap-2">
-                <span className={`rounded-full border px-3 py-1 text-[11px] font-semibold ${focusTone.chip}`}>
-                  {feedbackStatusLabel}
-                </span>
-                {answerFeedback ? (
-                  <span
-                    className={`text-sm font-semibold ${
-                      answerFeedback === "correct" ? "text-emerald-200" : "text-rose-200"
-                    }`}
-                  >
-                    {answerFeedback === "correct" ? TEXT.correctAnswer : TEXT.incorrectAnswer}
-                  </span>
-                ) : null}
-                <span className="text-[11px] text-stone-300">{feedbackTopDetail}</span>
-              </div>
-              {(selectedChoice || answerFeedback === "incorrect" || responseTimeText) ? (
-                <div className="mt-3 flex flex-wrap gap-2 border-t border-white/10 pt-3">
-                  {selectedChoice ? (
-                    <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-stone-300">
-                      {TEXT.selectedAnswerLabel}: {selectedChoice}
-                    </span>
-                  ) : null}
-                  {answerFeedback === "incorrect" ? (
-                    <span className="rounded-full border border-rose-200/20 bg-rose-300/12 px-3 py-1 text-xs text-rose-100">
-                      {TEXT.correctAnswerLabel}: {currentQuestion.answer}
-                    </span>
-                  ) : null}
-                  {responseTimeText ? (
-                    <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-stone-300">
-                      {TEXT.responseTimeLabel}: {responseTimeText}
-                    </span>
-                  ) : null}
-                </div>
-              ) : null}
+              <div
+                className={`h-full rounded-full transition-all duration-500 ease-out ${focusTone.progress}`}
+                style={{ width: `${progressPercent}%` }}
+              />
             </div>
-          ) : null}
+          </div>
+        </div>
+
+        <div className="pointer-events-none flex items-center justify-center">
+          <div className="flex w-full max-w-[9rem] items-center gap-2">
+            <span className="h-px flex-1 bg-gradient-to-r from-transparent via-white/16 to-white/35" />
+            <span className={`h-2.5 w-2.5 rounded-full border border-white/20 ${focusTone.panel}`} />
+            <span className="h-px flex-1 bg-gradient-to-l from-transparent via-white/16 to-white/35" />
+          </div>
+        </div>
+
+        <div
+          className={`overflow-hidden rounded-[1.9rem] border bg-[radial-gradient(circle_at_top,_rgba(251,191,36,0.14),_rgba(255,255,255,0.03)_35%,_rgba(12,10,9,0.92)_78%)] shadow-[0_22px_80px_rgba(0,0,0,0.32)] transition duration-300 ${questionCardStateClassName} ${
+            answerFeedback === "correct"
+              ? "border-emerald-300/30 shadow-[0_24px_88px_rgba(16,185,129,0.18)]"
+              : answerFeedback === "incorrect"
+                ? "border-rose-300/30 shadow-[0_24px_88px_rgba(244,63,94,0.16)]"
+                : "border-white/10"
+          }`}
+        >
+          <div className={`h-1 w-full ${focusTone.progress}`} />
+          <div className="border-b border-white/10 bg-gradient-to-r from-amber-200/10 via-white/6 to-transparent px-4 py-2.5 sm:px-5">
+            <div className="space-y-1">
+              <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-stone-500">
+                {TEXT.difficultyTitle} {sessionConfigLabels.difficulty}
+              </p>
+              <h2 className="text-[1.28rem] font-black leading-tight tracking-[-0.045em] text-white drop-shadow-[0_6px_24px_rgba(0,0,0,0.28)] sm:text-[1.75rem]">
+                {currentQuestion.prompt}
+              </h2>
+            </div>
+          </div>
+
+          <div className="px-4 py-2.5 sm:px-5 sm:py-3">
+            <div className={`grid gap-2 transition duration-300 ${choicesStateClassName}`}>
+              {currentQuestion.choices.map((choice, index) => (
+                <ChoiceCard
+                  key={`${currentWord.id}-${choice}-${index}`}
+                  marker={CHOICE_MARKERS[index] ?? String(index + 1)}
+                  choice={choice}
+                  state={
+                    selectedChoice === choice
+                      ? answerFeedback === "correct"
+                        ? "selected-correct"
+                        : "selected-wrong"
+                      : answerFeedback === "incorrect" && currentQuestion.answer === choice
+                        ? "revealed-correct"
+                        : isAnswerLocked && !isSaving
+                          ? "dimmed"
+                          : "idle"
+                  }
+                  className={
+                    selectedChoice === choice
+                      ? selectedChoiceClassName
+                      : answerFeedback === "incorrect" && currentQuestion.answer === choice
+                        ? revealedCorrectChoiceClassName
+                        : idleChoiceClassName
+                  }
+                  isDisabled={isSaving || isAnswerLocked}
+                  isSelected={selectedChoice === choice}
+                  onClick={() => void handleAnswer(choice)}
+                >
+                  {isAnswerLocked && selectedChoice === choice ? (
+                    <span className="rounded-full border border-current/30 px-2 py-1 text-[11px] font-semibold">
+                      {TEXT.selectedBadge}
+                    </span>
+                  ) : null}
+                  {answerFeedback === "incorrect" && currentQuestion.answer === choice ? (
+                    <span className="rounded-full border border-current/30 px-2 py-1 text-[11px] font-semibold">
+                      {TEXT.correctAnswerLabel}
+                    </span>
+                  ) : null}
+                </ChoiceCard>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div
+          className={`min-h-[2.75rem] rounded-[1rem] border px-3 py-1.5 shadow-[0_12px_32px_rgba(0,0,0,0.14)] transition duration-300 ${focusTone.panel}`}
+          aria-live="polite"
+        >
+          <div className="flex min-h-[1.5rem] flex-wrap items-center gap-1.5">
+            <span className="text-[11px] text-stone-500">
+              {sessionConfigLabels.quizMode} / {TEXT.progress} {progressLabel}
+            </span>
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -986,23 +956,25 @@ function SessionStartScreen({
   onUpdate,
 }: SessionStartScreenProps) {
   return (
-    <section className="overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-[#5a5137] via-[#1f1d19] to-[#111213] p-4 shadow-[0_24px_100px_rgba(0,0,0,0.35)] sm:p-6">
-      <div className="rounded-[1.7rem] border border-white/10 bg-black/25 p-5 sm:p-6">
-        <div className="flex flex-wrap items-start justify-between gap-4">
+    <section className="overflow-hidden rounded-[1.05rem] border border-white/10 bg-gradient-to-br from-[#5a5137] via-[#1f1d19] to-[#111213] p-[3px]">
+      <div className="rounded-[0.9rem] border border-white/10 bg-black/25 p-1">
+        <div className="flex flex-wrap items-center justify-between gap-1">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-amber-200/80">{TEXT.setupEyebrow}</p>
-            <h2 className="mt-3 text-3xl font-black tracking-[-0.04em] text-white sm:text-[2.2rem]">{modeTitle}</h2>
+            {TEXT.setupEyebrow ? (
+              <p className="text-[7px] font-semibold uppercase tracking-[0.1em] text-amber-200/70">{TEXT.setupEyebrow}</p>
+            ) : null}
+            <h2 className="text-[0.75rem] font-black tracking-[-0.04em] text-white sm:text-[0.86rem]">{modeTitle}</h2>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1">
             <button
-              className="min-h-11 rounded-2xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-stone-100 transition hover:bg-white/10"
+              className="min-h-5 rounded-2xl border border-white/10 bg-white/5 px-1.5 py-0.5 text-[8px] font-semibold text-stone-100 transition hover:bg-white/10"
               type="button"
               onClick={onReset}
             >
               {TEXT.setupReset}
             </button>
             <button
-              className="min-h-11 rounded-2xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-stone-100 transition hover:bg-white/10"
+              className="min-h-5 rounded-2xl border border-white/10 bg-white/5 px-1.5 py-0.5 text-[8px] font-semibold text-stone-100 transition hover:bg-white/10"
               type="button"
               onClick={onMoveHome}
             >
@@ -1011,8 +983,8 @@ function SessionStartScreen({
           </div>
         </div>
 
-        <div className="mt-6 space-y-4">
-          <div className="grid gap-4">
+        <div className="mt-0.5 space-y-0.5">
+          <div className="grid gap-0.5">
             <SetupOptionGroup
               title={TEXT.partOfSpeechTitle}
               options={PART_OF_SPEECH_OPTIONS}
@@ -1036,30 +1008,28 @@ function SessionStartScreen({
             />
           </div>
 
-          <div className="rounded-[1.7rem] border border-white/10 bg-stone-950/60 p-5">
-            <div className="rounded-[1.4rem] border border-white/10 bg-white/[0.04] p-4">
-              <p className="text-[11px] uppercase tracking-[0.24em] text-stone-500">{TEXT.setupCountLabel}</p>
-              <div className="mt-3 flex items-end justify-between gap-3">
-                <p className="text-3xl font-black tracking-[-0.04em] text-white">{configuredWordsCount}</p>
-                <p className="text-sm text-stone-400">/ {totalWordsCount}</p>
+          <div className="rounded-[0.75rem] border border-white/10 bg-stone-950/60 p-0.5">
+            <div className="flex items-center justify-between gap-1 rounded-[0.65rem] border border-white/10 bg-white/[0.04] px-1.5 py-0.5">
+              <div>
+                <p className="text-[7px] uppercase tracking-[0.08em] text-stone-500">{TEXT.setupCountLabel}</p>
+                <p className="mt-0.5 text-[0.72rem] font-black tracking-[-0.04em] text-white">
+                  {configuredWordsCount}
+                  <span className="ml-1 text-[9px] font-medium text-stone-400">/ {totalWordsCount}</span>
+                </p>
               </div>
-            </div>
-
-            <div className="mt-4 flex flex-wrap gap-2">
-              <SummaryChip label={TEXT.setupModeLabel} value={modeTitle} />
-              <SummaryChip label={TEXT.partOfSpeechTitle} value={sessionConfigLabels.partOfSpeech} />
-              <SummaryChip label={TEXT.difficultyTitle} value={sessionConfigLabels.difficulty} />
-              <SummaryChip label={TEXT.quizModeTitle} value={sessionConfigLabels.quizMode} />
-            </div>
-
-            <div className="mt-6 grid gap-3">
               <button
-                className="min-h-14 rounded-2xl bg-amber-300 px-4 py-3 text-base font-bold text-stone-950"
+                className="min-h-5 rounded-2xl bg-amber-300 px-1.5 py-0.5 text-[9px] font-bold text-stone-950"
                 type="button"
                 onClick={onStart}
               >
                 {startLabel}
               </button>
+            </div>
+
+            <div className="mt-0.5 rounded-[0.65rem] border border-white/10 bg-white/[0.03] px-1.5 py-0.5">
+              <p className="truncate text-[7px] text-stone-400">
+                {sessionConfigLabels.partOfSpeech} · {sessionConfigLabels.difficulty} · {sessionConfigLabels.quizMode}
+              </p>
             </div>
           </div>
         </div>
@@ -1077,16 +1047,18 @@ type SetupOptionGroupProps = {
 };
 
 function SetupOptionGroup({ title, options, currentValue, isDisabled, onSelect }: SetupOptionGroupProps) {
+  const gridClassName = options.length >= 5 ? "grid-cols-3" : "grid-cols-2";
+
   return (
-    <div className="rounded-[1.45rem] border border-white/10 bg-white/5 p-4">
-      <p className="text-sm font-semibold text-stone-100">{title}</p>
-      <div className="mt-3 flex flex-wrap gap-2">
+    <div className="rounded-[0.72rem] border border-white/10 bg-white/5 p-[3px]">
+      <p className="text-[8px] font-semibold text-stone-100">{title}</p>
+      <div className={`mt-0.5 grid ${gridClassName} gap-0.5`}>
         {options.map((option) => {
           const isSelected = currentValue === option.value;
           return (
             <button
               key={option.value}
-              className={`min-h-11 rounded-full border px-4 py-2 text-sm font-semibold transition ${
+              className={`min-h-4.5 rounded-[0.65rem] border px-1 py-0.5 text-center text-[8px] font-semibold leading-3 transition ${
                 isSelected
                   ? "border-amber-300/30 bg-amber-300/12 text-amber-100"
                   : "border-white/10 bg-white/5 text-stone-300 hover:border-white/20 hover:bg-white/10"
@@ -1119,19 +1091,6 @@ function ConfigSummaryCard({ label, value }: ConfigSummaryCardProps) {
   );
 }
 
-type SummaryChipProps = {
-  label: string;
-  value: string;
-};
-
-function SummaryChip({ label, value }: SummaryChipProps) {
-  return (
-    <span className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs text-stone-200">
-      <span className="text-stone-400">{label}</span> {value}
-    </span>
-  );
-}
-
 type HudStatCardProps = {
   label: string;
   value: string;
@@ -1140,38 +1099,87 @@ type HudStatCardProps = {
 
 function HudStatCard({ label, value, accentClassName = "text-stone-100" }: HudStatCardProps) {
   return (
-    <div className="rounded-[1.2rem] border border-white/10 bg-gradient-to-b from-white/[0.12] via-white/[0.05] to-white/[0.02] px-3 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_10px_24px_rgba(0,0,0,0.14)]">
-      <p className="text-[10px] uppercase tracking-[0.22em] text-stone-500">{label}</p>
-      <p className={`mt-1 text-sm font-semibold drop-shadow-[0_3px_12px_rgba(0,0,0,0.18)] ${accentClassName}`}>{value}</p>
+    <div className="rounded-[0.9rem] border border-white/10 bg-gradient-to-b from-white/[0.12] via-white/[0.05] to-white/[0.02] px-2 py-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_8px_20px_rgba(0,0,0,0.14)]">
+      <p className="text-[9px] uppercase tracking-[0.18em] text-stone-500">{label}</p>
+      <p className={`mt-0.5 text-[11px] font-semibold drop-shadow-[0_3px_12px_rgba(0,0,0,0.18)] sm:text-[12px] ${accentClassName}`}>{value}</p>
     </div>
   );
 }
+
+type ChoiceCardState = "idle" | "selected-correct" | "selected-wrong" | "revealed-correct" | "dimmed";
 
 type ChoiceCardProps = {
   marker: string;
   choice: string;
   className: string;
+  state: ChoiceCardState;
   isDisabled: boolean;
   isSelected: boolean;
   onClick: () => void;
   children?: ReactNode;
 };
 
-function ChoiceCard({ marker, choice, className, isDisabled, isSelected, onClick, children }: ChoiceCardProps) {
+function ChoiceCard({
+  marker,
+  choice,
+  className,
+  state,
+  isDisabled,
+  isSelected,
+  onClick,
+  children,
+}: ChoiceCardProps) {
+  const markerClassName =
+    state === "selected-correct"
+      ? "border-emerald-200/40 bg-emerald-200/18 text-emerald-50 shadow-[0_0_18px_rgba(52,211,153,0.2)]"
+      : state === "selected-wrong"
+        ? "border-rose-200/40 bg-rose-200/18 text-rose-50 shadow-[0_0_18px_rgba(251,113,133,0.2)]"
+        : state === "revealed-correct"
+          ? "border-emerald-200/35 bg-emerald-200/14 text-emerald-50"
+          : state === "dimmed"
+            ? "border-white/5 bg-black/20 text-stone-500"
+            : "border-white/10 bg-black/20 text-stone-200";
+  const textClassName =
+    state === "dimmed"
+      ? "text-stone-500"
+      : state === "selected-correct" || state === "revealed-correct"
+        ? "text-emerald-50"
+        : state === "selected-wrong"
+          ? "text-rose-50"
+          : "text-stone-100";
+
   return (
     <button
-      className={`min-h-16 rounded-[1.5rem] border bg-gradient-to-b from-white/[0.1] via-white/[0.04] to-white/[0.02] px-4 py-3 text-left text-base font-medium leading-6 shadow-[0_14px_32px_rgba(0,0,0,0.14)] transition duration-300 ease-out disabled:cursor-not-allowed disabled:opacity-60 ${className}`}
+      className={`relative min-h-14 overflow-hidden rounded-[1.3rem] border bg-gradient-to-b from-white/[0.1] via-white/[0.04] to-white/[0.02] px-3.5 py-2 text-left text-[15px] font-medium leading-5 shadow-[0_12px_28px_rgba(0,0,0,0.14)] transition duration-300 ease-out disabled:cursor-not-allowed disabled:opacity-60 ${className}`}
       type="button"
       onClick={onClick}
       disabled={isDisabled}
       aria-pressed={isSelected}
     >
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent"
+      />
+      <span
+        aria-hidden="true"
+        className={`pointer-events-none absolute inset-y-2 left-2 w-1 rounded-full ${
+          state === "selected-correct"
+            ? "bg-emerald-300/80 shadow-[0_0_16px_rgba(52,211,153,0.35)]"
+            : state === "selected-wrong"
+              ? "bg-rose-300/80 shadow-[0_0_16px_rgba(251,113,133,0.35)]"
+              : state === "revealed-correct"
+                ? "bg-emerald-300/70"
+                : "bg-white/10"
+        }`}
+      />
       <span className="flex items-start gap-4">
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-black/20 text-sm font-bold text-stone-200 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
+        <span
+          className={`flex h-8.5 w-8.5 shrink-0 items-center justify-center rounded-[0.95rem] border text-[12px] font-bold shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] ${markerClassName}`}
+        >
           {marker}
         </span>
         <span className="flex min-w-0 flex-1 items-center justify-between gap-3">
-          <span className="text-stone-100">{choice}</span>
+          <span className={`drop-shadow-[0_2px_10px_rgba(0,0,0,0.16)] ${textClassName}`}>{choice}</span>
           <span className="flex shrink-0 gap-2">{children}</span>
         </span>
       </span>
