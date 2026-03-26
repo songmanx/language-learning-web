@@ -151,7 +151,7 @@ export function ResultPage() {
   const durationLabel = formatDuration(payload.totalTimeSec);
   const averageResponseLabel = formatAverageResponse(payload.answerLog);
   const sessionConfig = result.sessionConfig ?? DEFAULT_SESSION_CONFIG;
-  const sessionConfigLabels = getSessionConfigLabels(sessionConfig);
+  const sessionConfigLabels = getSessionConfigLabels(sessionConfig, payload.languageCode);
   const primaryAction =
     saveStatus === "pending"
       ? TEXT.moveReview

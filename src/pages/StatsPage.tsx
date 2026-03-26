@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import {
   DEFAULT_SESSION_CONFIG,
   getQuizModeLabel,
+  getSupportedQuizModes,
   normalizeQuizModeFilter,
   type SessionConfig,
 } from "../features/game/sessionConfig";
@@ -17,14 +18,6 @@ import { useAuthStore } from "../stores/authStore";
 import { useLanguageStore } from "../stores/languageStore";
 
 type QuizModeValue = SessionConfig["quizMode"];
-
-const QUIZ_MODE_OPTIONS: Array<{ value: QuizModeValue; label: string }> = [
-  { value: "kanji_to_meaning", label: getQuizModeLabel("kanji_to_meaning") },
-  { value: "furigana_to_meaning", label: getQuizModeLabel("furigana_to_meaning") },
-  { value: "meaning_to_kanji", label: getQuizModeLabel("meaning_to_kanji") },
-  { value: "meaning_to_furigana", label: getQuizModeLabel("meaning_to_furigana") },
-  { value: "audio_to_meaning", label: getQuizModeLabel("audio_to_meaning") },
-];
 
 const TEXT = {
   statsTitle: "\uD1B5\uACC4",
@@ -84,6 +77,14 @@ export function StatsPage() {
   const availableLanguages = useLanguageStore((state) => state.availableLanguages);
   const [selectedQuizMode, setSelectedQuizMode] = useState<QuizModeValue>("kanji_to_meaning");
   const [resetTick, setResetTick] = useState(0);
+  const quizModeOptions = useMemo(
+    () =>
+      getSupportedQuizModes(selectedLanguage).map((value) => ({
+        value,
+        label: getQuizModeLabel(value, selectedLanguage),
+      })),
+    [selectedLanguage],
+  );
 
   const snapshot = useMemo(() => {
     if (!playerId || !selectedLanguage) {
@@ -202,7 +203,7 @@ export function StatsPage() {
           </div>
         </div>
         <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
-          {QUIZ_MODE_OPTIONS.map((option) => {
+          {quizModeOptions.map((option) => {
             const isSelected = selectedQuizMode === option.value;
 
             return (

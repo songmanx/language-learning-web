@@ -2,15 +2,15 @@
 
 ## 현재 개발 Phase
 
-Phase 4: 고급 기능 추가
+Phase 5: Final Program Completion
 
 ## Phase 상태 요약
 
 - Phase 1: Completed
 - Phase 2: Completed
 - Phase 3: Completed
-- Phase 4: In Progress
-- Phase 5: Not Started
+- Phase 4: Completed
+- Phase 5: In Progress
 
 ## 사용 지침
 

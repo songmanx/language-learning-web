@@ -37,6 +37,26 @@ describe("sessionConfig", () => {
     expect(getWordPromptMode(createWord({ prompt: "cat.mp3", answer: "\uACE0\uC591\uC774" }))).toBe("audio_to_meaning");
     expect(getWordPromptMode(createWord({ questionType: "meaning_to_word", answer: "\u732B" }))).toBe("meaning_to_kanji");
     expect(getWordPromptMode(createWord({ questionType: "meaning_to_word", answer: "\u306D\u3053" }))).toBe("meaning_to_furigana");
+    expect(
+      getWordPromptMode(
+        createWord({
+          id: "EN_N_0001",
+          prompt: "cat",
+          answer: "\uACE0\uC591\uC774",
+        }),
+      ),
+    ).toBe("kanji_to_meaning");
+    expect(
+      getWordPromptMode(
+        createWord({
+          id: "EN_N_0001",
+          questionType: "meaning_to_word",
+          prompt: "cat",
+          answer: "cat",
+          meaning: "\uACE0\uC591\uC774",
+        }),
+      ),
+    ).toBe("meaning_to_kanji");
   });
 
   it("filters words by the exact selected quiz mode", () => {
@@ -264,6 +284,23 @@ describe("sessionConfig", () => {
       partOfSpeech: "\uBA85\uC0AC",
       difficulty: "\uB09C\uC774\uB3C4 2",
       quizMode: "\uC74C\uC131 \u2192 \uB73B",
+    });
+  });
+
+  it("returns english-friendly quiz mode labels", () => {
+    expect(
+      getSessionConfigLabels(
+        {
+          partOfSpeech: "noun",
+          difficulty: "1",
+          quizMode: "kanji_to_meaning",
+        },
+        "en",
+      ),
+    ).toEqual({
+      partOfSpeech: "\uBA85\uC0AC",
+      difficulty: "\uB09C\uC774\uB3C4 1",
+      quizMode: "\uB2E8\uC5B4 \u2192 \uB73B",
     });
   });
 });

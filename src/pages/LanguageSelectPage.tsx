@@ -7,10 +7,17 @@ import { useLanguageStore } from "../stores/languageStore";
 const TEXT = {
   title: "언어 선택",
   loading: "언어 목록을 불러오는 중...",
-  accent: "JAPANESE",
   select: "선택",
   logout: "로그아웃",
 } as const;
+
+function getLanguageAccent(languageCode: string) {
+  if (languageCode === "en") {
+    return "ENGLISH";
+  }
+
+  return "JAPANESE";
+}
 
 export function LanguageSelectPage() {
   const navigate = useNavigate();
@@ -62,7 +69,7 @@ export function LanguageSelectPage() {
             <span className="relative flex items-center justify-between gap-4">
               <span className="min-w-0">
                 <span className="block text-[10px] font-semibold uppercase tracking-[0.28em] text-amber-200/80">
-                  {TEXT.accent}
+                  {getLanguageAccent(language.languageCode)}
                 </span>
                 <span className="mt-1 block text-[1.28rem] font-black tracking-[-0.045em] text-white drop-shadow-[0_8px_20px_rgba(0,0,0,0.16)] sm:text-[1.45rem]">
                   {language.label}

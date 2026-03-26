@@ -3,6 +3,7 @@ import { useAuthStore } from "../stores/authStore";
 import { apiClient, type WordItem } from "../services/apiClient";
 import { appLogger, logger } from "../services/logger";
 import { readJsonStorage, writeJsonStorage } from "../services/storage";
+import { mockEnglishWords } from "../features/game/mockWords";
 import {
   getSelectedLanguageKey,
   readCachedWords,
@@ -115,6 +116,7 @@ export const useLanguageStore = create<LanguageStore>((set, get) => ({
         set({
           availableLanguages: [
             { languageCode: "ja", label: "\uC77C\uBCF8\uC5B4", totalWords: fallbackWords.length },
+            { languageCode: "en", label: "\uC601\uC5B4", totalWords: mockEnglishWords.length },
           ],
           loadError: TEXT.metaFallback,
           isLoading: false,

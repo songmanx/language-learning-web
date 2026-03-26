@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   getQuizModeLabel,
+  getSupportedQuizModes,
   normalizeQuizModeFilter,
   type SessionConfig,
 } from "../features/game/sessionConfig";
@@ -9,14 +10,6 @@ import { readGlobalLeaderboard, type LeaderboardEntry } from "../services/sessio
 import { useLanguageStore } from "../stores/languageStore";
 
 type QuizModeValue = SessionConfig["quizMode"];
-
-const QUIZ_MODE_OPTIONS: Array<{ value: QuizModeValue; label: string }> = [
-  { value: "kanji_to_meaning", label: getQuizModeLabel("kanji_to_meaning") },
-  { value: "furigana_to_meaning", label: getQuizModeLabel("furigana_to_meaning") },
-  { value: "meaning_to_kanji", label: getQuizModeLabel("meaning_to_kanji") },
-  { value: "meaning_to_furigana", label: getQuizModeLabel("meaning_to_furigana") },
-  { value: "audio_to_meaning", label: getQuizModeLabel("audio_to_meaning") },
-];
 
 const TEXT = {
   title: "\uC804\uCCB4 \uC21C\uC704\uD45C",
@@ -50,6 +43,14 @@ export function OverallLeaderboardPage() {
   const selectedLanguage = useLanguageStore((state) => state.selectedLanguage);
   const availableLanguages = useLanguageStore((state) => state.availableLanguages);
   const [selectedQuizMode, setSelectedQuizMode] = useState<QuizModeValue>("kanji_to_meaning");
+  const quizModeOptions = useMemo(
+    () =>
+      getSupportedQuizModes(selectedLanguage).map((value) => ({
+        value,
+        label: getQuizModeLabel(value, selectedLanguage),
+      })),
+    [selectedLanguage],
+  );
 
   const languageLabel =
     availableLanguages.find((language) => language.languageCode === selectedLanguage)?.label ??
@@ -77,7 +78,7 @@ export function OverallLeaderboardPage() {
 
       <div className="rounded-[1.1rem] border border-white/10 bg-stone-950/40 p-3">
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-          {QUIZ_MODE_OPTIONS.map((option) => {
+          {quizModeOptions.map((option) => {
             const isSelected = selectedQuizMode === option.value;
 
             return (

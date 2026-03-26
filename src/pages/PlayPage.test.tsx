@@ -16,8 +16,11 @@ const RESULT_SUMMARY = "\uACB0\uACFC \uC694\uC57D";
 const MODE_KANJI = "\uD55C\uC790 \u2192 \uB73B";
 const MODE_MEANING_KANJI = "\uB73B \u2192 \uD55C\uC790";
 const AUDIO = "\uC74C\uC131 \u2192 \uB73B";
+const EN_MODE_WORD = "\uB2E8\uC5B4 \u2192 \uB73B";
+const EN_MODE_MEANING_WORD = "\uB73B \u2192 \uB2E8\uC5B4";
 const NO_AUDIO_DATA = "\uB370\uC774\uD130 \uC5C6\uC74C";
 const JAPANESE = "\uC77C\uBCF8\uC5B4";
+const ENGLISH = "\uC601\uC5B4";
 const DIFFICULTY_3 = "\uB09C\uC774\uB3C4 3+";
 const NOUN = "\uBA85\uC0AC";
 const RELOAD_MESSAGE = "\uB2E8\uC5B4\uB97C \uB2E4\uC2DC \uBD88\uB7EC\uC640 \uC8FC\uC138\uC694";
@@ -99,6 +102,38 @@ function createAudioReadyWords(): WordItem[] {
       meaning: "\uAC1C",
       difficulty: "1",
       questionType: "word_to_meaning",
+    },
+  ];
+}
+
+function createEnglishWords(): WordItem[] {
+  return [
+    {
+      id: "EN_N_0001",
+      prompt: "apple",
+      choices: ["\uC0AC\uACFC", "\uBC14\uB098\uB098", "\uD3EC\uB3C4", "\uB538\uAE30"],
+      answer: "\uC0AC\uACFC",
+      meaning: "\uC0AC\uACFC",
+      difficulty: "1",
+      questionType: "word_to_meaning",
+    },
+    {
+      id: "EN_N_0002",
+      prompt: "school",
+      choices: ["\uD559\uAD50", "\uB3C4\uC11C\uAD00", "\uBCD1\uC6D0", "\uC9D1"],
+      answer: "\uD559\uAD50",
+      meaning: "\uD559\uAD50",
+      difficulty: "1",
+      questionType: "word_to_meaning",
+    },
+    {
+      id: "EN_N_0003",
+      prompt: "\uC0AC\uACFC",
+      choices: ["apple", "school", "book", "chair"],
+      answer: "apple",
+      meaning: "\uC0AC\uACFC",
+      difficulty: "1",
+      questionType: "meaning_to_word",
     },
   ];
 }
@@ -269,6 +304,23 @@ describe("PlayPage", () => {
 
     expect(await screen.findByRole("button", { name: REPLAY_AUDIO })).toBeInTheDocument();
     expect(screen.getByText("\uC74C\uC131 \uBB38\uC81C")).toBeInTheDocument();
+  });
+
+  it("shows english-specific quiz mode labels for english words", () => {
+    useLanguageStore.setState({
+      selectedLanguage: "en",
+      availableLanguages: [{ languageCode: "en", label: ENGLISH, totalWords: 3 }],
+      words: createEnglishWords(),
+      isLoading: false,
+      loadError: null,
+    });
+
+    renderPlayFlow();
+
+    expect(screen.getByRole("button", { name: EN_MODE_WORD })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: EN_MODE_MEANING_WORD })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: AUDIO })).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: MODE_KANJI })).not.toBeInTheDocument();
   });
 
   it("disables unavailable difficulty", async () => {

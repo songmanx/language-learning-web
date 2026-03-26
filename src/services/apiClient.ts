@@ -1,4 +1,4 @@
-import { mockJapaneseWords } from "../features/game/mockWords";
+import { mockEnglishWords, mockJapaneseWords } from "../features/game/mockWords";
 import {
   type ApiResponse,
   type LanguageMeta,
@@ -87,23 +87,40 @@ function buildMockMetaDto(): LanguageMetaDto[] {
       label: "\uC77C\uBCF8\uC5B4",
       total_words: mockJapaneseWords.length,
     },
+    {
+      language_code: "en",
+      label: "\uC601\uC5B4",
+      total_words: mockEnglishWords.length,
+    },
   ];
 }
 
 function buildMockWordsDto(languageCode: string): WordItemDto[] {
-  if (languageCode !== "ja") {
-    return [];
+  if (languageCode === "ja") {
+    return mockJapaneseWords.map((word) => ({
+      word_id: word.id,
+      prompt: word.prompt,
+      choices: word.choices,
+      answer: word.answer,
+      meaning: word.meaning,
+      difficulty: word.difficulty,
+      question_type: word.questionType,
+    }));
   }
 
-  return mockJapaneseWords.map((word) => ({
-    word_id: word.id,
-    prompt: word.prompt,
-    choices: word.choices,
-    answer: word.answer,
-    meaning: word.meaning,
-    difficulty: word.difficulty,
-    question_type: word.questionType,
-  }));
+  if (languageCode === "en") {
+    return mockEnglishWords.map((word) => ({
+      word_id: word.id,
+      prompt: word.prompt,
+      choices: word.choices,
+      answer: word.answer,
+      meaning: word.meaning,
+      difficulty: word.difficulty,
+      question_type: word.questionType,
+    }));
+  }
+
+  return [];
 }
 
 function isApiErrorResponse<T>(response: ApiResponse<T>): response is Extract<ApiResponse<T>, { ok: false }> {

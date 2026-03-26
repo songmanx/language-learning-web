@@ -8,6 +8,7 @@ export type QuizModeFilter =
   | "audio_to_meaning"
   | "meaning_to_kanji"
   | "meaning_to_furigana";
+export type SupportedLanguageCode = "ja" | "en";
 
 export type SessionConfig = {
   partOfSpeech: PartOfSpeechFilter;
@@ -63,6 +64,10 @@ function normalizeText(value: string) {
 
 function getWordId(word: WordLike) {
   return String(word.id ?? word.word_id ?? "").trim();
+}
+
+function inferLanguageCodeFromWordId(wordId: string): SupportedLanguageCode {
+  return String(wordId || "").trim().toUpperCase().startsWith("EN_") ? "en" : "ja";
 }
 
 function getQuestionType(word: WordLike): QuestionType {
@@ -134,6 +139,11 @@ function getMeaningToWordVariantRank(word: WordItem) {
 }
 
 function getMeaningToWordMode(word: WordItem): QuizModeFilter {
+  const languageCode = inferLanguageCodeFromWordId(getWordId(word));
+  if (languageCode === "en") {
+    return "meaning_to_kanji";
+  }
+
   const answer = String(word.answer ?? "").trim();
 
   if (containsKanji(answer)) {
@@ -166,8 +176,14 @@ export function inferPartOfSpeech(wordId: string): PartOfSpeechFilter {
 }
 
 export function getWordPromptMode(word: WordItem): QuizModeFilter {
+  const languageCode = inferLanguageCodeFromWordId(getWordId(word));
+
   if (getQuestionType(word) === "meaning_to_word") {
     return getMeaningToWordMode(word);
+  }
+
+  if (languageCode === "en") {
+    return "kanji_to_meaning";
   }
 
   const prompt = String(word.prompt ?? "").trim();
@@ -184,7 +200,24 @@ export function getWordPromptMode(word: WordItem): QuizModeFilter {
 }
 
 function isAudioCompatibleWord(word: WordItem) {
-  return getQuestionType(word) === "word_to_meaning" && getWordPromptMode(word) === "furigana_to_meaning";
+  if (getQuestionType(word) !== "word_to_meaning") {
+    return false;
+  }
+
+  const languageCode = inferLanguageCodeFromWordId(getWordId(word));
+  if (languageCode === "en") {
+    return normalizeText(word.prompt).length > 0;
+  }
+
+  return getWordPromptMode(word) === "furigana_to_meaning";
+}
+
+export function getSupportedQuizModes(languageCode?: string | null): QuizModeFilter[] {
+  if (languageCode === "en") {
+    return ["kanji_to_meaning", "meaning_to_kanji", "audio_to_meaning"];
+  }
+
+  return QUIZ_MODE_ORDER;
 }
 
 function wordMatchesQuizMode(word: WordItem, quizMode: QuizModeFilter) {
@@ -444,7 +477,27 @@ export function buildSessionWordQueue(
     : sortStandardQueue(words, reviewPriorityMap, seed);
 }
 
-export function getQuizModeLabel(mode: QuizModeFilter) {
+export function getQuizModeLabel(mode: QuizModeFilter, languageCode: string | null = "ja") {
+  if (languageCode === "en") {
+    if (mode === "kanji_to_meaning") {
+      return "\uB2E8\uC5B4 \u2192 \uB73B";
+    }
+
+    if (mode === "furigana_to_meaning") {
+      return "\uC2A4\uD3A0\uB9C1 \u2192 \uB73B";
+    }
+
+    if (mode === "meaning_to_kanji") {
+      return "\uB73B \u2192 \uB2E8\uC5B4";
+    }
+
+    if (mode === "meaning_to_furigana") {
+      return "\uB73B \u2192 \uC2A4\uD3A0\uB9C1";
+    }
+
+    return "\uC74C\uC131 \u2192 \uB73B";
+  }
+
   if (mode === "kanji_to_meaning") {
     return "\uD55C\uC790 \u2192 \uB73B";
   }
@@ -464,7 +517,7 @@ export function getQuizModeLabel(mode: QuizModeFilter) {
   return "\uC74C\uC131 \u2192 \uB73B";
 }
 
-export function getSessionConfigLabels(sessionConfig: SessionConfig) {
+export function getSessionConfigLabels(sessionConfig: SessionConfig, languageCode: string | null = "ja") {
   return {
     partOfSpeech:
       sessionConfig.partOfSpeech === "all"
@@ -486,10 +539,10 @@ export function getSessionConfigLabels(sessionConfig: SessionConfig) {
           : sessionConfig.difficulty === "2"
             ? "\uB09C\uC774\uB3C4 2"
             : "\uB09C\uC774\uB3C4 3+",
-    quizMode: getQuizModeLabel(sessionConfig.quizMode),
+    quizMode: getQuizModeLabel(sessionConfig.quizMode, languageCode),
   };
 }
 
-export function getReadableSessionConfigLabels(sessionConfig: SessionConfig) {
-  return getSessionConfigLabels(sessionConfig);
+export function getReadableSessionConfigLabels(sessionConfig: SessionConfig, languageCode: string | null = "ja") {
+  return getSessionConfigLabels(sessionConfig, languageCode);
 }

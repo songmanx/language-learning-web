@@ -38,3 +38,33 @@ export const mockJapaneseWords: WordItem[] = [
     questionType: "meaning_to_word",
   },
 ];
+
+export const mockEnglishWords: WordItem[] = [
+  {
+    id: "EN_N_0001",
+    prompt: "apple",
+    choices: ["사과", "바나나", "포도", "딸기"],
+    answer: "사과",
+    meaning: "사과",
+    difficulty: "1",
+    questionType: "word_to_meaning",
+  },
+  {
+    id: "EN_N_0002",
+    prompt: "school",
+    choices: ["학교", "도서관", "병원", "집"],
+    answer: "학교",
+    meaning: "학교",
+    difficulty: "1",
+    questionType: "word_to_meaning",
+  },
+  {
+    id: "EN_V_0003",
+    prompt: "먹다",
+    choices: ["eat", "run", "sleep", "read"],
+    answer: "eat",
+    meaning: "먹다",
+    difficulty: "2",
+    questionType: "meaning_to_word",
+  },
+];

@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import argparse
 import json
@@ -12,6 +12,7 @@ from googleapiclient.discovery import build
 
 DEFAULT_CHOICE_COUNT = 4
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets.readonly"]
+SUPPORTED_LANGUAGES = {"ja", "en"}
 
 
 def parse_args() -> argparse.Namespace:
@@ -121,7 +122,20 @@ def fetch_sheet_values(service, spreadsheet_id: str, sheet_name: str) -> list[li
     return response.get("values", [])
 
 
-def fetch_source_rows(service, spreadsheet_id: str) -> list[dict[str, Any]]:
+def is_source_sheet(header_keys: list[str], language_code: str) -> bool:
+    if "word_id" not in header_keys:
+        return False
+
+    if language_code == "ja":
+        return "jp_kanji" in header_keys
+
+    if language_code == "en":
+        return "eng_word" in header_keys
+
+    return False
+
+
+def fetch_source_rows(service, spreadsheet_id: str, language_code: str) -> list[dict[str, Any]]:
     spreadsheet = service.spreadsheets().get(spreadsheetId=spreadsheet_id).execute()
     sheets = spreadsheet.get("sheets", [])
     source_rows: list[dict[str, Any]] = []
@@ -130,7 +144,8 @@ def fetch_source_rows(service, spreadsheet_id: str) -> list[dict[str, Any]]:
         title = sheet["properties"]["title"]
         values = fetch_sheet_values(service, spreadsheet_id, title)
         header_keys = [normalize_header_key(value) for value in values[1]] if len(values) >= 2 else []
-        if "word_id" not in header_keys or "jp_kanji" not in header_keys:
+
+        if not is_source_sheet(header_keys, language_code):
             continue
 
         for row in sheet_to_objects(values):
@@ -142,20 +157,23 @@ def fetch_source_rows(service, spreadsheet_id: str) -> list[dict[str, Any]]:
     return source_rows
 
 
-def build_question_dtos(source_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+def build_japanese_question_dtos(source_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     active_rows = [row for row in source_rows if row.get("word_id") and get_primary_meaning(row)]
     meaning_pool = unique([get_primary_meaning(row) for row in active_rows if get_primary_meaning(row)])
-    kanji_pool = unique([str(row.get("jp_kanji", "") or "").strip() for row in active_rows if str(row.get("jp_kanji", "") or "").strip()])
-
-    furigana_pool = unique([
-        candidate
-        for row in active_rows
-        for candidate in (
-            str(row.get("jp_furigana", "") or "").strip(),
-            str(row.get("jp_furigana_2", "") or "").strip(),
-        )
-        if candidate
-    ])
+    kanji_pool = unique(
+        [str(row.get("jp_kanji", "") or "").strip() for row in active_rows if str(row.get("jp_kanji", "") or "").strip()]
+    )
+    furigana_pool = unique(
+        [
+            candidate
+            for row in active_rows
+            for candidate in (
+                str(row.get("jp_furigana", "") or "").strip(),
+                str(row.get("jp_furigana_2", "") or "").strip(),
+            )
+            if candidate
+        ]
+    )
 
     questions: list[dict[str, Any]] = []
 
@@ -181,27 +199,78 @@ def build_question_dtos(source_rows: list[dict[str, Any]]) -> list[dict[str, Any
     return questions
 
 
+def build_english_question_dtos(source_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    active_rows = [
+        row
+        for row in source_rows
+        if row.get("word_id") and get_primary_meaning(row) and str(row.get("eng_word", "") or "").strip()
+    ]
+    meaning_pool = unique([get_primary_meaning(row) for row in active_rows if get_primary_meaning(row)])
+    word_pool = unique([str(row.get("eng_word", "") or "").strip() for row in active_rows if str(row.get("eng_word", "") or "").strip()])
+
+    questions: list[dict[str, Any]] = []
+
+    for row in active_rows:
+        word_id = str(row.get("word_id", "") or "").strip()
+        prompt = str(row.get("eng_word", "") or "").strip()
+        meaning = get_primary_meaning(row)
+        difficulty = str(row.get("difficulty", "") or "")
+
+        questions.append(build_question_dto(word_id, prompt, meaning_pool, meaning, "word_to_meaning", meaning, difficulty))
+        questions.append(build_question_dto(word_id, meaning, word_pool, prompt, "meaning_to_word", meaning, difficulty))
+
+    return questions
+
+
+def build_question_dtos(source_rows: list[dict[str, Any]], language_code: str) -> list[dict[str, Any]]:
+    if language_code == "ja":
+        return build_japanese_question_dtos(source_rows)
+    if language_code == "en":
+        return build_english_question_dtos(source_rows)
+    raise ValueError(f"Unsupported language_code: {language_code}")
+
+
 def write_json(path: Path, payload: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
+def load_existing_languages(path: Path) -> list[dict[str, Any]]:
+    if not path.exists():
+        return []
+
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8-sig"))
+    except json.JSONDecodeError:
+        return []
+
+    return payload if isinstance(payload, list) else []
+
+
+def merge_language_meta(existing: list[dict[str, Any]], next_entry: dict[str, Any]) -> list[dict[str, Any]]:
+    merged = [item for item in existing if isinstance(item, dict) and item.get("language_code") != next_entry["language_code"]]
+    merged.append(next_entry)
+    return sorted(merged, key=lambda item: str(item.get("language_code", "")))
+
+
 def main() -> None:
     args = parse_args()
+    if args.language_code not in SUPPORTED_LANGUAGES:
+        raise ValueError(f"Unsupported language_code '{args.language_code}'. Supported: {sorted(SUPPORTED_LANGUAGES)}")
+
     service = load_service(args.credentials)
-    source_rows = fetch_source_rows(service, args.spreadsheet_id)
-    questions = build_question_dtos(source_rows)
+    source_rows = fetch_source_rows(service, args.spreadsheet_id, args.language_code)
+    questions = build_question_dtos(source_rows, args.language_code)
 
     output_dir = Path(args.output_dir)
-    languages_payload = [
-        {
-            "language_code": args.language_code,
-            "label": args.language_label,
-            "total_words": len(source_rows),
-        }
-    ]
+    languages_path = output_dir / "languages.json"
+    next_language_meta = {
+        "language_code": args.language_code,
+        "label": args.language_label,
+        "total_words": len(source_rows),
+    }
 
-    write_json(output_dir / "languages.json", languages_payload)
+    write_json(languages_path, merge_language_meta(load_existing_languages(languages_path), next_language_meta))
     write_json(output_dir / args.language_code / "words.json", questions)
 
     summary = {
@@ -215,4 +284,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

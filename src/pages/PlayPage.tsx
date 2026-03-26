@@ -10,6 +10,7 @@ import {
   getAvailableQuizModes,
   getQuizModeCounts,
   getQuizModeLabel,
+  getSupportedQuizModes,
   getReadableSessionConfigLabels as getSessionConfigLabels,
   normalizeQuizModeFilter,
   type DifficultyFilter,
@@ -170,14 +171,6 @@ const DIFFICULTY_OPTIONS: Array<{ value: DifficultyFilter; label: string }> = [
   { value: "3", label: TEXT.difficulty3 },
 ];
 
-const QUIZ_MODE_OPTIONS: Array<{ value: QuizModeFilter; label: string }> = [
-  { value: "kanji_to_meaning", label: getQuizModeLabel("kanji_to_meaning") },
-  { value: "furigana_to_meaning", label: getQuizModeLabel("furigana_to_meaning") },
-  { value: "meaning_to_kanji", label: getQuizModeLabel("meaning_to_kanji") },
-  { value: "meaning_to_furigana", label: getQuizModeLabel("meaning_to_furigana") },
-  { value: "audio_to_meaning", label: getQuizModeLabel("audio_to_meaning") },
-];
-
 function normalizeSessionConfig(config?: SessionConfig | null): SessionConfig {
   return {
     partOfSpeech: config?.partOfSpeech ?? DEFAULT_SESSION_CONFIG.partOfSpeech,
@@ -304,6 +297,18 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
   const isReviewMode = mode === "review";
   const isNonStandardMode = isPracticeMode || isReviewMode;
   const isAudioQuizMode = sessionConfig.quizMode === "audio_to_meaning";
+  const supportedQuizModes = useMemo(
+    () => getSupportedQuizModes(selectedLanguage),
+    [selectedLanguage],
+  );
+  const quizModeOptions = useMemo(
+    () =>
+      supportedQuizModes.map((value) => ({
+        value,
+        label: getQuizModeLabel(value, selectedLanguage),
+      })),
+    [selectedLanguage, supportedQuizModes],
+  );
   const modeTitle = isReviewMode ? TEXT.reviewMode : isPracticeMode ? TEXT.practiceMode : TEXT.standardMode;
   const reviewSnapshot = useMemo(() => {
     if (!playerId || !selectedLanguage) {
@@ -334,6 +339,17 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
       setQuestionVisualPhase("steady");
     }
   }, [incomingSessionConfig]);
+
+  useEffect(() => {
+    if (supportedQuizModes.includes(sessionConfig.quizMode)) {
+      return;
+    }
+
+    setSessionConfig((previous) => ({
+      ...previous,
+      quizMode: supportedQuizModes[0] ?? DEFAULT_SESSION_CONFIG.quizMode,
+    }));
+  }, [sessionConfig.quizMode, supportedQuizModes]);
 
   useEffect(() => {
     if (words.length === 0 && selectedLanguage) {
@@ -405,10 +421,10 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
   );
   const sessionConfigLabels = useMemo(
     () => ({
-      ...getSessionConfigLabels(sessionConfig),
-      quizMode: getQuizModeLabel(sessionConfig.quizMode),
+      ...getSessionConfigLabels(sessionConfig, selectedLanguage),
+      quizMode: getQuizModeLabel(sessionConfig.quizMode, selectedLanguage),
     }),
-    [sessionConfig],
+    [selectedLanguage, sessionConfig],
   );
   const currentWord = configuredWords[currentIndex];
   const currentQuestion = useMemo(() => {
@@ -905,6 +921,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
           <SessionSetupPanel
             sessionConfig={sessionConfig}
             sessionConfigLabels={sessionConfigLabels}
+            quizModeOptions={quizModeOptions}
             availableQuizModes={availableQuizModes}
             quizModeCounts={quizModeCounts}
             availablePartOfSpeechFilters={availablePartOfSpeechFilters}
@@ -985,6 +1002,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
           startLabel={isReviewMode ? TEXT.startReview : isPracticeMode ? TEXT.startPractice : TEXT.startGame}
           sessionConfig={sessionConfig}
           sessionConfigLabels={sessionConfigLabels}
+          quizModeOptions={quizModeOptions}
           availableQuizModes={availableQuizModes}
           quizModeCounts={quizModeCounts}
           availablePartOfSpeechFilters={availablePartOfSpeechFilters}
@@ -1209,6 +1227,7 @@ function formatHeartValue(value: number) {
 type SessionSetupPanelProps = {
   sessionConfig: SessionConfig;
   sessionConfigLabels: ReturnType<typeof getSessionConfigLabels>;
+  quizModeOptions: Array<{ value: QuizModeFilter; label: string }>;
   availableQuizModes: QuizModeFilter[];
   quizModeCounts: Record<QuizModeFilter, number>;
   availablePartOfSpeechFilters: PartOfSpeechFilter[];
@@ -1223,6 +1242,7 @@ type SessionSetupPanelProps = {
 function SessionSetupPanel({
   sessionConfig,
   sessionConfigLabels,
+  quizModeOptions,
   availableQuizModes,
   quizModeCounts,
   availablePartOfSpeechFilters,
@@ -1273,13 +1293,13 @@ function SessionSetupPanel({
           />
           <SetupOptionGroup
             title={TEXT.quizModeTitle}
-            options={QUIZ_MODE_OPTIONS}
+            options={quizModeOptions}
             currentValue={sessionConfig.quizMode}
             isDisabled={isDisabled}
             badges={{
               audio_to_meaning: quizModeCounts.audio_to_meaning === 0 ? TEXT.noAudioData : undefined,
             }}
-            disabledValues={QUIZ_MODE_OPTIONS.filter((option) => !availableQuizModes.includes(option.value)).map(
+            disabledValues={quizModeOptions.filter((option) => !availableQuizModes.includes(option.value)).map(
               (option) => option.value,
             )}
             onSelect={(value) => onUpdate({ quizMode: value as QuizModeFilter })}
@@ -1306,6 +1326,7 @@ type SessionStartScreenProps = {
   startLabel: string;
   sessionConfig: SessionConfig;
   sessionConfigLabels: ReturnType<typeof getSessionConfigLabels>;
+  quizModeOptions: Array<{ value: QuizModeFilter; label: string }>;
   availableQuizModes: QuizModeFilter[];
   quizModeCounts: Record<QuizModeFilter, number>;
   availablePartOfSpeechFilters: PartOfSpeechFilter[];
@@ -1323,6 +1344,7 @@ function SessionStartScreen({
   startLabel,
   sessionConfig,
   sessionConfigLabels,
+  quizModeOptions,
   availableQuizModes,
   quizModeCounts,
   availablePartOfSpeechFilters,
@@ -1386,13 +1408,13 @@ function SessionStartScreen({
           />
             <SetupOptionGroup
               title={TEXT.quizModeTitle}
-              options={QUIZ_MODE_OPTIONS}
+              options={quizModeOptions}
               currentValue={sessionConfig.quizMode}
               isDisabled={false}
               badges={{
                 audio_to_meaning: quizModeCounts.audio_to_meaning === 0 ? TEXT.noAudioData : undefined,
               }}
-              disabledValues={QUIZ_MODE_OPTIONS.filter((option) => !availableQuizModes.includes(option.value)).map(
+              disabledValues={quizModeOptions.filter((option) => !availableQuizModes.includes(option.value)).map(
                 (option) => option.value,
               )}
               onSelect={(value) => onUpdate({ quizMode: value as QuizModeFilter })}

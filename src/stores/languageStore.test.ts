@@ -67,4 +67,16 @@ describe("languageStore", () => {
 
     getMetaMock.mockRestore();
   });
+  it("?? fallback ?? ??? ????", async () => {
+    const getMetaMock = vi.spyOn(apiClient, "getMeta").mockRejectedValue(new Error("meta down"));
+
+    await useLanguageStore.getState().loadMeta();
+
+    const state = useLanguageStore.getState();
+    expect(state.availableLanguages.some((language) => language.languageCode === "ja")).toBe(true);
+    expect(state.availableLanguages.some((language) => language.languageCode === "en")).toBe(true);
+
+    getMetaMock.mockRestore();
+  });
+
 });

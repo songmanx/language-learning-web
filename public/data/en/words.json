@@ -1,0 +1,8374 @@
+[
+  {
+    "word_id": "EN_N_0001",
+    "prompt": "issue",
+    "choices": [
+      "문제",
+      "방법",
+      "가끔",
+      "관련 있는"
+    ],
+    "answer": "문제",
+    "meaning": "문제",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0001",
+    "prompt": "문제",
+    "choices": [
+      "though",
+      "someone",
+      "issue",
+      "evidence"
+    ],
+    "answer": "issue",
+    "meaning": "문제",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0002",
+    "prompt": "policy",
+    "choices": [
+      "정책",
+      "거의",
+      "일반적인",
+      "어떤 것"
+    ],
+    "answer": "정책",
+    "meaning": "정책",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0002",
+    "prompt": "정책",
+    "choices": [
+      "everyone",
+      "social",
+      "policy",
+      "impact"
+    ],
+    "answer": "policy",
+    "meaning": "정책",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0003",
+    "prompt": "evidence",
+    "choices": [
+      "어떤 것",
+      "모든 것",
+      "증거",
+      "요구하다"
+    ],
+    "answer": "증거",
+    "meaning": "증거",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0003",
+    "prompt": "증거",
+    "choices": [
+      "allow",
+      "related",
+      "evidence",
+      "sometimes"
+    ],
+    "answer": "evidence",
+    "meaning": "증거",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0004",
+    "prompt": "theory",
+    "choices": [
+      "이론",
+      "결과를 낳다",
+      "누구를",
+      "~할 때마다"
+    ],
+    "answer": "이론",
+    "meaning": "이론",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0004",
+    "prompt": "이론",
+    "choices": [
+      "theory",
+      "those",
+      "twice",
+      "though"
+    ],
+    "answer": "theory",
+    "meaning": "이론",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0005",
+    "prompt": "research",
+    "choices": [
+      "~전에",
+      "해로운",
+      "그러므로",
+      "연구"
+    ],
+    "answer": "연구",
+    "meaning": "연구",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0005",
+    "prompt": "연구",
+    "choices": [
+      "research",
+      "somewhere",
+      "influence",
+      "either"
+    ],
+    "answer": "research",
+    "meaning": "연구",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0006",
+    "prompt": "analysis",
+    "choices": [
+      "분석",
+      "깨닫다",
+      "거의 없는 (가산)",
+      "천천히"
+    ],
+    "answer": "분석",
+    "meaning": "분석",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0006",
+    "prompt": "분석",
+    "choices": [
+      "analysis",
+      "yourself",
+      "too",
+      "collective"
+    ],
+    "answer": "analysis",
+    "meaning": "분석",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0007",
+    "prompt": "approach",
+    "choices": [
+      "규모",
+      "통제",
+      "권위",
+      "접근법"
+    ],
+    "answer": "접근법",
+    "meaning": "접근법",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0007",
+    "prompt": "접근법",
+    "choices": [
+      "most",
+      "possible",
+      "approach",
+      "provide"
+    ],
+    "answer": "approach",
+    "meaning": "접근법",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0008",
+    "prompt": "method",
+    "choices": [
+      "방법",
+      "약간",
+      "환경의",
+      "너무"
+    ],
+    "answer": "방법",
+    "meaning": "방법",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0008",
+    "prompt": "방법",
+    "choices": [
+      "succeed",
+      "method",
+      "than",
+      "separately"
+    ],
+    "answer": "method",
+    "meaning": "방법",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0009",
+    "prompt": "process",
+    "choices": [
+      "강조하다",
+      "과정",
+      "다루다",
+      "야기하다"
+    ],
+    "answer": "과정",
+    "meaning": "과정",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0009",
+    "prompt": "과정",
+    "choices": [
+      "process",
+      "most",
+      "when",
+      "seriously"
+    ],
+    "answer": "process",
+    "meaning": "과정",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0010",
+    "prompt": "result",
+    "choices": [
+      "한 번",
+      "원인",
+      "개념",
+      "결과"
+    ],
+    "answer": "결과",
+    "meaning": "결과",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0010",
+    "prompt": "결과",
+    "choices": [
+      "result",
+      "so",
+      "always",
+      "issue"
+    ],
+    "answer": "result",
+    "meaning": "결과",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0011",
+    "prompt": "effect",
+    "choices": [
+      "기능",
+      "전통적인",
+      "영향",
+      "역할"
+    ],
+    "answer": "영향",
+    "meaning": "영향",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0011",
+    "prompt": "영향",
+    "choices": [
+      "many",
+      "effect",
+      "separately",
+      "clear"
+    ],
+    "answer": "effect",
+    "meaning": "영향",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0012",
+    "prompt": "cause",
+    "choices": [
+      "쉬운",
+      "유용한",
+      "원인",
+      "~하는 동안"
+    ],
+    "answer": "원인",
+    "meaning": "원인",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0012",
+    "prompt": "원인",
+    "choices": [
+      "respond",
+      "twice",
+      "common",
+      "cause"
+    ],
+    "answer": "cause",
+    "meaning": "원인",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0013",
+    "prompt": "factor",
+    "choices": [
+      "효과적인",
+      "천천히",
+      "가치",
+      "요인"
+    ],
+    "answer": "요인",
+    "meaning": "요인",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0013",
+    "prompt": "요인",
+    "choices": [
+      "factor",
+      "define",
+      "still",
+      "react"
+    ],
+    "answer": "factor",
+    "meaning": "요인",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0014",
+    "prompt": "role",
+    "choices": [
+      "기능",
+      "막다",
+      "역할",
+      "정의하다"
+    ],
+    "answer": "역할",
+    "meaning": "역할",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0014",
+    "prompt": "역할",
+    "choices": [
+      "role",
+      "hardly",
+      "unlimited",
+      "most"
+    ],
+    "answer": "role",
+    "meaning": "역할",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0015",
+    "prompt": "responsibility",
+    "choices": [
+      "그 자신",
+      "비슷한",
+      "책임",
+      "실패하다"
+    ],
+    "answer": "책임",
+    "meaning": "책임",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0015",
+    "prompt": "책임",
+    "choices": [
+      "all",
+      "responsibility",
+      "context",
+      "individual"
+    ],
+    "answer": "responsibility",
+    "meaning": "책임",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0016",
+    "prompt": "opportunity",
+    "choices": [
+      "기회",
+      "증거",
+      "둘 중 하나",
+      "이점"
+    ],
+    "answer": "기회",
+    "meaning": "기회",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0016",
+    "prompt": "기회",
+    "choices": [
+      "efficient",
+      "produce",
+      "than",
+      "opportunity"
+    ],
+    "answer": "opportunity",
+    "meaning": "기회",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0017",
+    "prompt": "challenge",
+    "choices": [
+      "완전히",
+      "왜냐하면",
+      "도전",
+      "그것 자체"
+    ],
+    "answer": "도전",
+    "meaning": "도전",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0017",
+    "prompt": "도전",
+    "choices": [
+      "issue",
+      "mainly",
+      "challenge",
+      "value"
+    ],
+    "answer": "challenge",
+    "meaning": "도전",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0018",
+    "prompt": "solution",
+    "choices": [
+      "역할",
+      "~후에",
+      "권위",
+      "해결책"
+    ],
+    "answer": "해결책",
+    "meaning": "해결책",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0018",
+    "prompt": "해결책",
+    "choices": [
+      "cause",
+      "solution",
+      "affect",
+      "decision"
+    ],
+    "answer": "solution",
+    "meaning": "해결책",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0019",
+    "prompt": "benefit",
+    "choices": [
+      "이점",
+      "많은 (불가산)",
+      "여기",
+      "일반적인"
+    ],
+    "answer": "이점",
+    "meaning": "이점",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0019",
+    "prompt": "이점",
+    "choices": [
+      "those",
+      "benefit",
+      "slow",
+      "power"
+    ],
+    "answer": "benefit",
+    "meaning": "이점",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0020",
+    "prompt": "risk",
+    "choices": [
+      "접근법",
+      "위험",
+      "한 번",
+      "분명히"
+    ],
+    "answer": "위험",
+    "meaning": "위험",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0020",
+    "prompt": "위험",
+    "choices": [
+      "risk",
+      "obviously",
+      "all",
+      "therefore"
+    ],
+    "answer": "risk",
+    "meaning": "위험",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0021",
+    "prompt": "impact",
+    "choices": [
+      "영향",
+      "요구하다",
+      "체계",
+      "강하게"
+    ],
+    "answer": "영향",
+    "meaning": "영향",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0021",
+    "prompt": "영향",
+    "choices": [
+      "contrast",
+      "function",
+      "impact",
+      "debate"
+    ],
+    "answer": "impact",
+    "meaning": "영향",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0022",
+    "prompt": "relationship",
+    "choices": [
+      "관계",
+      "사회",
+      "직접적으로",
+      "분석"
+    ],
+    "answer": "관계",
+    "meaning": "관계",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0022",
+    "prompt": "관계",
+    "choices": [
+      "yourself",
+      "scale",
+      "relationship",
+      "similar"
+    ],
+    "answer": "relationship",
+    "meaning": "관계",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0023",
+    "prompt": "communication",
+    "choices": [
+      "영향",
+      "그때",
+      "의사소통",
+      "아무것도 ~않다"
+    ],
+    "answer": "의사소통",
+    "meaning": "의사소통",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0023",
+    "prompt": "의사소통",
+    "choices": [
+      "behavior",
+      "opportunity",
+      "communication",
+      "form"
+    ],
+    "answer": "communication",
+    "meaning": "의사소통",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0024",
+    "prompt": "decision",
+    "choices": [
+      "흔한",
+      "결정",
+      "두 번",
+      "행동"
+    ],
+    "answer": "결정",
+    "meaning": "결정",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0024",
+    "prompt": "결정",
+    "choices": [
+      "opportunity",
+      "ourselves",
+      "decision",
+      "hardly"
+    ],
+    "answer": "decision",
+    "meaning": "결정",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0025",
+    "prompt": "choice",
+    "choices": [
+      "기능",
+      "선택",
+      "여전히",
+      "일시적인"
+    ],
+    "answer": "선택",
+    "meaning": "선택",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0025",
+    "prompt": "선택",
+    "choices": [
+      "which",
+      "choice",
+      "affect",
+      "focus"
+    ],
+    "answer": "choice",
+    "meaning": "선택",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0026",
+    "prompt": "behavior",
+    "choices": [
+      "많은",
+      "행동",
+      "무엇",
+      "적절한"
+    ],
+    "answer": "행동",
+    "meaning": "행동",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0026",
+    "prompt": "행동",
+    "choices": [
+      "behavior",
+      "suitable",
+      "power",
+      "temporary"
+    ],
+    "answer": "behavior",
+    "meaning": "행동",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0027",
+    "prompt": "attitude",
+    "choices": [
+      "세계적인",
+      "많은 (불가산)",
+      "구조",
+      "태도"
+    ],
+    "answer": "태도",
+    "meaning": "태도",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0027",
+    "prompt": "태도",
+    "choices": [
+      "contain",
+      "whose",
+      "include",
+      "attitude"
+    ],
+    "answer": "attitude",
+    "meaning": "태도",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0028",
+    "prompt": "value",
+    "choices": [
+      "사실은",
+      "심지어",
+      "관련 있는",
+      "가치"
+    ],
+    "answer": "가치",
+    "meaning": "가치",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0028",
+    "prompt": "가치",
+    "choices": [
+      "after",
+      "value",
+      "structure",
+      "because"
+    ],
+    "answer": "value",
+    "meaning": "가치",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0029",
+    "prompt": "culture",
+    "choices": [
+      "천천히",
+      "조심스럽게",
+      "그렇지 않으면",
+      "문화"
+    ],
+    "answer": "문화",
+    "meaning": "문화",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0029",
+    "prompt": "문화",
+    "choices": [
+      "behavior",
+      "culture",
+      "something",
+      "every"
+    ],
+    "answer": "culture",
+    "meaning": "문화",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0030",
+    "prompt": "society",
+    "choices": [
+      "연구",
+      "사회",
+      "꽤",
+      "규모"
+    ],
+    "answer": "사회",
+    "meaning": "사회",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0030",
+    "prompt": "사회",
+    "choices": [
+      "support",
+      "society",
+      "completely",
+      "everything"
+    ],
+    "answer": "society",
+    "meaning": "사회",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0031",
+    "prompt": "concept",
+    "choices": [
+      "결정",
+      "개념",
+      "구조",
+      "누구"
+    ],
+    "answer": "개념",
+    "meaning": "개념",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0031",
+    "prompt": "개념",
+    "choices": [
+      "allow",
+      "social",
+      "analyze",
+      "concept"
+    ],
+    "answer": "concept",
+    "meaning": "개념",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0032",
+    "prompt": "principle",
+    "choices": [
+      "항상",
+      "영향을 미치다",
+      "제한된",
+      "원칙"
+    ],
+    "answer": "원칙",
+    "meaning": "원칙",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0032",
+    "prompt": "원칙",
+    "choices": [
+      "offer",
+      "treat",
+      "compare",
+      "principle"
+    ],
+    "answer": "principle",
+    "meaning": "원칙",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0033",
+    "prompt": "standard",
+    "choices": [
+      "기준",
+      "그때",
+      "가능한",
+      "구조"
+    ],
+    "answer": "기준",
+    "meaning": "기준",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0033",
+    "prompt": "기준",
+    "choices": [
+      "very",
+      "standard",
+      "yourself",
+      "whereas"
+    ],
+    "answer": "standard",
+    "meaning": "기준",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0034",
+    "prompt": "trend",
+    "choices": [
+      "경향",
+      "접근법",
+      "접근",
+      "꽤"
+    ],
+    "answer": "경향",
+    "meaning": "경향",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0034",
+    "prompt": "경향",
+    "choices": [
+      "analyze",
+      "range",
+      "trend",
+      "complex"
+    ],
+    "answer": "trend",
+    "meaning": "경향",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0035",
+    "prompt": "issue",
+    "choices": [
+      "건설하다",
+      "문제",
+      "유용한",
+      "주요한"
+    ],
+    "answer": "문제",
+    "meaning": "문제",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0035",
+    "prompt": "문제",
+    "choices": [
+      "many",
+      "while",
+      "basically",
+      "issue"
+    ],
+    "answer": "issue",
+    "meaning": "문제",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0036",
+    "prompt": "debate",
+    "choices": [
+      "의지하다",
+      "막다",
+      "줄이다",
+      "논쟁"
+    ],
+    "answer": "논쟁",
+    "meaning": "논쟁",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0036",
+    "prompt": "논쟁",
+    "choices": [
+      "connect",
+      "debate",
+      "who",
+      "general"
+    ],
+    "answer": "debate",
+    "meaning": "논쟁",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0037",
+    "prompt": "argument",
+    "choices": [
+      "보통",
+      "막다",
+      "주장",
+      "야기하다"
+    ],
+    "answer": "주장",
+    "meaning": "주장",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0037",
+    "prompt": "주장",
+    "choices": [
+      "argument",
+      "slowly",
+      "themselves",
+      "something"
+    ],
+    "answer": "argument",
+    "meaning": "주장",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0038",
+    "prompt": "claim",
+    "choices": [
+      "관련된",
+      "주장",
+      "~할 때",
+      "불가능한"
+    ],
+    "answer": "주장",
+    "meaning": "주장",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0038",
+    "prompt": "주장",
+    "choices": [
+      "claim",
+      "few",
+      "influence",
+      "wealth"
+    ],
+    "answer": "claim",
+    "meaning": "주장",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0039",
+    "prompt": "evidence",
+    "choices": [
+      "무제한의",
+      "저기",
+      "중요한",
+      "증거"
+    ],
+    "answer": "증거",
+    "meaning": "증거",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0039",
+    "prompt": "증거",
+    "choices": [
+      "behavior",
+      "very",
+      "available",
+      "evidence"
+    ],
+    "answer": "evidence",
+    "meaning": "증거",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0040",
+    "prompt": "context",
+    "choices": [
+      "다루다",
+      "맥락",
+      "나중에",
+      "효과적인"
+    ],
+    "answer": "맥락",
+    "meaning": "맥락",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0040",
+    "prompt": "맥락",
+    "choices": [
+      "partly",
+      "context",
+      "no one",
+      "little"
+    ],
+    "answer": "context",
+    "meaning": "맥락",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0041",
+    "prompt": "structure",
+    "choices": [
+      "개인의",
+      "구조",
+      "그녀 자신",
+      "~처럼"
+    ],
+    "answer": "구조",
+    "meaning": "구조",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0041",
+    "prompt": "구조",
+    "choices": [
+      "develop",
+      "structure",
+      "until",
+      "instead"
+    ],
+    "answer": "structure",
+    "meaning": "구조",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0042",
+    "prompt": "system",
+    "choices": [
+      "환경",
+      "곧",
+      "체계",
+      "꽤"
+    ],
+    "answer": "체계",
+    "meaning": "체계",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0042",
+    "prompt": "체계",
+    "choices": [
+      "seriously",
+      "important",
+      "system",
+      "unless"
+    ],
+    "answer": "system",
+    "meaning": "체계",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0043",
+    "prompt": "function",
+    "choices": [
+      "깨닫다",
+      "자주",
+      "아무도 ~않다",
+      "기능"
+    ],
+    "answer": "기능",
+    "meaning": "기능",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0043",
+    "prompt": "기능",
+    "choices": [
+      "sometimes",
+      "opportunity",
+      "deal",
+      "function"
+    ],
+    "answer": "function",
+    "meaning": "기능",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0044",
+    "prompt": "resource",
+    "choices": [
+      "자원",
+      "명백하게",
+      "다른",
+      "이점"
+    ],
+    "answer": "자원",
+    "meaning": "자원",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0044",
+    "prompt": "자원",
+    "choices": [
+      "actually",
+      "quite",
+      "resource",
+      "society"
+    ],
+    "answer": "resource",
+    "meaning": "자원",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0045",
+    "prompt": "environment",
+    "choices": [
+      "환경",
+      "요구하다",
+      "부분적으로",
+      "주장"
+    ],
+    "answer": "환경",
+    "meaning": "환경",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0045",
+    "prompt": "환경",
+    "choices": [
+      "themselves",
+      "environment",
+      "create",
+      "succeed"
+    ],
+    "answer": "environment",
+    "meaning": "환경",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0046",
+    "prompt": "population",
+    "choices": [
+      "꽤",
+      "인구",
+      "그 자신",
+      "도움이 되는"
+    ],
+    "answer": "인구",
+    "meaning": "인구",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0046",
+    "prompt": "인구",
+    "choices": [
+      "after",
+      "population",
+      "assume",
+      "too"
+    ],
+    "answer": "population",
+    "meaning": "인구",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0047",
+    "prompt": "generation",
+    "choices": [
+      "결과를 낳다",
+      "최근의",
+      "세대",
+      "이미"
+    ],
+    "answer": "세대",
+    "meaning": "세대",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0047",
+    "prompt": "세대",
+    "choices": [
+      "suggest",
+      "completely",
+      "generation",
+      "more"
+    ],
+    "answer": "generation",
+    "meaning": "세대",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0048",
+    "prompt": "individual",
+    "choices": [
+      "개인",
+      "연결하다",
+      "쉬운",
+      "지금"
+    ],
+    "answer": "개인",
+    "meaning": "개인",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0048",
+    "prompt": "개인",
+    "choices": [
+      "individual",
+      "improve",
+      "important",
+      "significant"
+    ],
+    "answer": "individual",
+    "meaning": "개인",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0049",
+    "prompt": "community",
+    "choices": [
+      "이해하다",
+      "공동체",
+      "중대한",
+      "분석하다"
+    ],
+    "answer": "공동체",
+    "meaning": "공동체",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0049",
+    "prompt": "공동체",
+    "choices": [
+      "control",
+      "likely",
+      "issue",
+      "community"
+    ],
+    "answer": "community",
+    "meaning": "공동체",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0050",
+    "prompt": "authority",
+    "choices": [
+      "권위",
+      "심각하게",
+      "만약 ~라면",
+      "긍정적인"
+    ],
+    "answer": "권위",
+    "meaning": "권위",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0050",
+    "prompt": "권위",
+    "choices": [
+      "impact",
+      "if",
+      "twice",
+      "authority"
+    ],
+    "answer": "authority",
+    "meaning": "권위",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0051",
+    "prompt": "power",
+    "choices": [
+      "힘",
+      "그렇지 않으면",
+      "집단의",
+      "그래서"
+    ],
+    "answer": "힘",
+    "meaning": "힘",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0051",
+    "prompt": "힘",
+    "choices": [
+      "power",
+      "later",
+      "attitude",
+      "little"
+    ],
+    "answer": "power",
+    "meaning": "힘",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0052",
+    "prompt": "influence",
+    "choices": [
+      "영향력",
+      "~할 때",
+      "적응하다",
+      "주장하다"
+    ],
+    "answer": "영향력",
+    "meaning": "영향력",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0052",
+    "prompt": "영향력",
+    "choices": [
+      "manage",
+      "different",
+      "influence",
+      "because"
+    ],
+    "answer": "influence",
+    "meaning": "영향력",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0053",
+    "prompt": "access",
+    "choices": [
+      "접근법",
+      "접근",
+      "특히",
+      "제한된"
+    ],
+    "answer": "접근",
+    "meaning": "접근",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0053",
+    "prompt": "접근",
+    "choices": [
+      "create",
+      "hardly",
+      "unless",
+      "access"
+    ],
+    "answer": "access",
+    "meaning": "접근",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0054",
+    "prompt": "control",
+    "choices": [
+      "~할 때",
+      "무언가",
+      "통제",
+      "환경의"
+    ],
+    "answer": "통제",
+    "meaning": "통제",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0054",
+    "prompt": "통제",
+    "choices": [
+      "various",
+      "whenever",
+      "control",
+      "totally"
+    ],
+    "answer": "control",
+    "meaning": "통제",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0055",
+    "prompt": "limit",
+    "choices": [
+      "처리하다",
+      "한계",
+      "설명하다",
+      "범위"
+    ],
+    "answer": "한계",
+    "meaning": "한계",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0055",
+    "prompt": "한계",
+    "choices": [
+      "assume",
+      "harmful",
+      "principle",
+      "limit"
+    ],
+    "answer": "limit",
+    "meaning": "한계",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0056",
+    "prompt": "range",
+    "choices": [
+      "원인",
+      "대신에",
+      "범위",
+      "기회"
+    ],
+    "answer": "범위",
+    "meaning": "범위",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0056",
+    "prompt": "범위",
+    "choices": [
+      "decision",
+      "someone",
+      "range",
+      "principle"
+    ],
+    "answer": "range",
+    "meaning": "범위",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0057",
+    "prompt": "scale",
+    "choices": [
+      "다시",
+      "규모",
+      "영향을 주다",
+      "책임"
+    ],
+    "answer": "규모",
+    "meaning": "규모",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0057",
+    "prompt": "규모",
+    "choices": [
+      "especially",
+      "scale",
+      "barely",
+      "authority"
+    ],
+    "answer": "scale",
+    "meaning": "규모",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0058",
+    "prompt": "distribution",
+    "choices": [
+      "개인의",
+      "이해하다",
+      "조심스럽게",
+      "분배"
+    ],
+    "answer": "분배",
+    "meaning": "분배",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0058",
+    "prompt": "분배",
+    "choices": [
+      "income",
+      "distribution",
+      "general",
+      "obviously"
+    ],
+    "answer": "distribution",
+    "meaning": "분배",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0059",
+    "prompt": "income",
+    "choices": [
+      "소득",
+      "고려하다",
+      "대부분",
+      "중요한"
+    ],
+    "answer": "소득",
+    "meaning": "소득",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0059",
+    "prompt": "소득",
+    "choices": [
+      "income",
+      "analysis",
+      "produce",
+      "consider"
+    ],
+    "answer": "income",
+    "meaning": "소득",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_N_0060",
+    "prompt": "wealth",
+    "choices": [
+      "행동",
+      "그래서",
+      "~이후로",
+      "부"
+    ],
+    "answer": "부",
+    "meaning": "부",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_N_0060",
+    "prompt": "부",
+    "choices": [
+      "relate",
+      "wealth",
+      "benefit",
+      "challenge"
+    ],
+    "answer": "wealth",
+    "meaning": "부",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0001",
+    "prompt": "analyze",
+    "choices": [
+      "분석하다",
+      "조절하다",
+      "위험",
+      "분배"
+    ],
+    "answer": "분석하다",
+    "meaning": "분석하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0001",
+    "prompt": "분석하다",
+    "choices": [
+      "even though",
+      "deal",
+      "analyze",
+      "oppose"
+    ],
+    "answer": "analyze",
+    "meaning": "분석하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0002",
+    "prompt": "assume",
+    "choices": [
+      "요인",
+      "단지",
+      "가정하다",
+      "주로"
+    ],
+    "answer": "가정하다",
+    "meaning": "가정하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0002",
+    "prompt": "가정하다",
+    "choices": [
+      "unstable",
+      "approach",
+      "risk",
+      "assume"
+    ],
+    "answer": "assume",
+    "meaning": "가정하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0003",
+    "prompt": "suggest",
+    "choices": [
+      "실패하다",
+      "해로운",
+      "함께",
+      "제안하다"
+    ],
+    "answer": "제안하다",
+    "meaning": "제안하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0003",
+    "prompt": "제안하다",
+    "choices": [
+      "suggest",
+      "social",
+      "argument",
+      "unstable"
+    ],
+    "answer": "suggest",
+    "meaning": "제안하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0004",
+    "prompt": "argue",
+    "choices": [
+      "영향",
+      "역할",
+      "가능한",
+      "주장하다"
+    ],
+    "answer": "주장하다",
+    "meaning": "주장하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0004",
+    "prompt": "주장하다",
+    "choices": [
+      "important",
+      "income",
+      "argue",
+      "structure"
+    ],
+    "answer": "argue",
+    "meaning": "주장하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0005",
+    "prompt": "claim",
+    "choices": [
+      "어려운",
+      "~처럼",
+      "오직",
+      "주장하다"
+    ],
+    "answer": "주장하다",
+    "meaning": "주장하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0005",
+    "prompt": "주장하다",
+    "choices": [
+      "important",
+      "appropriate",
+      "claim",
+      "but"
+    ],
+    "answer": "claim",
+    "meaning": "주장하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0006",
+    "prompt": "support",
+    "choices": [
+      "결코 ~않다",
+      "~전에",
+      "지지하다",
+      "형성하다"
+    ],
+    "answer": "지지하다",
+    "meaning": "지지하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0006",
+    "prompt": "지지하다",
+    "choices": [
+      "explain",
+      "research",
+      "support",
+      "function"
+    ],
+    "answer": "support",
+    "meaning": "지지하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0007",
+    "prompt": "oppose",
+    "choices": [
+      "반대하다",
+      "주장하다",
+      "역할",
+      "이론"
+    ],
+    "answer": "반대하다",
+    "meaning": "반대하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0007",
+    "prompt": "반대하다",
+    "choices": [
+      "oppose",
+      "and",
+      "accomplish",
+      "form"
+    ],
+    "answer": "oppose",
+    "meaning": "반대하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0008",
+    "prompt": "improve",
+    "choices": [
+      "정의하다",
+      "규모",
+      "불확실한",
+      "개선하다"
+    ],
+    "answer": "개선하다",
+    "meaning": "개선하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0008",
+    "prompt": "개선하다",
+    "choices": [
+      "positive",
+      "but",
+      "develop",
+      "improve"
+    ],
+    "answer": "improve",
+    "meaning": "개선하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0009",
+    "prompt": "reduce",
+    "choices": [
+      "선택",
+      "해결책",
+      "모두",
+      "줄이다"
+    ],
+    "answer": "줄이다",
+    "meaning": "줄이다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0009",
+    "prompt": "줄이다",
+    "choices": [
+      "recognize",
+      "reduce",
+      "complex",
+      "argue"
+    ],
+    "answer": "reduce",
+    "meaning": "줄이다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0010",
+    "prompt": "increase",
+    "choices": [
+      "증가하다",
+      "위험",
+      "~이후로",
+      "필수적인"
+    ],
+    "answer": "증가하다",
+    "meaning": "증가하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0010",
+    "prompt": "증가하다",
+    "choices": [
+      "increase",
+      "because",
+      "instead",
+      "process"
+    ],
+    "answer": "increase",
+    "meaning": "증가하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0011",
+    "prompt": "affect",
+    "choices": [
+      "연결하다",
+      "빠른",
+      "문제",
+      "영향을 미치다"
+    ],
+    "answer": "영향을 미치다",
+    "meaning": "영향을 미치다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0011",
+    "prompt": "영향을 미치다",
+    "choices": [
+      "relationship",
+      "trend",
+      "again",
+      "affect"
+    ],
+    "answer": "affect",
+    "meaning": "영향을 미치다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0012",
+    "prompt": "influence",
+    "choices": [
+      "기본적으로",
+      "아직",
+      "이론",
+      "영향을 주다"
+    ],
+    "answer": "영향을 주다",
+    "meaning": "영향을 주다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0012",
+    "prompt": "영향을 주다",
+    "choices": [
+      "compare",
+      "value",
+      "related",
+      "influence"
+    ],
+    "answer": "influence",
+    "meaning": "영향을 주다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0013",
+    "prompt": "result",
+    "choices": [
+      "경향",
+      "결과를 낳다",
+      "제안하다",
+      "주장하다"
+    ],
+    "answer": "결과를 낳다",
+    "meaning": "결과를 낳다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0013",
+    "prompt": "결과를 낳다",
+    "choices": [
+      "maintain",
+      "result",
+      "though",
+      "understand"
+    ],
+    "answer": "result",
+    "meaning": "결과를 낳다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0014",
+    "prompt": "lead",
+    "choices": [
+      "비교하다",
+      "이끌다",
+      "영향",
+      "생산하다"
+    ],
+    "answer": "이끌다",
+    "meaning": "이끌다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0014",
+    "prompt": "이끌다",
+    "choices": [
+      "lead",
+      "minor",
+      "himself",
+      "adjust"
+    ],
+    "answer": "lead",
+    "meaning": "이끌다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0015",
+    "prompt": "cause",
+    "choices": [
+      "중요한",
+      "야기하다",
+      "비교하다",
+      "증가하다"
+    ],
+    "answer": "야기하다",
+    "meaning": "야기하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0015",
+    "prompt": "야기하다",
+    "choices": [
+      "modern",
+      "treat",
+      "individual",
+      "cause"
+    ],
+    "answer": "cause",
+    "meaning": "야기하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0016",
+    "prompt": "prevent",
+    "choices": [
+      "막다",
+      "안정적인",
+      "유용한",
+      "이용 가능한"
+    ],
+    "answer": "막다",
+    "meaning": "막다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0016",
+    "prompt": "막다",
+    "choices": [
+      "community",
+      "twice",
+      "never",
+      "prevent"
+    ],
+    "answer": "prevent",
+    "meaning": "막다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0017",
+    "prompt": "allow",
+    "choices": [
+      "증가하다",
+      "불안정한",
+      "허용하다",
+      "다루다"
+    ],
+    "answer": "허용하다",
+    "meaning": "허용하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0017",
+    "prompt": "허용하다",
+    "choices": [
+      "allow",
+      "highlight",
+      "slow",
+      "analysis"
+    ],
+    "answer": "allow",
+    "meaning": "허용하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0018",
+    "prompt": "require",
+    "choices": [
+      "두 번",
+      "비록 ~일지라도",
+      "간접적으로",
+      "요구하다"
+    ],
+    "answer": "요구하다",
+    "meaning": "요구하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0018",
+    "prompt": "요구하다",
+    "choices": [
+      "neither",
+      "require",
+      "easily",
+      "impact"
+    ],
+    "answer": "require",
+    "meaning": "요구하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0019",
+    "prompt": "provide",
+    "choices": [
+      "주요한",
+      "도움이 되는",
+      "제공하다",
+      "유지하다"
+    ],
+    "answer": "제공하다",
+    "meaning": "제공하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0019",
+    "prompt": "제공하다",
+    "choices": [
+      "provide",
+      "scale",
+      "culture",
+      "respond"
+    ],
+    "answer": "provide",
+    "meaning": "제공하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0020",
+    "prompt": "offer",
+    "choices": [
+      "제공하다",
+      "최근의",
+      "방법",
+      "대신에"
+    ],
+    "answer": "제공하다",
+    "meaning": "제공하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0020",
+    "prompt": "제공하다",
+    "choices": [
+      "varied",
+      "obviously",
+      "function",
+      "offer"
+    ],
+    "answer": "offer",
+    "meaning": "제공하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0021",
+    "prompt": "develop",
+    "choices": [
+      "빠른",
+      "일시적인",
+      "처리하다",
+      "발전시키다"
+    ],
+    "answer": "발전시키다",
+    "meaning": "발전시키다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0021",
+    "prompt": "발전시키다",
+    "choices": [
+      "until",
+      "unstable",
+      "control",
+      "develop"
+    ],
+    "answer": "develop",
+    "meaning": "발전시키다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0022",
+    "prompt": "create",
+    "choices": [
+      "창조하다",
+      "문화의",
+      "어려운",
+      "이끌다"
+    ],
+    "answer": "창조하다",
+    "meaning": "창조하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0022",
+    "prompt": "창조하다",
+    "choices": [
+      "include",
+      "create",
+      "impact",
+      "different"
+    ],
+    "answer": "create",
+    "meaning": "창조하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0023",
+    "prompt": "produce",
+    "choices": [
+      "생산하다",
+      "구체적인",
+      "유지하다",
+      "보통"
+    ],
+    "answer": "생산하다",
+    "meaning": "생산하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0023",
+    "prompt": "생산하다",
+    "choices": [
+      "everything",
+      "simple",
+      "neither",
+      "produce"
+    ],
+    "answer": "produce",
+    "meaning": "생산하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0024",
+    "prompt": "build",
+    "choices": [
+      "조절하다",
+      "건설하다",
+      "너 자신",
+      "누구의"
+    ],
+    "answer": "건설하다",
+    "meaning": "건설하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0024",
+    "prompt": "건설하다",
+    "choices": [
+      "structure",
+      "all",
+      "particularly",
+      "build"
+    ],
+    "answer": "build",
+    "meaning": "건설하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0025",
+    "prompt": "form",
+    "choices": [
+      "형성하다",
+      "가장 많은",
+      "직접적으로",
+      "비교하다"
+    ],
+    "answer": "형성하다",
+    "meaning": "형성하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0025",
+    "prompt": "형성하다",
+    "choices": [
+      "economic",
+      "unlimited",
+      "form",
+      "few"
+    ],
+    "answer": "form",
+    "meaning": "형성하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0026",
+    "prompt": "change",
+    "choices": [
+      "변화시키다",
+      "분배",
+      "그렇지 않으면",
+      "둘 다 ~아닌"
+    ],
+    "answer": "변화시키다",
+    "meaning": "변화시키다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0026",
+    "prompt": "변화시키다",
+    "choices": [
+      "change",
+      "choice",
+      "succeed",
+      "somewhere"
+    ],
+    "answer": "change",
+    "meaning": "변화시키다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0027",
+    "prompt": "maintain",
+    "choices": [
+      "줄이다",
+      "유지하다",
+      "막다",
+      "범위"
+    ],
+    "answer": "유지하다",
+    "meaning": "유지하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0027",
+    "prompt": "유지하다",
+    "choices": [
+      "assume",
+      "harmful",
+      "society",
+      "maintain"
+    ],
+    "answer": "maintain",
+    "meaning": "유지하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0028",
+    "prompt": "manage",
+    "choices": [
+      "관리하다",
+      "깨닫다",
+      "꽤",
+      "책임"
+    ],
+    "answer": "관리하다",
+    "meaning": "관리하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0028",
+    "prompt": "관리하다",
+    "choices": [
+      "since",
+      "handle",
+      "manage",
+      "temporary"
+    ],
+    "answer": "manage",
+    "meaning": "관리하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0029",
+    "prompt": "handle",
+    "choices": [
+      "관계",
+      "처리하다",
+      "무언가",
+      "반응하다"
+    ],
+    "answer": "처리하다",
+    "meaning": "처리하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0029",
+    "prompt": "처리하다",
+    "choices": [
+      "anything",
+      "describe",
+      "those",
+      "handle"
+    ],
+    "answer": "handle",
+    "meaning": "처리하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0030",
+    "prompt": "deal",
+    "choices": [
+      "쉬운",
+      "같은",
+      "다루다",
+      "요인"
+    ],
+    "answer": "다루다",
+    "meaning": "다루다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0030",
+    "prompt": "다루다",
+    "choices": [
+      "deal",
+      "or",
+      "whose",
+      "carefully"
+    ],
+    "answer": "deal",
+    "meaning": "다루다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0031",
+    "prompt": "consider",
+    "choices": [
+      "연구",
+      "저것",
+      "아무도 ~않다",
+      "고려하다"
+    ],
+    "answer": "고려하다",
+    "meaning": "고려하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0031",
+    "prompt": "고려하다",
+    "choices": [
+      "prevent",
+      "some",
+      "consider",
+      "whenever"
+    ],
+    "answer": "consider",
+    "meaning": "고려하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0032",
+    "prompt": "regard",
+    "choices": [
+      "영향력",
+      "그리고",
+      "불안정한",
+      "여기다"
+    ],
+    "answer": "여기다",
+    "meaning": "여기다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0032",
+    "prompt": "여기다",
+    "choices": [
+      "always",
+      "treat",
+      "regard",
+      "but"
+    ],
+    "answer": "regard",
+    "meaning": "여기다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0033",
+    "prompt": "treat",
+    "choices": [
+      "영향을 미치다",
+      "결코 ~않다",
+      "다루다",
+      "이점"
+    ],
+    "answer": "다루다",
+    "meaning": "다루다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0033",
+    "prompt": "다루다",
+    "choices": [
+      "treat",
+      "temporary",
+      "result",
+      "unless"
+    ],
+    "answer": "treat",
+    "meaning": "다루다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0034",
+    "prompt": "describe",
+    "choices": [
+      "설명하다",
+      "저기",
+      "그러므로",
+      "그때"
+    ],
+    "answer": "설명하다",
+    "meaning": "설명하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0034",
+    "prompt": "설명하다",
+    "choices": [
+      "either",
+      "culture",
+      "build",
+      "describe"
+    ],
+    "answer": "describe",
+    "meaning": "설명하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0035",
+    "prompt": "explain",
+    "choices": [
+      "가장 많은",
+      "따로",
+      "~까지",
+      "설명하다"
+    ],
+    "answer": "설명하다",
+    "meaning": "설명하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0035",
+    "prompt": "설명하다",
+    "choices": [
+      "yet",
+      "quickly",
+      "soon",
+      "explain"
+    ],
+    "answer": "explain",
+    "meaning": "설명하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0036",
+    "prompt": "define",
+    "choices": [
+      "의사소통",
+      "정의하다",
+      "분명히",
+      "지지하다"
+    ],
+    "answer": "정의하다",
+    "meaning": "정의하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0036",
+    "prompt": "정의하다",
+    "choices": [
+      "individual",
+      "define",
+      "concept",
+      "what"
+    ],
+    "answer": "define",
+    "meaning": "정의하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0037",
+    "prompt": "compare",
+    "choices": [
+      "통제",
+      "어떤 것",
+      "어디든지",
+      "비교하다"
+    ],
+    "answer": "비교하다",
+    "meaning": "비교하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0037",
+    "prompt": "비교하다",
+    "choices": [
+      "especially",
+      "difficult",
+      "assume",
+      "compare"
+    ],
+    "answer": "compare",
+    "meaning": "비교하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0038",
+    "prompt": "contrast",
+    "choices": [
+      "문화",
+      "지역의",
+      "필수적인",
+      "대조하다"
+    ],
+    "answer": "대조하다",
+    "meaning": "대조하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0038",
+    "prompt": "대조하다",
+    "choices": [
+      "contrast",
+      "little",
+      "but",
+      "stable"
+    ],
+    "answer": "contrast",
+    "meaning": "대조하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0039",
+    "prompt": "relate",
+    "choices": [
+      "직접적으로",
+      "관련시키다",
+      "한 번",
+      "반면에"
+    ],
+    "answer": "관련시키다",
+    "meaning": "관련시키다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0039",
+    "prompt": "관련시키다",
+    "choices": [
+      "process",
+      "debate",
+      "relate",
+      "maintain"
+    ],
+    "answer": "relate",
+    "meaning": "관련시키다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0040",
+    "prompt": "connect",
+    "choices": [
+      "연결하다",
+      "분석",
+      "책임",
+      "실패하다"
+    ],
+    "answer": "연결하다",
+    "meaning": "연결하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0040",
+    "prompt": "연결하다",
+    "choices": [
+      "manage",
+      "partly",
+      "connect",
+      "later"
+    ],
+    "answer": "connect",
+    "meaning": "연결하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0041",
+    "prompt": "include",
+    "choices": [
+      "창조하다",
+      "설명하다",
+      "포함하다",
+      "집단의"
+    ],
+    "answer": "포함하다",
+    "meaning": "포함하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0041",
+    "prompt": "포함하다",
+    "choices": [
+      "quite",
+      "however",
+      "include",
+      "as"
+    ],
+    "answer": "include",
+    "meaning": "포함하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0042",
+    "prompt": "contain",
+    "choices": [
+      "여기",
+      "대조하다",
+      "가치",
+      "포함하다"
+    ],
+    "answer": "포함하다",
+    "meaning": "포함하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0042",
+    "prompt": "포함하다",
+    "choices": [
+      "either",
+      "neither",
+      "contain",
+      "form"
+    ],
+    "answer": "contain",
+    "meaning": "포함하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0043",
+    "prompt": "involve",
+    "choices": [
+      "수반하다",
+      "기준",
+      "이것들",
+      "줄이다"
+    ],
+    "answer": "수반하다",
+    "meaning": "수반하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0043",
+    "prompt": "수반하다",
+    "choices": [
+      "involve",
+      "limited",
+      "normally",
+      "so"
+    ],
+    "answer": "involve",
+    "meaning": "수반하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0044",
+    "prompt": "depend",
+    "choices": [
+      "분명한",
+      "의존하다",
+      "강조하다",
+      "성취하다"
+    ],
+    "answer": "의존하다",
+    "meaning": "의존하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0044",
+    "prompt": "의존하다",
+    "choices": [
+      "develop",
+      "depend",
+      "this",
+      "different"
+    ],
+    "answer": "depend",
+    "meaning": "의존하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0045",
+    "prompt": "rely",
+    "choices": [
+      "아직",
+      "어디에나",
+      "의지하다",
+      "둘 다"
+    ],
+    "answer": "의지하다",
+    "meaning": "의지하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0045",
+    "prompt": "의지하다",
+    "choices": [
+      "accessible",
+      "rely",
+      "here",
+      "behavior"
+    ],
+    "answer": "rely",
+    "meaning": "의지하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0046",
+    "prompt": "focus",
+    "choices": [
+      "경제의",
+      "안정적인",
+      "집중하다",
+      "주요한"
+    ],
+    "answer": "집중하다",
+    "meaning": "집중하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0046",
+    "prompt": "집중하다",
+    "choices": [
+      "constant",
+      "focus",
+      "build",
+      "himself"
+    ],
+    "answer": "focus",
+    "meaning": "집중하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0047",
+    "prompt": "emphasize",
+    "choices": [
+      "태도",
+      "강조하다",
+      "일부",
+      "힘"
+    ],
+    "answer": "강조하다",
+    "meaning": "강조하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0047",
+    "prompt": "강조하다",
+    "choices": [
+      "easily",
+      "emphasize",
+      "value",
+      "negative"
+    ],
+    "answer": "emphasize",
+    "meaning": "강조하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0048",
+    "prompt": "highlight",
+    "choices": [
+      "~하는 동안",
+      "느린",
+      "접근법",
+      "강조하다"
+    ],
+    "answer": "강조하다",
+    "meaning": "강조하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0048",
+    "prompt": "강조하다",
+    "choices": [
+      "neither",
+      "adjust",
+      "treat",
+      "highlight"
+    ],
+    "answer": "highlight",
+    "meaning": "강조하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0049",
+    "prompt": "recognize",
+    "choices": [
+      "처리하다",
+      "이것",
+      "자원",
+      "인식하다"
+    ],
+    "answer": "인식하다",
+    "meaning": "인식하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0049",
+    "prompt": "인식하다",
+    "choices": [
+      "recognize",
+      "regard",
+      "specific",
+      "whenever"
+    ],
+    "answer": "recognize",
+    "meaning": "인식하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0050",
+    "prompt": "realize",
+    "choices": [
+      "특히",
+      "깨닫다",
+      "나 자신",
+      "누구"
+    ],
+    "answer": "깨닫다",
+    "meaning": "깨닫다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0050",
+    "prompt": "깨닫다",
+    "choices": [
+      "context",
+      "assume",
+      "analysis",
+      "realize"
+    ],
+    "answer": "realize",
+    "meaning": "깨닫다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0051",
+    "prompt": "understand",
+    "choices": [
+      "거의 없는 (가산)",
+      "나 자신",
+      "이해하다",
+      "조심스럽게"
+    ],
+    "answer": "이해하다",
+    "meaning": "이해하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0051",
+    "prompt": "이해하다",
+    "choices": [
+      "therefore",
+      "all",
+      "obviously",
+      "understand"
+    ],
+    "answer": "understand",
+    "meaning": "이해하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0052",
+    "prompt": "interpret",
+    "choices": [
+      "분석하다",
+      "현대의",
+      "모든 것",
+      "해석하다"
+    ],
+    "answer": "해석하다",
+    "meaning": "해석하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0052",
+    "prompt": "해석하다",
+    "choices": [
+      "nearly",
+      "contrast",
+      "interpret",
+      "support"
+    ],
+    "answer": "interpret",
+    "meaning": "해석하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0053",
+    "prompt": "respond",
+    "choices": [
+      "반응하다",
+      "~하지 않는 한",
+      "의지하다",
+      "반면에"
+    ],
+    "answer": "반응하다",
+    "meaning": "반응하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0053",
+    "prompt": "반응하다",
+    "choices": [
+      "contain",
+      "barely",
+      "respond",
+      "useful"
+    ],
+    "answer": "respond",
+    "meaning": "반응하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0054",
+    "prompt": "react",
+    "choices": [
+      "이것들",
+      "가장 많은",
+      "반응하다",
+      "고려하다"
+    ],
+    "answer": "반응하다",
+    "meaning": "반응하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0054",
+    "prompt": "반응하다",
+    "choices": [
+      "communication",
+      "succeed",
+      "react",
+      "access"
+    ],
+    "answer": "react",
+    "meaning": "반응하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0055",
+    "prompt": "adapt",
+    "choices": [
+      "도전",
+      "적응하다",
+      "결과를 낳다",
+      "쉬운"
+    ],
+    "answer": "적응하다",
+    "meaning": "적응하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0055",
+    "prompt": "적응하다",
+    "choices": [
+      "adapt",
+      "adjust",
+      "attitude",
+      "once"
+    ],
+    "answer": "adapt",
+    "meaning": "적응하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0056",
+    "prompt": "adjust",
+    "choices": [
+      "다양한",
+      "그들 자신",
+      "조절하다",
+      "허용하다"
+    ],
+    "answer": "조절하다",
+    "meaning": "조절하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0056",
+    "prompt": "조절하다",
+    "choices": [
+      "adjust",
+      "whom",
+      "usually",
+      "manage"
+    ],
+    "answer": "adjust",
+    "meaning": "조절하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0057",
+    "prompt": "achieve",
+    "choices": [
+      "저것",
+      "개념",
+      "달성하다",
+      "결과를 낳다"
+    ],
+    "answer": "달성하다",
+    "meaning": "달성하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0057",
+    "prompt": "달성하다",
+    "choices": [
+      "hardly",
+      "environment",
+      "analyze",
+      "achieve"
+    ],
+    "answer": "achieve",
+    "meaning": "달성하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0058",
+    "prompt": "accomplish",
+    "choices": [
+      "의지하다",
+      "그녀 자신",
+      "성취하다",
+      "도전"
+    ],
+    "answer": "성취하다",
+    "meaning": "성취하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0058",
+    "prompt": "성취하다",
+    "choices": [
+      "explain",
+      "accomplish",
+      "rapid",
+      "carefully"
+    ],
+    "answer": "accomplish",
+    "meaning": "성취하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0059",
+    "prompt": "fail",
+    "choices": [
+      "실패하다",
+      "안정적인",
+      "가능성이 높은",
+      "결코 ~않다"
+    ],
+    "answer": "실패하다",
+    "meaning": "실패하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0059",
+    "prompt": "실패하다",
+    "choices": [
+      "slow",
+      "whenever",
+      "yet",
+      "fail"
+    ],
+    "answer": "fail",
+    "meaning": "실패하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_V_0060",
+    "prompt": "succeed",
+    "choices": [
+      "성공하다",
+      "함께",
+      "생산하다",
+      "영향을 미치다"
+    ],
+    "answer": "성공하다",
+    "meaning": "성공하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_V_0060",
+    "prompt": "성공하다",
+    "choices": [
+      "standard",
+      "succeed",
+      "more",
+      "easily"
+    ],
+    "answer": "succeed",
+    "meaning": "성공하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0001",
+    "prompt": "important",
+    "choices": [
+      "가정하다",
+      "항상",
+      "중요한",
+      "인구"
+    ],
+    "answer": "중요한",
+    "meaning": "중요한",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0001",
+    "prompt": "중요한",
+    "choices": [
+      "resource",
+      "cultural",
+      "important",
+      "adjust"
+    ],
+    "answer": "important",
+    "meaning": "중요한",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0002",
+    "prompt": "significant",
+    "choices": [
+      "지속적인",
+      "한 번",
+      "이것들",
+      "중요한"
+    ],
+    "answer": "중요한",
+    "meaning": "중요한",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0002",
+    "prompt": "중요한",
+    "choices": [
+      "available",
+      "significant",
+      "common",
+      "again"
+    ],
+    "answer": "significant",
+    "meaning": "중요한",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0003",
+    "prompt": "essential",
+    "choices": [
+      "공동체",
+      "주로",
+      "도움이 되는",
+      "필수적인"
+    ],
+    "answer": "필수적인",
+    "meaning": "필수적인",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0003",
+    "prompt": "필수적인",
+    "choices": [
+      "same",
+      "essential",
+      "depend",
+      "once"
+    ],
+    "answer": "essential",
+    "meaning": "필수적인",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0004",
+    "prompt": "necessary",
+    "choices": [
+      "책임",
+      "한계",
+      "필요한",
+      "영향"
+    ],
+    "answer": "필요한",
+    "meaning": "필요한",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0004",
+    "prompt": "필요한",
+    "choices": [
+      "few",
+      "contrast",
+      "necessary",
+      "theory"
+    ],
+    "answer": "necessary",
+    "meaning": "필요한",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0005",
+    "prompt": "critical",
+    "choices": [
+      "하지만",
+      "중대한",
+      "결과를 낳다",
+      "그렇지 않으면"
+    ],
+    "answer": "중대한",
+    "meaning": "중대한",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0005",
+    "prompt": "중대한",
+    "choices": [
+      "slowly",
+      "accomplish",
+      "critical",
+      "recognize"
+    ],
+    "answer": "critical",
+    "meaning": "중대한",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0006",
+    "prompt": "major",
+    "choices": [
+      "주요한",
+      "적합한",
+      "성공하다",
+      "천천히"
+    ],
+    "answer": "주요한",
+    "meaning": "주요한",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0006",
+    "prompt": "주요한",
+    "choices": [
+      "difficult",
+      "never",
+      "major",
+      "specific"
+    ],
+    "answer": "major",
+    "meaning": "주요한",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0007",
+    "prompt": "minor",
+    "choices": [
+      "야기하다",
+      "부",
+      "사소한",
+      "관계"
+    ],
+    "answer": "사소한",
+    "meaning": "사소한",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0007",
+    "prompt": "사소한",
+    "choices": [
+      "improve",
+      "critical",
+      "rely",
+      "minor"
+    ],
+    "answer": "minor",
+    "meaning": "사소한",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0008",
+    "prompt": "common",
+    "choices": [
+      "지지하다",
+      "흔한",
+      "해석하다",
+      "그 자신"
+    ],
+    "answer": "흔한",
+    "meaning": "흔한",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0008",
+    "prompt": "흔한",
+    "choices": [
+      "function",
+      "explain",
+      "common",
+      "anywhere"
+    ],
+    "answer": "common",
+    "meaning": "흔한",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0009",
+    "prompt": "general",
+    "choices": [
+      "일반적인",
+      "주요한",
+      "~하는 동안",
+      "~까지"
+    ],
+    "answer": "일반적인",
+    "meaning": "일반적인",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0009",
+    "prompt": "일반적인",
+    "choices": [
+      "stable",
+      "generation",
+      "general",
+      "trend"
+    ],
+    "answer": "general",
+    "meaning": "일반적인",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0010",
+    "prompt": "specific",
+    "choices": [
+      "효과적인",
+      "구체적인",
+      "적절한",
+      "곧"
+    ],
+    "answer": "구체적인",
+    "meaning": "구체적인",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0010",
+    "prompt": "구체적인",
+    "choices": [
+      "similar",
+      "however",
+      "specific",
+      "before"
+    ],
+    "answer": "specific",
+    "meaning": "구체적인",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0011",
+    "prompt": "various",
+    "choices": [
+      "다양한",
+      "너 자신",
+      "제공하다",
+      "드물게"
+    ],
+    "answer": "다양한",
+    "meaning": "다양한",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0011",
+    "prompt": "다양한",
+    "choices": [
+      "limited",
+      "this",
+      "major",
+      "various"
+    ],
+    "answer": "various",
+    "meaning": "다양한",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0012",
+    "prompt": "different",
+    "choices": [
+      "맥락",
+      "집중하다",
+      "일부",
+      "다른"
+    ],
+    "answer": "다른",
+    "meaning": "다른",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0012",
+    "prompt": "다른",
+    "choices": [
+      "different",
+      "adapt",
+      "somewhere",
+      "soon"
+    ],
+    "answer": "different",
+    "meaning": "다른",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0013",
+    "prompt": "similar",
+    "choices": [
+      "하지만",
+      "비슷한",
+      "누구든지",
+      "오직"
+    ],
+    "answer": "비슷한",
+    "meaning": "비슷한",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0013",
+    "prompt": "비슷한",
+    "choices": [
+      "related",
+      "similar",
+      "recognize",
+      "value"
+    ],
+    "answer": "similar",
+    "meaning": "비슷한",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0014",
+    "prompt": "same",
+    "choices": [
+      "둘 중 하나",
+      "어려운",
+      "~하지 않는 한",
+      "같은"
+    ],
+    "answer": "같은",
+    "meaning": "같은",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0014",
+    "prompt": "같은",
+    "choices": [
+      "control",
+      "rarely",
+      "same",
+      "choice"
+    ],
+    "answer": "same",
+    "meaning": "같은",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0015",
+    "prompt": "related",
+    "choices": [
+      "이끌다",
+      "관련된",
+      "요인",
+      "나 자신"
+    ],
+    "answer": "관련된",
+    "meaning": "관련된",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0015",
+    "prompt": "관련된",
+    "choices": [
+      "related",
+      "succeed",
+      "or",
+      "create"
+    ],
+    "answer": "related",
+    "meaning": "관련된",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0016",
+    "prompt": "relevant",
+    "choices": [
+      "누군가",
+      "영향력",
+      "관련 있는",
+      "해결책"
+    ],
+    "answer": "관련 있는",
+    "meaning": "관련 있는",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0016",
+    "prompt": "관련 있는",
+    "choices": [
+      "such",
+      "relevant",
+      "compare",
+      "wealth"
+    ],
+    "answer": "relevant",
+    "meaning": "관련 있는",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0017",
+    "prompt": "appropriate",
+    "choices": [
+      "적절한",
+      "깨닫다",
+      "분명한",
+      "막다"
+    ],
+    "answer": "적절한",
+    "meaning": "적절한",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0017",
+    "prompt": "적절한",
+    "choices": [
+      "succeed",
+      "appropriate",
+      "what",
+      "community"
+    ],
+    "answer": "appropriate",
+    "meaning": "적절한",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0018",
+    "prompt": "suitable",
+    "choices": [
+      "여기",
+      "항상",
+      "적합한",
+      "여전히"
+    ],
+    "answer": "적합한",
+    "meaning": "적합한",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0018",
+    "prompt": "적합한",
+    "choices": [
+      "understand",
+      "usually",
+      "suitable",
+      "connect"
+    ],
+    "answer": "suitable",
+    "meaning": "적합한",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0019",
+    "prompt": "effective",
+    "choices": [
+      "효과적인",
+      "그러므로",
+      "쉽게",
+      "하지만"
+    ],
+    "answer": "효과적인",
+    "meaning": "효과적인",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0019",
+    "prompt": "효과적인",
+    "choices": [
+      "effective",
+      "already",
+      "environment",
+      "quite"
+    ],
+    "answer": "effective",
+    "meaning": "효과적인",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0020",
+    "prompt": "efficient",
+    "choices": [
+      "다른",
+      "구조",
+      "효율적인",
+      "세계적인"
+    ],
+    "answer": "효율적인",
+    "meaning": "효율적인",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0020",
+    "prompt": "효율적인",
+    "choices": [
+      "efficient",
+      "debate",
+      "obviously",
+      "lead"
+    ],
+    "answer": "efficient",
+    "meaning": "효율적인",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0021",
+    "prompt": "useful",
+    "choices": [
+      "이점",
+      "유용한",
+      "대부분",
+      "의존하다"
+    ],
+    "answer": "유용한",
+    "meaning": "유용한",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0021",
+    "prompt": "유용한",
+    "choices": [
+      "involve",
+      "concept",
+      "easy",
+      "useful"
+    ],
+    "answer": "useful",
+    "meaning": "유용한",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0022",
+    "prompt": "helpful",
+    "choices": [
+      "해석하다",
+      "도움이 되는",
+      "둘 중 하나",
+      "분석하다"
+    ],
+    "answer": "도움이 되는",
+    "meaning": "도움이 되는",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0022",
+    "prompt": "도움이 되는",
+    "choices": [
+      "solution",
+      "helpful",
+      "adjust",
+      "social"
+    ],
+    "answer": "helpful",
+    "meaning": "도움이 되는",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0023",
+    "prompt": "harmful",
+    "choices": [
+      "생산하다",
+      "만약 ~라면",
+      "해로운",
+      "정책"
+    ],
+    "answer": "해로운",
+    "meaning": "해로운",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0023",
+    "prompt": "해로운",
+    "choices": [
+      "relationship",
+      "economic",
+      "every",
+      "harmful"
+    ],
+    "answer": "harmful",
+    "meaning": "해로운",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0024",
+    "prompt": "positive",
+    "choices": [
+      "제공하다",
+      "결정",
+      "발전시키다",
+      "긍정적인"
+    ],
+    "answer": "긍정적인",
+    "meaning": "긍정적인",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0024",
+    "prompt": "긍정적인",
+    "choices": [
+      "positive",
+      "carefully",
+      "rather",
+      "totally"
+    ],
+    "answer": "positive",
+    "meaning": "긍정적인",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0025",
+    "prompt": "negative",
+    "choices": [
+      "부정적인",
+      "어딘가에",
+      "~후에",
+      "제안하다"
+    ],
+    "answer": "부정적인",
+    "meaning": "부정적인",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0025",
+    "prompt": "부정적인",
+    "choices": [
+      "everything",
+      "relationship",
+      "such",
+      "negative"
+    ],
+    "answer": "negative",
+    "meaning": "부정적인",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0026",
+    "prompt": "possible",
+    "choices": [
+      "항상",
+      "가능한",
+      "명백하게",
+      "효과적인"
+    ],
+    "answer": "가능한",
+    "meaning": "가능한",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0026",
+    "prompt": "가능한",
+    "choices": [
+      "environment",
+      "generally",
+      "possible",
+      "while"
+    ],
+    "answer": "possible",
+    "meaning": "가능한",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0027",
+    "prompt": "impossible",
+    "choices": [
+      "불가능한",
+      "어려운",
+      "어디에나",
+      "선택"
+    ],
+    "answer": "불가능한",
+    "meaning": "불가능한",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0027",
+    "prompt": "불가능한",
+    "choices": [
+      "again",
+      "but",
+      "easy",
+      "impossible"
+    ],
+    "answer": "impossible",
+    "meaning": "불가능한",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0028",
+    "prompt": "likely",
+    "choices": [
+      "누구의",
+      "우리 자신들",
+      "발전시키다",
+      "가능성이 높은"
+    ],
+    "answer": "가능성이 높은",
+    "meaning": "가능성이 높은",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0028",
+    "prompt": "가능성이 높은",
+    "choices": [
+      "economic",
+      "likely",
+      "this",
+      "function"
+    ],
+    "answer": "likely",
+    "meaning": "가능성이 높은",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0029",
+    "prompt": "unlikely",
+    "choices": [
+      "규모",
+      "가능성이 낮은",
+      "중요한",
+      "무제한의"
+    ],
+    "answer": "가능성이 낮은",
+    "meaning": "가능성이 낮은",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0029",
+    "prompt": "가능성이 낮은",
+    "choices": [
+      "support",
+      "anywhere",
+      "unlikely",
+      "individual"
+    ],
+    "answer": "unlikely",
+    "meaning": "가능성이 낮은",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0030",
+    "prompt": "certain",
+    "choices": [
+      "그것",
+      "확실한",
+      "매우",
+      "결코 ~않다"
+    ],
+    "answer": "확실한",
+    "meaning": "확실한",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0030",
+    "prompt": "확실한",
+    "choices": [
+      "either",
+      "totally",
+      "because",
+      "certain"
+    ],
+    "answer": "certain",
+    "meaning": "확실한",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0031",
+    "prompt": "uncertain",
+    "choices": [
+      "여전히",
+      "기준",
+      "불확실한",
+      "개인의"
+    ],
+    "answer": "불확실한",
+    "meaning": "불확실한",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0031",
+    "prompt": "불확실한",
+    "choices": [
+      "collective",
+      "uncertain",
+      "sometimes",
+      "relate"
+    ],
+    "answer": "uncertain",
+    "meaning": "불확실한",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0032",
+    "prompt": "clear",
+    "choices": [
+      "명확한",
+      "누구의",
+      "현대의",
+      "부정적인"
+    ],
+    "answer": "명확한",
+    "meaning": "명확한",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0032",
+    "prompt": "명확한",
+    "choices": [
+      "consider",
+      "who",
+      "if",
+      "clear"
+    ],
+    "answer": "clear",
+    "meaning": "명확한",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0033",
+    "prompt": "obvious",
+    "choices": [
+      "생산하다",
+      "빠른",
+      "단지",
+      "분명한"
+    ],
+    "answer": "분명한",
+    "meaning": "분명한",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0033",
+    "prompt": "분명한",
+    "choices": [
+      "later",
+      "obvious",
+      "always",
+      "compare"
+    ],
+    "answer": "obvious",
+    "meaning": "분명한",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0034",
+    "prompt": "complex",
+    "choices": [
+      "기본적으로",
+      "그래서",
+      "거의 없는 (불가산)",
+      "복잡한"
+    ],
+    "answer": "복잡한",
+    "meaning": "복잡한",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0034",
+    "prompt": "복잡한",
+    "choices": [
+      "structure",
+      "complex",
+      "relevant",
+      "already"
+    ],
+    "answer": "complex",
+    "meaning": "복잡한",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0035",
+    "prompt": "simple",
+    "choices": [
+      "나중에",
+      "기준",
+      "쉬운",
+      "단순한"
+    ],
+    "answer": "단순한",
+    "meaning": "단순한",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0035",
+    "prompt": "단순한",
+    "choices": [
+      "simple",
+      "highlight",
+      "efficient",
+      "slowly"
+    ],
+    "answer": "simple",
+    "meaning": "단순한",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0036",
+    "prompt": "difficult",
+    "choices": [
+      "왜냐하면",
+      "따로",
+      "다루다",
+      "어려운"
+    ],
+    "answer": "어려운",
+    "meaning": "어려운",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0036",
+    "prompt": "어려운",
+    "choices": [
+      "many",
+      "produce",
+      "difficult",
+      "affect"
+    ],
+    "answer": "difficult",
+    "meaning": "어려운",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0037",
+    "prompt": "easy",
+    "choices": [
+      "경향",
+      "효과적인",
+      "쉬운",
+      "따로"
+    ],
+    "answer": "쉬운",
+    "meaning": "쉬운",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0037",
+    "prompt": "쉬운",
+    "choices": [
+      "easy",
+      "unstable",
+      "helpful",
+      "analysis"
+    ],
+    "answer": "easy",
+    "meaning": "쉬운",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0038",
+    "prompt": "available",
+    "choices": [
+      "지속적인",
+      "여전히",
+      "이용 가능한",
+      "만약 ~라면"
+    ],
+    "answer": "이용 가능한",
+    "meaning": "이용 가능한",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0038",
+    "prompt": "이용 가능한",
+    "choices": [
+      "all",
+      "too",
+      "available",
+      "stable"
+    ],
+    "answer": "available",
+    "meaning": "이용 가능한",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0039",
+    "prompt": "accessible",
+    "choices": [
+      "접근 가능한",
+      "관련된",
+      "둘 다 ~아닌",
+      "어디에나"
+    ],
+    "answer": "접근 가능한",
+    "meaning": "접근 가능한",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0039",
+    "prompt": "접근 가능한",
+    "choices": [
+      "never",
+      "individual",
+      "accessible",
+      "just"
+    ],
+    "answer": "accessible",
+    "meaning": "접근 가능한",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0040",
+    "prompt": "limited",
+    "choices": [
+      "제한된",
+      "문제",
+      "어디든지",
+      "어떤 것"
+    ],
+    "answer": "제한된",
+    "meaning": "제한된",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0040",
+    "prompt": "제한된",
+    "choices": [
+      "constant",
+      "limited",
+      "even",
+      "everyone"
+    ],
+    "answer": "limited",
+    "meaning": "제한된",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0041",
+    "prompt": "unlimited",
+    "choices": [
+      "수반하다",
+      "무제한의",
+      "분명히",
+      "저것들"
+    ],
+    "answer": "무제한의",
+    "meaning": "무제한의",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0041",
+    "prompt": "무제한의",
+    "choices": [
+      "positive",
+      "economic",
+      "prevent",
+      "unlimited"
+    ],
+    "answer": "unlimited",
+    "meaning": "무제한의",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0042",
+    "prompt": "varied",
+    "choices": [
+      "이론",
+      "문제",
+      "단지",
+      "다양한"
+    ],
+    "answer": "다양한",
+    "meaning": "다양한",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0042",
+    "prompt": "다양한",
+    "choices": [
+      "impact",
+      "both",
+      "varied",
+      "depend"
+    ],
+    "answer": "varied",
+    "meaning": "다양한",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0043",
+    "prompt": "stable",
+    "choices": [
+      "성취하다",
+      "주로",
+      "경제의",
+      "안정적인"
+    ],
+    "answer": "안정적인",
+    "meaning": "안정적인",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0043",
+    "prompt": "안정적인",
+    "choices": [
+      "stable",
+      "oppose",
+      "important",
+      "certain"
+    ],
+    "answer": "stable",
+    "meaning": "안정적인",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0044",
+    "prompt": "unstable",
+    "choices": [
+      "인구",
+      "정책",
+      "불안정한",
+      "이용 가능한"
+    ],
+    "answer": "불안정한",
+    "meaning": "불안정한",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0044",
+    "prompt": "불안정한",
+    "choices": [
+      "nothing",
+      "unstable",
+      "already",
+      "each"
+    ],
+    "answer": "unstable",
+    "meaning": "불안정한",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0045",
+    "prompt": "constant",
+    "choices": [
+      "구조",
+      "지속적인",
+      "거의",
+      "한계"
+    ],
+    "answer": "지속적인",
+    "meaning": "지속적인",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0045",
+    "prompt": "지속적인",
+    "choices": [
+      "wealth",
+      "recognize",
+      "so",
+      "constant"
+    ],
+    "answer": "constant",
+    "meaning": "지속적인",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0046",
+    "prompt": "temporary",
+    "choices": [
+      "접근법",
+      "이것들",
+      "한계",
+      "일시적인"
+    ],
+    "answer": "일시적인",
+    "meaning": "일시적인",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0046",
+    "prompt": "일시적인",
+    "choices": [
+      "change",
+      "obviously",
+      "temporary",
+      "completely"
+    ],
+    "answer": "temporary",
+    "meaning": "일시적인",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0047",
+    "prompt": "permanent",
+    "choices": [
+      "가능성이 낮은",
+      "단순한",
+      "영구적인",
+      "그들 자신"
+    ],
+    "answer": "영구적인",
+    "meaning": "영구적인",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0047",
+    "prompt": "영구적인",
+    "choices": [
+      "completely",
+      "permanent",
+      "analysis",
+      "neither"
+    ],
+    "answer": "permanent",
+    "meaning": "영구적인",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0048",
+    "prompt": "rapid",
+    "choices": [
+      "조심스럽게",
+      "불가능한",
+      "사소한",
+      "빠른"
+    ],
+    "answer": "빠른",
+    "meaning": "빠른",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0048",
+    "prompt": "빠른",
+    "choices": [
+      "rapid",
+      "clear",
+      "treat",
+      "nearly"
+    ],
+    "answer": "rapid",
+    "meaning": "빠른",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0049",
+    "prompt": "slow",
+    "choices": [
+      "해로운",
+      "느린",
+      "집중하다",
+      "다양한"
+    ],
+    "answer": "느린",
+    "meaning": "느린",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0049",
+    "prompt": "느린",
+    "choices": [
+      "anyone",
+      "even though",
+      "slow",
+      "most"
+    ],
+    "answer": "slow",
+    "meaning": "느린",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0050",
+    "prompt": "recent",
+    "choices": [
+      "최근의",
+      "한 번",
+      "통제",
+      "제한된"
+    ],
+    "answer": "최근의",
+    "meaning": "최근의",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0050",
+    "prompt": "최근의",
+    "choices": [
+      "culture",
+      "recent",
+      "who",
+      "never"
+    ],
+    "answer": "recent",
+    "meaning": "최근의",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0051",
+    "prompt": "modern",
+    "choices": [
+      "곧",
+      "이끌다",
+      "간접적으로",
+      "현대의"
+    ],
+    "answer": "현대의",
+    "meaning": "현대의",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0051",
+    "prompt": "현대의",
+    "choices": [
+      "achieve",
+      "easy",
+      "risk",
+      "modern"
+    ],
+    "answer": "modern",
+    "meaning": "현대의",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0052",
+    "prompt": "traditional",
+    "choices": [
+      "전통적인",
+      "어디든지",
+      "아직",
+      "가정하다"
+    ],
+    "answer": "전통적인",
+    "meaning": "전통적인",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0052",
+    "prompt": "전통적인",
+    "choices": [
+      "principle",
+      "complex",
+      "traditional",
+      "if"
+    ],
+    "answer": "traditional",
+    "meaning": "전통적인",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0053",
+    "prompt": "social",
+    "choices": [
+      "증가하다",
+      "단순한",
+      "사회적인",
+      "실패하다"
+    ],
+    "answer": "사회적인",
+    "meaning": "사회적인",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0053",
+    "prompt": "사회적인",
+    "choices": [
+      "social",
+      "much",
+      "this",
+      "distribution"
+    ],
+    "answer": "social",
+    "meaning": "사회적인",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0054",
+    "prompt": "economic",
+    "choices": [
+      "제공하다",
+      "경제의",
+      "일시적인",
+      "방법"
+    ],
+    "answer": "경제의",
+    "meaning": "경제의",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0054",
+    "prompt": "경제의",
+    "choices": [
+      "more",
+      "clear",
+      "result",
+      "economic"
+    ],
+    "answer": "economic",
+    "meaning": "경제의",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0055",
+    "prompt": "cultural",
+    "choices": [
+      "문화의",
+      "누군가",
+      "관리하다",
+      "가능한"
+    ],
+    "answer": "문화의",
+    "meaning": "문화의",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0055",
+    "prompt": "문화의",
+    "choices": [
+      "cultural",
+      "efficient",
+      "various",
+      "accomplish"
+    ],
+    "answer": "cultural",
+    "meaning": "문화의",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0056",
+    "prompt": "environmental",
+    "choices": [
+      "요인",
+      "환경의",
+      "해결책",
+      "~하지 않는 한"
+    ],
+    "answer": "환경의",
+    "meaning": "환경의",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0056",
+    "prompt": "환경의",
+    "choices": [
+      "allow",
+      "environmental",
+      "recent",
+      "almost"
+    ],
+    "answer": "environmental",
+    "meaning": "환경의",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0057",
+    "prompt": "individual",
+    "choices": [
+      "고려하다",
+      "일반적인",
+      "개인의",
+      "~할 때마다"
+    ],
+    "answer": "개인의",
+    "meaning": "개인의",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0057",
+    "prompt": "개인의",
+    "choices": [
+      "change",
+      "individual",
+      "rather",
+      "cause"
+    ],
+    "answer": "individual",
+    "meaning": "개인의",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0058",
+    "prompt": "collective",
+    "choices": [
+      "공동체",
+      "기회",
+      "집단의",
+      "이해하다"
+    ],
+    "answer": "집단의",
+    "meaning": "집단의",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0058",
+    "prompt": "집단의",
+    "choices": [
+      "oppose",
+      "collective",
+      "separately",
+      "clearly"
+    ],
+    "answer": "collective",
+    "meaning": "집단의",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0059",
+    "prompt": "global",
+    "choices": [
+      "거의 ~않다",
+      "힘",
+      "세계적인",
+      "아무것도 ~않다"
+    ],
+    "answer": "세계적인",
+    "meaning": "세계적인",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0059",
+    "prompt": "세계적인",
+    "choices": [
+      "argue",
+      "global",
+      "no one",
+      "approach"
+    ],
+    "answer": "global",
+    "meaning": "세계적인",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_A_0060",
+    "prompt": "local",
+    "choices": [
+      "제공하다",
+      "여기",
+      "환경",
+      "지역의"
+    ],
+    "answer": "지역의",
+    "meaning": "지역의",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_A_0060",
+    "prompt": "지역의",
+    "choices": [
+      "helpful",
+      "difficult",
+      "local",
+      "control"
+    ],
+    "answer": "local",
+    "meaning": "지역의",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0001",
+    "prompt": "very",
+    "choices": [
+      "거의 없는 (가산)",
+      "세계적인",
+      "꽤",
+      "매우"
+    ],
+    "answer": "매우",
+    "meaning": "매우",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0001",
+    "prompt": "매우",
+    "choices": [
+      "income",
+      "very",
+      "affect",
+      "only"
+    ],
+    "answer": "very",
+    "meaning": "매우",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0002",
+    "prompt": "too",
+    "choices": [
+      "요구하다",
+      "너무",
+      "또는",
+      "이것들"
+    ],
+    "answer": "너무",
+    "meaning": "너무",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0002",
+    "prompt": "너무",
+    "choices": [
+      "too",
+      "helpful",
+      "community",
+      "neither"
+    ],
+    "answer": "too",
+    "meaning": "너무",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0003",
+    "prompt": "quite",
+    "choices": [
+      "효율적인",
+      "이론",
+      "꽤",
+      "정책"
+    ],
+    "answer": "꽤",
+    "meaning": "꽤",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0003",
+    "prompt": "꽤",
+    "choices": [
+      "succeed",
+      "lead",
+      "quite",
+      "common"
+    ],
+    "answer": "quite",
+    "meaning": "꽤",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0004",
+    "prompt": "rather",
+    "choices": [
+      "간접적으로",
+      "꽤",
+      "나 자신",
+      "너무"
+    ],
+    "answer": "꽤",
+    "meaning": "꽤",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0004",
+    "prompt": "꽤",
+    "choices": [
+      "simple",
+      "rather",
+      "include",
+      "appropriate"
+    ],
+    "answer": "rather",
+    "meaning": "꽤",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0005",
+    "prompt": "almost",
+    "choices": [
+      "너 자신",
+      "거의",
+      "꽤",
+      "세계적인"
+    ],
+    "answer": "거의",
+    "meaning": "거의",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0005",
+    "prompt": "거의",
+    "choices": [
+      "traditional",
+      "almost",
+      "neither",
+      "yet"
+    ],
+    "answer": "almost",
+    "meaning": "거의",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0006",
+    "prompt": "nearly",
+    "choices": [
+      "거의",
+      "강하게",
+      "어떤 것",
+      "개선하다"
+    ],
+    "answer": "거의",
+    "meaning": "거의",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0006",
+    "prompt": "거의",
+    "choices": [
+      "value",
+      "completely",
+      "nearly",
+      "authority"
+    ],
+    "answer": "nearly",
+    "meaning": "거의",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0007",
+    "prompt": "just",
+    "choices": [
+      "왜냐하면",
+      "만약 ~라면",
+      "빠르게",
+      "단지"
+    ],
+    "answer": "단지",
+    "meaning": "단지",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0007",
+    "prompt": "단지",
+    "choices": [
+      "useful",
+      "appropriate",
+      "just",
+      "significant"
+    ],
+    "answer": "just",
+    "meaning": "단지",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0008",
+    "prompt": "only",
+    "choices": [
+      "환경",
+      "그 자신",
+      "오직",
+      "두 번"
+    ],
+    "answer": "오직",
+    "meaning": "오직",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0008",
+    "prompt": "오직",
+    "choices": [
+      "different",
+      "now",
+      "assume",
+      "only"
+    ],
+    "answer": "only",
+    "meaning": "오직",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0009",
+    "prompt": "even",
+    "choices": [
+      "기능",
+      "심지어",
+      "함께",
+      "권위"
+    ],
+    "answer": "심지어",
+    "meaning": "심지어",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0009",
+    "prompt": "심지어",
+    "choices": [
+      "regard",
+      "particularly",
+      "understand",
+      "even"
+    ],
+    "answer": "even",
+    "meaning": "심지어",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0010",
+    "prompt": "still",
+    "choices": [
+      "나 자신",
+      "논쟁",
+      "둘 다",
+      "여전히"
+    ],
+    "answer": "여전히",
+    "meaning": "여전히",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0010",
+    "prompt": "여전히",
+    "choices": [
+      "still",
+      "everywhere",
+      "general",
+      "role"
+    ],
+    "answer": "still",
+    "meaning": "여전히",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0011",
+    "prompt": "already",
+    "choices": [
+      "이미",
+      "제공하다",
+      "저기",
+      "중요한"
+    ],
+    "answer": "이미",
+    "meaning": "이미",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0011",
+    "prompt": "이미",
+    "choices": [
+      "actually",
+      "already",
+      "what",
+      "separately"
+    ],
+    "answer": "already",
+    "meaning": "이미",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0012",
+    "prompt": "yet",
+    "choices": [
+      "원인",
+      "아직",
+      "흔한",
+      "이것들"
+    ],
+    "answer": "아직",
+    "meaning": "아직",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0012",
+    "prompt": "아직",
+    "choices": [
+      "clearly",
+      "yet",
+      "nothing",
+      "that"
+    ],
+    "answer": "yet",
+    "meaning": "아직",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0013",
+    "prompt": "soon",
+    "choices": [
+      "우리 자신들",
+      "힘",
+      "곧",
+      "줄이다"
+    ],
+    "answer": "곧",
+    "meaning": "곧",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0013",
+    "prompt": "곧",
+    "choices": [
+      "twice",
+      "soon",
+      "connect",
+      "solution"
+    ],
+    "answer": "soon",
+    "meaning": "곧",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0014",
+    "prompt": "later",
+    "choices": [
+      "나중에",
+      "조절하다",
+      "왜냐하면",
+      "다시"
+    ],
+    "answer": "나중에",
+    "meaning": "나중에",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0014",
+    "prompt": "나중에",
+    "choices": [
+      "possible",
+      "principle",
+      "later",
+      "oppose"
+    ],
+    "answer": "later",
+    "meaning": "나중에",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0015",
+    "prompt": "now",
+    "choices": [
+      "비교하다",
+      "여기",
+      "지금",
+      "기회"
+    ],
+    "answer": "지금",
+    "meaning": "지금",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0015",
+    "prompt": "지금",
+    "choices": [
+      "together",
+      "important",
+      "now",
+      "mainly"
+    ],
+    "answer": "now",
+    "meaning": "지금",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0016",
+    "prompt": "then",
+    "choices": [
+      "그때",
+      "그러므로",
+      "행동",
+      "너 자신"
+    ],
+    "answer": "그때",
+    "meaning": "그때",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0016",
+    "prompt": "그때",
+    "choices": [
+      "create",
+      "attitude",
+      "then",
+      "sometimes"
+    ],
+    "answer": "then",
+    "meaning": "그때",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0017",
+    "prompt": "always",
+    "choices": [
+      "항상",
+      "직접적으로",
+      "~후에",
+      "여기다"
+    ],
+    "answer": "항상",
+    "meaning": "항상",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0017",
+    "prompt": "항상",
+    "choices": [
+      "always",
+      "range",
+      "something",
+      "easy"
+    ],
+    "answer": "always",
+    "meaning": "항상",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0018",
+    "prompt": "usually",
+    "choices": [
+      "최근의",
+      "달성하다",
+      "보통",
+      "권위"
+    ],
+    "answer": "보통",
+    "meaning": "보통",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0018",
+    "prompt": "보통",
+    "choices": [
+      "either",
+      "very",
+      "usually",
+      "modern"
+    ],
+    "answer": "usually",
+    "meaning": "보통",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0019",
+    "prompt": "often",
+    "choices": [
+      "분석",
+      "깨닫다",
+      "자주",
+      "그리고"
+    ],
+    "answer": "자주",
+    "meaning": "자주",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0019",
+    "prompt": "자주",
+    "choices": [
+      "often",
+      "somewhere",
+      "different",
+      "rapid"
+    ],
+    "answer": "often",
+    "meaning": "자주",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0020",
+    "prompt": "sometimes",
+    "choices": [
+      "많은 (불가산)",
+      "허용하다",
+      "가끔",
+      "안정적인"
+    ],
+    "answer": "가끔",
+    "meaning": "가끔",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0020",
+    "prompt": "가끔",
+    "choices": [
+      "more",
+      "contrast",
+      "sometimes",
+      "system"
+    ],
+    "answer": "sometimes",
+    "meaning": "가끔",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0021",
+    "prompt": "rarely",
+    "choices": [
+      "해로운",
+      "드물게",
+      "결정",
+      "부정적인"
+    ],
+    "answer": "드물게",
+    "meaning": "드물게",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0021",
+    "prompt": "드물게",
+    "choices": [
+      "rarely",
+      "therefore",
+      "allow",
+      "policy"
+    ],
+    "answer": "rarely",
+    "meaning": "드물게",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0022",
+    "prompt": "never",
+    "choices": [
+      "여전히",
+      "거의 ~않다",
+      "창조하다",
+      "결코 ~않다"
+    ],
+    "answer": "결코 ~않다",
+    "meaning": "결코 ~않다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0022",
+    "prompt": "결코 ~않다",
+    "choices": [
+      "never",
+      "unless",
+      "everywhere",
+      "benefit"
+    ],
+    "answer": "never",
+    "meaning": "결코 ~않다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0023",
+    "prompt": "again",
+    "choices": [
+      "~보다",
+      "일시적인",
+      "부",
+      "다시"
+    ],
+    "answer": "다시",
+    "meaning": "다시",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0023",
+    "prompt": "다시",
+    "choices": [
+      "highlight",
+      "claim",
+      "again",
+      "risk"
+    ],
+    "answer": "again",
+    "meaning": "다시",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0024",
+    "prompt": "once",
+    "choices": [
+      "매우",
+      "한 번",
+      "개인",
+      "어디든지"
+    ],
+    "answer": "한 번",
+    "meaning": "한 번",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0024",
+    "prompt": "한 번",
+    "choices": [
+      "certain",
+      "something",
+      "therefore",
+      "once"
+    ],
+    "answer": "once",
+    "meaning": "한 번",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0025",
+    "prompt": "twice",
+    "choices": [
+      "빠르게",
+      "두 번",
+      "흔한",
+      "범위"
+    ],
+    "answer": "두 번",
+    "meaning": "두 번",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0025",
+    "prompt": "두 번",
+    "choices": [
+      "twice",
+      "before",
+      "similar",
+      "clearly"
+    ],
+    "answer": "twice",
+    "meaning": "두 번",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0026",
+    "prompt": "here",
+    "choices": [
+      "그 자신",
+      "접근",
+      "문화의",
+      "여기"
+    ],
+    "answer": "여기",
+    "meaning": "여기",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0026",
+    "prompt": "여기",
+    "choices": [
+      "certain",
+      "involve",
+      "here",
+      "difficult"
+    ],
+    "answer": "here",
+    "meaning": "여기",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0027",
+    "prompt": "there",
+    "choices": [
+      "함께",
+      "가능성이 높은",
+      "저기",
+      "권위"
+    ],
+    "answer": "저기",
+    "meaning": "저기",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0027",
+    "prompt": "저기",
+    "choices": [
+      "obvious",
+      "there",
+      "depend",
+      "modern"
+    ],
+    "answer": "there",
+    "meaning": "저기",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0028",
+    "prompt": "everywhere",
+    "choices": [
+      "어디에나",
+      "인구",
+      "분명히",
+      "집중하다"
+    ],
+    "answer": "어디에나",
+    "meaning": "어디에나",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0028",
+    "prompt": "어디에나",
+    "choices": [
+      "relevant",
+      "available",
+      "recent",
+      "everywhere"
+    ],
+    "answer": "everywhere",
+    "meaning": "어디에나",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0029",
+    "prompt": "somewhere",
+    "choices": [
+      "그러한",
+      "어딘가에",
+      "너무",
+      "어디에나"
+    ],
+    "answer": "어딘가에",
+    "meaning": "어딘가에",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0029",
+    "prompt": "어딘가에",
+    "choices": [
+      "easy",
+      "somewhere",
+      "structure",
+      "since"
+    ],
+    "answer": "somewhere",
+    "meaning": "어딘가에",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0030",
+    "prompt": "anywhere",
+    "choices": [
+      "비슷한",
+      "관련된",
+      "어디에나",
+      "어디든지"
+    ],
+    "answer": "어디든지",
+    "meaning": "어디든지",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0030",
+    "prompt": "어디든지",
+    "choices": [
+      "hardly",
+      "anywhere",
+      "support",
+      "define"
+    ],
+    "answer": "anywhere",
+    "meaning": "어디든지",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0031",
+    "prompt": "clearly",
+    "choices": [
+      "기본적으로",
+      "어느 것",
+      "분명히",
+      "~이후로"
+    ],
+    "answer": "분명히",
+    "meaning": "분명히",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0031",
+    "prompt": "분명히",
+    "choices": [
+      "specific",
+      "after",
+      "even though",
+      "clearly"
+    ],
+    "answer": "clearly",
+    "meaning": "분명히",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0032",
+    "prompt": "obviously",
+    "choices": [
+      "쉬운",
+      "조절하다",
+      "명백하게",
+      "그래서"
+    ],
+    "answer": "명백하게",
+    "meaning": "명백하게",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0032",
+    "prompt": "명백하게",
+    "choices": [
+      "obviously",
+      "achieve",
+      "mostly",
+      "clearly"
+    ],
+    "answer": "obviously",
+    "meaning": "명백하게",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0033",
+    "prompt": "actually",
+    "choices": [
+      "고려하다",
+      "사실은",
+      "관계",
+      "책임"
+    ],
+    "answer": "사실은",
+    "meaning": "사실은",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0033",
+    "prompt": "사실은",
+    "choices": [
+      "somewhere",
+      "culture",
+      "positive",
+      "actually"
+    ],
+    "answer": "actually",
+    "meaning": "사실은",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0034",
+    "prompt": "basically",
+    "choices": [
+      "집중하다",
+      "매우",
+      "기본적으로",
+      "접근법"
+    ],
+    "answer": "기본적으로",
+    "meaning": "기본적으로",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0034",
+    "prompt": "기본적으로",
+    "choices": [
+      "basically",
+      "everything",
+      "prevent",
+      "support"
+    ],
+    "answer": "basically",
+    "meaning": "기본적으로",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0035",
+    "prompt": "generally",
+    "choices": [
+      "접근법",
+      "대부분",
+      "정책",
+      "일반적으로"
+    ],
+    "answer": "일반적으로",
+    "meaning": "일반적으로",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0035",
+    "prompt": "일반적으로",
+    "choices": [
+      "just",
+      "generally",
+      "what",
+      "lead"
+    ],
+    "answer": "generally",
+    "meaning": "일반적으로",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0036",
+    "prompt": "normally",
+    "choices": [
+      "보통",
+      "특히",
+      "안정적인",
+      "그때"
+    ],
+    "answer": "보통",
+    "meaning": "보통",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0036",
+    "prompt": "보통",
+    "choices": [
+      "everyone",
+      "normally",
+      "every",
+      "than"
+    ],
+    "answer": "normally",
+    "meaning": "보통",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0037",
+    "prompt": "especially",
+    "choices": [
+      "나중에",
+      "특히",
+      "둘 다 ~아닌",
+      "우리 자신들"
+    ],
+    "answer": "특히",
+    "meaning": "특히",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0037",
+    "prompt": "특히",
+    "choices": [
+      "unlikely",
+      "standard",
+      "especially",
+      "almost"
+    ],
+    "answer": "especially",
+    "meaning": "특히",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0038",
+    "prompt": "particularly",
+    "choices": [
+      "주로",
+      "오직",
+      "특히",
+      "영향"
+    ],
+    "answer": "특히",
+    "meaning": "특히",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0038",
+    "prompt": "특히",
+    "choices": [
+      "particularly",
+      "easily",
+      "certain",
+      "allow"
+    ],
+    "answer": "particularly",
+    "meaning": "특히",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0039",
+    "prompt": "mainly",
+    "choices": [
+      "이론",
+      "주로",
+      "항상",
+      "~할 때마다"
+    ],
+    "answer": "주로",
+    "meaning": "주로",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0039",
+    "prompt": "주로",
+    "choices": [
+      "mainly",
+      "emphasize",
+      "myself",
+      "and"
+    ],
+    "answer": "mainly",
+    "meaning": "주로",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0040",
+    "prompt": "mostly",
+    "choices": [
+      "분명한",
+      "결과",
+      "필요한",
+      "대부분"
+    ],
+    "answer": "대부분",
+    "meaning": "대부분",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0040",
+    "prompt": "대부분",
+    "choices": [
+      "mostly",
+      "clearly",
+      "essential",
+      "challenge"
+    ],
+    "answer": "mostly",
+    "meaning": "대부분",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0041",
+    "prompt": "completely",
+    "choices": [
+      "주장하다",
+      "완전히",
+      "각각",
+      "실패하다"
+    ],
+    "answer": "완전히",
+    "meaning": "완전히",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0041",
+    "prompt": "완전히",
+    "choices": [
+      "completely",
+      "anything",
+      "actually",
+      "recent"
+    ],
+    "answer": "completely",
+    "meaning": "완전히",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0042",
+    "prompt": "totally",
+    "choices": [
+      "완전히",
+      "대부분",
+      "효과적인",
+      "강조하다"
+    ],
+    "answer": "완전히",
+    "meaning": "완전히",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0042",
+    "prompt": "완전히",
+    "choices": [
+      "little",
+      "allow",
+      "totally",
+      "relationship"
+    ],
+    "answer": "totally",
+    "meaning": "완전히",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0043",
+    "prompt": "partly",
+    "choices": [
+      "부분적으로",
+      "사소한",
+      "무엇",
+      "다루다"
+    ],
+    "answer": "부분적으로",
+    "meaning": "부분적으로",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0043",
+    "prompt": "부분적으로",
+    "choices": [
+      "slightly",
+      "global",
+      "partly",
+      "rarely"
+    ],
+    "answer": "partly",
+    "meaning": "부분적으로",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0044",
+    "prompt": "slightly",
+    "choices": [
+      "달성하다",
+      "가능성이 낮은",
+      "약간",
+      "이끌다"
+    ],
+    "answer": "약간",
+    "meaning": "약간",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0044",
+    "prompt": "약간",
+    "choices": [
+      "recognize",
+      "slightly",
+      "partly",
+      "effect"
+    ],
+    "answer": "slightly",
+    "meaning": "약간",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0045",
+    "prompt": "seriously",
+    "choices": [
+      "일반적인",
+      "심각하게",
+      "원칙",
+      "개선하다"
+    ],
+    "answer": "심각하게",
+    "meaning": "심각하게",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0045",
+    "prompt": "심각하게",
+    "choices": [
+      "recent",
+      "soon",
+      "effect",
+      "seriously"
+    ],
+    "answer": "seriously",
+    "meaning": "심각하게",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0046",
+    "prompt": "strongly",
+    "choices": [
+      "대신에",
+      "강하게",
+      "주로",
+      "지지하다"
+    ],
+    "answer": "강하게",
+    "meaning": "강하게",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0046",
+    "prompt": "강하게",
+    "choices": [
+      "rely",
+      "access",
+      "strongly",
+      "regard"
+    ],
+    "answer": "strongly",
+    "meaning": "강하게",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0047",
+    "prompt": "quickly",
+    "choices": [
+      "정책",
+      "성공하다",
+      "빠르게",
+      "설명하다"
+    ],
+    "answer": "빠르게",
+    "meaning": "빠르게",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0047",
+    "prompt": "빠르게",
+    "choices": [
+      "unstable",
+      "quickly",
+      "permanent",
+      "environmental"
+    ],
+    "answer": "quickly",
+    "meaning": "빠르게",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0048",
+    "prompt": "slowly",
+    "choices": [
+      "결코 ~않다",
+      "천천히",
+      "한 번",
+      "누구의"
+    ],
+    "answer": "천천히",
+    "meaning": "천천히",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0048",
+    "prompt": "천천히",
+    "choices": [
+      "structure",
+      "slowly",
+      "minor",
+      "as"
+    ],
+    "answer": "slowly",
+    "meaning": "천천히",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0049",
+    "prompt": "carefully",
+    "choices": [
+      "정책",
+      "어느 것",
+      "너무",
+      "조심스럽게"
+    ],
+    "answer": "조심스럽게",
+    "meaning": "조심스럽게",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0049",
+    "prompt": "조심스럽게",
+    "choices": [
+      "carefully",
+      "general",
+      "slowly",
+      "especially"
+    ],
+    "answer": "carefully",
+    "meaning": "조심스럽게",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0050",
+    "prompt": "easily",
+    "choices": [
+      "아무것도 ~않다",
+      "다른",
+      "쉽게",
+      "개념"
+    ],
+    "answer": "쉽게",
+    "meaning": "쉽게",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0050",
+    "prompt": "쉽게",
+    "choices": [
+      "create",
+      "relationship",
+      "particularly",
+      "easily"
+    ],
+    "answer": "easily",
+    "meaning": "쉽게",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0051",
+    "prompt": "hardly",
+    "choices": [
+      "그래서",
+      "분석",
+      "거의 ~않다",
+      "지속적인"
+    ],
+    "answer": "거의 ~않다",
+    "meaning": "거의 ~않다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0051",
+    "prompt": "거의 ~않다",
+    "choices": [
+      "relationship",
+      "hardly",
+      "everything",
+      "together"
+    ],
+    "answer": "hardly",
+    "meaning": "거의 ~않다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0052",
+    "prompt": "barely",
+    "choices": [
+      "확실한",
+      "오직",
+      "거의 ~않다",
+      "깨닫다"
+    ],
+    "answer": "거의 ~않다",
+    "meaning": "거의 ~않다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0052",
+    "prompt": "거의 ~않다",
+    "choices": [
+      "scale",
+      "therefore",
+      "assume",
+      "barely"
+    ],
+    "answer": "barely",
+    "meaning": "거의 ~않다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0053",
+    "prompt": "directly",
+    "choices": [
+      "따로",
+      "직접적으로",
+      "환경의",
+      "그때"
+    ],
+    "answer": "직접적으로",
+    "meaning": "직접적으로",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0053",
+    "prompt": "직접적으로",
+    "choices": [
+      "easily",
+      "directly",
+      "provide",
+      "maintain"
+    ],
+    "answer": "directly",
+    "meaning": "직접적으로",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0054",
+    "prompt": "indirectly",
+    "choices": [
+      "거의 ~않다",
+      "간접적으로",
+      "주장",
+      "경제의"
+    ],
+    "answer": "간접적으로",
+    "meaning": "간접적으로",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0054",
+    "prompt": "간접적으로",
+    "choices": [
+      "indirectly",
+      "rapid",
+      "influence",
+      "these"
+    ],
+    "answer": "indirectly",
+    "meaning": "간접적으로",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0055",
+    "prompt": "together",
+    "choices": [
+      "결정",
+      "함께",
+      "아직",
+      "체계"
+    ],
+    "answer": "함께",
+    "meaning": "함께",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0055",
+    "prompt": "함께",
+    "choices": [
+      "while",
+      "process",
+      "issue",
+      "together"
+    ],
+    "answer": "together",
+    "meaning": "함께",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0056",
+    "prompt": "separately",
+    "choices": [
+      "~할 때마다",
+      "따로",
+      "사회적인",
+      "조심스럽게"
+    ],
+    "answer": "따로",
+    "meaning": "따로",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0056",
+    "prompt": "따로",
+    "choices": [
+      "separately",
+      "distribution",
+      "individual",
+      "rarely"
+    ],
+    "answer": "separately",
+    "meaning": "따로",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0057",
+    "prompt": "instead",
+    "choices": [
+      "대신에",
+      "일반적인",
+      "저것",
+      "성공하다"
+    ],
+    "answer": "대신에",
+    "meaning": "대신에",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0057",
+    "prompt": "대신에",
+    "choices": [
+      "unlimited",
+      "result",
+      "instead",
+      "global"
+    ],
+    "answer": "instead",
+    "meaning": "대신에",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0058",
+    "prompt": "otherwise",
+    "choices": [
+      "그렇지 않으면",
+      "분명한",
+      "여전히",
+      "문화"
+    ],
+    "answer": "그렇지 않으면",
+    "meaning": "그렇지 않으면",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0058",
+    "prompt": "그렇지 않으면",
+    "choices": [
+      "increase",
+      "otherwise",
+      "available",
+      "adjust"
+    ],
+    "answer": "otherwise",
+    "meaning": "그렇지 않으면",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0059",
+    "prompt": "therefore",
+    "choices": [
+      "유지하다",
+      "아무도 ~않다",
+      "그러므로",
+      "그래서"
+    ],
+    "answer": "그러므로",
+    "meaning": "그러므로",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0059",
+    "prompt": "그러므로",
+    "choices": [
+      "develop",
+      "understand",
+      "again",
+      "therefore"
+    ],
+    "answer": "therefore",
+    "meaning": "그러므로",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_AD_0060",
+    "prompt": "however",
+    "choices": [
+      "일시적인",
+      "일부",
+      "꽤",
+      "하지만"
+    ],
+    "answer": "하지만",
+    "meaning": "하지만",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_AD_0060",
+    "prompt": "하지만",
+    "choices": [
+      "whose",
+      "however",
+      "individual",
+      "appropriate"
+    ],
+    "answer": "however",
+    "meaning": "하지만",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0001",
+    "prompt": "and",
+    "choices": [
+      "전통적인",
+      "명확한",
+      "여전히",
+      "그리고"
+    ],
+    "answer": "그리고",
+    "meaning": "그리고",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0001",
+    "prompt": "그리고",
+    "choices": [
+      "maintain",
+      "and",
+      "more",
+      "approach"
+    ],
+    "answer": "and",
+    "meaning": "그리고",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0002",
+    "prompt": "but",
+    "choices": [
+      "둘 중 하나",
+      "일부",
+      "아무도 ~않다",
+      "하지만"
+    ],
+    "answer": "하지만",
+    "meaning": "하지만",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0002",
+    "prompt": "하지만",
+    "choices": [
+      "oppose",
+      "but",
+      "easy",
+      "analyze"
+    ],
+    "answer": "but",
+    "meaning": "하지만",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0003",
+    "prompt": "or",
+    "choices": [
+      "강조하다",
+      "수반하다",
+      "줄이다",
+      "또는"
+    ],
+    "answer": "또는",
+    "meaning": "또는",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0003",
+    "prompt": "또는",
+    "choices": [
+      "anyone",
+      "or",
+      "nearly",
+      "traditional"
+    ],
+    "answer": "or",
+    "meaning": "또는",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0004",
+    "prompt": "so",
+    "choices": [
+      "이것",
+      "그래서",
+      "오직",
+      "고려하다"
+    ],
+    "answer": "그래서",
+    "meaning": "그래서",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0004",
+    "prompt": "그래서",
+    "choices": [
+      "effect",
+      "so",
+      "factor",
+      "contrast"
+    ],
+    "answer": "so",
+    "meaning": "그래서",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0005",
+    "prompt": "because",
+    "choices": [
+      "문제",
+      "왜냐하면",
+      "명백하게",
+      "인식하다"
+    ],
+    "answer": "왜냐하면",
+    "meaning": "왜냐하면",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0005",
+    "prompt": "왜냐하면",
+    "choices": [
+      "because",
+      "policy",
+      "minor",
+      "society"
+    ],
+    "answer": "because",
+    "meaning": "왜냐하면",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0006",
+    "prompt": "although",
+    "choices": [
+      "영구적인",
+      "여기다",
+      "비록 ~일지라도",
+      "둘 다 ~아닌"
+    ],
+    "answer": "비록 ~일지라도",
+    "meaning": "비록 ~일지라도",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0006",
+    "prompt": "비록 ~일지라도",
+    "choices": [
+      "while",
+      "although",
+      "concept",
+      "whose"
+    ],
+    "answer": "although",
+    "meaning": "비록 ~일지라도",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0007",
+    "prompt": "though",
+    "choices": [
+      "연결하다",
+      "비록 ~일지라도",
+      "여기",
+      "관련시키다"
+    ],
+    "answer": "비록 ~일지라도",
+    "meaning": "비록 ~일지라도",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0007",
+    "prompt": "비록 ~일지라도",
+    "choices": [
+      "income",
+      "everything",
+      "global",
+      "though"
+    ],
+    "answer": "though",
+    "meaning": "비록 ~일지라도",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0008",
+    "prompt": "even though",
+    "choices": [
+      "허용하다",
+      "여전히",
+      "원인",
+      "비록 ~일지라도"
+    ],
+    "answer": "비록 ~일지라도",
+    "meaning": "비록 ~일지라도",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0008",
+    "prompt": "비록 ~일지라도",
+    "choices": [
+      "someone",
+      "before",
+      "relate",
+      "even though"
+    ],
+    "answer": "even though",
+    "meaning": "비록 ~일지라도",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0009",
+    "prompt": "while",
+    "choices": [
+      "반대하다",
+      "인구",
+      "강하게",
+      "~하는 동안"
+    ],
+    "answer": "~하는 동안",
+    "meaning": "~하는 동안",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0009",
+    "prompt": "~하는 동안",
+    "choices": [
+      "efficient",
+      "slightly",
+      "while",
+      "only"
+    ],
+    "answer": "while",
+    "meaning": "~하는 동안",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0010",
+    "prompt": "whereas",
+    "choices": [
+      "개선하다",
+      "막다",
+      "반면에",
+      "원인"
+    ],
+    "answer": "반면에",
+    "meaning": "반면에",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0010",
+    "prompt": "반면에",
+    "choices": [
+      "whereas",
+      "highlight",
+      "adjust",
+      "support"
+    ],
+    "answer": "whereas",
+    "meaning": "반면에",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0011",
+    "prompt": "if",
+    "choices": [
+      "만약 ~라면",
+      "경제의",
+      "거의",
+      "책임"
+    ],
+    "answer": "만약 ~라면",
+    "meaning": "만약 ~라면",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0011",
+    "prompt": "만약 ~라면",
+    "choices": [
+      "but",
+      "if",
+      "attitude",
+      "slowly"
+    ],
+    "answer": "if",
+    "meaning": "만약 ~라면",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0012",
+    "prompt": "unless",
+    "choices": [
+      "분배",
+      "~하지 않는 한",
+      "성취하다",
+      "간접적으로"
+    ],
+    "answer": "~하지 않는 한",
+    "meaning": "~하지 않는 한",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0012",
+    "prompt": "~하지 않는 한",
+    "choices": [
+      "traditional",
+      "sometimes",
+      "scale",
+      "unless"
+    ],
+    "answer": "unless",
+    "meaning": "~하지 않는 한",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0013",
+    "prompt": "when",
+    "choices": [
+      "자원",
+      "~할 때",
+      "집단의",
+      "~후에"
+    ],
+    "answer": "~할 때",
+    "meaning": "~할 때",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0013",
+    "prompt": "~할 때",
+    "choices": [
+      "everything",
+      "system",
+      "though",
+      "when"
+    ],
+    "answer": "when",
+    "meaning": "~할 때",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0014",
+    "prompt": "whenever",
+    "choices": [
+      "~할 때마다",
+      "여전히",
+      "일시적인",
+      "나 자신"
+    ],
+    "answer": "~할 때마다",
+    "meaning": "~할 때마다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0014",
+    "prompt": "~할 때마다",
+    "choices": [
+      "whenever",
+      "unlikely",
+      "everywhere",
+      "form"
+    ],
+    "answer": "whenever",
+    "meaning": "~할 때마다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0015",
+    "prompt": "before",
+    "choices": [
+      "의지하다",
+      "개인의",
+      "~전에",
+      "분석"
+    ],
+    "answer": "~전에",
+    "meaning": "~전에",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0015",
+    "prompt": "~전에",
+    "choices": [
+      "themselves",
+      "assume",
+      "before",
+      "than"
+    ],
+    "answer": "before",
+    "meaning": "~전에",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0016",
+    "prompt": "after",
+    "choices": [
+      "구조",
+      "체계",
+      "~후에",
+      "반면에"
+    ],
+    "answer": "~후에",
+    "meaning": "~후에",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0016",
+    "prompt": "~후에",
+    "choices": [
+      "whom",
+      "after",
+      "recent",
+      "choice"
+    ],
+    "answer": "after",
+    "meaning": "~후에",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0017",
+    "prompt": "until",
+    "choices": [
+      "일반적으로",
+      "너 자신",
+      "~까지",
+      "항상"
+    ],
+    "answer": "~까지",
+    "meaning": "~까지",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0017",
+    "prompt": "~까지",
+    "choices": [
+      "after",
+      "anyone",
+      "until",
+      "improve"
+    ],
+    "answer": "until",
+    "meaning": "~까지",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0018",
+    "prompt": "since",
+    "choices": [
+      "주요한",
+      "~이후로",
+      "드물게",
+      "불가능한"
+    ],
+    "answer": "~이후로",
+    "meaning": "~이후로",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0018",
+    "prompt": "~이후로",
+    "choices": [
+      "factor",
+      "compare",
+      "since",
+      "result"
+    ],
+    "answer": "since",
+    "meaning": "~이후로",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0019",
+    "prompt": "as",
+    "choices": [
+      "대조하다",
+      "논쟁",
+      "~처럼",
+      "변화시키다"
+    ],
+    "answer": "~처럼",
+    "meaning": "~처럼",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0019",
+    "prompt": "~처럼",
+    "choices": [
+      "who",
+      "partly",
+      "now",
+      "as"
+    ],
+    "answer": "as",
+    "meaning": "~처럼",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0020",
+    "prompt": "than",
+    "choices": [
+      "주로",
+      "천천히",
+      "태도",
+      "~보다"
+    ],
+    "answer": "~보다",
+    "meaning": "~보다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0020",
+    "prompt": "~보다",
+    "choices": [
+      "anywhere",
+      "than",
+      "sometimes",
+      "create"
+    ],
+    "answer": "than",
+    "meaning": "~보다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0021",
+    "prompt": "that",
+    "choices": [
+      "개인",
+      "그것",
+      "무언가",
+      "많은 (불가산)"
+    ],
+    "answer": "그것",
+    "meaning": "그것",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0021",
+    "prompt": "그것",
+    "choices": [
+      "somewhere",
+      "approach",
+      "that",
+      "assume"
+    ],
+    "answer": "that",
+    "meaning": "그것",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0022",
+    "prompt": "which",
+    "choices": [
+      "다른",
+      "어느 것",
+      "다양한",
+      "함께"
+    ],
+    "answer": "어느 것",
+    "meaning": "어느 것",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0022",
+    "prompt": "어느 것",
+    "choices": [
+      "influence",
+      "major",
+      "which",
+      "include"
+    ],
+    "answer": "which",
+    "meaning": "어느 것",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0023",
+    "prompt": "who",
+    "choices": [
+      "누구",
+      "통제",
+      "함께",
+      "특히"
+    ],
+    "answer": "누구",
+    "meaning": "누구",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0023",
+    "prompt": "누구",
+    "choices": [
+      "no one",
+      "after",
+      "benefit",
+      "who"
+    ],
+    "answer": "who",
+    "meaning": "누구",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0024",
+    "prompt": "whom",
+    "choices": [
+      "현대의",
+      "오직",
+      "반면에",
+      "누구를"
+    ],
+    "answer": "누구를",
+    "meaning": "누구를",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0024",
+    "prompt": "누구를",
+    "choices": [
+      "whom",
+      "significant",
+      "even",
+      "himself"
+    ],
+    "answer": "whom",
+    "meaning": "누구를",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0025",
+    "prompt": "whose",
+    "choices": [
+      "구체적인",
+      "통제",
+      "누구의",
+      "아직"
+    ],
+    "answer": "누구의",
+    "meaning": "누구의",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0025",
+    "prompt": "누구의",
+    "choices": [
+      "general",
+      "seriously",
+      "standard",
+      "whose"
+    ],
+    "answer": "whose",
+    "meaning": "누구의",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0026",
+    "prompt": "what",
+    "choices": [
+      "드물게",
+      "누구",
+      "관련시키다",
+      "무엇"
+    ],
+    "answer": "무엇",
+    "meaning": "무엇",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0026",
+    "prompt": "무엇",
+    "choices": [
+      "certain",
+      "together",
+      "yourself",
+      "what"
+    ],
+    "answer": "what",
+    "meaning": "무엇",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0027",
+    "prompt": "this",
+    "choices": [
+      "둘 다",
+      "가치",
+      "해석하다",
+      "이것"
+    ],
+    "answer": "이것",
+    "meaning": "이것",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0027",
+    "prompt": "이것",
+    "choices": [
+      "this",
+      "or",
+      "already",
+      "similar"
+    ],
+    "answer": "this",
+    "meaning": "이것",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0028",
+    "prompt": "that",
+    "choices": [
+      "그러므로",
+      "저것",
+      "유지하다",
+      "같은"
+    ],
+    "answer": "저것",
+    "meaning": "저것",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0028",
+    "prompt": "저것",
+    "choices": [
+      "that",
+      "just",
+      "evidence",
+      "responsibility"
+    ],
+    "answer": "that",
+    "meaning": "저것",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0029",
+    "prompt": "these",
+    "choices": [
+      "~보다",
+      "단지",
+      "이것들",
+      "선택"
+    ],
+    "answer": "이것들",
+    "meaning": "이것들",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0029",
+    "prompt": "이것들",
+    "choices": [
+      "harmful",
+      "these",
+      "challenge",
+      "system"
+    ],
+    "answer": "these",
+    "meaning": "이것들",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0030",
+    "prompt": "those",
+    "choices": [
+      "저것들",
+      "많은",
+      "개인",
+      "만약 ~라면"
+    ],
+    "answer": "저것들",
+    "meaning": "저것들",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0030",
+    "prompt": "저것들",
+    "choices": [
+      "research",
+      "those",
+      "social",
+      "difficult"
+    ],
+    "answer": "those",
+    "meaning": "저것들",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0031",
+    "prompt": "something",
+    "choices": [
+      "가능성이 낮은",
+      "중요한",
+      "무언가",
+      "다루다"
+    ],
+    "answer": "무언가",
+    "meaning": "무언가",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0031",
+    "prompt": "무언가",
+    "choices": [
+      "something",
+      "trend",
+      "some",
+      "communication"
+    ],
+    "answer": "something",
+    "meaning": "무언가",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0032",
+    "prompt": "anything",
+    "choices": [
+      "가장 많은",
+      "허용하다",
+      "비교하다",
+      "어떤 것"
+    ],
+    "answer": "어떤 것",
+    "meaning": "어떤 것",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0032",
+    "prompt": "어떤 것",
+    "choices": [
+      "anything",
+      "choice",
+      "include",
+      "partly"
+    ],
+    "answer": "anything",
+    "meaning": "어떤 것",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0033",
+    "prompt": "nothing",
+    "choices": [
+      "제안하다",
+      "대조하다",
+      "아무것도 ~않다",
+      "아직"
+    ],
+    "answer": "아무것도 ~않다",
+    "meaning": "아무것도 ~않다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0033",
+    "prompt": "아무것도 ~않다",
+    "choices": [
+      "nearly",
+      "nothing",
+      "before",
+      "support"
+    ],
+    "answer": "nothing",
+    "meaning": "아무것도 ~않다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0034",
+    "prompt": "everything",
+    "choices": [
+      "문제",
+      "관련시키다",
+      "분명한",
+      "모든 것"
+    ],
+    "answer": "모든 것",
+    "meaning": "모든 것",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0034",
+    "prompt": "모든 것",
+    "choices": [
+      "much",
+      "focus",
+      "everything",
+      "traditional"
+    ],
+    "answer": "everything",
+    "meaning": "모든 것",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0035",
+    "prompt": "someone",
+    "choices": [
+      "여기다",
+      "저것",
+      "누군가",
+      "분명히"
+    ],
+    "answer": "누군가",
+    "meaning": "누군가",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0035",
+    "prompt": "누군가",
+    "choices": [
+      "theory",
+      "each",
+      "someone",
+      "uncertain"
+    ],
+    "answer": "someone",
+    "meaning": "누군가",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0036",
+    "prompt": "anyone",
+    "choices": [
+      "복잡한",
+      "누구든지",
+      "관련 있는",
+      "규모"
+    ],
+    "answer": "누구든지",
+    "meaning": "누구든지",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0036",
+    "prompt": "누구든지",
+    "choices": [
+      "approach",
+      "anyone",
+      "however",
+      "modern"
+    ],
+    "answer": "anyone",
+    "meaning": "누구든지",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0037",
+    "prompt": "no one",
+    "choices": [
+      "~전에",
+      "영향을 미치다",
+      "아무도 ~않다",
+      "비슷한"
+    ],
+    "answer": "아무도 ~않다",
+    "meaning": "아무도 ~않다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0037",
+    "prompt": "아무도 ~않다",
+    "choices": [
+      "no one",
+      "negative",
+      "easy",
+      "achieve"
+    ],
+    "answer": "no one",
+    "meaning": "아무도 ~않다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0038",
+    "prompt": "everyone",
+    "choices": [
+      "영향력",
+      "대신에",
+      "모두",
+      "확실한"
+    ],
+    "answer": "모두",
+    "meaning": "모두",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0038",
+    "prompt": "모두",
+    "choices": [
+      "strongly",
+      "everyone",
+      "role",
+      "respond"
+    ],
+    "answer": "everyone",
+    "meaning": "모두",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0039",
+    "prompt": "myself",
+    "choices": [
+      "최근의",
+      "나 자신",
+      "원칙",
+      "결과를 낳다"
+    ],
+    "answer": "나 자신",
+    "meaning": "나 자신",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0039",
+    "prompt": "나 자신",
+    "choices": [
+      "myself",
+      "few",
+      "contrast",
+      "recognize"
+    ],
+    "answer": "myself",
+    "meaning": "나 자신",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0040",
+    "prompt": "yourself",
+    "choices": [
+      "각각",
+      "역할",
+      "너 자신",
+      "분배"
+    ],
+    "answer": "너 자신",
+    "meaning": "너 자신",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0040",
+    "prompt": "너 자신",
+    "choices": [
+      "yourself",
+      "basically",
+      "most",
+      "build"
+    ],
+    "answer": "yourself",
+    "meaning": "너 자신",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0041",
+    "prompt": "himself",
+    "choices": [
+      "가장 많은",
+      "달성하다",
+      "관련시키다",
+      "그 자신"
+    ],
+    "answer": "그 자신",
+    "meaning": "그 자신",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0041",
+    "prompt": "그 자신",
+    "choices": [
+      "himself",
+      "after",
+      "yet",
+      "factor"
+    ],
+    "answer": "himself",
+    "meaning": "그 자신",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0042",
+    "prompt": "herself",
+    "choices": [
+      "달성하다",
+      "제안하다",
+      "그녀 자신",
+      "의사소통"
+    ],
+    "answer": "그녀 자신",
+    "meaning": "그녀 자신",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0042",
+    "prompt": "그녀 자신",
+    "choices": [
+      "herself",
+      "emphasize",
+      "assume",
+      "relevant"
+    ],
+    "answer": "herself",
+    "meaning": "그녀 자신",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0043",
+    "prompt": "itself",
+    "choices": [
+      "지금",
+      "적절한",
+      "그것 자체",
+      "성취하다"
+    ],
+    "answer": "그것 자체",
+    "meaning": "그것 자체",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0043",
+    "prompt": "그것 자체",
+    "choices": [
+      "environment",
+      "itself",
+      "whom",
+      "global"
+    ],
+    "answer": "itself",
+    "meaning": "그것 자체",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0044",
+    "prompt": "ourselves",
+    "choices": [
+      "다루다",
+      "사회적인",
+      "우리 자신들",
+      "따로"
+    ],
+    "answer": "우리 자신들",
+    "meaning": "우리 자신들",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0044",
+    "prompt": "우리 자신들",
+    "choices": [
+      "ourselves",
+      "important",
+      "prevent",
+      "so"
+    ],
+    "answer": "ourselves",
+    "meaning": "우리 자신들",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0045",
+    "prompt": "themselves",
+    "choices": [
+      "그들 자신",
+      "함께",
+      "결코 ~않다",
+      "불확실한"
+    ],
+    "answer": "그들 자신",
+    "meaning": "그들 자신",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0045",
+    "prompt": "그들 자신",
+    "choices": [
+      "similar",
+      "or",
+      "opportunity",
+      "themselves"
+    ],
+    "answer": "themselves",
+    "meaning": "그들 자신",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0046",
+    "prompt": "each",
+    "choices": [
+      "빠른",
+      "체계",
+      "각각",
+      "나 자신"
+    ],
+    "answer": "각각",
+    "meaning": "각각",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0046",
+    "prompt": "각각",
+    "choices": [
+      "each",
+      "resource",
+      "society",
+      "only"
+    ],
+    "answer": "each",
+    "meaning": "각각",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0047",
+    "prompt": "every",
+    "choices": [
+      "주로",
+      "둘 다 ~아닌",
+      "창조하다",
+      "모든"
+    ],
+    "answer": "모든",
+    "meaning": "모든",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0047",
+    "prompt": "모든",
+    "choices": [
+      "every",
+      "slowly",
+      "unstable",
+      "system"
+    ],
+    "answer": "every",
+    "meaning": "모든",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0048",
+    "prompt": "either",
+    "choices": [
+      "우리 자신들",
+      "둘 중 하나",
+      "제한된",
+      "심각하게"
+    ],
+    "answer": "둘 중 하나",
+    "meaning": "둘 중 하나",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0048",
+    "prompt": "둘 중 하나",
+    "choices": [
+      "useful",
+      "understand",
+      "increase",
+      "either"
+    ],
+    "answer": "either",
+    "meaning": "둘 중 하나",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0049",
+    "prompt": "neither",
+    "choices": [
+      "접근 가능한",
+      "적합한",
+      "형성하다",
+      "둘 다 ~아닌"
+    ],
+    "answer": "둘 다 ~아닌",
+    "meaning": "둘 다 ~아닌",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0049",
+    "prompt": "둘 다 ~아닌",
+    "choices": [
+      "environment",
+      "relationship",
+      "than",
+      "neither"
+    ],
+    "answer": "neither",
+    "meaning": "둘 다 ~아닌",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0050",
+    "prompt": "both",
+    "choices": [
+      "제공하다",
+      "누구의",
+      "현대의",
+      "둘 다"
+    ],
+    "answer": "둘 다",
+    "meaning": "둘 다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0050",
+    "prompt": "둘 다",
+    "choices": [
+      "argue",
+      "risk",
+      "then",
+      "both"
+    ],
+    "answer": "both",
+    "meaning": "둘 다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0051",
+    "prompt": "all",
+    "choices": [
+      "거의 없는 (불가산)",
+      "모두",
+      "주요한",
+      "조절하다"
+    ],
+    "answer": "모두",
+    "meaning": "모두",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0051",
+    "prompt": "모두",
+    "choices": [
+      "complex",
+      "rapid",
+      "all",
+      "suggest"
+    ],
+    "answer": "all",
+    "meaning": "모두",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0052",
+    "prompt": "some",
+    "choices": [
+      "비교하다",
+      "가장 많은",
+      "일부",
+      "막다"
+    ],
+    "answer": "일부",
+    "meaning": "일부",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0052",
+    "prompt": "일부",
+    "choices": [
+      "some",
+      "possible",
+      "attitude",
+      "again"
+    ],
+    "answer": "some",
+    "meaning": "일부",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0053",
+    "prompt": "many",
+    "choices": [
+      "어디에나",
+      "방법",
+      "많은",
+      "인식하다"
+    ],
+    "answer": "많은",
+    "meaning": "많은",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0053",
+    "prompt": "많은",
+    "choices": [
+      "depend",
+      "process",
+      "easy",
+      "many"
+    ],
+    "answer": "many",
+    "meaning": "많은",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0054",
+    "prompt": "much",
+    "choices": [
+      "이것들",
+      "~처럼",
+      "항상",
+      "많은 (불가산)"
+    ],
+    "answer": "많은 (불가산)",
+    "meaning": "많은 (불가산)",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0054",
+    "prompt": "많은 (불가산)",
+    "choices": [
+      "process",
+      "common",
+      "much",
+      "usually"
+    ],
+    "answer": "much",
+    "meaning": "많은 (불가산)",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0055",
+    "prompt": "few",
+    "choices": [
+      "한 번",
+      "거의 없는 (가산)",
+      "거의 ~않다",
+      "효율적인"
+    ],
+    "answer": "거의 없는 (가산)",
+    "meaning": "거의 없는 (가산)",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0055",
+    "prompt": "거의 없는 (가산)",
+    "choices": [
+      "affect",
+      "recent",
+      "generation",
+      "few"
+    ],
+    "answer": "few",
+    "meaning": "거의 없는 (가산)",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0056",
+    "prompt": "little",
+    "choices": [
+      "의지하다",
+      "접근",
+      "거의 없는 (불가산)",
+      "지역의"
+    ],
+    "answer": "거의 없는 (불가산)",
+    "meaning": "거의 없는 (불가산)",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0056",
+    "prompt": "거의 없는 (불가산)",
+    "choices": [
+      "easy",
+      "some",
+      "everything",
+      "little"
+    ],
+    "answer": "little",
+    "meaning": "거의 없는 (불가산)",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0057",
+    "prompt": "more",
+    "choices": [
+      "이점",
+      "형성하다",
+      "더 많은",
+      "~하는 동안"
+    ],
+    "answer": "더 많은",
+    "meaning": "더 많은",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0057",
+    "prompt": "더 많은",
+    "choices": [
+      "necessary",
+      "more",
+      "too",
+      "slightly"
+    ],
+    "answer": "more",
+    "meaning": "더 많은",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0058",
+    "prompt": "most",
+    "choices": [
+      "아직",
+      "누구를",
+      "제공하다",
+      "가장 많은"
+    ],
+    "answer": "가장 많은",
+    "meaning": "가장 많은",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0058",
+    "prompt": "가장 많은",
+    "choices": [
+      "minor",
+      "most",
+      "obvious",
+      "respond"
+    ],
+    "answer": "most",
+    "meaning": "가장 많은",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "EN_E_0059",
+    "prompt": "such",
+    "choices": [
+      "인구",
+      "집단의",
+      "그러한",
+      "결과를 낳다"
+    ],
+    "answer": "그러한",
+    "meaning": "그러한",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "EN_E_0059",
+    "prompt": "그러한",
+    "choices": [
+      "such",
+      "as",
+      "little",
+      "behavior"
+    ],
+    "answer": "such",
+    "meaning": "그러한",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  }
+]
