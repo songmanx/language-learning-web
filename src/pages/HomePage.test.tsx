@@ -3,12 +3,8 @@ import userEvent from "@testing-library/user-event";
 import { MemoryRouter, Route, Routes, useLocation } from "react-router-dom";
 import { beforeEach, describe, expect, it } from "vitest";
 import { HomePage } from "./HomePage";
-import { clearMockGasFailures } from "../services/apiClient";
-import {
-  readPendingSession,
-  writePendingSession,
-  writeSessionConfigSnapshot,
-} from "../services/sessionRecovery";
+import { clearMockGasFailures, setMockGasFailure } from "../services/apiClient";
+import { readPendingSession, writePendingSession, writeSessionConfigSnapshot } from "../services/sessionRecovery";
 import { useAuthStore } from "../stores/authStore";
 import { useLanguageStore } from "../stores/languageStore";
 
@@ -25,16 +21,6 @@ const pendingPayload = {
   answerLog: [],
   reviewState: [],
 };
-
-const TEXT = {
-  pendingSession: "임시 저장된 세션이 있습니다.",
-  retrySave: "임시 저장 세션 다시 저장",
-  retrySuccess: "임시 저장된 세션을 정상적으로 다시 저장했습니다.",
-  practiceStart: "연습 모드 시작",
-  mockNotice: "현재는 mock 모드라서 실제 Google Sheets에 저장되지 않습니다.",
-  selectedLanguage: "선택 언어",
-  lastLoadout: "마지막 세션 구성",
-} as const;
 
 function PracticeRouteProbe() {
   const location = useLocation();
@@ -59,8 +45,8 @@ describe("HomePage", () => {
       words: [
         {
           id: "ja-1",
-          prompt: "ねこ",
-          choices: ["고양이", "개", "새", "물고기"],
+          prompt: "猫",
+          choices: ["고양이", "가방", "책", "물고기"],
           answer: "고양이",
           meaning: "고양이",
           difficulty: "1",
@@ -78,7 +64,7 @@ describe("HomePage", () => {
     });
   });
 
-  it("임시 저장 세션을 다시 저장하면 pending session을 지운다", async () => {
+  it("retries a pending session save and clears local pending data", async () => {
     const user = userEvent.setup();
 
     render(
@@ -87,32 +73,58 @@ describe("HomePage", () => {
       </MemoryRouter>,
     );
 
-    expect(screen.getByText(TEXT.pendingSession)).toBeInTheDocument();
+    expect(screen.getByText("임시 저장된 세션이 있습니다.")).toBeInTheDocument();
 
-    await user.click(screen.getByRole("button", { name: TEXT.retrySave }));
+    await user.click(screen.getByRole("button", { name: "임시 저장 세션 다시 저장" }));
 
-    await screen.findByText(TEXT.retrySuccess);
+    await screen.findByText("임시 저장된 세션을 정상적으로 다시 저장했습니다.");
 
     await waitFor(() => {
       expect(readPendingSession("player-demo", "ja")).toBeNull();
     });
   });
 
-  it("마지막 세션 구성에는 품사/난이도/출제만 보여준다", () => {
+  it("shows readable retry error for network failure", async () => {
+    const user = userEvent.setup();
+    setMockGasFailure("saveSession", "Failed to fetch");
+
     render(
       <MemoryRouter>
         <HomePage />
       </MemoryRouter>,
     );
 
-    expect(screen.getByText(TEXT.mockNotice)).toBeInTheDocument();
-    expect(screen.getByText(new RegExp(`${TEXT.selectedLanguage}:\\s*일본어`))).toBeInTheDocument();
-    expect(screen.getByText(TEXT.lastLoadout)).toBeInTheDocument();
-    expect(screen.getByText(/출제: 뜻 -> 단어/)).toBeInTheDocument();
-    expect(screen.queryByText(/흐름:/)).not.toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: "임시 저장 세션 다시 저장" }));
+
+    await screen.findByText(/저장 서버에 연결하지 못했습니다/);
+
+    expect(readPendingSession("player-demo", "ja")).not.toBeNull();
   });
 
-  it("홈 화면에서 연습 모드 진입 시 마지막 세션 구성을 전달한다", async () => {
+  it("shows readable message for pending failed-to-fetch reason", () => {
+    writePendingSession("player-demo", "ja", pendingPayload, "Failed to fetch");
+
+    render(
+      <MemoryRouter>
+        <HomePage />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByText(/저장 서버에 연결하지 못했습니다/)).toBeInTheDocument();
+  });
+
+  it("hides the last session config card", () => {
+    render(
+      <MemoryRouter>
+        <HomePage />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByText(/선택 언어:\s*일본어/)).toBeInTheDocument();
+    expect(screen.queryByText("마지막 세션 구성")).not.toBeInTheDocument();
+  });
+
+  it("passes the last session config when practice starts", async () => {
     const user = userEvent.setup();
 
     render(
@@ -124,8 +136,25 @@ describe("HomePage", () => {
       </MemoryRouter>,
     );
 
-    await user.click(screen.getByRole("button", { name: TEXT.practiceStart }));
+    await user.click(screen.getByRole("button", { name: "연습 모드 시작" }));
 
     expect(screen.getByText("meaning_to_word")).toBeInTheDocument();
+  });
+
+  it("moves to overall leaderboard from home", async () => {
+    const user = userEvent.setup();
+
+    render(
+      <MemoryRouter initialEntries={["/home"]}>
+        <Routes>
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/leaderboard" element={<div>leaderboard-route</div>} />
+        </Routes>
+      </MemoryRouter>,
+    );
+
+    await user.click(screen.getByRole("button", { name: "전체 순위표" }));
+
+    expect(screen.getByText("leaderboard-route")).toBeInTheDocument();
   });
 });

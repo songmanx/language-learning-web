@@ -30,6 +30,15 @@ export type SessionConfigSnapshot = {
   savedAt: string;
 };
 
+export type LeaderboardEntry = {
+  playedAt: string;
+  totalTimeSec: number;
+  score: number;
+  quizMode?: SessionConfig["quizMode"];
+  playerId?: string;
+  nickname?: string;
+};
+
 export function getWordsCacheKey(playerId: string | null, languageCode: string) {
   return buildScopedStorageKey("words-cache", { playerId, languageCode });
 }
@@ -52,6 +61,14 @@ export function getDailyStatsSnapshotKey(playerId: string, languageCode: string)
 
 export function getSessionConfigSnapshotKey(playerId: string, languageCode: string) {
   return buildScopedStorageKey("session-config", { playerId, languageCode });
+}
+
+export function getLeaderboardKey(playerId: string, languageCode: string) {
+  return buildScopedStorageKey("leaderboard", { playerId, languageCode });
+}
+
+export function getGlobalLeaderboardKey(languageCode: string) {
+  return buildScopedStorageKey("global-leaderboard", { playerId: null, languageCode });
 }
 
 export function readCachedWords(playerId: string | null, languageCode: string) {
@@ -132,4 +149,38 @@ export function writeSessionConfigSnapshot(
     sessionConfig,
     savedAt: new Date().toISOString(),
   });
+}
+
+export function readLeaderboard(playerId: string, languageCode: string) {
+  return readJsonStorage<LeaderboardEntry[]>(getLeaderboardKey(playerId, languageCode), []);
+}
+
+export function writeLeaderboard(
+  playerId: string,
+  languageCode: string,
+  entries: LeaderboardEntry[],
+) {
+  writeJsonStorage(getLeaderboardKey(playerId, languageCode), entries);
+}
+
+export function readGlobalLeaderboard(languageCode: string) {
+  return readJsonStorage<LeaderboardEntry[]>(getGlobalLeaderboardKey(languageCode), []);
+}
+
+export function writeGlobalLeaderboard(languageCode: string, entries: LeaderboardEntry[]) {
+  writeJsonStorage(getGlobalLeaderboardKey(languageCode), entries);
+}
+
+export function clearPlayerProgress(playerId: string, languageCode: string) {
+  removeStorageItem(getPendingSessionKey(playerId, languageCode));
+  removeStorageItem(getReviewSnapshotKey(playerId, languageCode));
+  removeStorageItem(getDailyStatsSnapshotKey(playerId, languageCode));
+  removeStorageItem(getSessionConfigSnapshotKey(playerId, languageCode));
+  removeStorageItem(getLeaderboardKey(playerId, languageCode));
+
+  const globalEntries = readGlobalLeaderboard(languageCode);
+  writeGlobalLeaderboard(
+    languageCode,
+    globalEntries.filter((entry) => entry.playerId !== playerId),
+  );
 }

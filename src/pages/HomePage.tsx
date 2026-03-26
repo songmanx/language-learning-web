@@ -1,15 +1,12 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getSessionConfigLabels } from "../features/game/sessionConfig";
 import { apiClient } from "../services/apiClient";
 import { appLogger } from "../services/logger";
-import { getRuntimeConfig } from "../services/runtimeConfig";
 import type { PendingSessionRecord } from "../services/sessionRecovery";
 import { clearPendingSession, readPendingSession, readSessionConfigSnapshot } from "../services/sessionRecovery";
 import { useAuthStore } from "../stores/authStore";
 import { useLanguageStore } from "../stores/languageStore";
 
-const runtimeConfig = getRuntimeConfig();
 const TEXT = {
   welcome: "\uD658\uC601\uD569\uB2C8\uB2E4",
   learner: "\uD559\uC2B5\uC790",
@@ -32,19 +29,26 @@ const TEXT = {
   retryFail: "\uC138\uC158 \uC7AC\uC800\uC7A5\uC5D0 \uC2E4\uD328\uD588\uC2B5\uB2C8\uB2E4.",
   playStart: "\uD50C\uB808\uC774 \uC2DC\uC791",
   practiceStart: "\uC5F0\uC2B5 \uBAA8\uB4DC \uC2DC\uC791",
-  reviewCenter: "\uBCF5\uC2B5\uC13C\uD130 \uC5F4\uAE30",
+  reviewCenter: "\uBCF5\uC2B5 \uBAA8\uB4DC",
   statsPage: "\uD1B5\uACC4 \uBCF4\uAE30",
+  overallLeaderboard: "\uC804\uCCB4 \uC21C\uC704\uD45C",
   changeLanguage: "\uC5B8\uC5B4 \uB2E4\uC2DC \uC120\uD0DD",
   logout: "\uB85C\uADF8\uC544\uC6C3",
   startClickSuffix: "\uC2DC\uC791 \uBC84\uD2BC \uD074\uB9AD",
   retryAttempt: "\uC784\uC2DC \uC800\uC7A5 \uC138\uC158 \uC7AC\uC800\uC7A5 \uC2DC\uB3C4",
   retryAttemptSuccess: "\uC784\uC2DC \uC800\uC7A5 \uC138\uC158 \uC7AC\uC800\uC7A5 \uC131\uACF5",
   retryAttemptFail: "\uC784\uC2DC \uC800\uC7A5 \uC138\uC158 \uC7AC\uC800\uC7A5 \uC2E4\uD328",
-  mockNotice:
-    "\uD604\uC7AC\uB294 mock \uBAA8\uB4DC\uB77C\uC11C \uC2E4\uC81C Google Sheets\uC5D0 \uC800\uC7A5\uB418\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4.",
-  jsonNotice:
-    "\uD604\uC7AC\uB294 \uC815\uC801 JSON\uC5D0\uC11C \uBB38\uC81C/\uBA54\uD0C0\uB97C \uC77D\uACE0, \uB85C\uADF8\uC778\uACFC \uC800\uC7A5\uC740 GAS\uB85C \uCC98\uB9AC\uD569\uB2C8\uB2E4.",
+  networkSaveFail:
+    "\uC800\uC7A5 \uC11C\uBC84\uC5D0 \uC5F0\uACB0\uD558\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4. \uB124\uD2B8\uC6CC\uD06C \uB610\uB294 GAS \uBC30\uD3EC \uC0C1\uD0DC\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.",
 } as const;
+
+function formatPendingReason(reason: string) {
+  if (/failed to fetch|load failed|networkerror/i.test(reason)) {
+    return TEXT.networkSaveFail;
+  }
+
+  return reason;
+}
 
 export function HomePage() {
   const navigate = useNavigate();
@@ -57,10 +61,6 @@ export function HomePage() {
   const [isRetrying, setIsRetrying] = useState(false);
   const sessionConfigSnapshot =
     playerId && selectedLanguage ? readSessionConfigSnapshot(playerId, selectedLanguage) : null;
-  const sessionConfigLabels = sessionConfigSnapshot
-    ? getSessionConfigLabels(sessionConfigSnapshot.sessionConfig)
-    : null;
-
   const selectedLanguageLabel =
     availableLanguages.find((language) => language.languageCode === selectedLanguage)?.label ??
     selectedLanguage ??
@@ -121,7 +121,7 @@ export function HomePage() {
       });
     } catch (error) {
       const message = error instanceof Error ? error.message : TEXT.retryFail;
-      setRetryMessage(message);
+      setRetryMessage(formatPendingReason(message));
       appLogger.warning("home", TEXT.retryAttemptFail, {
         playerId,
         languageCode: selectedLanguage,
@@ -140,38 +140,7 @@ export function HomePage() {
         <p className="mt-2 text-sm leading-6 text-stone-300">
           {TEXT.language}: {selectedLanguageLabel} / {TEXT.preparedWords}: {words.length}
         </p>
-        {sessionConfigSnapshot && sessionConfigLabels ? (
-          <div className="mt-4 rounded-[1.4rem] border border-white/10 bg-white/5 p-4">
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <p className="text-sm font-semibold text-stone-100">{TEXT.lastLoadout}</p>
-              <span className="text-xs text-stone-400">
-                {TEXT.lastUpdated}: {new Date(sessionConfigSnapshot.savedAt).toLocaleString("ko-KR")}
-              </span>
-            </div>
-            <div className="mt-3 flex flex-wrap gap-2">
-              <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-stone-300">
-                {TEXT.partOfSpeech}: {sessionConfigLabels.partOfSpeech}
-              </span>
-              <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-stone-300">
-                {TEXT.difficulty}: {sessionConfigLabels.difficulty}
-              </span>
-              <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-stone-300">
-                {TEXT.quizMode}: {sessionConfigLabels.quizMode}
-              </span>
-            </div>
-          </div>
-        ) : null}
       </div>
-
-      {runtimeConfig.useMockApi ? (
-        <div className="rounded-[1.5rem] border border-sky-200/20 bg-sky-300/10 p-4 text-sm leading-6 text-sky-50">
-          {TEXT.mockNotice}
-        </div>
-      ) : runtimeConfig.useStaticData ? (
-        <div className="rounded-[1.5rem] border border-emerald-200/20 bg-emerald-300/10 p-4 text-sm leading-6 text-emerald-50">
-          {TEXT.jsonNotice}
-        </div>
-      ) : null}
 
       {pendingSession ? (
         <div className="rounded-[1.75rem] border border-amber-300/40 bg-amber-300/10 p-4 sm:rounded-[2rem] sm:p-5">
@@ -179,7 +148,9 @@ export function HomePage() {
           <p className="mt-2 text-sm leading-6 text-amber-50/90">
             {TEXT.pendingSavedAt}: {new Date(pendingSession.savedAt).toLocaleString("ko-KR")}
           </p>
-          <p className="mt-1 text-sm leading-6 text-amber-50/90">{TEXT.pendingReason}: {pendingSession.reason}</p>
+          <p className="mt-1 text-sm leading-6 text-amber-50/90">
+            {TEXT.pendingReason}: {formatPendingReason(pendingSession.reason)}
+          </p>
           <button
             className="mt-4 min-h-14 w-full rounded-2xl bg-amber-400 px-4 py-4 text-base font-semibold text-stone-950 disabled:opacity-60"
             type="button"
@@ -215,7 +186,11 @@ export function HomePage() {
         <button
           className="min-h-14 rounded-2xl border border-white/15 bg-white/8 px-4 py-4 text-base font-semibold"
           type="button"
-          onClick={() => navigate("/review")}
+          onClick={() =>
+            navigate("/review", {
+              state: sessionConfigSnapshot ? { sessionConfig: sessionConfigSnapshot.sessionConfig } : undefined,
+            })
+          }
         >
           {TEXT.reviewCenter}
         </button>
@@ -225,6 +200,13 @@ export function HomePage() {
           onClick={() => navigate("/stats")}
         >
           {TEXT.statsPage}
+        </button>
+        <button
+          className="min-h-14 rounded-2xl border border-white/15 bg-white/8 px-4 py-4 text-base font-semibold"
+          type="button"
+          onClick={() => navigate("/leaderboard")}
+        >
+          {TEXT.overallLeaderboard}
         </button>
         <button
           className="min-h-14 rounded-2xl border border-white/15 bg-white/8 px-4 py-4 text-base font-semibold"

@@ -1,4 +1,4 @@
-﻿import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
@@ -6,13 +6,6 @@ import { LoginPage } from "./LoginPage";
 import { clearMockGasFailures, setMockGasFailure } from "../services/apiClient";
 import { useAuthStore } from "../stores/authStore";
 import { useLanguageStore } from "../stores/languageStore";
-
-const TEXT = {
-  title: "학습을 시작해 봅시다",
-  demoHintTitle: "바로 써볼 수 있는 데모 계정",
-  submit: "로그인",
-  failedPrefix: "로그인 실패:",
-} as const;
 
 describe("LoginPage", () => {
   beforeEach(() => {
@@ -32,19 +25,20 @@ describe("LoginPage", () => {
     });
   });
 
-  it("데모 로그인 안내 문구를 보여준다", () => {
+  it("renders minimal login form", () => {
     render(
       <MemoryRouter>
         <LoginPage />
       </MemoryRouter>,
     );
 
-    expect(screen.getByRole("heading", { name: TEXT.title })).toBeInTheDocument();
-    expect(screen.getByText(TEXT.demoHintTitle)).toBeInTheDocument();
-    expect(screen.getByDisplayValue("demo")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "로그인" })).toBeInTheDocument();
+    expect(screen.getByLabelText("아이디")).toBeInTheDocument();
+    expect(screen.getByLabelText("비밀번호")).toBeInTheDocument();
+    expect(screen.queryByText(/바로 써볼 수 있는 데모 계정/)).not.toBeInTheDocument();
   });
 
-  it("로그인 후 언어 선택 화면으로 이동한다", async () => {
+  it("navigates to languages after login", async () => {
     const user = userEvent.setup();
     const loadMeta = vi.fn().mockResolvedValue(undefined);
 
@@ -69,7 +63,7 @@ describe("LoginPage", () => {
       </MemoryRouter>,
     );
 
-    await user.click(screen.getByRole("button", { name: TEXT.submit }));
+    await user.click(screen.getByRole("button", { name: "로그인" }));
 
     await waitFor(() => {
       expect(screen.getByText("languages-route")).toBeInTheDocument();
@@ -77,7 +71,7 @@ describe("LoginPage", () => {
     expect(loadMeta).toHaveBeenCalledTimes(1);
   });
 
-  it("로그인 실패 시 오류 문구를 화면에 보여준다", async () => {
+  it("shows login error message", async () => {
     const user = userEvent.setup();
     setMockGasFailure("login", "아이디 또는 비밀번호가 올바르지 않습니다.");
 
@@ -87,11 +81,10 @@ describe("LoginPage", () => {
       </MemoryRouter>,
     );
 
-    await user.click(screen.getByRole("button", { name: TEXT.submit }));
+    await user.click(screen.getByRole("button", { name: "로그인" }));
 
     await waitFor(() => {
       expect(screen.getByText(/아이디 또는 비밀번호가 올바르지 않습니다./)).toBeInTheDocument();
     });
-    expect(screen.getByText(new RegExp(TEXT.failedPrefix))).toBeInTheDocument();
   });
 });

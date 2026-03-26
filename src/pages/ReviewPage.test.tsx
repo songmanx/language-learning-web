@@ -1,38 +1,43 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { MemoryRouter, Route, Routes, useLocation } from "react-router-dom";
+import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { beforeEach, describe, expect, it } from "vitest";
 import { ReviewPage } from "./ReviewPage";
 import { writeReviewSnapshot, writeSessionConfigSnapshot } from "../services/sessionRecovery";
 import { useAuthStore } from "../stores/authStore";
 import { useLanguageStore } from "../stores/languageStore";
+import type { WordItem } from "../services/apiTypes";
 
-const TEXT = {
-  reviewCenter: "복습센터",
-  noReviewData: "복습 데이터가 아직 없습니다",
-  practiceStart: "연습",
-  playNow: "플레이",
-  backHome: "홈",
-  snapshotStatus: "복습 스냅샷",
-  quickActionsTitle: "바로 이동",
-  recommendedRoute: "추천 경로",
-  totalItems: "전체 항목",
-  topPriority: "최상위 우선순위",
-  updatedAt: "최신 반영",
-  lastLoadout: "연결 세션 구성",
-  recommendedBadge: "추천",
-  learningStage: "학습 중",
-  reviewStage: "복습 대기",
-  priorityLabel: "우선순위",
-  lastResultLabel: "직전 결과",
-  wrongResult: "오답",
-} as const;
-
-function RouteProbe() {
-  const location = useLocation();
-  const state = location.state as { sessionConfig?: { quizMode?: string } } | null;
-
-  return <div>{state?.sessionConfig?.quizMode ?? "no-config"}</div>;
+function createWords(): WordItem[] {
+  return [
+    {
+      id: "JA_N_0001",
+      prompt: "猫",
+      choices: ["고양이", "가방", "물고기", "책"],
+      answer: "고양이",
+      meaning: "고양이",
+      difficulty: "1",
+      questionType: "word_to_meaning",
+    },
+    {
+      id: "JA_N_0002",
+      prompt: "犬",
+      choices: ["강아지", "고양이", "물고기", "책"],
+      answer: "강아지",
+      meaning: "강아지",
+      difficulty: "1",
+      questionType: "word_to_meaning",
+    },
+    {
+      id: "JA_N_0003",
+      prompt: "학생",
+      choices: ["学生", "先生", "学校", "友達"],
+      answer: "学生",
+      meaning: "학생",
+      difficulty: "2",
+      questionType: "meaning_to_word",
+    },
+  ];
 }
 
 describe("ReviewPage", () => {
@@ -46,31 +51,26 @@ describe("ReviewPage", () => {
     });
     useLanguageStore.setState({
       selectedLanguage: "ja",
-      availableLanguages: [],
-      words: [],
+      availableLanguages: [{ languageCode: "ja", label: "일본어", totalWords: 3 }],
+      words: createWords(),
       isLoading: false,
       loadError: null,
     });
     writeSessionConfigSnapshot("player-demo", "ja", {
-      partOfSpeech: "noun",
-      difficulty: "2",
-      quizMode: "meaning_to_word",
+      partOfSpeech: "all",
+      difficulty: "all",
+      quizMode: "kanji_to_meaning",
     });
   });
 
-  it("우선순위 기준으로 복습 목록과 마지막 세션 구성을 보여준다", () => {
+  it("shows review setup screen instead of the old review center list", () => {
     writeReviewSnapshot("player-demo", "ja", [
       {
-        wordId: "ja-2",
-        priorityScore: 30,
-        reviewStage: "review",
-        lastResult: "correct",
-      },
-      {
-        wordId: "ja-1",
+        wordId: "JA_N_0001",
         priorityScore: 100,
         reviewStage: "learning",
         lastResult: "wrong",
+        masteryCount: 0,
       },
     ]);
 
@@ -80,54 +80,54 @@ describe("ReviewPage", () => {
       </MemoryRouter>,
     );
 
-    expect(screen.getByRole("heading", { name: TEXT.reviewCenter })).toBeInTheDocument();
-    expect(screen.getByText(TEXT.snapshotStatus)).toBeInTheDocument();
-    expect(screen.getByText(TEXT.recommendedBadge)).toBeInTheDocument();
-    expect(screen.getByText(new RegExp(`${TEXT.recommendedRoute}: ${TEXT.practiceStart}`))).toBeInTheDocument();
-    expect(screen.getByText(TEXT.totalItems)).toBeInTheDocument();
-    expect(screen.getByText(TEXT.topPriority)).toBeInTheDocument();
-    expect(screen.getByText(TEXT.updatedAt)).toBeInTheDocument();
-    expect(screen.getByText(TEXT.lastLoadout)).toBeInTheDocument();
-    expect(screen.getByText(/출제: 뜻 -> 단어/)).toBeInTheDocument();
-    expect(screen.queryByText(/흐름:/)).not.toBeInTheDocument();
-    expect(screen.getAllByText(TEXT.learningStage).length).toBeGreaterThan(0);
-    expect(screen.getAllByText(TEXT.reviewStage).length).toBeGreaterThan(0);
-    expect(screen.getByText(/우선:\s*100/)).toBeInTheDocument();
-    expect(screen.getByText(/결과:\s*오답/)).toBeInTheDocument();
-    const items = screen.getAllByText(/ja-/).map((node) => node.textContent);
-    expect(items[0]).toBe("ja-1");
-    expect(items[1]).toBe("ja-2");
+    expect(screen.getByRole("button", { name: "복습 시작" })).toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "복습센터" })).not.toBeInTheDocument();
   });
 
-  it("복습 데이터가 없으면 안내 문구를 보여준다", () => {
+  it("starts review play only with review words", async () => {
+    const user = userEvent.setup();
+    writeReviewSnapshot("player-demo", "ja", [
+      {
+        wordId: "JA_N_0002",
+        priorityScore: 100,
+        reviewStage: "learning",
+        lastResult: "wrong",
+        masteryCount: 0,
+      },
+    ]);
+
     render(
       <MemoryRouter>
         <ReviewPage />
       </MemoryRouter>,
     );
 
-    expect(screen.getByText(new RegExp(TEXT.noReviewData))).toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: "복습 시작" }));
+
+    expect(await screen.findByRole("heading", { name: "犬" })).toBeInTheDocument();
   });
 
-  it("복습센터 액션은 마지막 세션 구성을 전달한다", async () => {
-    const user = userEvent.setup();
-
+  it("shows empty review guidance when there are no review words", () => {
     render(
-      <MemoryRouter initialEntries={["/review"]}>
-        <Routes>
-          <Route path="/review" element={<ReviewPage />} />
-          <Route path="/practice" element={<RouteProbe />} />
-          <Route path="/play" element={<RouteProbe />} />
-        </Routes>
+      <MemoryRouter>
+        <ReviewPage />
       </MemoryRouter>,
     );
 
-    await user.click(screen.getByRole("button", { name: TEXT.practiceStart }));
-    expect(screen.getByText("meaning_to_word")).toBeInTheDocument();
+    expect(screen.getByText("복습할 문제가 아직 없습니다. 먼저 기본 플레이에서 틀린 문제를 만들어 주세요.")).toBeInTheDocument();
   });
 
-  it("복습센터에서 홈으로 돌아갈 수 있다", async () => {
+  it("passes the last session config into review play", async () => {
     const user = userEvent.setup();
+    writeReviewSnapshot("player-demo", "ja", [
+      {
+        wordId: "JA_N_0001",
+        priorityScore: 100,
+        reviewStage: "learning",
+        lastResult: "wrong",
+        masteryCount: 0,
+      },
+    ]);
 
     render(
       <MemoryRouter initialEntries={["/review"]}>
@@ -138,8 +138,8 @@ describe("ReviewPage", () => {
       </MemoryRouter>,
     );
 
-    await user.click(screen.getByRole("button", { name: TEXT.backHome }));
-
+    expect(screen.getByRole("button", { name: "한자 -> 뜻" })).toHaveAttribute("aria-pressed", "true");
+    await user.click(screen.getByRole("button", { name: "홈" }));
     expect(screen.getByText("home-route")).toBeInTheDocument();
   });
 });

@@ -106,7 +106,8 @@ describe("apiClient remote mode", () => {
     };
 
     const result = await apiClient.saveSession(payload);
-    const requestInit = fetchMock.mock.calls[0]?.[1] as RequestInit;
+    const postCall = fetchMock.mock.calls.find((call) => (call[1] as RequestInit | undefined)?.method === "POST");
+    const requestInit = postCall?.[1] as RequestInit;
     const body = JSON.parse(String(requestInit.body));
 
     expect(body).toEqual({

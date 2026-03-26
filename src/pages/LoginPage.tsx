@@ -9,22 +9,9 @@ import { useLanguageStore } from "../stores/languageStore";
 
 const IS_MOCK_MODE = apiClient.useMockApi;
 const TEXT = {
-  phase: "로그인",
-  title: "학습을 시작해 봅시다",
-  mockDescription:
-    "지금은 데모 계정으로 바로 시작할 수 있습니다. 로그인 후 언어를 고르고 곧바로 문제 풀이를 이어갈 수 있습니다.",
-  realDescription:
-    "지금은 실제 Google Sheets 계정으로 로그인합니다. Users 시트에 넣어 둔 로그인ID와 비밀번호를 입력해 주세요.",
-  mockHintTitle: "바로 써볼 수 있는 데모 계정",
-  mockHintBody: "아이디 `demo`, 비밀번호 `1234`로 바로 로그인할 수 있습니다.",
-  realHintTitle: "실연동 모드 로그인",
-  realHintBody: "지금은 Users 시트의 `login_id`, `password_plain_or_hash` 값을 그대로 입력해야 합니다.",
+  title: "로그인",
   loginId: "아이디",
   password: "비밀번호",
-  mockLoginIdPlaceholder: "demo",
-  mockPasswordPlaceholder: "1234",
-  realLoginIdPlaceholder: "Users 시트의 login_id",
-  realPasswordPlaceholder: "Users 시트의 password_plain_or_hash",
   submitting: "로그인 중...",
   submit: "로그인",
   failedPrefix: "로그인 실패:",
@@ -72,19 +59,10 @@ export function LoginPage() {
     <motion.section
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
-      className="space-y-5 rounded-[2rem] border border-white/10 bg-stone-950/40 p-6 shadow-2xl shadow-black/20"
+      className="space-y-4 rounded-[1.6rem] border border-white/10 bg-stone-950/40 p-5 shadow-2xl shadow-black/20"
     >
       <div>
-        <p className="text-sm text-amber-200">{TEXT.phase}</p>
-        <h2 className="mt-2 text-3xl font-bold">{TEXT.title}</h2>
-        <p className="mt-2 text-sm leading-6 text-stone-300">
-          {IS_MOCK_MODE ? TEXT.mockDescription : TEXT.realDescription}
-        </p>
-      </div>
-
-      <div className="rounded-[1.75rem] border border-sky-200/20 bg-sky-300/10 p-4 text-sm leading-6 text-sky-50">
-        <p className="font-semibold">{IS_MOCK_MODE ? TEXT.mockHintTitle : TEXT.realHintTitle}</p>
-        <p className="mt-2">{IS_MOCK_MODE ? TEXT.mockHintBody : TEXT.realHintBody}</p>
+        <h2 className="text-2xl font-bold">{TEXT.title}</h2>
       </div>
 
       <form className="space-y-4" onSubmit={handleSubmit}>
@@ -97,7 +75,6 @@ export function LoginPage() {
               setLoginId(event.target.value);
               setErrorMessage(null);
             }}
-            placeholder={IS_MOCK_MODE ? TEXT.mockLoginIdPlaceholder : TEXT.realLoginIdPlaceholder}
           />
         </label>
 
@@ -111,7 +88,6 @@ export function LoginPage() {
               setPassword(event.target.value);
               setErrorMessage(null);
             }}
-            placeholder={IS_MOCK_MODE ? TEXT.mockPasswordPlaceholder : TEXT.realPasswordPlaceholder}
           />
         </label>
 

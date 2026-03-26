@@ -67,6 +67,7 @@ export type ReviewStateRecord = {
   priorityScore: number;
   reviewStage: "new" | "learning" | "review";
   lastResult: "correct" | "wrong";
+  masteryCount?: number;
 };
 
 export type SaveSessionRequest = {

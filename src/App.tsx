@@ -4,6 +4,7 @@ import { ProtectedRoute } from "./components/ProtectedRoute";
 import { HomePage } from "./pages/HomePage";
 import { LanguageSelectPage } from "./pages/LanguageSelectPage";
 import { LoginPage } from "./pages/LoginPage";
+import { OverallLeaderboardPage } from "./pages/OverallLeaderboardPage";
 import { PlayPage } from "./pages/PlayPage";
 import { ResultPage } from "./pages/ResultPage";
 import { ReviewPage } from "./pages/ReviewPage";
@@ -28,6 +29,14 @@ export default function App() {
           element={
             <ProtectedRoute>
               <HomePage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/leaderboard"
+          element={
+            <ProtectedRoute>
+              <OverallLeaderboardPage />
             </ProtectedRoute>
           }
         />

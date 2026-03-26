@@ -8,4 +8,5 @@ export type SessionResultState = {
   saveStatus: SessionSaveStatus;
   message?: string;
   sessionConfig?: SessionConfig;
+  displayMode?: "standard" | "practice" | "review";
 };

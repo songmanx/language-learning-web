@@ -46,6 +46,16 @@ const staticDataWordsBasePath = runtimeConfig.staticDataWordsBasePath;
 const mockFailures: MockFailureMap = {};
 let warmupPromise: Promise<void> | null = null;
 
+function toUserFacingFetchErrorMessage(error: unknown) {
+  const rawMessage = error instanceof Error ? error.message : "";
+
+  if (/failed to fetch|load failed|networkerror/i.test(rawMessage)) {
+    return "저장 서버에 연결하지 못했습니다. 네트워크 또는 GAS 배포 상태를 확인해 주세요.";
+  }
+
+  return rawMessage || "요청 처리 중 오류가 발생했습니다.";
+}
+
 function mockDelay<T>(value: T, ms = 150): Promise<T> {
   return new Promise((resolve) => {
     window.setTimeout(() => resolve(value), ms);
@@ -126,18 +136,26 @@ async function readApiResponse<T>(response: Response): Promise<T> {
 }
 
 async function postToGas<T>(action: string, payload?: Record<string, unknown>): Promise<T> {
-  const response = await fetch(baseUrl, {
-    method: "POST",
-    headers: {
-      "Content-Type": "text/plain;charset=utf-8",
-    },
-    body: JSON.stringify({
-      action,
-      ...payload,
-    }),
-  });
+  try {
+    if (action === "saveSession") {
+      await warmupGasConnection();
+    }
 
-  return readApiResponse<T>(response);
+    const response = await fetch(baseUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8",
+      },
+      body: JSON.stringify({
+        action,
+        ...payload,
+      }),
+    });
+
+    return readApiResponse<T>(response);
+  } catch (error) {
+    throw new Error(toUserFacingFetchErrorMessage(error));
+  }
 }
 
 async function readStaticJson<T>(url: string): Promise<T> {

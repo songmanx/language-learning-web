@@ -1,51 +1,91 @@
-﻿import { computeReviewState } from "./reviewState";
+import { describe, expect, it } from "vitest";
+import type { AnswerLog, ReviewStateRecord } from "../services/apiTypes";
+import { computeReviewState, mergeReviewState } from "./reviewState";
 
-describe("computeReviewState", () => {
-  it("오답은 높은 priority_score와 learning 상태를 부여한다", () => {
-    const result = computeReviewState([
-      {
-        wordId: "ja-1",
-        questionType: "word_to_meaning",
-        shownPrompt: "ねこ",
-        difficultySnapshot: "1",
-        responseTimeMs: 1000,
-        selectedAnswer: "개",
-        correct: false,
-        comboAfterAnswer: 0,
-        earnedScore: 0,
-      },
+function createAnswer(overrides: Partial<AnswerLog> = {}): AnswerLog {
+  return {
+    wordId: "JA_N_0001",
+    questionType: "word_to_meaning",
+    shownPrompt: "猫",
+    difficultySnapshot: "1",
+    responseTimeMs: 1200,
+    selectedAnswer: "고양이",
+    correct: true,
+    comboAfterAnswer: 1,
+    earnedScore: 12,
+    ...overrides,
+  };
+}
+
+describe("reviewState", () => {
+  it("keeps only wrong answers in computed review state", () => {
+    const reviewState = computeReviewState([
+      createAnswer({ wordId: "JA_N_0001", correct: true }),
+      createAnswer({ wordId: "JA_N_0002", correct: false, selectedAnswer: "오답" }),
     ]);
 
-    expect(result).toEqual([
+    expect(reviewState).toEqual([
       {
-        wordId: "ja-1",
+        wordId: "JA_N_0002",
         priorityScore: 100,
         reviewStage: "learning",
         lastResult: "wrong",
+        masteryCount: 0,
       },
     ]);
   });
 
-  it("연속 정답은 review 단계로 올린다", () => {
-    const result = computeReviewState([
+  it("adds wrong answers from standard mode into review state", () => {
+    const existing: ReviewStateRecord[] = [];
+
+    const merged = mergeReviewState(existing, [createAnswer({ wordId: "JA_N_0010", correct: false })], "standard");
+
+    expect(merged).toEqual([
       {
-        wordId: "ja-2",
-        questionType: "word_to_meaning",
-        shownPrompt: "みず",
-        difficultySnapshot: "2",
-        responseTimeMs: 800,
-        selectedAnswer: "물",
-        correct: true,
-        comboAfterAnswer: 2,
-        earnedScore: 14,
+        wordId: "JA_N_0010",
+        priorityScore: 100,
+        reviewStage: "learning",
+        lastResult: "wrong",
+        masteryCount: 0,
       },
     ]);
+  });
 
-    expect(result[0]).toMatchObject({
-      wordId: "ja-2",
-      reviewStage: "review",
-      lastResult: "correct",
+  it("increments mastery and removes a word after five correct review answers", () => {
+    const existing: ReviewStateRecord[] = [
+      {
+        wordId: "JA_N_0010",
+        priorityScore: 100,
+        reviewStage: "learning",
+        lastResult: "wrong",
+        masteryCount: 4,
+      },
+    ];
+
+    const merged = mergeReviewState(existing, [createAnswer({ wordId: "JA_N_0010", correct: true })], "review");
+
+    expect(merged).toEqual([]);
+  });
+
+  it("resets mastery when a review answer is wrong", () => {
+    const existing: ReviewStateRecord[] = [
+      {
+        wordId: "JA_N_0010",
+        priorityScore: 40,
+        reviewStage: "review",
+        lastResult: "correct",
+        masteryCount: 3,
+      },
+    ];
+
+    const merged = mergeReviewState(existing, [createAnswer({ wordId: "JA_N_0010", correct: false })], "review");
+
+    expect(merged[0]).toMatchObject({
+      wordId: "JA_N_0010",
+      priorityScore: 100,
+      reviewStage: "learning",
+      lastResult: "wrong",
+      masteryCount: 0,
     });
-    expect(result[0].priorityScore).toBe(30);
   });
 });

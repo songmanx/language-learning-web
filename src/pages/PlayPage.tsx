@@ -4,8 +4,11 @@ import type { SessionResultState } from "../features/game/resultState";
 import {
   buildSessionWordQueue,
   DEFAULT_SESSION_CONFIG,
+  getAvailableDifficultyFilters,
+  getAvailablePartOfSpeechFilters,
   filterWordsBySessionConfig,
-  getSessionConfigLabels,
+  getAvailableQuizModes,
+  getReadableSessionConfigLabels as getSessionConfigLabels,
   type DifficultyFilter,
   type PartOfSpeechFilter,
   type QuizModeFilter,
@@ -13,12 +16,17 @@ import {
 } from "../features/game/sessionConfig";
 import { buildQuestionRound } from "../features/game/questionRound";
 import { buildSaveSessionPayload } from "../features/game/session";
-import type { AnswerLog, SaveSessionRequest, WordItem } from "../services/apiTypes";
+import { mergeReviewState } from "../utils/reviewState";
+import type { AnswerLog, ReviewStateRecord, SaveSessionRequest, WordItem } from "../services/apiTypes";
 import { apiClient } from "../services/apiClient";
 import { appLogger } from "../services/logger";
 import {
+  readGlobalLeaderboard,
+  readLeaderboard,
   readDailyStatsSnapshot,
   readReviewSnapshot,
+  writeGlobalLeaderboard,
+  writeLeaderboard,
   writeSessionConfigSnapshot,
   writeDailyStatsSnapshot,
   writePendingSession,
@@ -28,7 +36,7 @@ import { useAuthStore } from "../stores/authStore";
 import { useLanguageStore } from "../stores/languageStore";
 
 type PendingAnswer = AnswerLog;
-type PlayMode = "standard" | "practice";
+type PlayMode = "standard" | "practice" | "review";
 type AnswerFeedback = "correct" | "incorrect" | null;
 type QuestionVisualPhase = "steady" | "impact" | "enter";
 type AnswerSummary = {
@@ -42,12 +50,16 @@ type PlayPageProps = {
   mode?: PlayMode;
 };
 
-const MAX_HEARTS = 3;
-const NEXT_QUESTION_DELAY_MS = 220;
+const MAX_HEARTS = 10;
+const DISPLAY_HEARTS = 5;
+const QUESTION_LIMIT = 20;
+const TIME_LIMIT_MS = 10_000;
+const NEXT_QUESTION_DELAY_MS = 180;
 const QUESTION_ENTER_DELAY_MS = 180;
 const CHOICE_MARKERS = ["A", "B", "C", "D"];
 const TEXT = {
   practiceMode: "\uC5F0\uC2B5",
+  reviewMode: "\uBCF5\uC2B5",
   standardMode: "\uAE30\uBCF8",
   savingStart: "\uC138\uC158 \uC800\uC7A5 \uC2DC\uC791",
   savingSuccess: "\uC138\uC158 \uC800\uC7A5 \uC131\uACF5",
@@ -73,7 +85,6 @@ const TEXT = {
     "\uC120\uD0DD\uD55C \uC5B8\uC5B4 \uC815\uBCF4\uAC00 \uC5C6\uC5B4 \uD648\uC5D0\uC11C \uB2E4\uC2DC \uC2DC\uC791\uD574 \uC8FC\uC138\uC694.",
   progress: "\uC9C4\uD589\uB3C4",
   sessionProgressLabel: "\uC138\uC158 \uC9C4\uD589",
-  remainingQuestions: "\uBB38\uC81C \uB0A8\uC74C",
   finalQuestion: "\uB9C8\uC9C0\uB9C9 \uBB38\uC81C",
   movingResult: "\uACB0\uACFC \uC774\uB3D9 \uC911",
   correctStatusChip: "\uC815\uB2F5 \uD655\uC815",
@@ -95,7 +106,7 @@ const TEXT = {
   responseTimeLabel: "\uBC18\uC751 \uC2DC\uAC04",
   selectedAnswerLabel: "\uC120\uD0DD\uD55C \uB2F5",
   selectedBadge: "\uC120\uD0DD",
-  setupTitle: "\uC138\uC158 \uC124\uC815",
+  setupTitle: "\uC124\uC815",
   partOfSpeechTitle: "\uD488\uC0AC",
   difficultyTitle: "\uB09C\uC774\uB3C4",
   quizModeTitle: "\uCD9C\uC81C \uBC29\uC2DD",
@@ -105,6 +116,8 @@ const TEXT = {
   availableWords: "\uD544\uD130 \uC77C\uCE58 \uBB38\uD56D",
   noFilteredWords:
     "\uC120\uD0DD\uD55C \uC870\uD569\uC5D0 \uB9DE\uB294 \uBB38\uC81C\uAC00 \uC5C6\uC5B4 \uC870\uAC74\uC744 \uBC14\uAFD4 \uC8FC\uC138\uC694.",
+  noReviewWords:
+    "\uBCF5\uC2B5\uD560 \uBB38\uC81C\uAC00 \uC544\uC9C1 \uC5C6\uC2B5\uB2C8\uB2E4. \uBA3C\uC800 \uAE30\uBCF8 \uD50C\uB808\uC774\uC5D0\uC11C \uD2C0\uB9B0 \uBB38\uC81C\uB97C \uB9CC\uB4E4\uC5B4 \uC8FC\uC138\uC694.",
   resetFilters: "\uC870\uAC74 \uCD08\uAE30\uD654",
   sessionConfigTitle: "\uC138\uC158 \uAD6C\uC131",
   sessionConfigDifficulty: "\uB09C\uC774\uB3C4",
@@ -119,17 +132,21 @@ const TEXT = {
   difficulty1: "\uB09C\uC774\uB3C4 1",
   difficulty2: "\uB09C\uC774\uB3C4 2",
   difficulty3: "\uB09C\uC774\uB3C4 3+",
-  quizModeKanjiToMeaning: "\uD55C\uC790 \uB73B",
-  quizModeFuriganaToMeaning: "\uD6C4\uB9AC \uB73B",
-  quizModeAudioToMeaning: "\uC74C\uC131 \uB73B",
-  quizModeMeaningToWord: "\uB73B \uB2E8\uC5B4",
+  quizModeKanjiToMeaning: "\uD55C\uC790 -> \uB73B",
+  quizModeFuriganaToMeaning: "\uD6C4\uB9AC\uAC00\uB098 -> \uB73B",
+  quizModeAudioToMeaning: "\uC74C\uC131 -> \uB73B",
+  quizModeMeaningToWord: "\uB73B -> \uB2E8\uC5B4",
+  comingSoon: "\uC900\uBE44 \uC911",
   feedbackDeckTitle: "\uD310\uC815 \uCF58\uC194",
   setupEyebrow: "",
-  startGame: "\uC2DC\uC791",
-  startPractice: "\uC5F0\uC2B5",
+  startGame: "\uAC8C\uC784 \uC2DC\uC791",
+  startPractice: "\uC5F0\uC2B5 \uC2DC\uC791",
+  startReview: "\uBCF5\uC2B5 \uC2DC\uC791",
+  stopPractice: "\uC5F0\uC2B5 \uC911\uB2E8",
+  stopReview: "\uBCF5\uC2B5 \uC911\uB2E8",
   backHomeCompact: "\uD648",
   setupModeLabel: "\uBAA8\uB4DC",
-  setupCountLabel: "\uC900\uBE44 \uBB38\uC81C",
+  setupCountLabel: "\uBB38\uC81C",
   paceCompact: "\uD398\uC774\uC2A4",
 } as const;
 
@@ -236,6 +253,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
   const navigate = useNavigate();
   const location = useLocation();
   const playerId = useAuthStore((state) => state.playerId);
+  const nickname = useAuthStore((state) => state.nickname);
   const selectedLanguage = useLanguageStore((state) => state.selectedLanguage);
   const words = useLanguageStore((state) => state.words);
   const loadWords = useLanguageStore((state) => state.loadWords);
@@ -258,13 +276,19 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
   const [answerSummary, setAnswerSummary] = useState<AnswerSummary | null>(null);
   const [sessionStartedAt, setSessionStartedAt] = useState(() => Date.now());
   const [questionStartedAt, setQuestionStartedAt] = useState(() => Date.now());
+  const [elapsedMs, setElapsedMs] = useState(0);
   const [isSessionStarted, setIsSessionStarted] = useState(false);
   const [questionVisualPhase, setQuestionVisualPhase] = useState<QuestionVisualPhase>("steady");
+  const [queueSeed, setQueueSeed] = useState(() => Date.now());
   const answerLockRef = useRef(false);
   const questionPhaseTimeoutRef = useRef<number | null>(null);
+  const answerTimeoutRef = useRef<number | null>(null);
+  const answerTickerRef = useRef<number | null>(null);
 
   const isPracticeMode = mode === "practice";
-  const modeTitle = isPracticeMode ? TEXT.practiceMode : TEXT.standardMode;
+  const isReviewMode = mode === "review";
+  const isNonStandardMode = isPracticeMode || isReviewMode;
+  const modeTitle = isReviewMode ? TEXT.reviewMode : isPracticeMode ? TEXT.practiceMode : TEXT.standardMode;
   const reviewSnapshot = useMemo(() => {
     if (!playerId || !selectedLanguage) {
       return null;
@@ -307,13 +331,50 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
     };
   }, [clearLoadError]);
 
+  const reviewWordIds = useMemo(
+    () =>
+      new Set(
+        (reviewSnapshot?.reviewState ?? [])
+          .filter((item) => (item.masteryCount ?? 0) < 5)
+          .map((item) => item.wordId),
+      ),
+    [reviewSnapshot?.reviewState],
+  );
+  const sourceWords = useMemo(() => {
+    if (!isReviewMode) {
+      return words;
+    }
+
+    return words.filter((word) => reviewWordIds.has(word.id));
+  }, [isReviewMode, reviewWordIds, words]);
   const configuredWords = useMemo(() => {
-    const filteredWords = filterWordsBySessionConfig(words, sessionConfig);
-    return buildSessionWordQueue(filteredWords, sessionConfig, {
-      mode,
-      reviewState: reviewSnapshot?.reviewState,
-    });
-  }, [mode, reviewSnapshot?.reviewState, sessionConfig, words]);
+    const filteredWords = filterWordsBySessionConfig(sourceWords, sessionConfig);
+    return buildPlayQueue(filteredWords, sessionConfig, mode, reviewSnapshot?.reviewState, queueSeed);
+  }, [mode, queueSeed, reviewSnapshot?.reviewState, sessionConfig, sourceWords]);
+  const availableQuizModes = useMemo(
+    () =>
+      getAvailableQuizModes(sourceWords, {
+        partOfSpeech: sessionConfig.partOfSpeech,
+        difficulty: sessionConfig.difficulty,
+      }),
+    [sessionConfig.difficulty, sessionConfig.partOfSpeech, sourceWords],
+  );
+  const availablePartOfSpeechFilters = useMemo(
+    () =>
+      getAvailablePartOfSpeechFilters(sourceWords, {
+        difficulty: sessionConfig.difficulty,
+        quizMode: sessionConfig.quizMode,
+      }),
+    [sessionConfig.difficulty, sessionConfig.quizMode, sourceWords],
+  );
+  const availableDifficultyFilters = useMemo(
+    () =>
+      getAvailableDifficultyFilters(sourceWords, {
+        partOfSpeech: sessionConfig.partOfSpeech,
+        quizMode: sessionConfig.quizMode,
+      }),
+    [sessionConfig.partOfSpeech, sessionConfig.quizMode, sourceWords],
+  );
   const sessionConfigLabels = useMemo(() => getSessionConfigLabels(sessionConfig), [sessionConfig]);
   const currentWord = configuredWords[currentIndex];
   const currentQuestion = useMemo(() => {
@@ -329,6 +390,12 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
       if (questionPhaseTimeoutRef.current) {
         window.clearTimeout(questionPhaseTimeoutRef.current);
       }
+      if (answerTimeoutRef.current) {
+        window.clearTimeout(answerTimeoutRef.current);
+      }
+      if (answerTickerRef.current) {
+        window.clearInterval(answerTickerRef.current);
+      }
       answerLockRef.current = false;
       setIsAnswerLocked(false);
       setIsFinishingSession(false);
@@ -336,6 +403,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
       setSelectedChoice(null);
       setAnswerSummary(null);
       setQuestionStartedAt(Date.now());
+      setElapsedMs(0);
       setQuestionVisualPhase("enter");
       questionPhaseTimeoutRef.current = window.setTimeout(() => {
         setQuestionVisualPhase("steady");
@@ -349,8 +417,46 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
       if (questionPhaseTimeoutRef.current) {
         window.clearTimeout(questionPhaseTimeoutRef.current);
       }
+      if (answerTimeoutRef.current) {
+        window.clearTimeout(answerTimeoutRef.current);
+      }
+      if (answerTickerRef.current) {
+        window.clearInterval(answerTickerRef.current);
+      }
     };
   }, []);
+
+  useEffect(() => {
+    if (isNonStandardMode || !isSessionStarted || !currentWord || !currentQuestion || isSaving || isAnswerLocked) {
+      return;
+    }
+
+    const startedAt = Date.now();
+    setQuestionStartedAt(startedAt);
+    setElapsedMs(0);
+
+    answerTickerRef.current = window.setInterval(() => {
+      setElapsedMs(Math.min(Date.now() - startedAt, TIME_LIMIT_MS));
+    }, 80);
+
+    answerTimeoutRef.current = window.setTimeout(() => {
+      setElapsedMs(TIME_LIMIT_MS);
+      if (!answerLockRef.current) {
+        void submitAnswer(null, true);
+      }
+    }, TIME_LIMIT_MS);
+
+    return () => {
+      if (answerTickerRef.current) {
+        window.clearInterval(answerTickerRef.current);
+        answerTickerRef.current = null;
+      }
+      if (answerTimeoutRef.current) {
+        window.clearTimeout(answerTimeoutRef.current);
+        answerTimeoutRef.current = null;
+      }
+    };
+  }, [currentQuestion, currentWord, isAnswerLocked, isNonStandardMode, isSaving, isSessionStarted]);
 
   useEffect(() => {
     if (!playerId || !selectedLanguage) {
@@ -360,7 +466,53 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
     writeSessionConfigSnapshot(playerId, selectedLanguage, sessionConfig);
   }, [playerId, selectedLanguage, sessionConfig]);
 
+  useEffect(() => {
+    if (availablePartOfSpeechFilters.length === 0) {
+      return;
+    }
+
+    if (!availablePartOfSpeechFilters.includes(sessionConfig.partOfSpeech)) {
+      setSessionConfig((previous) => ({
+        ...previous,
+        partOfSpeech: availablePartOfSpeechFilters[0],
+      }));
+      setQueueSeed(Date.now());
+      setIsSessionStarted(false);
+    }
+  }, [availablePartOfSpeechFilters, sessionConfig.partOfSpeech]);
+
+  useEffect(() => {
+    if (availableDifficultyFilters.length === 0) {
+      return;
+    }
+
+    if (!availableDifficultyFilters.includes(sessionConfig.difficulty)) {
+      setSessionConfig((previous) => ({
+        ...previous,
+        difficulty: availableDifficultyFilters[0],
+      }));
+      setQueueSeed(Date.now());
+      setIsSessionStarted(false);
+    }
+  }, [availableDifficultyFilters, sessionConfig.difficulty]);
+
+  useEffect(() => {
+    if (availableQuizModes.length === 0) {
+      return;
+    }
+
+    if (!availableQuizModes.includes(sessionConfig.quizMode)) {
+      setSessionConfig((previous) => ({
+        ...previous,
+        quizMode: availableQuizModes[0],
+      }));
+      setQueueSeed(Date.now());
+      setIsSessionStarted(false);
+    }
+  }, [availableQuizModes, sessionConfig.quizMode]);
+
   function resetSessionProgress() {
+    const nextSeed = Date.now();
     answerLockRef.current = false;
     setCurrentIndex(0);
     setScore(0);
@@ -375,8 +527,10 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
     setAnswerSummary(null);
     setSessionStartedAt(Date.now());
     setQuestionStartedAt(Date.now());
+    setElapsedMs(0);
     setIsSessionStarted(false);
     setQuestionVisualPhase("steady");
+    setQueueSeed(nextSeed);
   }
 
   function updateSessionConfig(partial: Partial<SessionConfig>) {
@@ -385,6 +539,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
   }
 
   function startSession() {
+    const nextSeed = Date.now();
     answerLockRef.current = false;
     setCurrentIndex(0);
     setScore(0);
@@ -399,27 +554,19 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
     setAnswerSummary(null);
     setSessionStartedAt(Date.now());
     setQuestionStartedAt(Date.now());
+    setElapsedMs(0);
     setIsSessionStarted(true);
     setQuestionVisualPhase("steady");
+    setQueueSeed(nextSeed);
   }
 
   const progressLabel = useMemo(
     () => `${Math.min(currentIndex + 1, configuredWords.length)} / ${configuredWords.length}`,
     [configuredWords.length, currentIndex],
   );
-  const progressPercent =
-    configuredWords.length === 0 ? 0 : ((currentIndex + 1) / configuredWords.length) * 100;
   const remainingCount = configuredWords.length - currentIndex - 1;
-  const remainingLabel = isFinishingSession
-    ? TEXT.movingResult
-    : remainingCount === 0
-      ? TEXT.finalQuestion
-      : `${remainingCount} ${TEXT.remainingQuestions}`;
-  const remainingChipClassName = isFinishingSession
-    ? "border-sky-200/20 bg-sky-300/12 text-sky-100"
-    : remainingCount === 0
-      ? "border-amber-200/20 bg-amber-300/12 text-amber-100"
-      : "border-white/10 bg-white/10 text-stone-200";
+  const progressDotCount = 20;
+  const filledProgressCount = Math.min(currentIndex + 1, progressDotCount);
   const selectedChoiceClassName =
     answerFeedback === "correct"
       ? "border-emerald-300/80 bg-emerald-300/18 text-emerald-50 ring-1 ring-emerald-200/40 shadow-[0_0_0_1px_rgba(110,231,183,0.18),0_18px_40px_rgba(16,185,129,0.18)] -translate-y-0.5 scale-[1.01]"
@@ -430,11 +577,10 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
     isAnswerLocked && !isSaving
       ? "border-white/10 bg-white/5 text-stone-500 opacity-55"
       : "border-white/10 bg-white/10 hover:-translate-y-0.5 hover:scale-[1.01] hover:border-amber-300/60 hover:bg-white/12";
-  const responseTimeText = answerSummary ? formatResponseTime(answerSummary.responseTimeMs) : null;
-  const scoreSummaryLabel = `${score}${combo > 0 ? ` / ${TEXT.comboLabel} ${combo}` : ""}`;
+  const responseTimeText = answerSummary ? formatResponseTime(answerSummary.responseTimeMs) : formatResponseTime(elapsedMs);
+  const scoreSummaryLabel = String(score);
   const focusTone = getStatusTone(answerFeedback, isFinishingSession);
-  const statusRailLabel = `${modeTitle} / ${sessionConfigLabels.quizMode}`;
-  const statusRailMeta = `${TEXT.heartsLabel} ${heartsLeft} / ${TEXT.scoreLabel} ${score}`;
+  const pacePercent = Math.min(elapsedMs / TIME_LIMIT_MS, 1) * 100;
   const questionCardStateClassName =
     questionVisualPhase === "impact"
       ? "scale-[0.99] opacity-95"
@@ -468,7 +614,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
     const payload: SaveSessionRequest = buildSaveSessionPayload({
       playerId,
       languageCode: selectedLanguage,
-      modeType: mode,
+      modeType: isReviewMode ? "practice" : mode,
       totalTimeSec: Math.max(0, Math.ceil((Date.now() - sessionStartedAt) / 1000)),
       score: nextScore,
       heartsLeft: nextHeartsLeft,
@@ -488,31 +634,77 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
       })),
     });
 
-    writeReviewSnapshot(playerId, selectedLanguage, payload.reviewState);
+    const mergedReviewState = mergeReviewState(reviewSnapshot?.reviewState ?? [], nextAnswerLog, mode);
+    writeReviewSnapshot(playerId, selectedLanguage, mergedReviewState);
 
-    const previousStats = readDailyStatsSnapshot(playerId, selectedLanguage);
-    const nextSessionCount = (previousStats?.sessionCount ?? 0) + 1;
-    const nextPracticeSessionCount =
-      (previousStats?.practiceSessionCount ?? 0) + (isPracticeMode ? 1 : 0);
-    const nextTotalScore = (previousStats?.totalScore ?? 0) + payload.score;
-    const nextTotalQuestions = (previousStats?.totalQuestions ?? 0) + payload.totalQuestions;
-    const nextCorrectAnswers = (previousStats?.correctAnswers ?? 0) + payload.correctAnswers;
+    if (!isNonStandardMode) {
+      const previousStats = readDailyStatsSnapshot(playerId, selectedLanguage);
+      const nextSessionCount = (previousStats?.sessionCount ?? 0) + 1;
+      const nextTotalScore = (previousStats?.totalScore ?? 0) + payload.score;
+      const nextTotalQuestions = (previousStats?.totalQuestions ?? 0) + payload.totalQuestions;
+      const nextCorrectAnswers = (previousStats?.correctAnswers ?? 0) + payload.correctAnswers;
 
-    writeDailyStatsSnapshot(playerId, selectedLanguage, {
-      sessionCount: nextSessionCount,
-      practiceSessionCount: nextPracticeSessionCount,
-      totalScore: nextTotalScore,
-      bestScore: Math.max(previousStats?.bestScore ?? 0, payload.score),
-      totalQuestions: nextTotalQuestions,
-      correctAnswers: nextCorrectAnswers,
-      averageAccuracy: calculateAverageAccuracy(nextCorrectAnswers, nextTotalQuestions),
-      lastPlayedAt: new Date().toISOString(),
-    });
+      writeDailyStatsSnapshot(playerId, selectedLanguage, {
+        sessionCount: nextSessionCount,
+        practiceSessionCount: previousStats?.practiceSessionCount ?? 0,
+        totalScore: nextTotalScore,
+        bestScore: Math.max(previousStats?.bestScore ?? 0, payload.score),
+        totalQuestions: nextTotalQuestions,
+        correctAnswers: nextCorrectAnswers,
+        averageAccuracy: calculateAverageAccuracy(nextCorrectAnswers, nextTotalQuestions),
+        lastPlayedAt: new Date().toISOString(),
+      });
+
+      const leaderboard = readLeaderboard(playerId, selectedLanguage);
+      const nextLeaderboard = [
+        ...leaderboard,
+        {
+          playedAt: new Date().toISOString(),
+          totalTimeSec: payload.totalTimeSec,
+          score: payload.score,
+          quizMode: sessionConfig.quizMode,
+          playerId,
+          nickname: nickname ?? playerId,
+        },
+      ]
+        .sort((left, right) => {
+          if (right.score !== left.score) {
+            return right.score - left.score;
+          }
+
+          return left.totalTimeSec - right.totalTimeSec;
+        })
+        .slice(0, 10);
+
+      writeLeaderboard(playerId, selectedLanguage, nextLeaderboard);
+
+      const globalLeaderboard = readGlobalLeaderboard(selectedLanguage);
+      const nextGlobalLeaderboard = [
+        ...globalLeaderboard,
+        {
+          playedAt: new Date().toISOString(),
+          totalTimeSec: payload.totalTimeSec,
+          score: payload.score,
+          quizMode: sessionConfig.quizMode,
+          playerId,
+          nickname: nickname ?? playerId,
+        },
+      ].sort((left, right) => {
+        if (right.score !== left.score) {
+          return right.score - left.score;
+        }
+
+        return left.totalTimeSec - right.totalTimeSec;
+      });
+
+      writeGlobalLeaderboard(selectedLanguage, nextGlobalLeaderboard);
+    }
 
     const resultState: SessionResultState = {
       payload,
       saveStatus: "saving",
       sessionConfig,
+      displayMode: mode,
     };
 
     navigate("/result", { state: resultState });
@@ -531,10 +723,14 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
           payload,
           saveStatus: "saved",
           sessionConfig,
+          displayMode: mode,
         } satisfies SessionResultState,
       });
     } catch (error) {
-      const message = error instanceof Error ? error.message : TEXT.savingFail;
+      const rawMessage = error instanceof Error ? error.message : TEXT.savingFail;
+      const message = /failed to fetch|load failed|networkerror/i.test(rawMessage)
+        ? "저장 서버에 연결하지 못했습니다. 네트워크 또는 GAS 배포 상태를 확인해 주세요."
+        : rawMessage;
       writePendingSession(playerId, selectedLanguage, payload, message);
       appLogger.warning("play", TEXT.savingFallback, {
         playerId,
@@ -549,12 +745,13 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
           saveStatus: "pending",
           message: `${TEXT.pendingSavedMessage} ${message}`,
           sessionConfig,
+          displayMode: mode,
         } satisfies SessionResultState,
       });
     }
   }
 
-  async function handleAnswer(choice: string) {
+  async function submitAnswer(choice: string | null, isTimeout = false) {
     if (!currentWord || !currentQuestion) {
       return;
     }
@@ -565,6 +762,14 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
 
     answerLockRef.current = true;
     setIsAnswerLocked(true);
+    if (answerTimeoutRef.current) {
+      window.clearTimeout(answerTimeoutRef.current);
+      answerTimeoutRef.current = null;
+    }
+    if (answerTickerRef.current) {
+      window.clearInterval(answerTickerRef.current);
+      answerTickerRef.current = null;
+    }
     setSelectedChoice(choice);
     setQuestionVisualPhase("impact");
 
@@ -573,8 +778,12 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
     const nextCombo = correct ? combo + 1 : 0;
     const earnedScore = correct ? 10 + nextCombo * 2 : 0;
     const nextScore = score + earnedScore;
-    const nextHeartsLeft = correct ? heartsLeft : heartsLeft - 1;
-    const responseTimeMs = Math.max(0, Date.now() - questionStartedAt);
+    const nextHeartsLeft = isNonStandardMode ? MAX_HEARTS : correct ? heartsLeft : Math.max(0, heartsLeft - 1);
+    const responseTimeMs = isNonStandardMode
+      ? Math.max(0, Date.now() - questionStartedAt)
+      : isTimeout
+        ? TIME_LIMIT_MS
+        : Math.max(0, Date.now() - questionStartedAt);
 
     appLogger.info("play", TEXT.answerHandled, {
       wordId: currentWord.id,
@@ -593,7 +802,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
       shownPrompt: currentQuestion.prompt,
       difficultySnapshot: currentWord.difficulty,
       responseTimeMs,
-      selectedAnswer: choice,
+      selectedAnswer: choice ?? "__timeout__",
       correct,
       comboAfterAnswer: nextCombo,
       earnedScore,
@@ -613,7 +822,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
     });
 
     const reachedLastQuestion = currentIndex >= configuredWords.length - 1;
-    const noHeartsLeft = nextHeartsLeft <= 0;
+    const noHeartsLeft = !isNonStandardMode && nextHeartsLeft <= 0;
 
     if (reachedLastQuestion || noHeartsLeft) {
       setIsFinishingSession(true);
@@ -625,15 +834,31 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
     setCurrentIndex((previous) => previous + 1);
   }
 
-  if (words.length > 0 && configuredWords.length === 0) {
+  async function handleAnswer(choice: string) {
+    await submitAnswer(choice, false);
+  }
+
+  async function handleStopPractice() {
+    if (!isNonStandardMode) {
+      return;
+    }
+
+    setIsFinishingSession(true);
+    await finishGame(answerLog, score, MAX_HEARTS);
+  }
+
+  if (sourceWords.length > 0 && configuredWords.length === 0) {
     return (
       <section className="space-y-4 pb-4">
-        <SessionSetupPanel
-          sessionConfig={sessionConfig}
-          sessionConfigLabels={sessionConfigLabels}
-          configuredWordsCount={configuredWords.length}
-          totalWordsCount={words.length}
-          isDisabled={isSaving}
+          <SessionSetupPanel
+            sessionConfig={sessionConfig}
+            sessionConfigLabels={sessionConfigLabels}
+            availableQuizModes={availableQuizModes}
+            availablePartOfSpeechFilters={availablePartOfSpeechFilters}
+            availableDifficultyFilters={availableDifficultyFilters}
+            configuredWordsCount={configuredWords.length}
+            totalWordsCount={sourceWords.length}
+            isDisabled={isSaving}
           onReset={() => updateSessionConfig(DEFAULT_SESSION_CONFIG)}
           onUpdate={updateSessionConfig}
         />
@@ -661,7 +886,12 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
   }
 
   if (!currentWord || !currentQuestion) {
-    const emptyStateMessage = loadError ?? (!selectedLanguage ? TEXT.missingLanguage : TEXT.loadingQuestions);
+    const emptyStateMessage = loadError
+      ?? (!selectedLanguage
+        ? TEXT.missingLanguage
+        : isReviewMode && sourceWords.length === 0
+          ? TEXT.noReviewWords
+          : TEXT.loadingQuestions);
     const shouldShowHomeButton = Boolean(loadError) || !selectedLanguage;
 
     return (
@@ -699,11 +929,14 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
       <section className="space-y-4 pb-4">
         <SessionStartScreen
           modeTitle={modeTitle}
-          startLabel={isPracticeMode ? TEXT.startPractice : TEXT.startGame}
+          startLabel={isReviewMode ? TEXT.startReview : isPracticeMode ? TEXT.startPractice : TEXT.startGame}
           sessionConfig={sessionConfig}
           sessionConfigLabels={sessionConfigLabels}
+          availableQuizModes={availableQuizModes}
+          availablePartOfSpeechFilters={availablePartOfSpeechFilters}
+          availableDifficultyFilters={availableDifficultyFilters}
           configuredWordsCount={configuredWords.length}
-          totalWordsCount={words.length}
+          totalWordsCount={sourceWords.length}
           onReset={() => updateSessionConfig(DEFAULT_SESSION_CONFIG)}
           onStart={startSession}
           onMoveHome={() => navigate("/home")}
@@ -720,50 +953,59 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
       <div className="space-y-3">
         <div className="overflow-hidden rounded-[1.6rem] border border-white/10 bg-stone-950/65">
           <div className="space-y-2.5 px-4 py-3 sm:px-5">
-            <div className="flex flex-wrap items-center gap-2 text-[11px] font-semibold">
-              <span className={`rounded-full border px-3 py-1 ${remainingChipClassName}`}>{remainingLabel}</span>
-            </div>
-            <div className="grid grid-cols-3 gap-1.5">
-              <HudStatCard label={TEXT.heartsLabel} value={String(heartsLeft)} accentClassName="text-rose-100" />
+            {remainingCount === 0 ? (
+              <div className="flex flex-wrap items-center gap-2 text-[11px] font-semibold">
+                <span className="rounded-full border border-amber-200/20 bg-amber-300/12 px-3 py-1 text-amber-100">
+                  {isFinishingSession ? TEXT.movingResult : TEXT.finalQuestion}
+                </span>
+              </div>
+            ) : null}
+            <div className={`grid gap-2 ${isNonStandardMode ? "grid-cols-1" : "grid-cols-2"}`}>
+              {!isNonStandardMode ? <HeartHudCard current={heartsLeft} /> : null}
               <HudStatCard label={TEXT.scoreLabel} value={scoreSummaryLabel} accentClassName="text-sky-100" />
-              <HudStatCard
-                label={TEXT.paceCompact}
-                value={responseTimeText ?? "-"}
-                accentClassName={responseTimeText ? "text-emerald-100" : "text-stone-300"}
-              />
             </div>
+            {!isNonStandardMode ? <PaceMeter elapsedMs={elapsedMs} pacePercent={pacePercent} /> : null}
             <div className={`rounded-[0.95rem] border px-3 py-2 transition duration-300 ${focusTone.panel}`} aria-live="polite">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <div className="flex min-w-0 flex-wrap items-center gap-2">
-                  <span className="rounded-full border border-white/10 bg-white/8 px-2.5 py-1 text-[10px] font-semibold text-amber-100">
-                    {TEXT.progress} {progressLabel}
+                  <span className="rounded-full border border-white/10 bg-black/20 px-3 py-1.5 text-[11px] font-semibold text-stone-100 sm:text-[12px]">
+                    {modeTitle} / {sessionConfigLabels.quizMode}
                   </span>
-                  <span className="rounded-full border border-white/10 bg-black/20 px-2.5 py-1 text-[10px] font-semibold text-stone-200">
-                    {sessionConfigLabels.quizMode}
-                  </span>
-                  <span className={`truncate text-[13px] font-semibold ${focusTone.text}`}>{statusRailLabel}</span>
                 </div>
-                <span className="text-[10px] text-stone-400">{statusRailMeta}</span>
               </div>
             </div>
           </div>
 
-          <div className="px-4 pb-4 sm:px-5">
-            <div
-              className="h-2 overflow-hidden rounded-full bg-white/10"
-              role="progressbar"
-              aria-label={TEXT.sessionProgressLabel}
-              aria-valuemin={1}
-              aria-valuemax={Math.max(configuredWords.length, 1)}
-              aria-valuenow={Math.min(currentIndex + 1, Math.max(configuredWords.length, 1))}
-              aria-valuetext={progressLabel}
-            >
+          {!isNonStandardMode ? (
+            <div className="px-4 pb-4 sm:px-5">
               <div
-                className={`h-full rounded-full transition-all duration-500 ease-out ${focusTone.progress}`}
-                style={{ width: `${progressPercent}%` }}
-              />
+                className="grid gap-1"
+                role="progressbar"
+                aria-label={TEXT.sessionProgressLabel}
+                aria-valuemin={1}
+                aria-valuemax={progressDotCount}
+                aria-valuenow={filledProgressCount}
+                aria-valuetext={progressLabel}
+                style={{ gridTemplateColumns: `repeat(${progressDotCount}, minmax(0, 1fr))` }}
+              >
+                {Array.from({ length: progressDotCount }).map((_, index) => {
+                  const isFilled = index < filledProgressCount;
+                  const isActive = index === Math.max(0, Math.min(progressDotCount - 1, filledProgressCount - 1));
+
+                  return (
+                    <span
+                      key={`progress-${index}`}
+                      className={`h-2.5 w-2.5 rounded-full border transition duration-300 ${
+                        isFilled
+                          ? `${focusTone.progress} border-white/10 shadow-[0_0_16px_rgba(251,191,36,0.2)]`
+                          : "border-white/14 bg-transparent"
+                      } ${isActive ? "scale-110 ring-2 ring-white/12" : ""}`}
+                    />
+                  );
+                })}
+              </div>
             </div>
-          </div>
+          ) : null}
         </div>
 
         <div className="pointer-events-none flex items-center justify-center">
@@ -840,24 +1082,61 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
           </div>
         </div>
 
-        <div
-          className={`min-h-[2.75rem] rounded-[1rem] border px-3 py-1.5 shadow-[0_12px_32px_rgba(0,0,0,0.14)] transition duration-300 ${focusTone.panel}`}
-          aria-live="polite"
-        >
-          <div className="flex min-h-[1.5rem] flex-wrap items-center gap-1.5">
-            <span className="text-[11px] text-stone-500">
-              {sessionConfigLabels.quizMode} / {TEXT.progress} {progressLabel}
-            </span>
-          </div>
-        </div>
+        {isNonStandardMode ? (
+          <button
+            className="w-full rounded-2xl border border-white/12 bg-white/8 px-4 py-3 text-sm font-semibold text-stone-100 transition hover:bg-white/10"
+            type="button"
+            onClick={() => void handleStopPractice()}
+          >
+            {isReviewMode ? TEXT.stopReview : TEXT.stopPractice}
+          </button>
+        ) : null}
+
       </div>
     </section>
   );
 }
 
+function buildPlayQueue(words: WordItem[], sessionConfig: SessionConfig, mode: PlayMode, reviewState: ReviewStateRecord[] | undefined, seed: number) {
+  const baseQueue = buildSessionWordQueue(words, sessionConfig, {
+    mode,
+    reviewState,
+    seed,
+  });
+
+  if (mode === "practice" || mode === "review") {
+    return baseQueue;
+  }
+
+  if (baseQueue.length <= QUESTION_LIMIT) {
+    const toppedUp = [...baseQueue];
+
+    if (baseQueue.length === 0) {
+      return toppedUp;
+    }
+
+    let refillIndex = 0;
+    while (toppedUp.length < QUESTION_LIMIT) {
+      toppedUp.push(baseQueue[refillIndex % baseQueue.length]!);
+      refillIndex += 1;
+    }
+
+    return toppedUp;
+  }
+
+  return baseQueue.slice(0, QUESTION_LIMIT);
+}
+
+function formatHeartValue(value: number) {
+  return `${(value / 2).toFixed(value % 2 === 0 ? 0 : 1)}`;
+}
+
 type SessionSetupPanelProps = {
   sessionConfig: SessionConfig;
   sessionConfigLabels: ReturnType<typeof getSessionConfigLabels>;
+  availableQuizModes: QuizModeFilter[];
+  availablePartOfSpeechFilters: PartOfSpeechFilter[];
+  availableDifficultyFilters: DifficultyFilter[];
   configuredWordsCount: number;
   totalWordsCount: number;
   isDisabled: boolean;
@@ -868,6 +1147,9 @@ type SessionSetupPanelProps = {
 function SessionSetupPanel({
   sessionConfig,
   sessionConfigLabels,
+  availableQuizModes,
+  availablePartOfSpeechFilters,
+  availableDifficultyFilters,
   configuredWordsCount,
   totalWordsCount,
   isDisabled,
@@ -897,6 +1179,9 @@ function SessionSetupPanel({
             options={PART_OF_SPEECH_OPTIONS}
             currentValue={sessionConfig.partOfSpeech}
             isDisabled={isDisabled}
+            disabledValues={PART_OF_SPEECH_OPTIONS.filter(
+              (option) => !availablePartOfSpeechFilters.includes(option.value),
+            ).map((option) => option.value)}
             onSelect={(value) => onUpdate({ partOfSpeech: value as PartOfSpeechFilter })}
           />
           <SetupOptionGroup
@@ -904,6 +1189,9 @@ function SessionSetupPanel({
             options={DIFFICULTY_OPTIONS}
             currentValue={sessionConfig.difficulty}
             isDisabled={isDisabled}
+            disabledValues={DIFFICULTY_OPTIONS.filter(
+              (option) => !availableDifficultyFilters.includes(option.value),
+            ).map((option) => option.value)}
             onSelect={(value) => onUpdate({ difficulty: value as DifficultyFilter })}
           />
           <SetupOptionGroup
@@ -911,6 +1199,9 @@ function SessionSetupPanel({
             options={QUIZ_MODE_OPTIONS}
             currentValue={sessionConfig.quizMode}
             isDisabled={isDisabled}
+            disabledValues={QUIZ_MODE_OPTIONS.filter((option) => !availableQuizModes.includes(option.value)).map(
+              (option) => option.value,
+            )}
             onSelect={(value) => onUpdate({ quizMode: value as QuizModeFilter })}
           />
         </div>
@@ -935,6 +1226,9 @@ type SessionStartScreenProps = {
   startLabel: string;
   sessionConfig: SessionConfig;
   sessionConfigLabels: ReturnType<typeof getSessionConfigLabels>;
+  availableQuizModes: QuizModeFilter[];
+  availablePartOfSpeechFilters: PartOfSpeechFilter[];
+  availableDifficultyFilters: DifficultyFilter[];
   configuredWordsCount: number;
   totalWordsCount: number;
   onReset: () => void;
@@ -948,6 +1242,9 @@ function SessionStartScreen({
   startLabel,
   sessionConfig,
   sessionConfigLabels,
+  availableQuizModes,
+  availablePartOfSpeechFilters,
+  availableDifficultyFilters,
   configuredWordsCount,
   totalWordsCount,
   onReset,
@@ -956,25 +1253,25 @@ function SessionStartScreen({
   onUpdate,
 }: SessionStartScreenProps) {
   return (
-    <section className="overflow-hidden rounded-[1.05rem] border border-white/10 bg-gradient-to-br from-[#5a5137] via-[#1f1d19] to-[#111213] p-[3px]">
-      <div className="rounded-[0.9rem] border border-white/10 bg-black/25 p-1">
-        <div className="flex flex-wrap items-center justify-between gap-1">
+    <section className="overflow-hidden rounded-[0.68rem] border border-white/10 bg-gradient-to-br from-[#5a5137] via-[#1f1d19] to-[#111213] p-px">
+      <div className="rounded-[0.58rem] border border-white/10 bg-black/25 p-1.5">
+        <div className="flex flex-wrap items-end justify-between gap-2">
           <div>
             {TEXT.setupEyebrow ? (
               <p className="text-[7px] font-semibold uppercase tracking-[0.1em] text-amber-200/70">{TEXT.setupEyebrow}</p>
             ) : null}
-            <h2 className="text-[0.75rem] font-black tracking-[-0.04em] text-white sm:text-[0.86rem]">{modeTitle}</h2>
+            <h2 className="leading-none text-[1.18rem] font-black tracking-[-0.04em] text-white sm:text-[1.3rem]">{modeTitle}</h2>
           </div>
           <div className="flex flex-wrap gap-1">
             <button
-              className="min-h-5 rounded-2xl border border-white/10 bg-white/5 px-1.5 py-0.5 text-[8px] font-semibold text-stone-100 transition hover:bg-white/10"
+              className="min-h-11 rounded-2xl border border-white/10 bg-white/5 px-4 py-2 text-[14px] font-semibold text-stone-100 transition hover:bg-white/10"
               type="button"
               onClick={onReset}
             >
               {TEXT.setupReset}
             </button>
             <button
-              className="min-h-5 rounded-2xl border border-white/10 bg-white/5 px-1.5 py-0.5 text-[8px] font-semibold text-stone-100 transition hover:bg-white/10"
+              className="min-h-11 rounded-2xl border border-white/10 bg-white/5 px-4 py-2 text-[14px] font-semibold text-stone-100 transition hover:bg-white/10"
               type="button"
               onClick={onMoveHome}
             >
@@ -983,54 +1280,61 @@ function SessionStartScreen({
           </div>
         </div>
 
-        <div className="mt-0.5 space-y-0.5">
-          <div className="grid gap-0.5">
+        <div className="mt-1 space-y-0.5">
+          <div className="grid gap-1 rounded-[0.6rem] border border-white/10 bg-white/[0.04] p-[0.9rem]">
             <SetupOptionGroup
               title={TEXT.partOfSpeechTitle}
-              options={PART_OF_SPEECH_OPTIONS}
-              currentValue={sessionConfig.partOfSpeech}
-              isDisabled={false}
-              onSelect={(value) => onUpdate({ partOfSpeech: value as PartOfSpeechFilter })}
-            />
-            <SetupOptionGroup
-              title={TEXT.difficultyTitle}
-              options={DIFFICULTY_OPTIONS}
-              currentValue={sessionConfig.difficulty}
-              isDisabled={false}
-              onSelect={(value) => onUpdate({ difficulty: value as DifficultyFilter })}
-            />
+            options={PART_OF_SPEECH_OPTIONS}
+            currentValue={sessionConfig.partOfSpeech}
+            isDisabled={false}
+            disabledValues={PART_OF_SPEECH_OPTIONS.filter(
+              (option) => !availablePartOfSpeechFilters.includes(option.value),
+            ).map((option) => option.value)}
+            onSelect={(value) => onUpdate({ partOfSpeech: value as PartOfSpeechFilter })}
+          />
+          <SetupOptionGroup
+            title={TEXT.difficultyTitle}
+            options={DIFFICULTY_OPTIONS}
+            currentValue={sessionConfig.difficulty}
+            isDisabled={false}
+            disabledValues={DIFFICULTY_OPTIONS.filter(
+              (option) => !availableDifficultyFilters.includes(option.value),
+            ).map((option) => option.value)}
+            onSelect={(value) => onUpdate({ difficulty: value as DifficultyFilter })}
+          />
             <SetupOptionGroup
               title={TEXT.quizModeTitle}
               options={QUIZ_MODE_OPTIONS}
               currentValue={sessionConfig.quizMode}
               isDisabled={false}
+              disabledValues={QUIZ_MODE_OPTIONS.filter((option) => !availableQuizModes.includes(option.value)).map(
+                (option) => option.value,
+              )}
               onSelect={(value) => onUpdate({ quizMode: value as QuizModeFilter })}
             />
           </div>
 
-          <div className="rounded-[0.75rem] border border-white/10 bg-stone-950/60 p-0.5">
-            <div className="flex items-center justify-between gap-1 rounded-[0.65rem] border border-white/10 bg-white/[0.04] px-1.5 py-0.5">
+          <div className="rounded-[0.6rem] border border-white/10 bg-stone-950/60 p-0.5">
+            <div className="flex items-end justify-between gap-2 rounded-[0.52rem] border border-white/10 bg-white/[0.04] px-2.5 py-2">
               <div>
-                <p className="text-[7px] uppercase tracking-[0.08em] text-stone-500">{TEXT.setupCountLabel}</p>
-                <p className="mt-0.5 text-[0.72rem] font-black tracking-[-0.04em] text-white">
+                <p className="text-[12px] font-semibold uppercase tracking-[0.08em] text-stone-300">{TEXT.setupCountLabel}</p>
+                <p className="text-[1.22rem] font-black tracking-[-0.05em] text-white sm:text-[1.32rem]">
                   {configuredWordsCount}
-                  <span className="ml-1 text-[9px] font-medium text-stone-400">/ {totalWordsCount}</span>
+                  <span className="ml-1 text-[12px] font-medium text-stone-300">/ {totalWordsCount}</span>
+                </p>
+                <p className="mt-px text-[12px] font-medium leading-4 text-stone-400">
+                  {sessionConfigLabels.partOfSpeech} / {sessionConfigLabels.difficulty} / {sessionConfigLabels.quizMode}
                 </p>
               </div>
               <button
-                className="min-h-5 rounded-2xl bg-amber-300 px-1.5 py-0.5 text-[9px] font-bold text-stone-950"
+                className="min-h-14 rounded-2xl bg-amber-300 px-6 py-3 text-[18px] font-black text-stone-950 shadow-[0_14px_30px_rgba(251,191,36,0.24)]"
                 type="button"
                 onClick={onStart}
               >
                 {startLabel}
               </button>
             </div>
-
-            <div className="mt-0.5 rounded-[0.65rem] border border-white/10 bg-white/[0.03] px-1.5 py-0.5">
-              <p className="truncate text-[7px] text-stone-400">
-                {sessionConfigLabels.partOfSpeech} · {sessionConfigLabels.difficulty} · {sessionConfigLabels.quizMode}
-              </p>
-            </div>
+            
           </div>
         </div>
       </div>
@@ -1043,32 +1347,51 @@ type SetupOptionGroupProps = {
   options: Array<{ value: string; label: string }>;
   currentValue: string;
   isDisabled: boolean;
+  disabledValues?: string[];
   onSelect: (value: string) => void;
 };
 
-function SetupOptionGroup({ title, options, currentValue, isDisabled, onSelect }: SetupOptionGroupProps) {
+function SetupOptionGroup({
+  title,
+  options,
+  currentValue,
+  isDisabled,
+  disabledValues = [],
+  onSelect,
+}: SetupOptionGroupProps) {
   const gridClassName = options.length >= 5 ? "grid-cols-3" : "grid-cols-2";
 
   return (
-    <div className="rounded-[0.72rem] border border-white/10 bg-white/5 p-[3px]">
-      <p className="text-[8px] font-semibold text-stone-100">{title}</p>
-      <div className={`mt-0.5 grid ${gridClassName} gap-0.5`}>
+    <div className="rounded-[0.52rem] border border-white/10 bg-white/5 p-1.5">
+      <p className="text-[13px] font-semibold text-stone-100">{title}</p>
+      <div className={`mt-1 grid ${gridClassName} gap-1`}>
         {options.map((option) => {
           const isSelected = currentValue === option.value;
+          const isOptionDisabled = isDisabled || disabledValues.includes(option.value);
           return (
             <button
               key={option.value}
-              className={`min-h-4.5 rounded-[0.65rem] border px-1 py-0.5 text-center text-[8px] font-semibold leading-3 transition ${
+              className={`min-h-11 rounded-[0.42rem] border px-2 py-1.5 text-center text-[14px] font-semibold leading-tight transition ${
                 isSelected
                   ? "border-amber-300/30 bg-amber-300/12 text-amber-100"
-                  : "border-white/10 bg-white/5 text-stone-300 hover:border-white/20 hover:bg-white/10"
+                  : isOptionDisabled
+                    ? "border-white/8 bg-white/[0.03] text-stone-500 opacity-45"
+                    : "border-white/10 bg-white/5 text-stone-300 hover:border-white/20 hover:bg-white/10"
               }`}
               type="button"
               onClick={() => onSelect(option.value)}
-              disabled={isDisabled}
+              disabled={isOptionDisabled}
               aria-pressed={isSelected}
+              aria-disabled={isOptionDisabled}
             >
-              {option.label}
+              <span className="flex items-center justify-center gap-1">
+                <span>{option.label}</span>
+                {isOptionDisabled && option.value === "audio_to_meaning" ? (
+                  <span className="rounded-full border border-white/10 bg-black/20 px-1.5 py-0.5 text-[11px] font-semibold text-stone-400">
+                    {TEXT.comingSoon}
+                  </span>
+                ) : null}
+              </span>
             </button>
           );
         })}
@@ -1097,12 +1420,60 @@ type HudStatCardProps = {
   accentClassName?: string;
 };
 
+function HeartHudCard({ current }: { current: number }) {
+  return (
+    <div className="rounded-[0.95rem] border border-white/10 bg-gradient-to-b from-white/[0.12] via-white/[0.05] to-white/[0.02] px-3 py-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_8px_20px_rgba(0,0,0,0.14)]">
+      <p className="text-[11px] uppercase tracking-[0.18em] text-stone-400">{TEXT.heartsLabel}</p>
+      <div className="mt-1 flex gap-0.5">
+        {Array.from({ length: DISPLAY_HEARTS }).map((_, index) => {
+          const filled = Math.max(0, Math.min(2, current - index * 2));
+
+          return <HeartIcon key={`heart-${index}`} fillLevel={filled} />;
+        })}
+      </div>
+    </div>
+  );
+}
+
+function PaceMeter({ elapsedMs, pacePercent }: { elapsedMs: number; pacePercent: number }) {
+  return (
+    <div className="rounded-[0.95rem] border border-white/10 bg-gradient-to-b from-white/[0.12] via-white/[0.05] to-white/[0.02] px-3 py-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_8px_20px_rgba(0,0,0,0.14)]">
+      <div className="mb-1 flex items-center justify-between gap-3">
+        <p className="text-[11px] uppercase tracking-[0.18em] text-stone-400">{TEXT.paceCompact}</p>
+        <span className="text-[9px] font-semibold text-stone-300">{(elapsedMs / 1000).toFixed(1)}s</span>
+      </div>
+      <div className="h-3 overflow-hidden rounded-full bg-white/10">
+        <div
+          className="h-full rounded-full bg-gradient-to-r from-emerald-300 via-amber-200 to-rose-300 transition-all duration-100 ease-linear"
+          style={{ width: `${pacePercent}%` }}
+        />
+      </div>
+    </div>
+  );
+}
+
 function HudStatCard({ label, value, accentClassName = "text-stone-100" }: HudStatCardProps) {
   return (
-    <div className="rounded-[0.9rem] border border-white/10 bg-gradient-to-b from-white/[0.12] via-white/[0.05] to-white/[0.02] px-2 py-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_8px_20px_rgba(0,0,0,0.14)]">
-      <p className="text-[9px] uppercase tracking-[0.18em] text-stone-500">{label}</p>
-      <p className={`mt-0.5 text-[11px] font-semibold drop-shadow-[0_3px_12px_rgba(0,0,0,0.18)] sm:text-[12px] ${accentClassName}`}>{value}</p>
+    <div className="rounded-[0.95rem] border border-white/10 bg-gradient-to-b from-white/[0.12] via-white/[0.05] to-white/[0.02] px-3 py-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_8px_20px_rgba(0,0,0,0.14)]">
+      <p className="text-[11px] uppercase tracking-[0.18em] text-stone-400">{label}</p>
+      <p className={`mt-0.5 text-[16px] font-bold drop-shadow-[0_3px_12px_rgba(0,0,0,0.18)] sm:text-[17px] ${accentClassName}`}>{value}</p>
     </div>
+  );
+}
+
+function HeartIcon({ fillLevel }: { fillLevel: 0 | 1 | 2 | number }) {
+  return (
+    <span className="relative inline-flex h-5 w-5 items-center justify-center text-[18px] leading-none">
+      <span className="text-white/18">♥</span>
+      {fillLevel > 0 ? (
+        <span
+          className="absolute inset-0 overflow-hidden text-rose-300 drop-shadow-[0_0_8px_rgba(251,113,133,0.32)]"
+          style={{ width: `${fillLevel === 2 ? 100 : 50}%` }}
+        >
+          ♥
+        </span>
+      ) : null}
+    </span>
   );
 }
 

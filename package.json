@@ -10,6 +10,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "export:json": "python scripts/export_google_sheets_json.py",
+    "words:json": "python scripts/export_words_json.py",
+    "words:gui": "python scripts/json_publish_gui.py",
     "validate:json": "python scripts/validate_static_json.py",
     "refresh:json": "node scripts/run_static_json_refresh.mjs",
     "smoke:gas": "node scripts/run_gas_smoke_test.mjs",
