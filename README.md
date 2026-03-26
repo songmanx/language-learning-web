@@ -90,7 +90,9 @@ npm run build
 ### 5. GitHub Pages 배포
 
 - 저장소 `Settings -> Pages -> Source`를 `GitHub Actions`로 설정
+- 저장소 `Settings -> Secrets and variables -> Actions -> New repository secret`에서 `VITE_GAS_BASE_URL`을 실제 GAS Web App URL로 추가
 - `main` 브랜치에 push 하면 `.github/workflows/deploy-pages.yml`이 `dist`를 Pages로 배포
+- Pages 배포는 `VITE_GAS_USE_MOCK=false`, `VITE_STATIC_DATA_META_URL=/language-learning-web/data/languages.json`, `VITE_STATIC_DATA_WORDS_BASE_PATH=/language-learning-web/data` 기준으로 빌드
 - 라우팅은 GitHub Pages 환경에 맞춰 `HashRouter`를 사용하므로 `/#/login` 형태로 동작
 
 

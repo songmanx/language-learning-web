@@ -48,7 +48,7 @@ class JsonPublishApp:
             return
 
         parser = configparser.ConfigParser()
-        parser.read(SETTINGS_PATH, encoding="utf-8")
+        parser.read(SETTINGS_PATH, encoding="utf-8-sig")
         section = parser["json_publish"] if parser.has_section("json_publish") else {}
 
         self.credentials_var.set(section.get("credentials", ""))
@@ -69,8 +69,8 @@ class JsonPublishApp:
             "commit_message": self.commit_message_var.get().strip(),
         }
 
-        SETTINGS_PATH.write_text("", encoding="utf-8")
-        with SETTINGS_PATH.open("w", encoding="utf-8") as file:
+        SETTINGS_PATH.write_text("", encoding="utf-8-sig")
+        with SETTINGS_PATH.open("w", encoding="utf-8-sig") as file:
             parser.write(file)
 
         self._write_log(f"설정 저장: {SETTINGS_PATH.name}")
