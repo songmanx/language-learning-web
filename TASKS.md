@@ -6,12 +6,13 @@
   - `HashRouter`로 전환해 GitHub Pages 정적 배포 환경에서도 라우팅이 안정적으로 동작하도록 정리
   - `vite.config`에 저장소 경로 기준 `base` 설정 추가
   - `.github/workflows/deploy-pages.yml`을 추가해 `main` push 시 자동 배포되도록 구성
+  - GitHub Actions Node 20 지원 종료 경고를 피하기 위해 Pages workflow에 Node 24 강제 옵션과 `setup-node` 24 설정 추가
   - `README.md`에 GitHub Pages 배포 절차를 최소 범위로 반영
 - 검증:
   - `npm run build`
   - `npm run test -- src/pages/HomePage.test.tsx src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx src/pages/StatsPage.test.tsx`
 - 다음 작업:
-  - GitHub 저장소 Pages 설정을 `GitHub Actions`로 전환
+  - 저장소 공개 여부/Pages 설정 확인 후 workflow 재실행
   - `main` push 후 실제 배포 URL 접속 확인
 
 

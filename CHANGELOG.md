@@ -2,6 +2,7 @@
 
 - `HashRouter`로 전환하고 Vite `base`를 `/language-learning-web/`로 설정해 GitHub Pages 정적 배포 환경에 맞춤
 - `.github/workflows/deploy-pages.yml`을 추가해 `main` push 시 GitHub Pages 자동 배포 workflow 구성
+- GitHub Actions Node 20 지원 종료 경고를 피하기 위해 Pages workflow에 Node 24 강제 옵션과 `setup-node` 24 설정을 추가
 - `README.md`에 GitHub Pages 배포 절차를 추가
 - 테스트 `npm run test -- src/pages/HomePage.test.tsx src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx src/pages/StatsPage.test.tsx` 통과, `npm run build` 통과
 
