@@ -6,12 +6,14 @@ import { OverallLeaderboardPage } from "./OverallLeaderboardPage";
 import { writeGlobalLeaderboard } from "../services/sessionRecovery";
 import { useLanguageStore } from "../stores/languageStore";
 
+const MODE_MEANING_KANJI = "\uB73B \u2192 \uD55C\uC790";
+
 describe("OverallLeaderboardPage", () => {
   beforeEach(() => {
     window.localStorage.clear();
     useLanguageStore.setState({
       selectedLanguage: "ja",
-      availableLanguages: [{ languageCode: "ja", label: "일본어", totalWords: 10 }],
+      availableLanguages: [{ languageCode: "ja", label: "\uC77C\uBCF8\uC5B4", totalWords: 10 }],
       words: [],
       isLoading: false,
       loadError: null,
@@ -34,7 +36,7 @@ describe("OverallLeaderboardPage", () => {
         playedAt: "2026-03-17T10:00:00.000Z",
         totalTimeSec: 20,
         score: 99,
-        quizMode: "meaning_to_word",
+        quizMode: "meaning_to_kanji",
         playerId: "p2",
         nickname: "Beta",
       },
@@ -46,11 +48,11 @@ describe("OverallLeaderboardPage", () => {
       </MemoryRouter>,
     );
 
-    expect(screen.getAllByText("전체 순위표").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("\uC804\uCCB4 \uC21C\uC704\uD45C").length).toBeGreaterThan(0);
     expect(screen.getByText("Alpha")).toBeInTheDocument();
     expect(screen.queryByText("Beta")).not.toBeInTheDocument();
 
-    await user.click(screen.getByRole("button", { name: "뜻 → 단어" }));
+    await user.click(screen.getByRole("button", { name: MODE_MEANING_KANJI }));
 
     expect(screen.getByText("Beta")).toBeInTheDocument();
   });
@@ -67,7 +69,7 @@ describe("OverallLeaderboardPage", () => {
       </MemoryRouter>,
     );
 
-    await user.click(screen.getByRole("button", { name: "홈으로 가기" }));
+    await user.click(screen.getByRole("button", { name: "\uD648\uC73C\uB85C \uAC00\uAE30" }));
 
     expect(screen.getByText("home-route")).toBeInTheDocument();
   });

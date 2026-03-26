@@ -38,7 +38,7 @@ const resultState: SessionResultState = {
   sessionConfig: {
     partOfSpeech: "noun",
     difficulty: "2",
-    quizMode: "meaning_to_word",
+    quizMode: "meaning_to_kanji",
   },
 };
 
@@ -50,13 +50,13 @@ describe("ResultPage", () => {
         playedAt: "2026-03-25T10:00:00.000Z",
         totalTimeSec: 32,
         score: 180,
-        quizMode: "meaning_to_word",
+        quizMode: "meaning_to_kanji",
       },
       {
         playedAt: "2026-03-25T11:00:00.000Z",
         totalTimeSec: 35,
         score: 170,
-        quizMode: "meaning_to_word",
+        quizMode: "meaning_to_kanji",
       },
     ]);
   });
@@ -139,6 +139,6 @@ describe("ResultPage", () => {
 
     await user.click(screen.getByRole("button", { name: "재도전" }));
 
-    expect(screen.getByText("meaning_to_word")).toBeInTheDocument();
+    expect(screen.getByText("meaning_to_kanji")).toBeInTheDocument();
   });
 });

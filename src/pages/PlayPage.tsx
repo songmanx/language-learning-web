@@ -8,7 +8,10 @@ import {
   getAvailablePartOfSpeechFilters,
   filterWordsBySessionConfig,
   getAvailableQuizModes,
+  getQuizModeCounts,
+  getQuizModeLabel,
   getReadableSessionConfigLabels as getSessionConfigLabels,
+  normalizeQuizModeFilter,
   type DifficultyFilter,
   type PartOfSpeechFilter,
   type QuizModeFilter,
@@ -19,6 +22,7 @@ import { buildSaveSessionPayload } from "../features/game/session";
 import { mergeReviewState } from "../utils/reviewState";
 import type { AnswerLog, ReviewStateRecord, SaveSessionRequest, WordItem } from "../services/apiTypes";
 import { apiClient } from "../services/apiClient";
+import { playAnswerTone, speakJapanese, stopSpeech } from "../services/audioFeedback";
 import { appLogger } from "../services/logger";
 import {
   readGlobalLeaderboard,
@@ -132,11 +136,11 @@ const TEXT = {
   difficulty1: "\uB09C\uC774\uB3C4 1",
   difficulty2: "\uB09C\uC774\uB3C4 2",
   difficulty3: "\uB09C\uC774\uB3C4 3+",
-  quizModeKanjiToMeaning: "\uD55C\uC790 -> \uB73B",
-  quizModeFuriganaToMeaning: "\uD6C4\uB9AC\uAC00\uB098 -> \uB73B",
-  quizModeAudioToMeaning: "\uC74C\uC131 -> \uB73B",
-  quizModeMeaningToWord: "\uB73B -> \uB2E8\uC5B4",
   comingSoon: "\uC900\uBE44 \uC911",
+  noAudioData: "\uB370\uC774\uD130 \uC5C6\uC74C",
+  audioPromptTitle: "\uC74C\uC131 \uBB38\uC81C",
+  audioPromptHint: "\uC74C\uC131\uC744 \uB4E3\uACE0 \uB73B\uC744 \uACE0\uB974\uC138\uC694.",
+  replayAudio: "\uB2E4\uC2DC \uB4E3\uAE30",
   feedbackDeckTitle: "\uD310\uC815 \uCF58\uC194",
   setupEyebrow: "",
   startGame: "\uAC8C\uC784 \uC2DC\uC791",
@@ -167,11 +171,20 @@ const DIFFICULTY_OPTIONS: Array<{ value: DifficultyFilter; label: string }> = [
 ];
 
 const QUIZ_MODE_OPTIONS: Array<{ value: QuizModeFilter; label: string }> = [
-  { value: "kanji_to_meaning", label: TEXT.quizModeKanjiToMeaning },
-  { value: "furigana_to_meaning", label: TEXT.quizModeFuriganaToMeaning },
-  { value: "audio_to_meaning", label: TEXT.quizModeAudioToMeaning },
-  { value: "meaning_to_word", label: TEXT.quizModeMeaningToWord },
+  { value: "kanji_to_meaning", label: getQuizModeLabel("kanji_to_meaning") },
+  { value: "furigana_to_meaning", label: getQuizModeLabel("furigana_to_meaning") },
+  { value: "meaning_to_kanji", label: getQuizModeLabel("meaning_to_kanji") },
+  { value: "meaning_to_furigana", label: getQuizModeLabel("meaning_to_furigana") },
+  { value: "audio_to_meaning", label: getQuizModeLabel("audio_to_meaning") },
 ];
+
+function normalizeSessionConfig(config?: SessionConfig | null): SessionConfig {
+  return {
+    partOfSpeech: config?.partOfSpeech ?? DEFAULT_SESSION_CONFIG.partOfSpeech,
+    difficulty: config?.difficulty ?? DEFAULT_SESSION_CONFIG.difficulty,
+    quizMode: normalizeQuizModeFilter(config?.quizMode),
+  };
+}
 
 function calculateAverageAccuracy(correctAnswers: number, totalQuestions: number) {
   if (totalQuestions === 0) {
@@ -262,7 +275,9 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
   const clearLoadError = useLanguageStore((state) => state.clearLoadError);
   const incomingSessionConfig = (location.state as { sessionConfig?: SessionConfig } | null)?.sessionConfig;
 
-  const [sessionConfig, setSessionConfig] = useState<SessionConfig>(incomingSessionConfig ?? DEFAULT_SESSION_CONFIG);
+  const [sessionConfig, setSessionConfig] = useState<SessionConfig>(
+    normalizeSessionConfig(incomingSessionConfig ?? DEFAULT_SESSION_CONFIG),
+  );
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [combo, setCombo] = useState(0);
@@ -288,6 +303,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
   const isPracticeMode = mode === "practice";
   const isReviewMode = mode === "review";
   const isNonStandardMode = isPracticeMode || isReviewMode;
+  const isAudioQuizMode = sessionConfig.quizMode === "audio_to_meaning";
   const modeTitle = isReviewMode ? TEXT.reviewMode : isPracticeMode ? TEXT.practiceMode : TEXT.standardMode;
   const reviewSnapshot = useMemo(() => {
     if (!playerId || !selectedLanguage) {
@@ -299,7 +315,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
 
   useEffect(() => {
     if (incomingSessionConfig) {
-      setSessionConfig(incomingSessionConfig);
+      setSessionConfig(normalizeSessionConfig(incomingSessionConfig));
       answerLockRef.current = false;
       setCurrentIndex(0);
       setScore(0);
@@ -363,6 +379,14 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
       }),
     [sessionConfig.difficulty, sessionConfig.partOfSpeech, sourceWords],
   );
+  const quizModeCounts = useMemo(
+    () =>
+      getQuizModeCounts(sourceWords, {
+        partOfSpeech: sessionConfig.partOfSpeech,
+        difficulty: sessionConfig.difficulty,
+      }),
+    [sessionConfig.difficulty, sessionConfig.partOfSpeech, sourceWords],
+  );
   const availablePartOfSpeechFilters = useMemo(
     () =>
       getAvailablePartOfSpeechFilters(sourceWords, {
@@ -379,7 +403,13 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
       }),
     [sessionConfig.partOfSpeech, sessionConfig.quizMode, sourceWords],
   );
-  const sessionConfigLabels = useMemo(() => getSessionConfigLabels(sessionConfig), [sessionConfig]);
+  const sessionConfigLabels = useMemo(
+    () => ({
+      ...getSessionConfigLabels(sessionConfig),
+      quizMode: getQuizModeLabel(sessionConfig.quizMode),
+    }),
+    [sessionConfig],
+  );
   const currentWord = configuredWords[currentIndex];
   const currentQuestion = useMemo(() => {
     if (!currentWord) {
@@ -418,6 +448,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
 
   useEffect(() => {
     return () => {
+      stopSpeech();
       if (questionPhaseTimeoutRef.current) {
         window.clearTimeout(questionPhaseTimeoutRef.current);
       }
@@ -429,6 +460,21 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
       }
     };
   }, []);
+
+  useEffect(() => {
+    if (!isAudioQuizMode || !isSessionStarted || !currentQuestion || isAnswerLocked || isSaving) {
+      return;
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      speakJapanese(currentQuestion.prompt);
+    }, 120);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+      stopSpeech();
+    };
+  }, [currentQuestion, isAnswerLocked, isAudioQuizMode, isSaving, isSessionStarted]);
 
   useEffect(() => {
     if (isNonStandardMode || !isSessionStarted || !currentWord || !currentQuestion || isSaving || isAnswerLocked) {
@@ -765,6 +811,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
     }
 
     answerLockRef.current = true;
+    stopSpeech();
     setIsAnswerLocked(true);
     if (answerTimeoutRef.current) {
       window.clearTimeout(answerTimeoutRef.current);
@@ -778,6 +825,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
     setQuestionVisualPhase("impact");
 
     const correct = choice === currentQuestion.answer;
+    playAnswerTone(correct);
     setAnswerFeedback(correct ? "correct" : "incorrect");
     const nextCombo = correct ? combo + 1 : 0;
     const earnedScore = correct ? 10 + nextCombo * 2 : 0;
@@ -858,6 +906,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
             sessionConfig={sessionConfig}
             sessionConfigLabels={sessionConfigLabels}
             availableQuizModes={availableQuizModes}
+            quizModeCounts={quizModeCounts}
             availablePartOfSpeechFilters={availablePartOfSpeechFilters}
             availableDifficultyFilters={availableDifficultyFilters}
             configuredWordsCount={configuredWords.length}
@@ -937,6 +986,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
           sessionConfig={sessionConfig}
           sessionConfigLabels={sessionConfigLabels}
           availableQuizModes={availableQuizModes}
+          quizModeCounts={quizModeCounts}
           availablePartOfSpeechFilters={availablePartOfSpeechFilters}
           availableDifficultyFilters={availableDifficultyFilters}
           configuredWordsCount={configuredWords.length}
@@ -952,11 +1002,11 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
 
   return (
     <section
-      className={`space-y-4 overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br ${focusTone.shell} p-4 pb-5 shadow-[0_24px_120px_rgba(0,0,0,0.35)] sm:p-5 lg:p-6`}
+      className={`space-y-2.5 overflow-hidden rounded-[1.55rem] border border-white/10 bg-gradient-to-br ${focusTone.shell} p-3 pb-3.5 shadow-[0_20px_96px_rgba(0,0,0,0.32)] sm:p-3.5 lg:p-4`}
     >
-      <div className="space-y-3">
-        <div className="overflow-hidden rounded-[1.6rem] border border-white/10 bg-stone-950/65">
-          <div className="space-y-2.5 px-4 py-3 sm:px-5">
+      <div className="space-y-2">
+        <div className="overflow-hidden rounded-[1.35rem] border border-white/10 bg-stone-950/65">
+          <div className="space-y-1.5 px-3 py-2 sm:px-3.5">
             {remainingCount === 0 ? (
               <div className="flex flex-wrap items-center gap-2 text-[11px] font-semibold">
                 <span className="rounded-full border border-amber-200/20 bg-amber-300/12 px-3 py-1 text-amber-100">
@@ -964,15 +1014,15 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
                 </span>
               </div>
             ) : null}
-            <div className={`grid gap-2 ${isNonStandardMode ? "grid-cols-1" : "grid-cols-2"}`}>
+            <div className={`grid gap-1.5 ${isNonStandardMode ? "grid-cols-1" : "grid-cols-2"}`}>
               {!isNonStandardMode ? <HeartHudCard current={heartsLeft} /> : null}
               <HudStatCard label={TEXT.scoreLabel} value={scoreSummaryLabel} accentClassName="text-sky-100" />
             </div>
             {!isNonStandardMode ? <PaceMeter elapsedMs={elapsedMs} pacePercent={pacePercent} /> : null}
-            <div className={`rounded-[0.95rem] border px-3 py-2 transition duration-300 ${focusTone.panel}`} aria-live="polite">
+            <div className={`rounded-[0.8rem] border px-2.5 py-1.25 transition duration-300 ${focusTone.panel}`} aria-live="polite">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <div className="flex min-w-0 flex-wrap items-center gap-2">
-                  <span className="rounded-full border border-white/10 bg-black/20 px-3 py-1.5 text-[11px] font-semibold text-stone-100 sm:text-[12px]">
+                  <span className="rounded-full border border-white/10 bg-gradient-to-r from-amber-300/12 via-white/8 to-sky-300/12 px-3 py-1 text-[11px] font-semibold text-stone-100 sm:text-[12px]">
                     {modeTitle} / {sessionConfigLabels.quizMode}
                   </span>
                 </div>
@@ -981,7 +1031,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
           </div>
 
           {!isNonStandardMode ? (
-            <div className="px-4 pb-4 sm:px-5">
+            <div className="px-3 pb-2.5 sm:px-3.5">
               <div
                 className="grid gap-1"
                 role="progressbar"
@@ -999,7 +1049,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
                   return (
                     <span
                       key={`progress-${index}`}
-                      className={`h-2.5 w-2.5 rounded-full border transition duration-300 ${
+                      className={`h-2 w-2 rounded-full border transition duration-300 ${
                         isFilled
                           ? `${focusTone.progress} border-white/10 shadow-[0_0_16px_rgba(251,191,36,0.2)]`
                           : "border-white/14 bg-transparent"
@@ -1013,7 +1063,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
         </div>
 
         <div className="pointer-events-none flex items-center justify-center">
-          <div className="flex w-full max-w-[9rem] items-center gap-2">
+          <div className="flex w-full max-w-[8rem] items-center gap-1.5">
             <span className="h-px flex-1 bg-gradient-to-r from-transparent via-white/16 to-white/35" />
             <span className={`h-2.5 w-2.5 rounded-full border border-white/20 ${focusTone.panel}`} />
             <span className="h-px flex-1 bg-gradient-to-l from-transparent via-white/16 to-white/35" />
@@ -1021,7 +1071,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
         </div>
 
         <div
-          className={`overflow-hidden rounded-[1.9rem] border bg-[radial-gradient(circle_at_top,_rgba(251,191,36,0.14),_rgba(255,255,255,0.03)_35%,_rgba(12,10,9,0.92)_78%)] shadow-[0_22px_80px_rgba(0,0,0,0.32)] transition duration-300 ${questionCardStateClassName} ${
+          className={`overflow-hidden rounded-[1.55rem] border bg-[radial-gradient(circle_at_top,_rgba(251,191,36,0.14),_rgba(255,255,255,0.03)_35%,_rgba(12,10,9,0.92)_78%)] shadow-[0_18px_64px_rgba(0,0,0,0.28)] transition duration-300 ${questionCardStateClassName} ${
             answerFeedback === "correct"
               ? "border-emerald-300/30 shadow-[0_24px_88px_rgba(16,185,129,0.18)]"
               : answerFeedback === "incorrect"
@@ -1030,19 +1080,40 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
           }`}
         >
           <div className={`h-1 w-full ${focusTone.progress}`} />
-          <div className="border-b border-white/10 bg-gradient-to-r from-amber-200/10 via-white/6 to-transparent px-4 py-2.5 sm:px-5">
-            <div className="space-y-1">
-              <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-stone-500">
-                {TEXT.difficultyTitle} {sessionConfigLabels.difficulty}
-              </p>
-              <h2 className="text-[1.28rem] font-black leading-tight tracking-[-0.045em] text-white drop-shadow-[0_6px_24px_rgba(0,0,0,0.28)] sm:text-[1.75rem]">
-                {currentQuestion.prompt}
-              </h2>
-            </div>
+          <div className="border-b border-white/10 bg-gradient-to-r from-amber-200/10 via-white/6 to-transparent px-3 py-1.75 sm:px-3.5">
+            {isAudioQuizMode ? (
+              <div className="flex items-center justify-between gap-3">
+                <div className="space-y-1">
+                  <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-stone-500">
+                    {TEXT.audioPromptTitle}
+                  </p>
+                  <h2 className="text-[1.12rem] font-black leading-tight tracking-[-0.045em] text-white drop-shadow-[0_6px_24px_rgba(0,0,0,0.28)] sm:text-[1.35rem]">
+                    {TEXT.audioPromptHint}
+                  </h2>
+                </div>
+                <button
+                  className="min-h-11 shrink-0 rounded-2xl border border-amber-200/20 bg-amber-200/10 px-4 py-2 text-sm font-semibold text-amber-50 transition hover:bg-amber-200/16"
+                  type="button"
+                  onClick={() => speakJapanese(currentQuestion.prompt)}
+                  disabled={isSaving}
+                >
+                  {TEXT.replayAudio}
+                </button>
+              </div>
+            ) : (
+              <div className="space-y-1">
+                <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-stone-500">
+                  {TEXT.difficultyTitle} {sessionConfigLabels.difficulty}
+                </p>
+                <h2 className="text-[1.28rem] font-black leading-tight tracking-[-0.045em] text-white drop-shadow-[0_6px_24px_rgba(0,0,0,0.28)] sm:text-[1.75rem]">
+                  {currentQuestion.prompt}
+                </h2>
+              </div>
+            )}
           </div>
 
-          <div className="px-4 py-2.5 sm:px-5 sm:py-3">
-            <div className={`grid gap-2 transition duration-300 ${choicesStateClassName}`}>
+          <div className="px-3 py-1.75 sm:px-3.5 sm:py-2">
+            <div className={`grid gap-1.5 transition duration-300 ${choicesStateClassName}`}>
               {currentQuestion.choices.map((choice, index) => (
                 <ChoiceCard
                   key={`${currentWord.id}-${choice}-${index}`}
@@ -1139,6 +1210,7 @@ type SessionSetupPanelProps = {
   sessionConfig: SessionConfig;
   sessionConfigLabels: ReturnType<typeof getSessionConfigLabels>;
   availableQuizModes: QuizModeFilter[];
+  quizModeCounts: Record<QuizModeFilter, number>;
   availablePartOfSpeechFilters: PartOfSpeechFilter[];
   availableDifficultyFilters: DifficultyFilter[];
   configuredWordsCount: number;
@@ -1152,6 +1224,7 @@ function SessionSetupPanel({
   sessionConfig,
   sessionConfigLabels,
   availableQuizModes,
+  quizModeCounts,
   availablePartOfSpeechFilters,
   availableDifficultyFilters,
   configuredWordsCount,
@@ -1203,6 +1276,9 @@ function SessionSetupPanel({
             options={QUIZ_MODE_OPTIONS}
             currentValue={sessionConfig.quizMode}
             isDisabled={isDisabled}
+            badges={{
+              audio_to_meaning: quizModeCounts.audio_to_meaning === 0 ? TEXT.noAudioData : undefined,
+            }}
             disabledValues={QUIZ_MODE_OPTIONS.filter((option) => !availableQuizModes.includes(option.value)).map(
               (option) => option.value,
             )}
@@ -1231,6 +1307,7 @@ type SessionStartScreenProps = {
   sessionConfig: SessionConfig;
   sessionConfigLabels: ReturnType<typeof getSessionConfigLabels>;
   availableQuizModes: QuizModeFilter[];
+  quizModeCounts: Record<QuizModeFilter, number>;
   availablePartOfSpeechFilters: PartOfSpeechFilter[];
   availableDifficultyFilters: DifficultyFilter[];
   configuredWordsCount: number;
@@ -1247,6 +1324,7 @@ function SessionStartScreen({
   sessionConfig,
   sessionConfigLabels,
   availableQuizModes,
+  quizModeCounts,
   availablePartOfSpeechFilters,
   availableDifficultyFilters,
   configuredWordsCount,
@@ -1258,7 +1336,7 @@ function SessionStartScreen({
 }: SessionStartScreenProps) {
   return (
     <section className="overflow-hidden rounded-[0.68rem] border border-white/10 bg-gradient-to-br from-[#5a5137] via-[#1f1d19] to-[#111213] p-px">
-      <div className="rounded-[0.58rem] border border-white/10 bg-black/25 p-1.5">
+      <div className="rounded-[0.58rem] border border-white/10 bg-black/25 p-1">
         <div className="flex flex-wrap items-end justify-between gap-2">
           <div>
             {TEXT.setupEyebrow ? (
@@ -1285,7 +1363,7 @@ function SessionStartScreen({
         </div>
 
         <div className="mt-1 space-y-0.5">
-          <div className="grid gap-1 rounded-[0.6rem] border border-white/10 bg-white/[0.04] p-[0.9rem]">
+          <div className="grid gap-1 rounded-[0.6rem] border border-white/10 bg-white/[0.04] p-[0.65rem]">
             <SetupOptionGroup
               title={TEXT.partOfSpeechTitle}
             options={PART_OF_SPEECH_OPTIONS}
@@ -1311,6 +1389,9 @@ function SessionStartScreen({
               options={QUIZ_MODE_OPTIONS}
               currentValue={sessionConfig.quizMode}
               isDisabled={false}
+              badges={{
+                audio_to_meaning: quizModeCounts.audio_to_meaning === 0 ? TEXT.noAudioData : undefined,
+              }}
               disabledValues={QUIZ_MODE_OPTIONS.filter((option) => !availableQuizModes.includes(option.value)).map(
                 (option) => option.value,
               )}
@@ -1319,7 +1400,7 @@ function SessionStartScreen({
           </div>
 
           <div className="rounded-[0.6rem] border border-white/10 bg-stone-950/60 p-0.5">
-            <div className="flex items-end justify-between gap-2 rounded-[0.52rem] border border-white/10 bg-white/[0.04] px-2.5 py-2">
+            <div className="flex items-end justify-between gap-2 rounded-[0.52rem] border border-white/10 bg-white/[0.04] px-2.5 py-1.5">
               <div>
                 <p className="text-[12px] font-semibold uppercase tracking-[0.08em] text-stone-300">{TEXT.setupCountLabel}</p>
                 <p className="text-[1.22rem] font-black tracking-[-0.05em] text-white sm:text-[1.32rem]">
@@ -1331,7 +1412,7 @@ function SessionStartScreen({
                 </p>
               </div>
               <button
-                className="min-h-14 rounded-2xl bg-amber-300 px-6 py-3 text-[18px] font-black text-stone-950 shadow-[0_14px_30px_rgba(251,191,36,0.24)]"
+                className="min-h-13 rounded-2xl bg-amber-300 px-6 py-3 text-[18px] font-black text-stone-950 shadow-[0_14px_30px_rgba(251,191,36,0.24)]"
                 type="button"
                 onClick={onStart}
               >
@@ -1351,6 +1432,7 @@ type SetupOptionGroupProps = {
   options: Array<{ value: string; label: string }>;
   currentValue: string;
   isDisabled: boolean;
+  badges?: Record<string, string | undefined>;
   disabledValues?: string[];
   onSelect: (value: string) => void;
 };
@@ -1360,13 +1442,15 @@ function SetupOptionGroup({
   options,
   currentValue,
   isDisabled,
+  badges = {},
   disabledValues = [],
   onSelect,
 }: SetupOptionGroupProps) {
   const gridClassName = options.length >= 5 ? "grid-cols-3" : "grid-cols-2";
+  const isQuizModeGroup = title === TEXT.quizModeTitle;
 
   return (
-    <div className="rounded-[0.52rem] border border-white/10 bg-white/5 p-1.5">
+    <div className="rounded-[0.52rem] border border-white/10 bg-white/5 p-1.25">
       <p className="text-[13px] font-semibold text-stone-100">{title}</p>
       <div className={`mt-1 grid ${gridClassName} gap-1`}>
         {options.map((option) => {
@@ -1375,12 +1459,16 @@ function SetupOptionGroup({
           return (
             <button
               key={option.value}
-              className={`min-h-11 rounded-[0.42rem] border px-2 py-1.5 text-center text-[14px] font-semibold leading-tight transition ${
+              className={`min-h-10 rounded-[0.42rem] border px-2 py-1.25 text-center text-[14px] font-semibold leading-tight transition ${
                 isSelected
-                  ? "border-amber-300/30 bg-amber-300/12 text-amber-100"
+                  ? isQuizModeGroup
+                    ? "border-amber-200/40 bg-gradient-to-br from-amber-200/18 via-white/[0.1] to-sky-300/12 text-amber-50 shadow-[0_10px_26px_rgba(251,191,36,0.16)]"
+                    : "border-amber-300/30 bg-amber-300/12 text-amber-100"
                   : isOptionDisabled
                     ? "border-white/8 bg-white/[0.03] text-stone-500 opacity-45"
-                    : "border-white/10 bg-white/5 text-stone-300 hover:border-white/20 hover:bg-white/10"
+                    : isQuizModeGroup
+                      ? "border-white/10 bg-gradient-to-br from-white/[0.08] via-white/[0.05] to-transparent text-stone-200 hover:border-white/20 hover:bg-white/10"
+                      : "border-white/10 bg-white/5 text-stone-300 hover:border-white/20 hover:bg-white/10"
               }`}
               type="button"
               onClick={() => onSelect(option.value)}
@@ -1389,10 +1477,25 @@ function SetupOptionGroup({
               aria-disabled={isOptionDisabled}
             >
               <span className="flex items-center justify-center gap-1">
-                <span>{option.label}</span>
-                {isOptionDisabled && option.value === "audio_to_meaning" ? (
+                {isQuizModeGroup ? (
+                  <span className="inline-flex items-center gap-1.5">
+                    {option.label.split(" → ").map((segment, index, parts) => (
+                      <span key={`${option.value}-${segment}-${index}`} className="inline-flex items-center gap-1.5">
+                        <span className={index === 0 ? "text-stone-100" : "text-stone-50"}>{segment}</span>
+                        {index < parts.length - 1 ? (
+                          <span className="rounded-full border border-amber-200/20 bg-amber-200/10 px-1.5 py-0.5 text-[11px] text-amber-200/90 drop-shadow-[0_0_10px_rgba(251,191,36,0.22)]">
+                            →
+                          </span>
+                        ) : null}
+                      </span>
+                    ))}
+                  </span>
+                ) : (
+                  <span>{option.label}</span>
+                )}
+                {badges[option.value] ? (
                   <span className="rounded-full border border-white/10 bg-black/20 px-1.5 py-0.5 text-[11px] font-semibold text-stone-400">
-                    {TEXT.comingSoon}
+                    {badges[option.value]}
                   </span>
                 ) : null}
               </span>
@@ -1525,7 +1628,7 @@ function ChoiceCard({
 
   return (
     <button
-      className={`relative min-h-14 overflow-hidden rounded-[1.3rem] border bg-gradient-to-b from-white/[0.1] via-white/[0.04] to-white/[0.02] px-3.5 py-2 text-left text-[15px] font-medium leading-5 shadow-[0_12px_28px_rgba(0,0,0,0.14)] transition duration-300 ease-out disabled:cursor-not-allowed disabled:opacity-60 ${className}`}
+      className={`relative min-h-12 overflow-hidden rounded-[1.2rem] border bg-gradient-to-b from-white/[0.1] via-white/[0.04] to-white/[0.02] px-3.5 py-1.75 text-left text-[15px] font-medium leading-5 shadow-[0_10px_24px_rgba(0,0,0,0.12)] transition duration-300 ease-out disabled:cursor-not-allowed disabled:opacity-60 ${className}`}
       type="button"
       onClick={onClick}
       disabled={isDisabled}

@@ -1,6 +1,11 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { DEFAULT_SESSION_CONFIG, type SessionConfig } from "../features/game/sessionConfig";
+import {
+  DEFAULT_SESSION_CONFIG,
+  getQuizModeLabel,
+  normalizeQuizModeFilter,
+  type SessionConfig,
+} from "../features/game/sessionConfig";
 import {
   clearPlayerProgress,
   readDailyStatsSnapshot,
@@ -14,40 +19,41 @@ import { useLanguageStore } from "../stores/languageStore";
 type QuizModeValue = SessionConfig["quizMode"];
 
 const QUIZ_MODE_OPTIONS: Array<{ value: QuizModeValue; label: string }> = [
-  { value: "kanji_to_meaning", label: "한자 → 뜻" },
-  { value: "furigana_to_meaning", label: "후리 → 뜻" },
-  { value: "audio_to_meaning", label: "음성 → 뜻" },
-  { value: "meaning_to_word", label: "뜻 → 단어" },
+  { value: "kanji_to_meaning", label: getQuizModeLabel("kanji_to_meaning") },
+  { value: "furigana_to_meaning", label: getQuizModeLabel("furigana_to_meaning") },
+  { value: "meaning_to_kanji", label: getQuizModeLabel("meaning_to_kanji") },
+  { value: "meaning_to_furigana", label: getQuizModeLabel("meaning_to_furigana") },
+  { value: "audio_to_meaning", label: getQuizModeLabel("audio_to_meaning") },
 ];
 
 const TEXT = {
-  statsTitle: "기본 통계",
-  noStats: "아직 표시할 통계가 없습니다. 먼저 플레이나 연습을 진행해 주세요.",
-  statsReady: "누적 집계 완료",
-  statsEmpty: "통계 대기 중",
-  performanceSummary: "성과 요약",
-  quickActionsTitle: "바로 이동",
-  recentFlow: "최근 흐름",
-  reviewAction: "복습",
-  playAction: "플레이",
-  homeAction: "홈",
-  recommendedBadge: "추천",
-  totalSessions: "누적 세션",
-  practiceSessions: "연습 세션",
-  totalScore: "누적 점수",
-  bestScore: "최고 점수",
-  accuracy: "평균 정답률",
-  totalQuestions: "누적 문제 수",
-  correctAnswers: "누적 정답 수",
-  lastPlayedAt: "마지막 플레이",
-  reviewCenter: "복습",
-  resetAll: "내 기록 삭제",
-  resetConfirm: "현재 로그인한 내 기록만 초기화됩니다. 계속할까요?",
-  rankingTitle: "순위표",
-  rankingEmpty: "아직 기록이 없습니다.",
-  rankingDate: "날짜",
-  rankingTime: "시간",
-  rankingScore: "점수",
+  statsTitle: "\uD1B5\uACC4",
+  noStats: "\uC544\uC9C1 \uC313\uC778 \uD1B5\uACC4\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4. \uBA3C\uC800 \uD50C\uB808\uC774\uD558\uAC70\uB098 \uC5F0\uC2B5\uC744 \uC2DC\uC791\uD574 \uC8FC\uC138\uC694.",
+  statsReady: "\uB204\uC801 \uC9D1\uACC4 \uC644\uB8CC",
+  statsEmpty: "\uC544\uC9C1 \uC9D1\uACC4\uD560 \uAE30\uB85D\uC774 \uC5C6\uC2B5\uB2C8\uB2E4.",
+  performanceSummary: "\uC131\uACFC \uC694\uC57D",
+  quickActionsTitle: "\uBC14\uB85C \uC774\uB3D9",
+  recentFlow: "\uCD5C\uADFC \uD50C\uB808\uC774",
+  reviewAction: "\uBCF5\uC2B5",
+  playAction: "\uD50C\uB808\uC774",
+  homeAction: "\uD648",
+  recommendedBadge: "\uCD94\uCC9C",
+  totalSessions: "\uD50C\uB808\uC774 \uC218",
+  practiceSessions: "\uC5F0\uC2B5 \uC218",
+  totalScore: "\uB204\uC801 \uC810\uC218",
+  bestScore: "\uCD5C\uACE0 \uC810\uC218",
+  accuracy: "\uC815\uB2F5\uB960",
+  totalQuestions: "\uD47C \uBB38\uC81C \uC218",
+  correctAnswers: "\uB9DE\uD78C \uBB38\uC81C \uC218",
+  lastPlayedAt: "\uB9C8\uC9C0\uB9C9 \uD50C\uB808\uC774",
+  reviewCenter: "\uBCF5\uC2B5",
+  resetAll: "\uB0B4 \uAE30\uB85D \uC0AD\uC81C",
+  resetConfirm: "\uD604\uC7AC \uB85C\uADF8\uC778\uD55C \uB0B4 \uAE30\uB85D\uB9CC \uCD08\uAE30\uD654\uB429\uB2C8\uB2E4. \uACC4\uC18D\uD560\uAE4C\uC694?",
+  rankingTitle: "\uC21C\uC704\uD45C",
+  rankingEmpty: "\uC544\uC9C1 \uAE30\uB85D\uC774 \uC5C6\uC2B5\uB2C8\uB2E4.",
+  rankingDate: "\uB0A0\uC9DC",
+  rankingTime: "\uC2DC\uAC04",
+  rankingScore: "\uC810\uC218",
 } as const;
 
 function formatDateTime(value: string) {
@@ -68,7 +74,7 @@ function formatDateParts(value: string) {
 }
 
 function normalizeQuizMode(entry: LeaderboardEntry) {
-  return (entry.quizMode ?? "word_to_meaning") as QuizModeValue;
+  return normalizeQuizModeFilter(entry.quizMode);
 }
 
 export function StatsPage() {

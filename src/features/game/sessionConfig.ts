@@ -6,7 +6,8 @@ export type QuizModeFilter =
   | "kanji_to_meaning"
   | "furigana_to_meaning"
   | "audio_to_meaning"
-  | "meaning_to_word";
+  | "meaning_to_kanji"
+  | "meaning_to_furigana";
 
 export type SessionConfig = {
   partOfSpeech: PartOfSpeechFilter;
@@ -31,6 +32,30 @@ export const DEFAULT_SESSION_CONFIG: SessionConfig = {
   difficulty: "all",
   quizMode: "kanji_to_meaning",
 };
+
+export const QUIZ_MODE_ORDER: QuizModeFilter[] = [
+  "kanji_to_meaning",
+  "furigana_to_meaning",
+  "meaning_to_kanji",
+  "meaning_to_furigana",
+  "audio_to_meaning",
+];
+
+export function normalizeQuizModeFilter(value?: string | null): QuizModeFilter {
+  if (value === "meaning_to_word") {
+    return "meaning_to_kanji";
+  }
+
+  if (QUIZ_MODE_ORDER.includes(value as QuizModeFilter)) {
+    return value as QuizModeFilter;
+  }
+
+  return DEFAULT_SESSION_CONFIG.quizMode;
+}
+
+export function isMeaningToWordQuizMode(mode: QuizModeFilter) {
+  return mode === "meaning_to_kanji" || mode === "meaning_to_furigana";
+}
 
 function normalizeText(value: string) {
   return String(value ?? "").trim().toLocaleLowerCase();
@@ -108,6 +133,20 @@ function getMeaningToWordVariantRank(word: WordItem) {
   return 0;
 }
 
+function getMeaningToWordMode(word: WordItem): QuizModeFilter {
+  const answer = String(word.answer ?? "").trim();
+
+  if (containsKanji(answer)) {
+    return "meaning_to_kanji";
+  }
+
+  if (containsKana(answer)) {
+    return "meaning_to_furigana";
+  }
+
+  return "meaning_to_kanji";
+}
+
 function buildReviewPriorityMap(reviewState: ReviewStateRecord[] = []) {
   return new Map(reviewState.map((item) => [item.wordId, item.priorityScore]));
 }
@@ -128,7 +167,7 @@ export function inferPartOfSpeech(wordId: string): PartOfSpeechFilter {
 
 export function getWordPromptMode(word: WordItem): QuizModeFilter {
   if (getQuestionType(word) === "meaning_to_word") {
-    return "meaning_to_word";
+    return getMeaningToWordMode(word);
   }
 
   const prompt = String(word.prompt ?? "").trim();
@@ -142,6 +181,18 @@ export function getWordPromptMode(word: WordItem): QuizModeFilter {
   }
 
   return "audio_to_meaning";
+}
+
+function isAudioCompatibleWord(word: WordItem) {
+  return getQuestionType(word) === "word_to_meaning" && getWordPromptMode(word) === "furigana_to_meaning";
+}
+
+function wordMatchesQuizMode(word: WordItem, quizMode: QuizModeFilter) {
+  if (quizMode === "audio_to_meaning") {
+    return isAudioCompatibleWord(word);
+  }
+
+  return getWordPromptMode(word) === quizMode;
 }
 
 function matchesBaseFilters(word: WordItem, sessionConfig: Pick<SessionConfig, "partOfSpeech" | "difficulty">) {
@@ -161,29 +212,37 @@ export function getAvailableQuizModes(
   words: WordItem[],
   sessionConfig: Pick<SessionConfig, "partOfSpeech" | "difficulty">,
 ) {
-  const available = new Set<QuizModeFilter>();
+  const counts = getQuizModeCounts(words, sessionConfig);
+
+  return QUIZ_MODE_ORDER.filter((mode) => counts[mode] > 0);
+}
+
+export function getQuizModeCounts(
+  words: WordItem[],
+  sessionConfig: Pick<SessionConfig, "partOfSpeech" | "difficulty">,
+) {
+  const counts = QUIZ_MODE_ORDER.reduce(
+    (accumulator, mode) => {
+      accumulator[mode] = 0;
+      return accumulator;
+    },
+    {} as Record<QuizModeFilter, number>,
+  );
 
   for (const word of words) {
     if (!matchesBaseFilters(word, sessionConfig)) {
       continue;
     }
 
-    if (getQuestionType(word) === "meaning_to_word") {
-      available.add("meaning_to_word");
-      continue;
-    }
+    const promptMode = getWordPromptMode(word);
+    counts[promptMode] += 1;
 
-    if (getQuestionType(word) === "word_to_meaning") {
-      available.add(getWordPromptMode(word));
+    if (isAudioCompatibleWord(word)) {
+      counts.audio_to_meaning += 1;
     }
   }
 
-  return [
-    "kanji_to_meaning",
-    "furigana_to_meaning",
-    "audio_to_meaning",
-    "meaning_to_word",
-  ].filter((mode) => available.has(mode as QuizModeFilter)) as QuizModeFilter[];
+  return counts;
 }
 
 export function getAvailablePartOfSpeechFilters(
@@ -195,10 +254,7 @@ export function getAvailablePartOfSpeechFilters(
   for (const word of words) {
     const matchesDifficulty =
       sessionConfig.difficulty === "all" || String(word.difficulty || "").trim() === sessionConfig.difficulty;
-    const matchesQuizMode =
-      sessionConfig.quizMode === "meaning_to_word"
-        ? getQuestionType(word) === "meaning_to_word"
-        : getQuestionType(word) === "word_to_meaning" && getWordPromptMode(word) === sessionConfig.quizMode;
+    const matchesQuizMode = wordMatchesQuizMode(word, sessionConfig.quizMode);
 
     if (!matchesDifficulty || !matchesQuizMode) {
       continue;
@@ -221,10 +277,7 @@ export function getAvailableDifficultyFilters(
   for (const word of words) {
     const matchesPartOfSpeech =
       sessionConfig.partOfSpeech === "all" || inferPartOfSpeech(getWordId(word)) === sessionConfig.partOfSpeech;
-    const matchesQuizMode =
-      sessionConfig.quizMode === "meaning_to_word"
-        ? getQuestionType(word) === "meaning_to_word"
-        : getQuestionType(word) === "word_to_meaning" && getWordPromptMode(word) === sessionConfig.quizMode;
+    const matchesQuizMode = wordMatchesQuizMode(word, sessionConfig.quizMode);
 
     if (!matchesPartOfSpeech || !matchesQuizMode) {
       continue;
@@ -245,14 +298,10 @@ export function filterWordsBySessionConfig(words: WordItem[], sessionConfig: Ses
       return false;
     }
 
-    if (sessionConfig.quizMode === "meaning_to_word") {
-      return getQuestionType(word) === "meaning_to_word";
-    }
-
-    return getQuestionType(word) === "word_to_meaning" && getWordPromptMode(word) === sessionConfig.quizMode;
+    return wordMatchesQuizMode(word, sessionConfig.quizMode);
   });
 
-  if (sessionConfig.quizMode !== "meaning_to_word") {
+  if (!isMeaningToWordQuizMode(sessionConfig.quizMode)) {
     return filtered;
   }
 
@@ -395,68 +444,52 @@ export function buildSessionWordQueue(
     : sortStandardQueue(words, reviewPriorityMap, seed);
 }
 
+export function getQuizModeLabel(mode: QuizModeFilter) {
+  if (mode === "kanji_to_meaning") {
+    return "\uD55C\uC790 \u2192 \uB73B";
+  }
+
+  if (mode === "furigana_to_meaning") {
+    return "\uD6C4\uB9AC\uAC00\uB098 \u2192 \uB73B";
+  }
+
+  if (mode === "meaning_to_kanji") {
+    return "\uB73B \u2192 \uD55C\uC790";
+  }
+
+  if (mode === "meaning_to_furigana") {
+    return "\uB73B \u2192 \uD6C4\uB9AC\uAC00\uB098";
+  }
+
+  return "\uC74C\uC131 \u2192 \uB73B";
+}
+
 export function getSessionConfigLabels(sessionConfig: SessionConfig) {
   return {
     partOfSpeech:
       sessionConfig.partOfSpeech === "all"
-        ? "전체 품사"
+        ? "\uC804\uCCB4"
         : sessionConfig.partOfSpeech === "noun"
-          ? "명사"
+          ? "\uBA85\uC0AC"
           : sessionConfig.partOfSpeech === "verb"
-            ? "동사"
+            ? "\uB3D9\uC0AC"
             : sessionConfig.partOfSpeech === "adjective"
-              ? "형용사"
+              ? "\uD615\uC6A9\uC0AC"
               : sessionConfig.partOfSpeech === "adverb"
-                ? "부사"
-                : "기타",
+                ? "\uBD80\uC0AC"
+                : "\uAE30\uD0C0",
     difficulty:
       sessionConfig.difficulty === "all"
-        ? "전체 난이도"
+        ? "\uC804\uCCB4"
         : sessionConfig.difficulty === "1"
-          ? "난이도 1"
+          ? "\uB09C\uC774\uB3C4 1"
           : sessionConfig.difficulty === "2"
-            ? "난이도 2"
-            : "난이도 3+",
-    quizMode:
-      sessionConfig.quizMode === "kanji_to_meaning"
-        ? "단어(한자) -> 뜻"
-        : sessionConfig.quizMode === "furigana_to_meaning"
-          ? "단어(후리가나) -> 뜻"
-          : sessionConfig.quizMode === "audio_to_meaning"
-            ? "단어(음성) -> 뜻"
-            : "뜻 -> 단어",
+            ? "\uB09C\uC774\uB3C4 2"
+            : "\uB09C\uC774\uB3C4 3+",
+    quizMode: getQuizModeLabel(sessionConfig.quizMode),
   };
 }
 
 export function getReadableSessionConfigLabels(sessionConfig: SessionConfig) {
-  return {
-    partOfSpeech:
-      sessionConfig.partOfSpeech === "all"
-        ? "전체 품사"
-        : sessionConfig.partOfSpeech === "noun"
-          ? "명사"
-          : sessionConfig.partOfSpeech === "verb"
-            ? "동사"
-            : sessionConfig.partOfSpeech === "adjective"
-              ? "형용사"
-              : sessionConfig.partOfSpeech === "adverb"
-                ? "부사"
-                : "기타",
-    difficulty:
-      sessionConfig.difficulty === "all"
-        ? "전체 난이도"
-        : sessionConfig.difficulty === "1"
-          ? "난이도 1"
-          : sessionConfig.difficulty === "2"
-            ? "난이도 2"
-            : "난이도 3+",
-    quizMode:
-      sessionConfig.quizMode === "kanji_to_meaning"
-        ? "단어(한자) -> 뜻"
-        : sessionConfig.quizMode === "furigana_to_meaning"
-          ? "단어(후리가나) -> 뜻"
-          : sessionConfig.quizMode === "audio_to_meaning"
-            ? "단어(음성) -> 뜻"
-            : "뜻 -> 단어",
-  };
+  return getSessionConfigLabels(sessionConfig);
 }

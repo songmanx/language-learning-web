@@ -1,26 +1,31 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import type { SessionConfig } from "../features/game/sessionConfig";
+import {
+  getQuizModeLabel,
+  normalizeQuizModeFilter,
+  type SessionConfig,
+} from "../features/game/sessionConfig";
 import { readGlobalLeaderboard, type LeaderboardEntry } from "../services/sessionRecovery";
 import { useLanguageStore } from "../stores/languageStore";
 
 type QuizModeValue = SessionConfig["quizMode"];
 
 const QUIZ_MODE_OPTIONS: Array<{ value: QuizModeValue; label: string }> = [
-  { value: "kanji_to_meaning", label: "한자 → 뜻" },
-  { value: "furigana_to_meaning", label: "후리 → 뜻" },
-  { value: "audio_to_meaning", label: "음성 → 뜻" },
-  { value: "meaning_to_word", label: "뜻 → 단어" },
+  { value: "kanji_to_meaning", label: getQuizModeLabel("kanji_to_meaning") },
+  { value: "furigana_to_meaning", label: getQuizModeLabel("furigana_to_meaning") },
+  { value: "meaning_to_kanji", label: getQuizModeLabel("meaning_to_kanji") },
+  { value: "meaning_to_furigana", label: getQuizModeLabel("meaning_to_furigana") },
+  { value: "audio_to_meaning", label: getQuizModeLabel("audio_to_meaning") },
 ];
 
 const TEXT = {
-  title: "전체 순위표",
-  empty: "아직 기록이 없습니다.",
-  date: "날짜",
-  time: "시간",
-  score: "점수",
-  nickname: "닉네임",
-  home: "홈으로 가기",
+  title: "\uC804\uCCB4 \uC21C\uC704\uD45C",
+  empty: "\uC544\uC9C1 \uAE30\uB85D\uC774 \uC5C6\uC2B5\uB2C8\uB2E4.",
+  date: "\uB0A0\uC9DC",
+  time: "\uC2DC\uAC04",
+  score: "\uC810\uC218",
+  nickname: "\uB2C9\uB124\uC784",
+  home: "\uD648\uC73C\uB85C \uAC00\uAE30",
 } as const;
 
 function formatDateParts(value: string) {
@@ -37,7 +42,7 @@ function formatDateParts(value: string) {
 }
 
 function normalizeQuizMode(entry: LeaderboardEntry) {
-  return (entry.quizMode ?? "word_to_meaning") as QuizModeValue;
+  return normalizeQuizModeFilter(entry.quizMode);
 }
 
 export function OverallLeaderboardPage() {
@@ -120,7 +125,7 @@ export function OverallLeaderboardPage() {
                     {index + 1}
                   </span>
                   <span className="truncate text-[12px] font-semibold text-stone-100">
-                    {entry.nickname ?? entry.playerId ?? "익명"}
+                    {entry.nickname ?? entry.playerId ?? "\uC54C \uC218 \uC5C6\uC74C"}
                   </span>
                   <span className="text-[12px] font-medium text-stone-200">{date}</span>
                   <span className="text-[12px] font-medium text-stone-200">{time}</span>

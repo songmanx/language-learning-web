@@ -7,6 +7,7 @@ import {
   getAvailableDifficultyFilters,
   getAvailablePartOfSpeechFilters,
   getAvailableQuizModes,
+  getQuizModeCounts,
   getSessionConfigLabels,
   getWordPromptMode,
   type SessionConfig,
@@ -15,10 +16,10 @@ import {
 function createWord(overrides: Partial<WordItem>): WordItem {
   return {
     id: "JA_N_0001",
-    prompt: "猫",
-    choices: ["고양이", "개", "새", "물고기"],
-    answer: "고양이",
-    meaning: "고양이",
+    prompt: "\u732B",
+    choices: ["\uACE0\uC591\uC774", "\uAC00\uBC29", "\uC0C8", "\uBB3C\uACE0\uAE30"],
+    answer: "\uACE0\uC591\uC774",
+    meaning: "\uACE0\uC591\uC774",
     difficulty: "1",
     questionType: "word_to_meaning",
     ...overrides,
@@ -30,24 +31,32 @@ function createReviewState(...items: ReviewStateRecord[]): ReviewStateRecord[] {
 }
 
 describe("sessionConfig", () => {
-  it("prompt 형태에 따라 출제 방식을 구분한다", () => {
-    expect(getWordPromptMode(createWord({ prompt: "猫" }))).toBe("kanji_to_meaning");
-    expect(getWordPromptMode(createWord({ prompt: "ねこ" }))).toBe("furigana_to_meaning");
-    expect(getWordPromptMode(createWord({ prompt: "cat.mp3" }))).toBe("audio_to_meaning");
-    expect(getWordPromptMode(createWord({ questionType: "meaning_to_word" }))).toBe("meaning_to_word");
+  it("distinguishes quiz modes from prompt and answer shape", () => {
+    expect(getWordPromptMode(createWord({ prompt: "\u732B", answer: "\uACE0\uC591\uC774" }))).toBe("kanji_to_meaning");
+    expect(getWordPromptMode(createWord({ prompt: "\u306D\u3053", answer: "\uACE0\uC591\uC774" }))).toBe("furigana_to_meaning");
+    expect(getWordPromptMode(createWord({ prompt: "cat.mp3", answer: "\uACE0\uC591\uC774" }))).toBe("audio_to_meaning");
+    expect(getWordPromptMode(createWord({ questionType: "meaning_to_word", answer: "\u732B" }))).toBe("meaning_to_kanji");
+    expect(getWordPromptMode(createWord({ questionType: "meaning_to_word", answer: "\u306D\u3053" }))).toBe("meaning_to_furigana");
   });
 
-  it("출제 방식과 정확히 일치하는 문제만 필터링한다", () => {
+  it("filters words by the exact selected quiz mode", () => {
     const words = [
-      createWord({ id: "kanji", prompt: "猫" }),
-      createWord({ id: "furigana", prompt: "ねこ" }),
-      createWord({ id: "audio", prompt: "cat.mp3" }),
+      createWord({ id: "kanji", prompt: "\u732B", answer: "\uACE0\uC591\uC774" }),
+      createWord({ id: "furigana", prompt: "\u306D\u3053", answer: "\uACE0\uC591\uC774" }),
+      createWord({ id: "audio", prompt: "cat.mp3", answer: "\uACE0\uC591\uC774" }),
       createWord({
-        id: "meaning",
+        id: "meaning-kanji",
         questionType: "meaning_to_word",
-        prompt: "ねこ",
-        answer: "猫",
-        meaning: "고양이",
+        prompt: "cat",
+        answer: "\u732B",
+        meaning: "cat",
+      }),
+      createWord({
+        id: "meaning-furigana",
+        questionType: "meaning_to_word",
+        prompt: "cat",
+        answer: "\u306D\u3053",
+        meaning: "cat",
       }),
     ];
 
@@ -56,69 +65,100 @@ describe("sessionConfig", () => {
 
     expect(pick("kanji_to_meaning")).toEqual(["kanji"]);
     expect(pick("furigana_to_meaning")).toEqual(["furigana"]);
-    expect(pick("audio_to_meaning")).toEqual(["audio"]);
-    expect(pick("meaning_to_word")).toEqual(["meaning"]);
+    expect(pick("audio_to_meaning")).toEqual(["furigana"]);
+    expect(pick("meaning_to_kanji")).toEqual(["meaning-kanji"]);
+    expect(pick("meaning_to_furigana")).toEqual(["meaning-furigana"]);
   });
 
-  it("뜻 -> 단어는 같은 의미의 한자/후리가나 변형이 함께 있으면 대표 답 하나만 남긴다", () => {
+  it("keeps only one representative answer for the same meaning in meaning to kanji mode", () => {
     const words = [
       createWord({
         id: "JA_N_0001",
         questionType: "meaning_to_word",
-        prompt: "고양이",
-        answer: "猫",
-        meaning: "고양이",
+        prompt: "cat",
+        answer: "\u732B",
+        meaning: "cat",
       }),
       createWord({
         id: "JA_N_0001",
         questionType: "meaning_to_word",
-        prompt: "고양이",
-        answer: "ねこ",
-        meaning: "고양이",
+        prompt: "cat",
+        answer: "\u306D\u3053",
+        meaning: "cat",
       }),
       createWord({
         id: "JA_N_0002",
         questionType: "meaning_to_word",
-        prompt: "개",
-        answer: "犬",
-        meaning: "개",
+        prompt: "bag",
+        answer: "\u9784",
+        meaning: "bag",
       }),
     ];
 
     const filtered = filterWordsBySessionConfig(words, {
       ...DEFAULT_SESSION_CONFIG,
-      quizMode: "meaning_to_word",
+      quizMode: "meaning_to_kanji",
     });
 
     expect(filtered).toHaveLength(2);
-    expect(filtered.find((word) => word.meaning === "고양이")?.answer).toBe("猫");
+    expect(filtered.find((word) => word.meaning === "cat")?.answer).toBe("\u732B");
   });
 
-  it("현재 필터 조합에서 실제 가능한 방식만 반환한다", () => {
+  it("returns only quiz modes that are actually available for the current filters", () => {
     const words = [
-      createWord({ id: "kanji", prompt: "猫" }),
-      createWord({ id: "furigana", prompt: "ねこ" }),
+      createWord({ id: "kanji", prompt: "\u732B", answer: "\uACE0\uC591\uC774", meaning: "cat" }),
+      createWord({ id: "furigana", prompt: "\u306D\u3053", answer: "\uACE0\uC591\uC774", meaning: "cat" }),
       createWord({
         id: "meaning",
         questionType: "meaning_to_word",
-        prompt: "ねこ",
-        answer: "猫",
-        meaning: "고양이",
+        prompt: "cat",
+        answer: "\u732B",
+        meaning: "cat",
       }),
     ];
 
     expect(getAvailableQuizModes(words, { partOfSpeech: "all", difficulty: "all" })).toEqual([
       "kanji_to_meaning",
       "furigana_to_meaning",
-      "meaning_to_word",
+      "meaning_to_kanji",
+      "audio_to_meaning",
     ]);
   });
 
-  it("현재 방식과 난이도 기준으로 가능한 품사만 반환한다", () => {
+  it("returns quiz mode counts for the current base filters", () => {
     const words = [
-      createWord({ id: "JA_N_0001", prompt: "猫", difficulty: "1" }),
-      createWord({ id: "JA_V_0001", prompt: "食べる", answer: "먹다", meaning: "먹다", difficulty: "1" }),
-      createWord({ id: "JA_ADV_0001", prompt: "すぐ", answer: "바로", meaning: "바로", difficulty: "2" }),
+      createWord({ id: "kanji", prompt: "\u732B", answer: "\uACE0\uC591\uC774", meaning: "cat" }),
+      createWord({ id: "furigana", prompt: "\u306D\u3053", answer: "\uACE0\uC591\uC774", meaning: "cat" }),
+      createWord({
+        id: "meaning-kanji",
+        questionType: "meaning_to_word",
+        prompt: "cat",
+        answer: "\u732B",
+        meaning: "cat",
+      }),
+      createWord({
+        id: "meaning-furigana",
+        questionType: "meaning_to_word",
+        prompt: "cat",
+        answer: "\u306D\u3053",
+        meaning: "cat",
+      }),
+    ];
+
+    expect(getQuizModeCounts(words, { partOfSpeech: "all", difficulty: "all" })).toEqual({
+      kanji_to_meaning: 1,
+      furigana_to_meaning: 1,
+      meaning_to_kanji: 1,
+      meaning_to_furigana: 1,
+      audio_to_meaning: 1,
+    });
+  });
+
+  it("returns only available parts of speech for the current mode and difficulty", () => {
+    const words = [
+      createWord({ id: "JA_N_0001", prompt: "\u732B", answer: "\uACE0\uC591\uC774", meaning: "cat", difficulty: "1" }),
+      createWord({ id: "JA_V_0001", prompt: "\u98DF\u3079\u308B", answer: "\uBA39\uB2E4", meaning: "\uBA39\uB2E4", difficulty: "1" }),
+      createWord({ id: "JA_ADV_0001", prompt: "\u3059\u3050", answer: "\uBC14\uB85C", meaning: "\uBC14\uB85C", difficulty: "2" }),
     ];
 
     expect(
@@ -129,11 +169,11 @@ describe("sessionConfig", () => {
     ).toEqual(["all", "noun", "verb"]);
   });
 
-  it("현재 방식과 품사 기준으로 가능한 난이도만 반환한다", () => {
+  it("returns only available difficulties for the current mode and part of speech", () => {
     const words = [
-      createWord({ id: "JA_N_0001", prompt: "猫", difficulty: "1" }),
-      createWord({ id: "JA_N_0002", prompt: "犬", answer: "개", meaning: "개", difficulty: "2" }),
-      createWord({ id: "JA_V_0001", prompt: "食べる", answer: "먹다", meaning: "먹다", difficulty: "3" }),
+      createWord({ id: "JA_N_0001", prompt: "\u732B", answer: "\uACE0\uC591\uC774", meaning: "cat", difficulty: "1" }),
+      createWord({ id: "JA_N_0002", prompt: "\u72AC", answer: "\uAC1C", meaning: "dog", difficulty: "2" }),
+      createWord({ id: "JA_V_0001", prompt: "\u98DF\u3079\u308B", answer: "\uBA39\uB2E4", meaning: "eat", difficulty: "3" }),
     ];
 
     expect(
@@ -144,12 +184,12 @@ describe("sessionConfig", () => {
     ).toEqual(["all", "1", "2"]);
   });
 
-  it("같은 seed면 같은 세션 큐가 만들어진다", () => {
+  it("builds the same session queue with the same seed", () => {
     const words = [
-      createWord({ id: "JA_N_0001", prompt: "猫", meaning: "고양이" }),
-      createWord({ id: "JA_N_0002", prompt: "犬", answer: "개", meaning: "개" }),
-      createWord({ id: "JA_N_0003", prompt: "鳥", answer: "새", meaning: "새", difficulty: "2" }),
-      createWord({ id: "JA_N_0004", prompt: "魚", answer: "물고기", meaning: "물고기", difficulty: "2" }),
+      createWord({ id: "JA_N_0001", prompt: "\u732B", answer: "\uACE0\uC591\uC774", meaning: "cat" }),
+      createWord({ id: "JA_N_0002", prompt: "\u72AC", answer: "\uAC1C", meaning: "dog" }),
+      createWord({ id: "JA_N_0003", prompt: "\u9CE5", answer: "\uC0C8", meaning: "bird", difficulty: "2" }),
+      createWord({ id: "JA_N_0004", prompt: "\u9B5A", answer: "\uBB3C\uACE0\uAE30", meaning: "fish", difficulty: "2" }),
     ];
 
     const reviewState = createReviewState({
@@ -174,7 +214,7 @@ describe("sessionConfig", () => {
     expect(queueA.map((word) => word.id)).toContain("JA_N_0002");
   });
 
-  it("연습 모드는 복습 대상이 먼저 나온다", () => {
+  it("prioritizes high-review words first in practice mode", () => {
     const queue = buildSessionWordQueue(
       [
         createWord({ id: "JA_N_0003", difficulty: "3" }),
@@ -195,13 +235,13 @@ describe("sessionConfig", () => {
     expect(queue.slice(0, 2).map((word) => word.id)).toEqual(expect.arrayContaining(["JA_N_0002", "JA_N_0003"]));
   });
 
-  it("같은 단어군과 같은 의미가 연속으로 몰리지 않게 재배치한다", () => {
+  it("avoids consecutive crowding of the same family and meaning", () => {
     const queue = buildSessionWordQueue(
       [
-        createWord({ id: "JA_N_0001", prompt: "猫", answer: "고양이", meaning: "고양이" }),
-        createWord({ id: "JA_N_0001", prompt: "ねこ", answer: "고양이", meaning: "고양이" }),
-        createWord({ id: "JA_N_0002", prompt: "犬", answer: "개", meaning: "개" }),
-        createWord({ id: "JA_N_0003", prompt: "鳥", answer: "새", meaning: "새" }),
+        createWord({ id: "JA_N_0001", prompt: "\u732B", answer: "\uACE0\uC591\uC774", meaning: "cat" }),
+        createWord({ id: "JA_N_0001", prompt: "\u306D\u3053", answer: "\uACE0\uC591\uC774", meaning: "cat" }),
+        createWord({ id: "JA_N_0002", prompt: "\u72AC", answer: "\uAC1C", meaning: "dog" }),
+        createWord({ id: "JA_N_0003", prompt: "\u9CE5", answer: "\uC0C8", meaning: "bird" }),
       ],
       DEFAULT_SESSION_CONFIG,
       { mode: "standard", seed: 5 },
@@ -213,7 +253,7 @@ describe("sessionConfig", () => {
     expect(queueKeys[1]).not.toBe(queueKeys[2]);
   });
 
-  it("세션 구성 라벨을 읽기 쉬운 한국어로 반환한다", () => {
+  it("returns readable session config labels", () => {
     expect(
       getSessionConfigLabels({
         partOfSpeech: "noun",
@@ -221,9 +261,9 @@ describe("sessionConfig", () => {
         quizMode: "audio_to_meaning",
       }),
     ).toEqual({
-      partOfSpeech: "명사",
-      difficulty: "난이도 2",
-      quizMode: "단어(음성) -> 뜻",
+      partOfSpeech: "\uBA85\uC0AC",
+      difficulty: "\uB09C\uC774\uB3C4 2",
+      quizMode: "\uC74C\uC131 \u2192 \uB73B",
     });
   });
 });

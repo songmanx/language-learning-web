@@ -60,7 +60,7 @@ describe("HomePage", () => {
     writeSessionConfigSnapshot("player-demo", "ja", {
       partOfSpeech: "noun",
       difficulty: "2",
-      quizMode: "meaning_to_word",
+      quizMode: "meaning_to_kanji",
     });
   });
 
@@ -138,7 +138,7 @@ describe("HomePage", () => {
 
     await user.click(screen.getByRole("button", { name: "연습 모드 시작" }));
 
-    expect(screen.getByText("meaning_to_word")).toBeInTheDocument();
+    expect(screen.getByText("meaning_to_kanji")).toBeInTheDocument();
   });
 
   it("moves to overall leaderboard from home", async () => {

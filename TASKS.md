@@ -1,3 +1,46 @@
+# TASKS.md
+
+## 2026-03-26 Phase 4 음성 모드/TTS 피드백 메모
+
+- 완료:
+  - `audio_to_meaning`을 별도 오디오 데이터 없이 `furigana_to_meaning` 문제를 기반으로 한 TTS 재생형 문제로 연결
+  - `PlayPage`에서 음성 문제 자동 재생, `다시 듣기` 버튼, 정답/오답 피드백 사운드 추가
+  - `sessionConfig.ts`, `PlayPage.test.tsx`, `sessionConfig.test.ts`를 새 기준으로 보강
+- 검증:
+  - `npm run test -- src/pages/PlayPage.test.tsx src/features/game/sessionConfig.test.ts`
+  - `npm run build`
+- 다음 작업:
+  - 실제 모바일/브라우저에서 일본어 TTS 음성 품질과 볼륨 체감 확인
+  - 정답/오답 피드백 사운드 세기와 길이 미세 조정
+
+## 2026-03-26 Phase 4 출제방식 실데이터 상태 정리 메모
+
+- 완료:
+  - `sessionConfig.ts`에 출제방식별 실데이터 문항 수 집계 헬퍼를 추가해 실제 활성 가능 상태를 코드에서 직접 계산하도록 정리
+  - `PlayPage` 출제방식 버튼에서 `음성 → 뜻`이 실데이터 0건일 때 `준비 중` 대신 `데이터 없음`으로 더 정확히 표시되도록 수정
+  - `sessionConfig.test.ts`, `PlayPage.test.tsx`를 새 상태 기준으로 보강
+- 검증:
+  - `npm run test -- src/pages/PlayPage.test.tsx src/features/game/sessionConfig.test.ts`
+  - `npm run build`
+- 다음 작업:
+  - 실제 오디오형 문제 데이터가 들어오면 `음성 → 뜻` 버튼을 자동 활성화
+  - 웹에서 새 출제방식 4종 체감 확인 후 남는 UI 문구만 미세 조정
+
+## 2026-03-26 Phase 4 ???? ??/?? ?? ?? ??
+
+- ??:
+  - `? -> ??` ??? `? -> ??`, `? -> ????`? ???? ?? `meaning_to_word` ??? `meaning_to_kanji`? ???
+  - `PlayPage` ?? ? ???? ?? ??? `?` ????? ???, ?? HUD/?? ?? ??? ?? ? ?? ??? ??
+  - `StatsPage`, `OverallLeaderboardPage`, `ResultPage`?? ? ???? ??? legacy ?? ???? ??
+  - ?? ???? ?? ?? ?? ?? ???? ???
+- ??:
+  - `npm run test -- src/pages/PlayPage.test.tsx src/features/game/sessionConfig.test.ts src/pages/StatsPage.test.tsx src/pages/OverallLeaderboardPage.test.tsx`
+  - `npm run build`
+- ?? ??:
+  - ?? ??? `? -> ??`, `? -> ????` ?? ??
+  - ????? ??? ??? ???? `?? -> ?` ??? ??
+
+
 ﻿# TASKS.md
 
 ## 2026-03-26 Phase 4 GitHub Pages 배포 준비 메모

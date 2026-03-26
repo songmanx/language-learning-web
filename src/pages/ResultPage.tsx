@@ -4,6 +4,7 @@ import type { SessionResultState } from "../features/game/resultState";
 import {
   DEFAULT_SESSION_CONFIG,
   getReadableSessionConfigLabels as getSessionConfigLabels,
+  normalizeQuizModeFilter,
 } from "../features/game/sessionConfig";
 import { readLeaderboard } from "../services/sessionRecovery";
 
@@ -166,7 +167,7 @@ export function ResultPage() {
     }
 
     return readLeaderboard(payload.playerId, payload.languageCode)
-      .filter((entry) => (entry.quizMode ?? "word_to_meaning") === sessionConfig.quizMode)
+      .filter((entry) => normalizeQuizModeFilter(entry.quizMode) === sessionConfig.quizMode)
       .slice(0, 10);
   }, [payload.languageCode, payload.modeType, payload.playerId, sessionConfig.quizMode]);
 

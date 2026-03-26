@@ -12,6 +12,8 @@ import {
 import { useAuthStore } from "../stores/authStore";
 import { useLanguageStore } from "../stores/languageStore";
 
+const MODE_MEANING_KANJI = "\uB73B \u2192 \uD55C\uC790";
+
 function RouteProbe() {
   const location = useLocation();
   const state = location.state as { sessionConfig?: { quizMode?: string } } | null;
@@ -30,7 +32,7 @@ describe("StatsPage", () => {
     });
     useLanguageStore.setState({
       selectedLanguage: "ja",
-      availableLanguages: [{ languageCode: "ja", label: "일본어", totalWords: 10 }],
+      availableLanguages: [{ languageCode: "ja", label: "\uC77C\uBCF8\uC5B4", totalWords: 10 }],
       words: [],
       isLoading: false,
       loadError: null,
@@ -38,7 +40,7 @@ describe("StatsPage", () => {
     writeSessionConfigSnapshot("player-demo", "ja", {
       partOfSpeech: "noun",
       difficulty: "2",
-      quizMode: "meaning_to_word",
+      quizMode: "meaning_to_kanji",
     });
   });
 
@@ -66,7 +68,7 @@ describe("StatsPage", () => {
         playedAt: "2026-03-17T10:00:00.000Z",
         totalTimeSec: 20,
         score: 35,
-        quizMode: "meaning_to_word",
+        quizMode: "meaning_to_kanji",
       },
     ]);
 
@@ -77,15 +79,15 @@ describe("StatsPage", () => {
     );
 
     const headings = screen.getAllByRole("heading");
-    expect(headings[1]).toHaveTextContent("성과 요약");
-    expect(headings[2]).toHaveTextContent("순위표");
-    expect(headings[3]).toHaveTextContent("바로 이동");
-    expect(screen.getByText("누적 집계 완료")).toBeInTheDocument();
+    expect(headings[1]).toHaveTextContent("\uC131\uACFC \uC694\uC57D");
+    expect(headings[2]).toHaveTextContent("\uC21C\uC704\uD45C");
+    expect(headings[3]).toHaveTextContent("\uBC14\uB85C \uC774\uB3D9");
+    expect(screen.getByText("\uB204\uC801 \uC9D1\uACC4 \uC644\uB8CC")).toBeInTheDocument();
 
     expect(screen.getAllByText("42").length).toBeGreaterThan(0);
     expect(screen.queryByText("35")).not.toBeInTheDocument();
 
-    await user.click(screen.getByRole("button", { name: "뜻 → 단어" }));
+    await user.click(screen.getByRole("button", { name: MODE_MEANING_KANJI }));
 
     expect(screen.getByText("35")).toBeInTheDocument();
   });
@@ -97,8 +99,8 @@ describe("StatsPage", () => {
       </MemoryRouter>,
     );
 
-    expect(screen.getByText(/아직 표시할 통계가 없습니다/)).toBeInTheDocument();
-    expect(screen.getByText("아직 기록이 없습니다.")).toBeInTheDocument();
+    expect(screen.getByText(/\uC544\uC9C1 \uC313\uC778 \uD1B5\uACC4\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4/)).toBeInTheDocument();
+    expect(screen.getByText("\uC544\uC9C1 \uAE30\uB85D\uC774 \uC5C6\uC2B5\uB2C8\uB2E4.")).toBeInTheDocument();
   });
 
   it("moves home from stats", async () => {
@@ -113,7 +115,7 @@ describe("StatsPage", () => {
       </MemoryRouter>,
     );
 
-    await user.click(screen.getByRole("button", { name: "홈" }));
+    await user.click(screen.getByRole("button", { name: "\uD648" }));
 
     expect(screen.getByText("home-route")).toBeInTheDocument();
   });
@@ -130,9 +132,9 @@ describe("StatsPage", () => {
       </MemoryRouter>,
     );
 
-    await user.click(screen.getByRole("button", { name: "플레이" }));
+    await user.click(screen.getByRole("button", { name: "\uD50C\uB808\uC774" }));
 
-    expect(screen.getByText("meaning_to_word")).toBeInTheDocument();
+    expect(screen.getByText("meaning_to_kanji")).toBeInTheDocument();
   });
 
   it("clears only the current player's saved progress when confirmed", async () => {
@@ -156,7 +158,7 @@ describe("StatsPage", () => {
       </MemoryRouter>,
     );
 
-    await user.click(screen.getByRole("button", { name: "내 기록 삭제" }));
+    await user.click(screen.getByRole("button", { name: "\uB0B4 \uAE30\uB85D \uC0AD\uC81C" }));
 
     expect(readDailyStatsSnapshot("player-demo", "ja")).toBeNull();
     confirmSpy.mockRestore();
