@@ -347,10 +347,14 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
 
     return words.filter((word) => reviewWordIds.has(word.id));
   }, [isReviewMode, reviewWordIds, words]);
-  const configuredWords = useMemo(() => {
-    const filteredWords = filterWordsBySessionConfig(sourceWords, sessionConfig);
-    return buildPlayQueue(filteredWords, sessionConfig, mode, reviewSnapshot?.reviewState, queueSeed);
-  }, [mode, queueSeed, reviewSnapshot?.reviewState, sessionConfig, sourceWords]);
+  const filteredWords = useMemo(
+    () => filterWordsBySessionConfig(sourceWords, sessionConfig),
+    [sessionConfig, sourceWords],
+  );
+  const configuredWords = useMemo(
+    () => buildPlayQueue(filteredWords, sessionConfig, mode, reviewSnapshot?.reviewState, queueSeed),
+    [filteredWords, mode, queueSeed, reviewSnapshot?.reviewState, sessionConfig],
+  );
   const availableQuizModes = useMemo(
     () =>
       getAvailableQuizModes(sourceWords, {
@@ -857,7 +861,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
             availablePartOfSpeechFilters={availablePartOfSpeechFilters}
             availableDifficultyFilters={availableDifficultyFilters}
             configuredWordsCount={configuredWords.length}
-            totalWordsCount={sourceWords.length}
+            totalWordsCount={filteredWords.length}
             isDisabled={isSaving}
           onReset={() => updateSessionConfig(DEFAULT_SESSION_CONFIG)}
           onUpdate={updateSessionConfig}
@@ -936,7 +940,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
           availablePartOfSpeechFilters={availablePartOfSpeechFilters}
           availableDifficultyFilters={availableDifficultyFilters}
           configuredWordsCount={configuredWords.length}
-          totalWordsCount={sourceWords.length}
+          totalWordsCount={filteredWords.length}
           onReset={() => updateSessionConfig(DEFAULT_SESSION_CONFIG)}
           onStart={startSession}
           onMoveHome={() => navigate("/home")}

@@ -57,6 +57,38 @@ function createMixedWords(): WordItem[] {
   ];
 }
 
+function createFilterCountWords(): WordItem[] {
+  return [
+    {
+      id: "JA_N_0001",
+      prompt: "猫",
+      choices: ["고양이", "개", "새", "물고기"],
+      answer: "고양이",
+      meaning: "고양이",
+      difficulty: "1",
+      questionType: "word_to_meaning",
+    },
+    {
+      id: "JA_N_0002",
+      prompt: "犬",
+      choices: ["개", "고양이", "새", "물고기"],
+      answer: "개",
+      meaning: "개",
+      difficulty: "1",
+      questionType: "word_to_meaning",
+    },
+    {
+      id: "JA_V_0003",
+      prompt: "食べる",
+      choices: ["먹다", "보다", "자다", "걷다"],
+      answer: "먹다",
+      meaning: "먹다",
+      difficulty: "2",
+      questionType: "word_to_meaning",
+    },
+  ];
+}
+
 function renderPlayFlow(initialEntry = "/play") {
   return render(
     <MemoryRouter initialEntries={[initialEntry]}>
@@ -193,6 +225,27 @@ describe("PlayPage", () => {
     await user.click(screen.getByRole("button", { name: "한자 -> 뜻" }));
 
     expect(screen.getByRole("button", { name: "난이도 3+" })).toBeDisabled();
+  });
+
+  it("updates setup total count when filters change", async () => {
+    const user = userEvent.setup();
+    useLanguageStore.setState({
+      selectedLanguage: "ja",
+      availableLanguages: [{ languageCode: "ja", label: "일본어", totalWords: 3 }],
+      words: createFilterCountWords(),
+      isLoading: false,
+      loadError: null,
+    });
+
+    const view = renderPlayFlow();
+
+    expect(view.container.textContent).toContain("3");
+
+    await user.click(screen.getByRole("button", { name: "명사" }));
+
+    await waitFor(() => {
+      expect(view.container.textContent).toContain("2");
+    });
   });
 
   it("moves to result after completing 20 questions", async () => {
