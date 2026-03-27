@@ -1,5 +1,10 @@
 ﻿## 2026-03-27
 
+- Rebuilt the static JSON export GitHub Actions workflow for Japanese + English all-language export.
+- Changed CI service-account restoration to support both raw JSON and base64-encoded secrets.
+- Added English secret validation and separate Japanese/English static JSON validation steps.
+## 2026-03-27
+
 - Simplified the YANG JSON publish GUI copy and retuned the visual style toward a softer cute-modern look.
 - Kept the fixed one-page layout while cleaning up the button, color, and card hierarchy.
 - Validation: python -m py_compile scripts/json_publish_gui.py scripts/export_words_json.py scripts/export_google_sheets_json.py, python -c "import scripts.json_publish_gui as gui; print('ok')".
@@ -1765,6 +1770,7 @@ pm run test 39揶????궢, `npm run build` ???궢
 - ?뚯뒪??npm run test -- src/pages/LanguageSelectPage.test.tsx src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx src/pages/StatsPage.test.tsx src/features/game/sessionConfig.test.ts src/features/game/questionRound.test.ts src/features/game/gameDataRegression.test.ts ?듦낵, npm run build ?듦낵
 - `PlayPage` ?곗뒿 紐⑤뱶?먯꽌??吏꾪뻾???먰삎???④린怨? `ResultPage`?먯꽌???섎떒 ?⑥뼱蹂?蹂듭뒿 ?곹깭 紐⑸줉???쒓굅??寃곌낵 ?붿빟?????⑥닚??
 - ?뚯뒪??npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx ?듦낵, npm run build ?듦낵
+
 
 
 

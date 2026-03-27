@@ -1,4 +1,14 @@
-﻿## 2026-03-27 Phase 5 JSON tool visual polish
+﻿## 2026-03-27 Phase 5 CI static-json export fix
+
+- Completed:
+  - Rebuilt the GitHub Actions static JSON export workflow to refresh Japanese and English together
+  - Switched CI credential restoration to accept either raw JSON or base64-encoded service-account secrets
+  - Added English secret validation and per-language static JSON validation steps
+- Verified:
+  - Workflow file updated at .github/workflows/export-static-json.yml
+- Next:
+  - Update GOOGLE_SERVICE_ACCOUNT_JSON with the current active key and rerun the export workflow
+## 2026-03-27 Phase 5 JSON tool visual polish
 
 - Completed:
   - Simplified the YANG JSON publish GUI copy and removed extra explanatory clutter
@@ -1321,6 +1331,7 @@ Phase 4: ?⑥쥒??疫꿸퀡???곕떽?
   - GUI?먯꽌 ?쒕퉬??怨꾩젙 寃쎈줈/?쒗듃 ID/異쒕젰 ?대뜑/?몄뼱 ?뺣낫/而ㅻ컠 硫붿떆吏瑜??ъ엯?ν븯吏 ?딅룄濡?媛쒖꽑
 - 寃利?
   - `python -m py_compile scripts/json_publish_gui.py scripts/export_words_json.py`
+
 
 
 

@@ -5,6 +5,9 @@ on:
   schedule:
     - cron: "0 */6 * * *"
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 permissions:
   contents: write
 
@@ -31,6 +34,7 @@ jobs:
         env:
           GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
           JA_MASTER_SHEET_ID: ${{ secrets.JA_MASTER_SHEET_ID }}
+          EN_MASTER_SHEET_ID: ${{ secrets.EN_MASTER_SHEET_ID }}
         run: |
           if [ -z "$GOOGLE_SERVICE_ACCOUNT_JSON" ]; then
             echo "Missing required secret: GOOGLE_SERVICE_ACCOUNT_JSON"
@@ -40,27 +44,69 @@ jobs:
             echo "Missing required secret: JA_MASTER_SHEET_ID"
             exit 1
           fi
+          if [ -z "$EN_MASTER_SHEET_ID" ]; then
+            echo "Missing required secret: EN_MASTER_SHEET_ID"
+            exit 1
+          fi
 
       - name: Write service account credentials
-        shell: bash
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
         run: |
-          mkdir -p .tmp
-          printf '%s' '${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}' > .tmp/google-service-account.json
+          python - <<'PY'
+          import base64
+          import json
+          import os
+          from pathlib import Path
 
-      - name: Export Japanese master sheet to static JSON
+          raw = os.environ["GOOGLE_SERVICE_ACCOUNT_JSON"].strip()
+          candidates = [raw]
+
+          try:
+              decoded = base64.b64decode(raw).decode("utf-8")
+              candidates.append(decoded)
+          except Exception:
+              pass
+
+          selected = None
+          for candidate in candidates:
+              try:
+                  json.loads(candidate)
+                  selected = candidate
+                  break
+              except Exception:
+                  continue
+
+          if selected is None:
+              raise SystemExit("GOOGLE_SERVICE_ACCOUNT_JSON is neither valid JSON nor base64-encoded JSON.")
+
+          target = Path(".tmp/google-service-account.json")
+          target.parent.mkdir(parents=True, exist_ok=True)
+          target.write_text(selected, encoding="utf-8")
+          PY
+
+      - name: Export all language master sheets to static JSON
         run: >
-          python scripts/export_google_sheets_json.py
+          python scripts/export_words_json.py
           --credentials .tmp/google-service-account.json
-          --spreadsheet-id "${{ secrets.JA_MASTER_SHEET_ID }}"
           --output-dir public/data
-          --language-code ja
-          --language-label "일본어"
+          --all-languages
+          --ja-spreadsheet-id "${{ secrets.JA_MASTER_SHEET_ID }}"
+          --en-spreadsheet-id "${{ secrets.EN_MASTER_SHEET_ID }}"
+          --ja-language-label "일본어"
+          --en-language-label "영어"
 
-      - name: Validate generated static JSON
+      - name: Validate generated Japanese static JSON
         run: >
           python scripts/validate_static_json.py
           --data-dir public/data
           --language-code ja
+
+      - name: Validate generated English static JSON
+        run: >
+          python scripts/validate_static_json.py
+          --data-dir public/data
+          --language-code en
 
       - name: Commit exported JSON when changed
         shell: bash
