@@ -1,4 +1,38 @@
-﻿## 2026-03-27 Phase 5 header/title polish
+﻿## 2026-03-27 Phase 5 JSON tool visual polish
+
+- Completed:
+  - Simplified the YANG JSON publish GUI copy and removed extra explanatory clutter
+  - Restyled the GUI with a softer cute-modern palette and cleaner action cards
+  - Kept the one-page fixed layout and all-language export flow
+- Verified:
+  - python -m py_compile scripts/json_publish_gui.py scripts/export_words_json.py scripts/export_google_sheets_json.py
+  - python -c "import scripts.json_publish_gui as gui; print('ok')"
+- Next:
+  - Launch the GUI and verify the new visual balance and one-page fit in the live environment
+## 2026-03-27 Phase 5 JSON tool layout polish
+
+- Completed:
+  - Reworked the YANG JSON publish GUI into a one-page fixed layout without scroll dependency
+  - Upgraded the GUI styling to a cleaner card-based modern theme
+  - Kept all-language export flow for Japanese and English in one run
+- Verified:
+  - python -m py_compile scripts/export_words_json.py scripts/json_publish_gui.py scripts/export_google_sheets_json.py
+  - python -c "import scripts.json_publish_gui as gui; import scripts.export_words_json as words; print('ok')"
+- Next:
+  - Launch the GUI and verify the full window fits on screen without clipping before live export
+## 2026-03-27 Phase 5 JSON tool polish
+
+- Completed:
+  - Reworked the YANG JSON publish GUI to export Japanese and English together in one run
+  - Rebuilt the GUI with a larger scroll-safe card layout so fields and logs are no longer clipped
+  - Added all-language export arguments to the Python wrapper for direct CLI use
+- Verified:
+  - python -m py_compile scripts/export_words_json.py scripts/json_publish_gui.py scripts/export_google_sheets_json.py`r
+  - python scripts/export_words_json.py --help`r
+- Next:
+  - Run the GUI once with live credentials and confirm both language JSON files refresh together before GitHub publish
+
+## 2026-03-27 Phase 5 header/title polish
 
 - Completed:
   - Changed the web title to YANG 언어공부 연습장
@@ -1287,6 +1321,9 @@ Phase 4: ?⑥쥒??疫꿸퀡???곕떽?
   - GUI?먯꽌 ?쒕퉬??怨꾩젙 寃쎈줈/?쒗듃 ID/異쒕젰 ?대뜑/?몄뼱 ?뺣낫/而ㅻ컠 硫붿떆吏瑜??ъ엯?ν븯吏 ?딅룄濡?媛쒖꽑
 - 寃利?
   - `python -m py_compile scripts/json_publish_gui.py scripts/export_words_json.py`
+
+
+
 
 
 
