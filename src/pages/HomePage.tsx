@@ -168,23 +168,23 @@ export function HomePage() {
         </div>
       ) : null}
 
-      <div className="grid gap-3">
+      <div className="grid grid-cols-2 gap-3">
         <button
-          className="min-h-14 rounded-2xl bg-emerald-400 px-4 py-4 text-base font-semibold text-stone-950"
+          className="min-h-[4.5rem] rounded-[1.4rem] border border-emerald-200/40 bg-gradient-to-br from-emerald-300 to-emerald-400 px-4 py-4 text-base font-semibold text-stone-950 shadow-[0_14px_30px_rgba(52,211,153,0.2)]"
           type="button"
           onClick={() => void prepareWords("/play", "play")}
         >
           {TEXT.playStart}
         </button>
         <button
-          className="min-h-14 rounded-2xl border border-sky-200/20 bg-sky-300/12 px-4 py-4 text-base font-semibold text-sky-50"
+          className="min-h-[4.5rem] rounded-[1.4rem] border border-sky-200/25 bg-gradient-to-br from-sky-300/20 to-cyan-300/10 px-4 py-4 text-base font-semibold text-sky-50 shadow-[0_12px_24px_rgba(56,189,248,0.12)]"
           type="button"
           onClick={() => void prepareWords("/practice", "practice")}
         >
           {TEXT.practiceStart}
         </button>
         <button
-          className="min-h-14 rounded-2xl border border-white/15 bg-white/8 px-4 py-4 text-base font-semibold"
+          className="min-h-[4.5rem] rounded-[1.4rem] border border-white/12 bg-white/[0.075] px-4 py-4 text-base font-semibold shadow-[0_12px_24px_rgba(0,0,0,0.16)]"
           type="button"
           onClick={() =>
             navigate("/review", {
@@ -195,28 +195,28 @@ export function HomePage() {
           {TEXT.reviewCenter}
         </button>
         <button
-          className="min-h-14 rounded-2xl border border-white/15 bg-white/8 px-4 py-4 text-base font-semibold"
+          className="min-h-[4.5rem] rounded-[1.4rem] border border-white/12 bg-white/[0.075] px-4 py-4 text-base font-semibold shadow-[0_12px_24px_rgba(0,0,0,0.16)]"
           type="button"
           onClick={() => navigate("/stats")}
         >
           {TEXT.statsPage}
         </button>
         <button
-          className="min-h-14 rounded-2xl border border-white/15 bg-white/8 px-4 py-4 text-base font-semibold"
+          className="min-h-[4.5rem] rounded-[1.4rem] border border-white/12 bg-white/[0.075] px-4 py-4 text-base font-semibold shadow-[0_12px_24px_rgba(0,0,0,0.16)]"
           type="button"
           onClick={() => navigate("/leaderboard")}
         >
           {TEXT.overallLeaderboard}
         </button>
         <button
-          className="min-h-14 rounded-2xl border border-white/15 bg-white/8 px-4 py-4 text-base font-semibold"
+          className="min-h-[4.5rem] rounded-[1.4rem] border border-white/12 bg-white/[0.075] px-4 py-4 text-base font-semibold shadow-[0_12px_24px_rgba(0,0,0,0.16)]"
           type="button"
           onClick={() => navigate("/languages")}
         >
           {TEXT.changeLanguage}
         </button>
         <button
-          className="min-h-14 rounded-2xl border border-red-300/30 bg-red-400/10 px-4 py-4 text-base font-semibold text-red-100"
+          className="col-span-2 min-h-12 rounded-[1.25rem] border border-red-300/30 bg-red-400/10 px-4 py-3 text-base font-semibold text-red-100 shadow-[0_12px_24px_rgba(248,113,113,0.12)]"
           type="button"
           onClick={() => {
             logout();

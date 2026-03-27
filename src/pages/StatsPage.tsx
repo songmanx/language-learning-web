@@ -30,6 +30,7 @@ const TEXT = {
   reviewAction: "\uBCF5\uC2B5",
   playAction: "\uD50C\uB808\uC774",
   homeAction: "\uD648",
+  leaderboardAction: "\uC804\uCCB4 \uC21C\uC704\uD45C",
   recommendedBadge: "\uCD94\uCC9C",
   totalSessions: "\uD50C\uB808\uC774 \uC218",
   practiceSessions: "\uC5F0\uC2B5 \uC218",
@@ -148,6 +149,12 @@ export function StatsPage() {
       toneClassName: "border-white/10 bg-white/8",
       onClick: () => navigate("/home"),
     },
+    {
+      title: TEXT.leaderboardAction,
+      recommended: false,
+      toneClassName: "border-white/10 bg-white/8",
+      onClick: () => navigate("/leaderboard"),
+    },
   ];
 
   function handleResetAll() {
@@ -250,8 +257,7 @@ export function StatsPage() {
       </div>
 
       <div className="rounded-[1.75rem] border border-white/10 bg-white/8 p-5 sm:rounded-[2rem] sm:p-6">
-        <h3 className="text-lg font-semibold">{TEXT.quickActionsTitle}</h3>
-        <div className="mt-3 grid gap-3">
+        <div className="grid gap-3 sm:grid-cols-2">
           {actionCards.map((card) => (
             <button
               key={card.title}

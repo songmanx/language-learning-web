@@ -170,8 +170,15 @@ export function inferPartOfSpeech(wordId: string): PartOfSpeechFilter {
 
   if (normalized.includes("_N_")) return "noun";
   if (normalized.includes("_V_")) return "verb";
-  if (normalized.includes("_AI_") || normalized.includes("_NA_") || normalized.includes("_ADJ_")) return "adjective";
-  if (normalized.includes("_ADV_")) return "adverb";
+  if (
+    normalized.includes("_A_") ||
+    normalized.includes("_AI_") ||
+    normalized.includes("_NA_") ||
+    normalized.includes("_ADJ_")
+  ) {
+    return "adjective";
+  }
+  if (normalized.includes("_AD_") || normalized.includes("_ADV_")) return "adverb";
   return "other";
 }
 

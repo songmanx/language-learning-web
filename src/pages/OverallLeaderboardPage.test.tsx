@@ -7,6 +7,9 @@ import { writeGlobalLeaderboard } from "../services/sessionRecovery";
 import { useLanguageStore } from "../stores/languageStore";
 
 const MODE_MEANING_KANJI = "\uB73B \u2192 \uD55C\uC790";
+const MODE_WORD_MEANING = "\uB2E8\uC5B4 \u2192 \uB73B";
+const MODE_MEANING_WORD = "\uB73B \u2192 \uB2E8\uC5B4";
+const MODE_AUDIO_MEANING = "\uC74C\uC131 \u2192 \uB73B";
 
 describe("OverallLeaderboardPage", () => {
   beforeEach(() => {
@@ -72,5 +75,26 @@ describe("OverallLeaderboardPage", () => {
     await user.click(screen.getByRole("button", { name: "\uD648\uC73C\uB85C \uAC00\uAE30" }));
 
     expect(screen.getByText("home-route")).toBeInTheDocument();
+  });
+
+  it("shows only english quiz modes when english is selected", () => {
+    useLanguageStore.setState({
+      selectedLanguage: "en",
+      availableLanguages: [{ languageCode: "en", label: "\uC601\uC5B4", totalWords: 12 }],
+      words: [],
+      isLoading: false,
+      loadError: null,
+    });
+
+    render(
+      <MemoryRouter>
+        <OverallLeaderboardPage />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByRole("button", { name: MODE_WORD_MEANING })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: MODE_MEANING_WORD })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: MODE_AUDIO_MEANING })).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "\uD55C\uC790 \u2192 \uB73B" })).not.toBeInTheDocument();
   });
 });

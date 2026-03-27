@@ -13,6 +13,9 @@ import { useAuthStore } from "../stores/authStore";
 import { useLanguageStore } from "../stores/languageStore";
 
 const MODE_MEANING_KANJI = "\uB73B \u2192 \uD55C\uC790";
+const MODE_WORD_MEANING = "\uB2E8\uC5B4 \u2192 \uB73B";
+const MODE_MEANING_WORD = "\uB73B \u2192 \uB2E8\uC5B4";
+const MODE_AUDIO_MEANING = "\uC74C\uC131 \u2192 \uB73B";
 
 function RouteProbe() {
   const location = useLocation();
@@ -81,8 +84,8 @@ describe("StatsPage", () => {
     const headings = screen.getAllByRole("heading");
     expect(headings[1]).toHaveTextContent("\uC131\uACFC \uC694\uC57D");
     expect(headings[2]).toHaveTextContent("\uC21C\uC704\uD45C");
-    expect(headings[3]).toHaveTextContent("\uBC14\uB85C \uC774\uB3D9");
     expect(screen.getByText("\uB204\uC801 \uC9D1\uACC4 \uC644\uB8CC")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "\uC804\uCCB4 \uC21C\uC704\uD45C" })).toBeInTheDocument();
 
     expect(screen.getAllByText("42").length).toBeGreaterThan(0);
     expect(screen.queryByText("35")).not.toBeInTheDocument();
@@ -162,5 +165,26 @@ describe("StatsPage", () => {
 
     expect(readDailyStatsSnapshot("player-demo", "ja")).toBeNull();
     confirmSpy.mockRestore();
+  });
+
+  it("shows only english quiz modes when english is selected", () => {
+    useLanguageStore.setState({
+      selectedLanguage: "en",
+      availableLanguages: [{ languageCode: "en", label: "\uC601\uC5B4", totalWords: 12 }],
+      words: [],
+      isLoading: false,
+      loadError: null,
+    });
+
+    render(
+      <MemoryRouter>
+        <StatsPage />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByRole("button", { name: MODE_WORD_MEANING })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: MODE_MEANING_WORD })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: MODE_AUDIO_MEANING })).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "\uD55C\uC790 \u2192 \uB73B" })).not.toBeInTheDocument();
   });
 });

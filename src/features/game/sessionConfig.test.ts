@@ -7,6 +7,7 @@ import {
   getAvailableDifficultyFilters,
   getAvailablePartOfSpeechFilters,
   getAvailableQuizModes,
+  inferPartOfSpeech,
   getQuizModeCounts,
   getSessionConfigLabels,
   getWordPromptMode,
@@ -302,5 +303,10 @@ describe("sessionConfig", () => {
       difficulty: "\uB09C\uC774\uB3C4 1",
       quizMode: "\uB2E8\uC5B4 \u2192 \uB73B",
     });
+  });
+
+  it("maps english adjective and adverb ids to the right parts of speech", () => {
+    expect(inferPartOfSpeech("EN_A_0001")).toBe("adjective");
+    expect(inferPartOfSpeech("EN_AD_0001")).toBe("adverb");
   });
 });

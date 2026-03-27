@@ -84,7 +84,30 @@ export function stopSpeech() {
   window.speechSynthesis.cancel();
 }
 
-export function speakJapanese(text: string) {
+function getPreferredVoice(languageCode: "ja" | "en", voices: SpeechSynthesisVoice[]) {
+  const normalizedPrefix = languageCode === "en" ? "en" : "ja";
+  const preferredLocale = languageCode === "en" ? "en-us" : "ja-jp";
+  const localeVoice =
+    voices.find((voice) => voice.lang?.toLowerCase() === preferredLocale) ??
+    voices.find((voice) => voice.lang?.toLowerCase().startsWith(`${preferredLocale}-`));
+
+  if (localeVoice) {
+    return localeVoice;
+  }
+
+  const nativeNamedVoice =
+    languageCode === "en"
+      ? voices.find((voice) => /united states|english \(united states\)|english us|us english/i.test(voice.name))
+      : voices.find((voice) => /japanese|日本/i.test(voice.name));
+
+  if (nativeNamedVoice) {
+    return nativeNamedVoice;
+  }
+
+  return voices.find((voice) => voice.lang?.toLowerCase().startsWith(normalizedPrefix));
+}
+
+export function speakPrompt(text: string, languageCode: "ja" | "en" = "ja") {
   if (typeof window === "undefined" || !("speechSynthesis" in window)) {
     return false;
   }
@@ -98,17 +121,21 @@ export function speakJapanese(text: string) {
   stopSpeech();
 
   const utterance = new SpeechSynthesisUtterance(prompt);
-  utterance.lang = "ja-JP";
-  utterance.rate = 0.92;
-  utterance.pitch = 1.05;
+  utterance.lang = languageCode === "en" ? "en-US" : "ja-JP";
+  utterance.rate = languageCode === "en" ? 0.96 : 0.92;
+  utterance.pitch = languageCode === "en" ? 1 : 1.05;
   utterance.volume = 0.85;
 
   const voices = window.speechSynthesis.getVoices();
-  const japaneseVoice = voices.find((voice) => voice.lang?.toLowerCase().startsWith("ja"));
-  if (japaneseVoice) {
-    utterance.voice = japaneseVoice;
+  const preferredVoice = getPreferredVoice(languageCode, voices);
+  if (preferredVoice) {
+    utterance.voice = preferredVoice;
   }
 
   window.speechSynthesis.speak(utterance);
   return true;
+}
+
+export function speakJapanese(text: string) {
+  return speakPrompt(text, "ja");
 }

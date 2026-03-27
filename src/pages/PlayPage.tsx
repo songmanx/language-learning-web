@@ -23,7 +23,7 @@ import { buildSaveSessionPayload } from "../features/game/session";
 import { mergeReviewState } from "../utils/reviewState";
 import type { AnswerLog, ReviewStateRecord, SaveSessionRequest, WordItem } from "../services/apiTypes";
 import { apiClient } from "../services/apiClient";
-import { playAnswerTone, speakJapanese, stopSpeech } from "../services/audioFeedback";
+import { playAnswerTone, speakPrompt, stopSpeech } from "../services/audioFeedback";
 import { appLogger } from "../services/logger";
 import {
   readGlobalLeaderboard,
@@ -483,7 +483,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
     }
 
     const timeoutId = window.setTimeout(() => {
-      speakJapanese(currentQuestion.prompt);
+      speakPrompt(currentQuestion.prompt, selectedLanguage === "en" ? "en" : "ja");
     }, 120);
 
     return () => {
@@ -1112,7 +1112,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
                 <button
                   className="min-h-11 shrink-0 rounded-2xl border border-amber-200/20 bg-amber-200/10 px-4 py-2 text-sm font-semibold text-amber-50 transition hover:bg-amber-200/16"
                   type="button"
-                  onClick={() => speakJapanese(currentQuestion.prompt)}
+                  onClick={() => speakPrompt(currentQuestion.prompt, selectedLanguage === "en" ? "en" : "ja")}
                   disabled={isSaving}
                 >
                   {TEXT.replayAudio}

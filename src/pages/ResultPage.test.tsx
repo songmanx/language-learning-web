@@ -141,4 +141,45 @@ describe("ResultPage", () => {
 
     expect(screen.getByText("meaning_to_kanji")).toBeInTheDocument();
   });
+
+  it("shows english session config labels and english leaderboard entries", () => {
+    writeLeaderboard("player-demo", "en", [
+      {
+        playedAt: "2026-03-26T10:00:00.000Z",
+        totalTimeSec: 22,
+        score: 210,
+        quizMode: "meaning_to_kanji",
+      },
+    ]);
+
+    render(
+      <MemoryRouter
+        initialEntries={[
+          {
+            pathname: "/result",
+            state: {
+              ...resultState,
+              payload: {
+                ...resultState.payload,
+                languageCode: "en",
+                quizType: "meaning_to_word",
+              },
+              sessionConfig: {
+                partOfSpeech: "noun",
+                difficulty: "2",
+                quizMode: "meaning_to_kanji",
+              },
+            } satisfies SessionResultState,
+          },
+        ]}
+      >
+        <Routes>
+          <Route path="/result" element={<ResultPage />} />
+        </Routes>
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByText(/출제 구성:\s*뜻 → 단어/)).toBeInTheDocument();
+    expect(screen.getByText("210")).toBeInTheDocument();
+  });
 });

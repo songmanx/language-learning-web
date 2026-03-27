@@ -157,4 +157,35 @@ describe("HomePage", () => {
 
     expect(screen.getByText("leaderboard-route")).toBeInTheDocument();
   });
+
+  it("shows the selected english language label on home", () => {
+    useLanguageStore.setState({
+      selectedLanguage: "en",
+      availableLanguages: [
+        { languageCode: "ja", label: "\uC77C\uBCF8\uC5B4", totalWords: 3 },
+        { languageCode: "en", label: "\uC601\uC5B4", totalWords: 3 },
+      ],
+      words: [
+        {
+          id: "en-1",
+          prompt: "issue",
+          choices: ["\uBB38\uC81C", "\uBC29\uBC95", "\uB300\uD654", "\uC18D\uB3C4"],
+          answer: "\uBB38\uC81C",
+          meaning: "\uBB38\uC81C",
+          difficulty: "1",
+          questionType: "word_to_meaning",
+        },
+      ],
+      isLoading: false,
+      loadError: null,
+    });
+
+    render(
+      <MemoryRouter>
+        <HomePage />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByText(/\uC120\uD0DD \uC5B8\uC5B4:\s*\uC601\uC5B4/)).toBeInTheDocument();
+  });
 });

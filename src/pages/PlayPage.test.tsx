@@ -5,7 +5,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { PlayPage } from "./PlayPage";
 import { ResultPage } from "./ResultPage";
 import { clearMockGasFailures, setMockGasFailure } from "../services/apiClient";
-import { readPendingSession } from "../services/sessionRecovery";
+import { readGlobalLeaderboard, readLeaderboard, readPendingSession } from "../services/sessionRecovery";
 import { useAuthStore } from "../stores/authStore";
 import { useLanguageStore } from "../stores/languageStore";
 import type { WordItem } from "../services/apiTypes";
@@ -136,6 +136,21 @@ function createEnglishWords(): WordItem[] {
       questionType: "meaning_to_word",
     },
   ];
+}
+
+function createEnglishWordToMeaningWords(count: number): WordItem[] {
+  return Array.from({ length: count }, (_, index) => {
+    const answer = `뜻${index + 1}`;
+    return {
+      id: `EN_N_${String(index + 1).padStart(4, "0")}`,
+      prompt: `english${index + 1}`,
+      choices: [answer, `오답A${index + 1}`, `오답B${index + 1}`, `오답C${index + 1}`],
+      answer,
+      meaning: answer,
+      difficulty: index < 7 ? "1" : index < 14 ? "2" : "3",
+      questionType: "word_to_meaning",
+    };
+  });
 }
 
 function createFilterCountWords(): WordItem[] {
@@ -419,6 +434,37 @@ describe("PlayPage", () => {
       expect(pending?.reason).toBe("save failed");
       expect(pending?.payload.score).toBe(620);
       expect(pending?.payload.totalQuestions).toBe(20);
+    });
+  }, 15000);
+
+  it("writes english standard results to english personal and global leaderboards", async () => {
+    const sessionWords = createEnglishWordToMeaningWords(20);
+    useLanguageStore.setState({
+      selectedLanguage: "en",
+      availableLanguages: [{ languageCode: "en", label: ENGLISH, totalWords: 20 }],
+      words: sessionWords,
+      isLoading: false,
+      loadError: null,
+    });
+
+    const user = userEvent.setup();
+    renderPlayFlow();
+
+    await user.click(screen.getByRole("button", { name: EN_MODE_WORD }));
+    await user.click(screen.getByRole("button", { name: START_GAME }));
+    await answerAllQuestions(user, sessionWords, 20);
+
+    expect(await screen.findByRole("heading", { name: RESULT_SUMMARY })).toBeInTheDocument();
+
+    await waitFor(() => {
+      const personalLeaderboard = readLeaderboard("player-demo", "en");
+      const globalLeaderboard = readGlobalLeaderboard("en");
+
+      expect(personalLeaderboard.length).toBeGreaterThan(0);
+      expect(globalLeaderboard.length).toBeGreaterThan(0);
+      expect(personalLeaderboard[0]?.quizMode).toBe("kanji_to_meaning");
+      expect(globalLeaderboard[0]?.playerId).toBe("player-demo");
+      expect(globalLeaderboard[0]?.score).toBe(620);
     });
   }, 15000);
 

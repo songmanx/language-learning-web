@@ -162,6 +162,48 @@ describe("apiClient remote mode", () => {
     ]);
   });
 
+  it("reads english words from static JSON when static data mode is enabled", async () => {
+    import.meta.env.VITE_STATIC_DATA_META_URL = "/data/languages.json";
+    import.meta.env.VITE_STATIC_DATA_WORDS_BASE_PATH = "/data";
+
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => [
+        {
+          word_id: "en-1",
+          prompt: "apple",
+          choices: ["사과", "바나나", "포도", "딸기"],
+          answer: "사과",
+          meaning: "사과",
+          difficulty: "1",
+          question_type: "word_to_meaning",
+        },
+      ],
+    });
+    vi.stubGlobal("fetch", fetchMock);
+
+    const { apiClient } = await import("./apiClient");
+    const result = await apiClient.getWords("en");
+
+    expect(fetchMock).toHaveBeenCalledWith(
+      "/data/en/words.json",
+      expect.objectContaining({
+        method: "GET",
+      }),
+    );
+    expect(result).toEqual([
+      {
+        id: "en-1",
+        prompt: "apple",
+        choices: ["사과", "바나나", "포도", "딸기"],
+        answer: "사과",
+        meaning: "사과",
+        difficulty: "1",
+        questionType: "word_to_meaning",
+      },
+    ]);
+  });
+
   it("reads meta from static JSON when static data mode is enabled", async () => {
     import.meta.env.VITE_STATIC_DATA_META_URL = "/data/languages.json";
     import.meta.env.VITE_STATIC_DATA_WORDS_BASE_PATH = "/data";
@@ -173,6 +215,11 @@ describe("apiClient remote mode", () => {
           language_code: "ja",
           label: "일본어",
           total_words: 94,
+        },
+        {
+          language_code: "en",
+          label: "영어",
+          total_words: 299,
         },
       ],
     });
@@ -192,6 +239,11 @@ describe("apiClient remote mode", () => {
         languageCode: "ja",
         label: "일본어",
         totalWords: 94,
+      },
+      {
+        languageCode: "en",
+        label: "영어",
+        totalWords: 299,
       },
     ]);
   });
