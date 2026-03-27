@@ -48,4 +48,17 @@ describe("AppShell", () => {
     expect(screen.getByText("영어")).toBeInTheDocument();
     expect(screen.getByText("ENGLISH TRACK")).toBeInTheDocument();
   });
+
+  it("hides the language badge on login and language-select pages", () => {
+    render(
+      <MemoryRouter initialEntries={["/login"]}>
+        <AppShell>
+          <div>content</div>
+        </AppShell>
+      </MemoryRouter>,
+    );
+
+    expect(screen.queryByText("일본어")).not.toBeInTheDocument();
+    expect(screen.getByText("LANGUAGE STUDIO")).toBeInTheDocument();
+  });
 });

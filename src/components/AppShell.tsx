@@ -1,13 +1,25 @@
 import type { PropsWithChildren } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useLanguageStore } from "../stores/languageStore";
 
 const TEXT = {
   title: "YANG 언어공부 연습장",
-  defaultLanguage: "일본어",
+  neutralEyebrow: "LANGUAGE STUDIO",
 } as const;
 
 function getLanguageTheme(languageCode: string | null) {
+  if (!languageCode) {
+    return {
+      eyebrow: TEXT.neutralEyebrow,
+      shell:
+        "bg-[linear-gradient(140deg,rgba(24,21,18,0.96),rgba(56,47,34,0.84)_48%,rgba(129,102,68,0.72)_100%)] hover:shadow-[0_28px_70px_rgba(217,119,6,0.18)]",
+      accentLeft: "bg-amber-300/20",
+      accentRight: "bg-orange-200/14",
+      titleGradient: "from-white via-amber-50 to-stone-100",
+      chip: "border-white/14 bg-white/10 text-amber-50",
+    };
+  }
+
   if (languageCode === "en") {
     return {
       eyebrow: "ENGLISH TRACK",
@@ -33,14 +45,15 @@ function getLanguageTheme(languageCode: string | null) {
 
 export function AppShell({ children }: PropsWithChildren) {
   const navigate = useNavigate();
+  const location = useLocation();
   const selectedLanguage = useLanguageStore((state) => state.selectedLanguage);
   const availableLanguages = useLanguageStore((state) => state.availableLanguages);
+  const isPreLanguageRoute = location.pathname === "/login" || location.pathname === "/languages";
   const languageLabel =
     availableLanguages.find((language) => language.languageCode === selectedLanguage)?.label ??
-    availableLanguages[0]?.label ??
     selectedLanguage ??
-    TEXT.defaultLanguage;
-  const languageTheme = getLanguageTheme(selectedLanguage);
+    null;
+  const languageTheme = getLanguageTheme(isPreLanguageRoute ? null : selectedLanguage);
 
   return (
     <div className="min-h-screen bg-transparent text-stone-100">
@@ -73,11 +86,13 @@ export function AppShell({ children }: PropsWithChildren) {
                 {TEXT.title}
               </span>
             </div>
-            <span
-              className={`shrink-0 rounded-full px-3 py-1.5 text-[12px] font-semibold shadow-[inset_0_1px_0_rgba(255,255,255,0.14)] ${languageTheme.chip}`}
-            >
-              {languageLabel}
-            </span>
+            {!isPreLanguageRoute && languageLabel ? (
+              <span
+                className={`shrink-0 rounded-full px-3 py-1.5 text-[12px] font-semibold shadow-[inset_0_1px_0_rgba(255,255,255,0.14)] ${languageTheme.chip}`}
+              >
+                {languageLabel}
+              </span>
+            ) : null}
           </div>
         </button>
         <main className="flex-1">{children}</main>

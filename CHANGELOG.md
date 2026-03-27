@@ -1,5 +1,13 @@
 ﻿## 2026-03-27
 
+- Changed the document title to YANG 언어공부 연습장.
+- Updated the fixed header so login/language-select stay neutral, while selected-language pages keep their language-specific header badge/theme.
+- Validation: 
+pm run test -- src/components/AppShell.test.tsx, 
+pm run build.
+
+## 2026-03-27
+
 - Refined the Home action buttons into a cleaner two-column card layout with smaller-looking proportions.
 - Removed the Stats quick-actions title and added an overall leaderboard button to the action panel.
 - Validation: 
@@ -1740,6 +1748,7 @@ pm run test 39揶????궢, `npm run build` ???궢
 - ?뚯뒪??npm run test -- src/pages/LanguageSelectPage.test.tsx src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx src/pages/StatsPage.test.tsx src/features/game/sessionConfig.test.ts src/features/game/questionRound.test.ts src/features/game/gameDataRegression.test.ts ?듦낵, npm run build ?듦낵
 - `PlayPage` ?곗뒿 紐⑤뱶?먯꽌??吏꾪뻾???먰삎???④린怨? `ResultPage`?먯꽌???섎떒 ?⑥뼱蹂?蹂듭뒿 ?곹깭 紐⑸줉???쒓굅??寃곌낵 ?붿빟?????⑥닚??
 - ?뚯뒪??npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx ?듦낵, npm run build ?듦낵
+
 
 
 

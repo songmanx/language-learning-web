@@ -1,4 +1,17 @@
-﻿## 2026-03-27 Phase 5 UI polish (home/stats) 
+﻿## 2026-03-27 Phase 5 header/title polish
+
+- Completed:
+  - Changed the web title to YANG 언어공부 연습장
+  - Kept the fixed header language-specific after selection, but hid language labeling on login and language-select screens
+- Verified:
+  - 
+pm run test -- src/components/AppShell.test.tsx`r
+  - 
+pm run build`r
+- Next:
+  - Verify the deployed login/language-select header stays neutral while home/play/stats keep language-specific chips
+
+## 2026-03-27 Phase 5 UI polish (home/stats) 
 
 - Completed:
   - Updated Home start/practice/review/stats buttons to a cleaner two-column card layout
@@ -1274,6 +1287,7 @@ Phase 4: ?⑥쥒??疫꿸퀡???곕떽?
   - GUI?먯꽌 ?쒕퉬??怨꾩젙 寃쎈줈/?쒗듃 ID/異쒕젰 ?대뜑/?몄뼱 ?뺣낫/而ㅻ컠 硫붿떆吏瑜??ъ엯?ν븯吏 ?딅룄濡?媛쒖꽑
 - 寃利?
   - `python -m py_compile scripts/json_publish_gui.py scripts/export_words_json.py`
+
 
 
 
