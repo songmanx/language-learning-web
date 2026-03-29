@@ -1,27 +1,1847 @@
 [
   {
-    "word_id": "JA_V_0001",
-    "prompt": "する",
+    "word_id": "JA_N_0001",
+    "prompt": "携帯",
     "choices": [
-      "하다",
-      "걱정하다",
-      "~할 틈도 없이",
-      "능숙하다"
+      "오전",
+      "휴대폰",
+      "한명",
+      "잘하다"
     ],
-    "answer": "하다",
-    "meaning": "하다",
+    "answer": "휴대폰",
+    "meaning": "휴대폰",
     "difficulty": "1",
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_V_0001",
-    "prompt": "하다",
+    "word_id": "JA_N_0001",
+    "prompt": "휴대폰",
     "choices": [
-      "個",
+      "遅らせる",
+      "夜",
+      "携帯",
+      "あの"
+    ],
+    "answer": "携帯",
+    "meaning": "휴대폰",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0001",
+    "prompt": "けいたい",
+    "choices": [
+      "딸",
+      "여기",
+      "휴대폰",
+      "오전"
+    ],
+    "answer": "휴대폰",
+    "meaning": "휴대폰",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0001",
+    "prompt": "휴대폰",
+    "choices": [
+      "へただ",
+      "やる",
+      "まもなく",
+      "けいたい"
+    ],
+    "answer": "けいたい",
+    "meaning": "휴대폰",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0002",
+    "prompt": "家",
+    "choices": [
+      "두명",
+      "우선",
+      "저것",
+      "집"
+    ],
+    "answer": "집",
+    "meaning": "집",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0002",
+    "prompt": "집",
+    "choices": [
+      "悪い",
+      "家",
+      "とりあえず",
+      "苦手"
+    ],
+    "answer": "家",
+    "meaning": "집",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0002",
+    "prompt": "いえ",
+    "choices": [
+      "둘",
+      "집",
+      "딸",
+      "우선"
+    ],
+    "answer": "집",
+    "meaning": "집",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0002",
+    "prompt": "집",
+    "choices": [
+      "いえ",
+      "みっつ",
+      "おととい",
+      "ひろい"
+    ],
+    "answer": "いえ",
+    "meaning": "집",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0002",
+    "prompt": "うち",
+    "choices": [
+      "일",
+      "집",
+      "점심",
+      "넓다"
+    ],
+    "answer": "집",
+    "meaning": "집",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0003",
+    "prompt": "親",
+    "choices": [
+      "위",
+      "바로",
+      "부모",
+      "늦게"
+    ],
+    "answer": "부모",
+    "meaning": "부모",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0003",
+    "prompt": "부모",
+    "choices": [
+      "得意だ",
+      "連絡",
+      "親",
+      "夕"
+    ],
+    "answer": "親",
+    "meaning": "부모",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0003",
+    "prompt": "おや",
+    "choices": [
+      "부모",
+      "얼마",
+      "넓다",
+      "휴대폰"
+    ],
+    "answer": "부모",
+    "meaning": "부모",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0003",
+    "prompt": "부모",
+    "choices": [
+      "あす",
       "する",
-      "いくつ",
+      "きれいだ",
+      "おや"
+    ],
+    "answer": "おや",
+    "meaning": "부모",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0004",
+    "prompt": "親",
+    "choices": [
+      "친",
+      "여기",
+      "늦게",
+      "거기"
+    ],
+    "answer": "친",
+    "meaning": "친",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0004",
+    "prompt": "친",
+    "choices": [
+      "心配する",
+      "二人",
+      "親",
+      "悪い"
+    ],
+    "answer": "親",
+    "meaning": "친",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0004",
+    "prompt": "しん",
+    "choices": [
+      "나중에",
+      "좁다",
+      "친",
+      "밥"
+    ],
+    "answer": "친",
+    "meaning": "친",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0004",
+    "prompt": "친",
+    "choices": [
+      "れんらく",
+      "ぼく",
+      "しん",
+      "あした"
+    ],
+    "answer": "しん",
+    "meaning": "친",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0005",
+    "prompt": "お父さん",
+    "choices": [
+      "아버지",
+      "늦게",
+      "연락처",
+      "싸다"
+    ],
+    "answer": "아버지",
+    "meaning": "아버지",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0005",
+    "prompt": "아버지",
+    "choices": [
+      "お父さん",
+      "働く",
+      "高い",
+      "前"
+    ],
+    "answer": "お父さん",
+    "meaning": "아버지",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0005",
+    "prompt": "おとうさん",
+    "choices": [
+      "저녁",
+      "오늘",
+      "나쁘다",
+      "아버지"
+    ],
+    "answer": "아버지",
+    "meaning": "아버지",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0005",
+    "prompt": "아버지",
+    "choices": [
+      "あした",
+      "おとうさん",
+      "いますぐ",
       "いくら"
     ],
+    "answer": "おとうさん",
+    "meaning": "아버지",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0006",
+    "prompt": "お母さん",
+    "choices": [
+      "아버지",
+      "못하다",
+      "어머니",
+      "아들"
+    ],
+    "answer": "어머니",
+    "meaning": "어머니",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0006",
+    "prompt": "어머니",
+    "choices": [
+      "早い",
+      "お母さん",
+      "広い",
+      "三つ"
+    ],
+    "answer": "お母さん",
+    "meaning": "어머니",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0006",
+    "prompt": "おかあさん",
+    "choices": [
+      "어머니",
+      "나",
+      "늦다",
+      "셋"
+    ],
+    "answer": "어머니",
+    "meaning": "어머니",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0006",
+    "prompt": "어머니",
+    "choices": [
+      "おかあさん",
+      "とりあえず",
+      "ここ",
+      "おととい"
+    ],
+    "answer": "おかあさん",
+    "meaning": "어머니",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0007",
+    "prompt": "息子",
+    "choices": [
+      "아들",
+      "오후",
+      "친",
+      "저것"
+    ],
+    "answer": "아들",
+    "meaning": "아들",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0007",
+    "prompt": "아들",
+    "choices": [
+      "あそこ",
+      "同じだ",
+      "息子",
+      "働く"
+    ],
+    "answer": "息子",
+    "meaning": "아들",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0007",
+    "prompt": "むすこ",
+    "choices": [
+      "집",
+      "아들",
+      "모레",
+      "아침"
+    ],
+    "answer": "아들",
+    "meaning": "아들",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0007",
+    "prompt": "아들",
+    "choices": [
+      "むすこ",
+      "おととい",
+      "それ",
+      "ふたつ"
+    ],
+    "answer": "むすこ",
+    "meaning": "아들",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0008",
+    "prompt": "娘",
+    "choices": [
+      "너",
+      "딸",
+      "어제",
+      "서투름"
+    ],
+    "answer": "딸",
+    "meaning": "딸",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0008",
+    "prompt": "딸",
+    "choices": [
+      "午後",
+      "今",
+      "娘",
+      "昼"
+    ],
+    "answer": "娘",
+    "meaning": "딸",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0008",
+    "prompt": "むすめ",
+    "choices": [
+      "일",
+      "같다",
+      "딸",
+      "걱정하다"
+    ],
+    "answer": "딸",
+    "meaning": "딸",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0008",
+    "prompt": "딸",
+    "choices": [
+      "ごご",
+      "むすめ",
+      "もうすぐ",
+      "ぐたいてきだ"
+    ],
+    "answer": "むすめ",
+    "meaning": "딸",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0009",
+    "prompt": "連絡",
+    "choices": [
+      "연락",
+      "싸다",
+      "내일",
+      "하다"
+    ],
+    "answer": "연락",
+    "meaning": "연락",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0009",
+    "prompt": "연락",
+    "choices": [
+      "遅れる",
+      "今日",
+      "連絡",
+      "高い"
+    ],
+    "answer": "連絡",
+    "meaning": "연락",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0009",
+    "prompt": "れんらく",
+    "choices": [
+      "집",
+      "뒤",
+      "연락",
+      "밥"
+    ],
+    "answer": "연락",
+    "meaning": "연락",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0009",
+    "prompt": "연락",
+    "choices": [
+      "ひとつ",
+      "あとで",
+      "れんらく",
+      "むすこ"
+    ],
+    "answer": "れんらく",
+    "meaning": "연락",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0010",
+    "prompt": "連絡先",
+    "choices": [
+      "연락처",
+      "싸다",
+      "잘하다",
+      "늦추다"
+    ],
+    "answer": "연락처",
+    "meaning": "연락처",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0010",
+    "prompt": "연락처",
+    "choices": [
+      "まず",
+      "一つ",
+      "その",
+      "連絡先"
+    ],
+    "answer": "連絡先",
+    "meaning": "연락처",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0010",
+    "prompt": "れんらくさき",
+    "choices": [
+      "친",
+      "잘하다",
+      "그것",
+      "연락처"
+    ],
+    "answer": "연락처",
+    "meaning": "연락처",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0010",
+    "prompt": "연락처",
+    "choices": [
+      "ごぜん",
+      "ぼく",
+      "ひくい",
+      "れんらくさき"
+    ],
+    "answer": "れんらくさき",
+    "meaning": "연락처",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0011",
+    "prompt": "物",
+    "choices": [
+      "모레",
+      "물건",
+      "사이",
+      "오전"
+    ],
+    "answer": "물건",
+    "meaning": "물건",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0011",
+    "prompt": "물건",
+    "choices": [
+      "連絡先",
+      "悪い",
+      "安い",
+      "物"
+    ],
+    "answer": "物",
+    "meaning": "물건",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0011",
+    "prompt": "もの",
+    "choices": [
+      "구체적이다",
+      "물건",
+      "친",
+      "내일"
+    ],
+    "answer": "물건",
+    "meaning": "물건",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0011",
+    "prompt": "물건",
+    "choices": [
+      "れんらく",
+      "もの",
+      "しごと",
+      "こ"
+    ],
+    "answer": "もの",
+    "meaning": "물건",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0012",
+    "prompt": "事",
+    "choices": [
+      "일",
+      "아침",
+      "너",
+      "괜찮다"
+    ],
+    "answer": "일",
+    "meaning": "일",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0012",
+    "prompt": "일",
+    "choices": [
+      "一人",
+      "後で",
+      "事",
+      "個"
+    ],
+    "answer": "事",
+    "meaning": "일",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0012",
+    "prompt": "こと",
+    "choices": [
+      "두명",
+      "나쁘다",
+      "낮다",
+      "일"
+    ],
+    "answer": "일",
+    "meaning": "일",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0012",
+    "prompt": "일",
+    "choices": [
+      "ひとつ",
+      "あとで",
+      "いま",
+      "こと"
+    ],
+    "answer": "こと",
+    "meaning": "일",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0013",
+    "prompt": "仕事",
+    "choices": [
+      "앞",
+      "뒤",
+      "일",
+      "곧"
+    ],
+    "answer": "일",
+    "meaning": "일",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0013",
+    "prompt": "일",
+    "choices": [
+      "仕事",
+      "昨日",
+      "すぐ",
+      "いくら"
+    ],
+    "answer": "仕事",
+    "meaning": "일",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0013",
+    "prompt": "しごと",
+    "choices": [
+      "뒤",
+      "구체적이다",
+      "일",
+      "곧"
+    ],
+    "answer": "일",
+    "meaning": "일",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0013",
+    "prompt": "일",
+    "choices": [
+      "きかん",
+      "そこ",
+      "その",
+      "しごと"
+    ],
+    "answer": "しごと",
+    "meaning": "일",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0014",
+    "prompt": "働く",
+    "choices": [
+      "오후",
+      "일하다",
+      "밤",
+      "개"
+    ],
+    "answer": "일하다",
+    "meaning": "일하다",
+    "difficulty": "2",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0014",
+    "prompt": "일하다",
+    "choices": [
+      "連絡先",
+      "遅れる",
+      "明日",
+      "働く"
+    ],
+    "answer": "働く",
+    "meaning": "일하다",
+    "difficulty": "2",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0014",
+    "prompt": "はたらく",
+    "choices": [
+      "괜찮다",
+      "모레",
+      "밥",
+      "일하다"
+    ],
+    "answer": "일하다",
+    "meaning": "일하다",
+    "difficulty": "2",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0014",
+    "prompt": "일하다",
+    "choices": [
+      "ごはん",
+      "はたらく",
+      "わるい",
+      "おとうさん"
+    ],
+    "answer": "はたらく",
+    "meaning": "일하다",
+    "difficulty": "2",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0015",
+    "prompt": "今",
+    "choices": [
+      "지금",
+      "모레",
+      "늦다",
+      "늦게"
+    ],
+    "answer": "지금",
+    "meaning": "지금",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0015",
+    "prompt": "지금",
+    "choices": [
+      "大丈夫だ",
+      "この",
+      "そこ",
+      "今"
+    ],
+    "answer": "今",
+    "meaning": "지금",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0015",
+    "prompt": "いま",
+    "choices": [
+      "싸다",
+      "지금",
+      "못하다",
+      "저"
+    ],
+    "answer": "지금",
+    "meaning": "지금",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0015",
+    "prompt": "지금",
+    "choices": [
+      "こ",
+      "よる",
+      "はやい",
+      "いま"
+    ],
+    "answer": "いま",
+    "meaning": "지금",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0016",
+    "prompt": "一昨日",
+    "choices": [
+      "연락처",
+      "먼저",
+      "집",
+      "그저께"
+    ],
+    "answer": "그저께",
+    "meaning": "그저께",
+    "difficulty": "2",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0016",
+    "prompt": "그저께",
+    "choices": [
+      "高い",
+      "娘",
+      "息子",
+      "一昨日"
+    ],
+    "answer": "一昨日",
+    "meaning": "그저께",
+    "difficulty": "2",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0016",
+    "prompt": "おととい",
+    "choices": [
+      "빠르다",
+      "여기",
+      "그저께",
+      "저"
+    ],
+    "answer": "그저께",
+    "meaning": "그저께",
+    "difficulty": "2",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0016",
+    "prompt": "그저께",
+    "choices": [
+      "おれ",
+      "はやい",
+      "あと",
+      "おととい"
+    ],
+    "answer": "おととい",
+    "meaning": "그저께",
+    "difficulty": "2",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0017",
+    "prompt": "昨日",
+    "choices": [
+      "먼저",
+      "저녁",
+      "어제",
+      "이"
+    ],
+    "answer": "어제",
+    "meaning": "어제",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0017",
+    "prompt": "어제",
+    "choices": [
+      "得意だ",
+      "悪い",
+      "昨日",
+      "綺麗だ"
+    ],
+    "answer": "昨日",
+    "meaning": "어제",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0017",
+    "prompt": "きのう",
+    "choices": [
+      "이",
+      "오후",
+      "어제",
+      "바로"
+    ],
+    "answer": "어제",
+    "meaning": "어제",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0017",
+    "prompt": "어제",
+    "choices": [
+      "ごぜん",
+      "きのう",
+      "しん",
+      "ま"
+    ],
+    "answer": "きのう",
+    "meaning": "어제",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0018",
+    "prompt": "今日",
+    "choices": [
+      "오늘",
+      "늦추다",
+      "못하다",
+      "지금"
+    ],
+    "answer": "오늘",
+    "meaning": "오늘",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0018",
+    "prompt": "오늘",
+    "choices": [
+      "今日",
+      "あそこ",
+      "高い",
+      "あれ"
+    ],
+    "answer": "今日",
+    "meaning": "오늘",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0018",
+    "prompt": "きょう",
+    "choices": [
+      "그",
+      "아침",
+      "딸",
+      "오늘"
+    ],
+    "answer": "오늘",
+    "meaning": "오늘",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0018",
+    "prompt": "오늘",
+    "choices": [
+      "きょう",
+      "きみ",
+      "ひくい",
+      "ここ"
+    ],
+    "answer": "きょう",
+    "meaning": "오늘",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0019",
+    "prompt": "明日",
+    "choices": [
+      "내일",
+      "빠르다",
+      "나",
+      "일하다"
+    ],
+    "answer": "내일",
+    "meaning": "내일",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0019",
+    "prompt": "내일",
+    "choices": [
+      "連絡先",
+      "明日",
+      "お父さん",
+      "君"
+    ],
+    "answer": "明日",
+    "meaning": "내일",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0019",
+    "prompt": "あした",
+    "choices": [
+      "제멋대로다",
+      "두명",
+      "내일",
+      "낮다"
+    ],
+    "answer": "내일",
+    "meaning": "내일",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0019",
+    "prompt": "내일",
+    "choices": [
+      "あした",
+      "まもなく",
+      "いい",
+      "あとで"
+    ],
+    "answer": "あした",
+    "meaning": "내일",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0019",
+    "prompt": "あす",
+    "choices": [
+      "물건",
+      "괜찮다",
+      "내일",
+      "싸다"
+    ],
+    "answer": "내일",
+    "meaning": "내일",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0020",
+    "prompt": "明後日",
+    "choices": [
+      "모레",
+      "기간",
+      "오전",
+      "한명"
+    ],
+    "answer": "모레",
+    "meaning": "모레",
+    "difficulty": "2",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0020",
+    "prompt": "모레",
+    "choices": [
+      "苦手",
+      "得意だ",
+      "それ",
+      "明後日"
+    ],
+    "answer": "明後日",
+    "meaning": "모레",
+    "difficulty": "2",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0020",
+    "prompt": "あさって",
+    "choices": [
+      "모레",
+      "우선",
+      "얼마",
+      "못하다"
+    ],
+    "answer": "모레",
+    "meaning": "모레",
+    "difficulty": "2",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0020",
+    "prompt": "모레",
+    "choices": [
+      "わたし",
+      "あさって",
+      "おなじだ",
+      "しん"
+    ],
+    "answer": "あさって",
+    "meaning": "모레",
+    "difficulty": "2",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0021",
+    "prompt": "ご飯",
+    "choices": [
+      "느리다",
+      "아버지",
+      "물건",
+      "밥"
+    ],
+    "answer": "밥",
+    "meaning": "밥",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0021",
+    "prompt": "밥",
+    "choices": [
+      "後",
+      "ご飯",
+      "やる",
+      "あの"
+    ],
+    "answer": "ご飯",
+    "meaning": "밥",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0021",
+    "prompt": "ごはん",
+    "choices": [
+      "일하다",
+      "어머니",
+      "잘하다",
+      "밥"
+    ],
+    "answer": "밥",
+    "meaning": "밥",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0021",
+    "prompt": "밥",
+    "choices": [
+      "ごはん",
+      "あす",
+      "ひとつ",
+      "うち"
+    ],
+    "answer": "ごはん",
+    "meaning": "밥",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0022",
+    "prompt": "朝",
+    "choices": [
+      "아침",
+      "개",
+      "너",
+      "서투름"
+    ],
+    "answer": "아침",
+    "meaning": "아침",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0022",
+    "prompt": "아침",
+    "choices": [
+      "朝",
+      "個",
+      "勝手だ",
+      "三つ"
+    ],
+    "answer": "朝",
+    "meaning": "아침",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0022",
+    "prompt": "あさ",
+    "choices": [
+      "아침",
+      "나",
+      "점심",
+      "위"
+    ],
+    "answer": "아침",
+    "meaning": "아침",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0022",
+    "prompt": "아침",
+    "choices": [
+      "れんらく",
+      "あさ",
+      "じょうずだ",
+      "あした"
+    ],
+    "answer": "あさ",
+    "meaning": "아침",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0023",
+    "prompt": "昼",
+    "choices": [
+      "걱정하다",
+      "점심",
+      "어제",
+      "거기"
+    ],
+    "answer": "점심",
+    "meaning": "점심",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0023",
+    "prompt": "점심",
+    "choices": [
+      "昼",
+      "早い",
+      "いくつ",
+      "二人"
+    ],
+    "answer": "昼",
+    "meaning": "점심",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0023",
+    "prompt": "ひる",
+    "choices": [
+      "점심",
+      "고민하다",
+      "이것",
+      "그것"
+    ],
+    "answer": "점심",
+    "meaning": "점심",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0023",
+    "prompt": "점심",
+    "choices": [
+      "ひる",
+      "それ",
+      "みっつ",
+      "へただ"
+    ],
+    "answer": "ひる",
+    "meaning": "점심",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0024",
+    "prompt": "午前",
+    "choices": [
+      "바로",
+      "그저께",
+      "오전",
+      "거기"
+    ],
+    "answer": "오전",
+    "meaning": "오전",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0024",
+    "prompt": "오전",
+    "choices": [
+      "具体的だ",
+      "とりあえず",
+      "大丈夫だ",
+      "午前"
+    ],
+    "answer": "午前",
+    "meaning": "오전",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0024",
+    "prompt": "ごぜん",
+    "choices": [
+      "아버지",
+      "오전",
+      "어제",
+      "딸"
+    ],
+    "answer": "오전",
+    "meaning": "오전",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0024",
+    "prompt": "오전",
+    "choices": [
+      "うしろ",
+      "あそこ",
+      "ごぜん",
+      "まもなく"
+    ],
+    "answer": "ごぜん",
+    "meaning": "오전",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0025",
+    "prompt": "午後",
+    "choices": [
+      "오후",
+      "여기",
+      "친",
+      "늦추다"
+    ],
+    "answer": "오후",
+    "meaning": "오후",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0025",
+    "prompt": "오후",
+    "choices": [
+      "夜",
+      "午前",
+      "仕事",
+      "午後"
+    ],
+    "answer": "午後",
+    "meaning": "오후",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0025",
+    "prompt": "ごご",
+    "choices": [
+      "오후",
+      "곧",
+      "나",
+      "사이"
+    ],
+    "answer": "오후",
+    "meaning": "오후",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0025",
+    "prompt": "오후",
+    "choices": [
+      "よい",
+      "とりあえず",
+      "きれいだ",
+      "ごご"
+    ],
+    "answer": "ごご",
+    "meaning": "오후",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0026",
+    "prompt": "夕",
+    "choices": [
+      "먼저",
+      "어제",
+      "딸",
+      "저녁"
+    ],
+    "answer": "저녁",
+    "meaning": "저녁",
+    "difficulty": "2",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0026",
+    "prompt": "저녁",
+    "choices": [
+      "家",
+      "お父さん",
+      "いくつ",
+      "夕"
+    ],
+    "answer": "夕",
+    "meaning": "저녁",
+    "difficulty": "2",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0026",
+    "prompt": "ゆう",
+    "choices": [
+      "저녁",
+      "연락처",
+      "딸",
+      "한명"
+    ],
+    "answer": "저녁",
+    "meaning": "저녁",
+    "difficulty": "2",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0026",
+    "prompt": "저녁",
+    "choices": [
+      "ゆう",
+      "いくら",
+      "おそく",
+      "ごはん"
+    ],
+    "answer": "ゆう",
+    "meaning": "저녁",
+    "difficulty": "2",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0027",
+    "prompt": "夜",
+    "choices": [
+      "밤",
+      "두명",
+      "이",
+      "셋"
+    ],
+    "answer": "밤",
+    "meaning": "밤",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0027",
+    "prompt": "밤",
+    "choices": [
+      "上手だ",
+      "夜",
+      "狭い",
+      "仕事"
+    ],
+    "answer": "夜",
+    "meaning": "밤",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0027",
+    "prompt": "よる",
+    "choices": [
+      "밤",
+      "구체적이다",
+      "몇개",
+      "낮다"
+    ],
+    "answer": "밤",
+    "meaning": "밤",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0027",
+    "prompt": "밤",
+    "choices": [
+      "よい",
+      "おそい",
+      "よる",
+      "まず"
+    ],
+    "answer": "よる",
+    "meaning": "밤",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0028",
+    "prompt": "前",
+    "choices": [
+      "그저께",
+      "너",
+      "앞",
+      "하나"
+    ],
+    "answer": "앞",
+    "meaning": "앞",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0028",
+    "prompt": "앞",
+    "choices": [
+      "午後",
+      "お前",
+      "する",
+      "前"
+    ],
+    "answer": "前",
+    "meaning": "앞",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0028",
+    "prompt": "まえ",
+    "choices": [
+      "두명",
+      "앞",
+      "휴대폰",
+      "아버지"
+    ],
+    "answer": "앞",
+    "meaning": "앞",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0028",
+    "prompt": "앞",
+    "choices": [
+      "ここ",
+      "はやい",
+      "あと",
+      "まえ"
+    ],
+    "answer": "まえ",
+    "meaning": "앞",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0029",
+    "prompt": "後ろ",
+    "choices": [
+      "저기",
+      "못하다",
+      "뒤",
+      "잘하다"
+    ],
+    "answer": "뒤",
+    "meaning": "뒤",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0029",
+    "prompt": "뒤",
+    "choices": [
+      "後で",
+      "夜",
+      "親",
+      "後ろ"
+    ],
+    "answer": "後ろ",
+    "meaning": "뒤",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0029",
+    "prompt": "うしろ",
+    "choices": [
+      "뒤",
+      "한명",
+      "얼마",
+      "휴대폰"
+    ],
+    "answer": "뒤",
+    "meaning": "뒤",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0029",
+    "prompt": "뒤",
+    "choices": [
+      "あの",
+      "しん",
+      "うしろ",
+      "あそこ"
+    ],
+    "answer": "うしろ",
+    "meaning": "뒤",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0030",
+    "prompt": "後",
+    "choices": [
+      "싸다",
+      "낮다",
+      "아침",
+      "뒤"
+    ],
+    "answer": "뒤",
+    "meaning": "뒤",
+    "difficulty": "2",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0030",
+    "prompt": "뒤",
+    "choices": [
+      "同じだ",
+      "悩む",
+      "後",
+      "遅らせる"
+    ],
+    "answer": "後",
+    "meaning": "뒤",
+    "difficulty": "2",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0030",
+    "prompt": "あと",
+    "choices": [
+      "나쁘다",
+      "뒤",
+      "한명",
+      "먼저"
+    ],
+    "answer": "뒤",
+    "meaning": "뒤",
+    "difficulty": "2",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0030",
+    "prompt": "뒤",
+    "choices": [
+      "しんぱいする",
+      "いま",
+      "あと",
+      "ここ"
+    ],
+    "answer": "あと",
+    "meaning": "뒤",
+    "difficulty": "2",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0031",
+    "prompt": "後で",
+    "choices": [
+      "사이",
+      "나중에",
+      "저것",
+      "오전"
+    ],
+    "answer": "나중에",
+    "meaning": "나중에",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0031",
+    "prompt": "나중에",
+    "choices": [
+      "悩む",
+      "それ",
+      "後で",
+      "お母さん"
+    ],
+    "answer": "後で",
+    "meaning": "나중에",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0031",
+    "prompt": "あとで",
+    "choices": [
+      "나중에",
+      "뒤",
+      "물건",
+      "너"
+    ],
+    "answer": "나중에",
+    "meaning": "나중에",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0031",
+    "prompt": "나중에",
+    "choices": [
+      "しんぱいする",
+      "あとで",
+      "うち",
+      "あす"
+    ],
+    "answer": "あとで",
+    "meaning": "나중에",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0032",
+    "prompt": "上",
+    "choices": [
+      "그저께",
+      "위",
+      "늦다",
+      "아침"
+    ],
+    "answer": "위",
+    "meaning": "위",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0032",
+    "prompt": "위",
+    "choices": [
+      "上",
+      "後",
+      "とりあえず",
+      "一人"
+    ],
+    "answer": "上",
+    "meaning": "위",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_N_0032",
+    "prompt": "うえ",
+    "choices": [
+      "먼저",
+      "고민하다",
+      "앞",
+      "위"
+    ],
+    "answer": "위",
+    "meaning": "위",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_N_0032",
+    "prompt": "위",
+    "choices": [
+      "うえ",
+      "きれいだ",
+      "あさ",
+      "それ"
+    ],
+    "answer": "うえ",
+    "meaning": "위",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_V_0001",
+    "prompt": "する",
+    "choices": [
+      "하다",
+      "친",
+      "내일",
+      "저"
+    ],
+    "answer": "하다",
+    "meaning": "하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_V_0001",
+    "prompt": "하다",
+    "choices": [
+      "する",
+      "昼",
+      "前",
+      "大丈夫だ"
+    ],
     "answer": "する",
     "meaning": "하다",
     "difficulty": "1",
@@ -31,10 +1851,10 @@
     "word_id": "JA_V_0001",
     "prompt": "する",
     "choices": [
+      "휴대폰",
       "하다",
-      "(회사·조직)다니다",
-      "늦다",
-      "기간"
+      "깨끗하다",
+      "딸"
     ],
     "answer": "하다",
     "meaning": "하다",
@@ -45,10 +1865,10 @@
     "word_id": "JA_V_0001",
     "prompt": "하다",
     "choices": [
-      "いい",
-      "まず",
       "する",
-      "こ"
+      "はやい",
+      "ふたり",
+      "ひくい"
     ],
     "answer": "する",
     "meaning": "하다",
@@ -59,37 +1879,9 @@
     "word_id": "JA_V_0002",
     "prompt": "やる",
     "choices": [
-      "더럽다",
-      "같다",
-      "하다",
-      "한명"
-    ],
-    "answer": "하다",
-    "meaning": "하다",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_V_0002",
-    "prompt": "하다",
-    "choices": [
-      "俺",
-      "得意だ",
-      "僕",
-      "やる"
-    ],
-    "answer": "やる",
-    "meaning": "하다",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_V_0002",
-    "prompt": "やる",
-    "choices": [
-      "나",
-      "한명",
-      "오다",
+      "아버지",
+      "사이",
+      "이것",
       "하다"
     ],
     "answer": "하다",
@@ -101,10 +1893,38 @@
     "word_id": "JA_V_0002",
     "prompt": "하다",
     "choices": [
-      "まず",
-      "おおきい",
+      "今",
+      "遅く",
       "やる",
-      "あれ"
+      "早い"
+    ],
+    "answer": "やる",
+    "meaning": "하다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "JA_V_0002",
+    "prompt": "やる",
+    "choices": [
+      "둘",
+      "이것",
+      "그것",
+      "하다"
+    ],
+    "answer": "하다",
+    "meaning": "하다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_V_0002",
+    "prompt": "하다",
+    "choices": [
+      "やる",
+      "そこ",
+      "じょうずだ",
+      "まえ"
     ],
     "answer": "やる",
     "meaning": "하다",
@@ -115,10 +1935,10 @@
     "word_id": "JA_V_0003",
     "prompt": "心配する",
     "choices": [
-      "높다",
-      "이~",
-      "지금 당장",
-      "걱정하다"
+      "하나",
+      "걱정하다",
+      "일",
+      "제멋대로다"
     ],
     "answer": "걱정하다",
     "meaning": "걱정하다",
@@ -130,9 +1950,9 @@
     "prompt": "걱정하다",
     "choices": [
       "心配する",
-      "高い",
-      "悪い",
-      "来る"
+      "得意だ",
+      "遅れる",
+      "前"
     ],
     "answer": "心配する",
     "meaning": "걱정하다",
@@ -144,9 +1964,9 @@
     "prompt": "しんぱいする",
     "choices": [
       "걱정하다",
-      "고민, 걱정",
-      "이제곧",
-      "서투르다"
+      "오후",
+      "밤",
+      "낮다"
     ],
     "answer": "걱정하다",
     "meaning": "걱정하다",
@@ -157,10 +1977,10 @@
     "word_id": "JA_V_0003",
     "prompt": "걱정하다",
     "choices": [
-      "いますぐ",
-      "まず",
-      "にがてだ",
-      "しんぱいする"
+      "しんぱいする",
+      "やすい",
+      "はやい",
+      "おかあさん"
     ],
     "answer": "しんぱいする",
     "meaning": "걱정하다",
@@ -171,419 +1991,83 @@
     "word_id": "JA_V_0004",
     "prompt": "悩む",
     "choices": [
-      "하다",
-      "이~",
+      "개",
       "고민하다",
-      "한명"
+      "저것",
+      "같다"
     ],
     "answer": "고민하다",
     "meaning": "고민하다",
-    "difficulty": "1",
+    "difficulty": "2",
     "question_type": "word_to_meaning"
   },
   {
     "word_id": "JA_V_0004",
     "prompt": "고민하다",
     "choices": [
-      "具体的だ",
-      "一つ",
-      "低い",
-      "悩む"
+      "その",
+      "安い",
+      "悩む",
+      "午後"
     ],
     "answer": "悩む",
     "meaning": "고민하다",
-    "difficulty": "1",
+    "difficulty": "2",
     "question_type": "meaning_to_word"
   },
   {
     "word_id": "JA_V_0004",
     "prompt": "なやむ",
     "choices": [
+      "좋다",
+      "너",
       "고민하다",
-      "이제곧",
-      "거기",
-      "저기"
+      "일하다"
     ],
     "answer": "고민하다",
     "meaning": "고민하다",
-    "difficulty": "1",
+    "difficulty": "2",
     "question_type": "word_to_meaning"
   },
   {
     "word_id": "JA_V_0004",
     "prompt": "고민하다",
     "choices": [
+      "いますぐ",
+      "うち",
       "なやむ",
-      "する",
-      "ひとつ",
-      "わたし"
+      "ぐたいてきだ"
     ],
     "answer": "なやむ",
     "meaning": "고민하다",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_V_0005",
-    "prompt": "悩み",
-    "choices": [
-      "고민, 걱정",
-      "낮다",
-      "~개",
-      "지금 당장"
-    ],
-    "answer": "고민, 걱정",
-    "meaning": "고민, 걱정",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_V_0005",
-    "prompt": "고민, 걱정",
-    "choices": [
-      "具体的だ",
-      "下手だ",
-      "高い",
-      "悩み"
-    ],
-    "answer": "悩み",
-    "meaning": "고민, 걱정",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_V_0005",
-    "prompt": "なやみ",
-    "choices": [
-      "같다",
-      "깨끗하다",
-      "일단",
-      "고민, 걱정"
-    ],
-    "answer": "고민, 걱정",
-    "meaning": "고민, 걱정",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_V_0005",
-    "prompt": "고민, 걱정",
-    "choices": [
-      "きたない",
-      "なやみ",
-      "まもなく",
-      "ひくい"
-    ],
-    "answer": "なやみ",
-    "meaning": "고민, 걱정",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_V_0006",
-    "prompt": "働く",
-    "choices": [
-      "나쁘다",
-      "걱정하다",
-      "일하다",
-      "늦다"
-    ],
-    "answer": "일하다",
-    "meaning": "일하다",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_V_0006",
-    "prompt": "일하다",
-    "choices": [
-      "大きい",
-      "もうすぐ",
-      "働く",
-      "一つ"
-    ],
-    "answer": "働く",
-    "meaning": "일하다",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_V_0006",
-    "prompt": "はたらく",
-    "choices": [
-      "사이",
-      "그것",
-      "일하다",
-      "적다"
-    ],
-    "answer": "일하다",
-    "meaning": "일하다",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_V_0006",
-    "prompt": "일하다",
-    "choices": [
-      "はたらく",
-      "おそい",
-      "すくない",
-      "あれ"
-    ],
-    "answer": "はたらく",
-    "meaning": "일하다",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_V_0007",
-    "prompt": "勤める",
-    "choices": [
-      "오다",
-      "늦다",
-      "(회사·조직)다니다",
-      "사이"
-    ],
-    "answer": "(회사·조직)다니다",
-    "meaning": "(회사·조직)다니다",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_V_0007",
-    "prompt": "(회사·조직)다니다",
-    "choices": [
-      "勤める",
-      "心配する",
-      "安い",
-      "いくつ"
-    ],
-    "answer": "勤める",
-    "meaning": "(회사·조직)다니다",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_V_0007",
-    "prompt": "つとめる",
-    "choices": [
-      "저것",
-      "걱정하다",
-      "두명",
-      "(회사·조직)다니다"
-    ],
-    "answer": "(회사·조직)다니다",
-    "meaning": "(회사·조직)다니다",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_V_0007",
-    "prompt": "(회사·조직)다니다",
-    "choices": [
-      "くる",
-      "じょうずだ",
-      "つとめる",
-      "この"
-    ],
-    "answer": "つとめる",
-    "meaning": "(회사·조직)다니다",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_V_0008",
-    "prompt": "仕事する",
-    "choices": [
-      "~개",
-      "일하다",
-      "저기",
-      "고민하다"
-    ],
-    "answer": "일하다",
-    "meaning": "일하다",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_V_0008",
-    "prompt": "일하다",
-    "choices": [
-      "仕事する",
-      "悪い",
-      "今すぐ",
-      "僕"
-    ],
-    "answer": "仕事する",
-    "meaning": "일하다",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_V_0008",
-    "prompt": "しごとする",
-    "choices": [
-      "너",
-      "일하다",
-      "깨끗하다",
-      "싸다"
-    ],
-    "answer": "일하다",
-    "meaning": "일하다",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_V_0008",
-    "prompt": "일하다",
-    "choices": [
-      "しごとする",
-      "はたらく",
-      "この",
-      "まもなく"
-    ],
-    "answer": "しごとする",
-    "meaning": "일하다",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_V_0009",
-    "prompt": "置く",
-    "choices": [
-      "둘",
-      "두다",
-      "같다",
-      "한명"
-    ],
-    "answer": "두다",
-    "meaning": "두다",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_V_0009",
-    "prompt": "두다",
-    "choices": [
-      "悩み",
-      "仕事する",
-      "私",
-      "置く"
-    ],
-    "answer": "置く",
-    "meaning": "두다",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_V_0009",
-    "prompt": "おく",
-    "choices": [
-      "능숙하다",
-      "일단",
-      "두다",
-      "구체적이다"
-    ],
-    "answer": "두다",
-    "meaning": "두다",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_V_0009",
-    "prompt": "두다",
-    "choices": [
-      "おく",
-      "なやみ",
-      "すくない",
-      "きみ"
-    ],
-    "answer": "おく",
-    "meaning": "두다",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_V_0010",
-    "prompt": "来る",
-    "choices": [
-      "깨끗하다",
-      "두명",
-      "나",
-      "오다"
-    ],
-    "answer": "오다",
-    "meaning": "오다",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_V_0010",
-    "prompt": "오다",
-    "choices": [
-      "期間",
-      "得意だ",
-      "来る",
-      "三つ"
-    ],
-    "answer": "来る",
-    "meaning": "오다",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_V_0010",
-    "prompt": "くる",
-    "choices": [
-      "오다",
-      "구체적이다",
-      "싸다",
-      "저~"
-    ],
-    "answer": "오다",
-    "meaning": "오다",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_V_0010",
-    "prompt": "오다",
-    "choices": [
-      "くる",
-      "しごとする",
-      "にがてだ",
-      "へただ"
-    ],
-    "answer": "くる",
-    "meaning": "오다",
-    "difficulty": "1",
+    "difficulty": "2",
     "question_type": "meaning_to_word"
   },
   {
     "word_id": "JA_IA_0001",
     "prompt": "早い",
     "choices": [
-      "이르다",
-      "하다",
-      "이것",
-      "적다"
+      "밤",
+      "하나",
+      "빠르다",
+      "휴대폰"
     ],
-    "answer": "이르다",
-    "meaning": "이르다",
+    "answer": "빠르다",
+    "meaning": "빠르다",
     "difficulty": "1",
     "question_type": "word_to_meaning"
   },
   {
     "word_id": "JA_IA_0001",
-    "prompt": "이르다",
+    "prompt": "빠르다",
     "choices": [
-      "苦手だ",
-      "ここ",
-      "二人",
-      "早い"
+      "息子",
+      "高い",
+      "早い",
+      "後ろ"
     ],
     "answer": "早い",
-    "meaning": "이르다",
+    "meaning": "빠르다",
     "difficulty": "1",
     "question_type": "meaning_to_word"
   },
@@ -591,27 +2075,27 @@
     "word_id": "JA_IA_0001",
     "prompt": "はやい",
     "choices": [
-      "두명",
-      "높다",
-      "이르다",
-      "곧"
+      "빠르다",
+      "아들",
+      "좋다",
+      "못하다"
     ],
-    "answer": "이르다",
-    "meaning": "이르다",
+    "answer": "빠르다",
+    "meaning": "빠르다",
     "difficulty": "1",
     "question_type": "word_to_meaning"
   },
   {
     "word_id": "JA_IA_0001",
-    "prompt": "이르다",
+    "prompt": "빠르다",
     "choices": [
-      "する",
-      "そこ",
-      "はやい",
-      "かって だ"
+      "とくいだ",
+      "やる",
+      "ゆう",
+      "はやい"
     ],
     "answer": "はやい",
-    "meaning": "이르다",
+    "meaning": "빠르다",
     "difficulty": "1",
     "question_type": "meaning_to_word"
   },
@@ -619,27 +2103,27 @@
     "word_id": "JA_IA_0002",
     "prompt": "遅い",
     "choices": [
-      "나쁘다",
-      "늦다",
-      "좋다",
-      "거기"
+      "뒤",
+      "어머니",
+      "낮다",
+      "느리다"
     ],
-    "answer": "늦다",
-    "meaning": "늦다",
+    "answer": "느리다",
+    "meaning": "느리다",
     "difficulty": "1",
     "question_type": "word_to_meaning"
   },
   {
     "word_id": "JA_IA_0002",
-    "prompt": "늦다",
+    "prompt": "느리다",
     "choices": [
-      "君",
-      "下手だ",
-      "働く",
-      "遅い"
+      "上手だ",
+      "遅い",
+      "夜",
+      "後ろ"
     ],
     "answer": "遅い",
-    "meaning": "늦다",
+    "meaning": "느리다",
     "difficulty": "1",
     "question_type": "meaning_to_word"
   },
@@ -647,9 +2131,121 @@
     "word_id": "JA_IA_0002",
     "prompt": "おそい",
     "choices": [
-      "구체적이다",
-      "지금 당장",
-      "일하다",
+      "개",
+      "싸다",
+      "오늘",
+      "느리다"
+    ],
+    "answer": "느리다",
+    "meaning": "느리다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "JA_IA_0002",
+    "prompt": "느리다",
+    "choices": [
+      "この",
+      "ひとつ",
+      "なやむ",
+      "おそい"
+    ],
+    "answer": "おそい",
+    "meaning": "느리다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "부사",
+    "prompt": "遅く",
+    "choices": [
+      "늦게",
+      "지금",
+      "나중에",
+      "아버지"
+    ],
+    "answer": "늦게",
+    "meaning": "늦게",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "부사",
+    "prompt": "늦게",
+    "choices": [
+      "狭い",
+      "遅く",
+      "一つ",
+      "綺麗だ"
+    ],
+    "answer": "遅く",
+    "meaning": "늦게",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "부사",
+    "prompt": "おそく",
+    "choices": [
+      "둘",
+      "모레",
+      "오늘",
+      "늦게"
+    ],
+    "answer": "늦게",
+    "meaning": "늦게",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "부사",
+    "prompt": "늦게",
+    "choices": [
+      "あとで",
+      "わるい",
+      "おそく",
+      "とりあえず"
+    ],
+    "answer": "おそく",
+    "meaning": "늦게",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "동사",
+    "prompt": "遅れる",
+    "choices": [
+      "싸다",
+      "좁다",
+      "늦다",
+      "뒤"
+    ],
+    "answer": "늦다",
+    "meaning": "늦다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "동사",
+    "prompt": "늦다",
+    "choices": [
+      "遅れる",
+      "一つ",
+      "綺麗だ",
+      "仕事"
+    ],
+    "answer": "遅れる",
+    "meaning": "늦다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "동사",
+    "prompt": "おくれる",
+    "choices": [
+      "늦게",
+      "여기",
+      "앞",
       "늦다"
     ],
     "answer": "늦다",
@@ -658,82 +2254,82 @@
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_IA_0002",
+    "word_id": "동사",
     "prompt": "늦다",
     "choices": [
-      "わるい",
-      "おそい",
-      "あいだ",
-      "まず"
+      "おくれる",
+      "うち",
+      "ぐたいてきだ",
+      "よる"
     ],
-    "answer": "おそい",
+    "answer": "おくれる",
     "meaning": "늦다",
     "difficulty": "1",
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_IA_0003",
+    "word_id": "동사",
+    "prompt": "遅らせる",
+    "choices": [
+      "늦게",
+      "먼저",
+      "연락처",
+      "늦추다"
+    ],
+    "answer": "늦추다",
+    "meaning": "늦추다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "동사",
+    "prompt": "늦추다",
+    "choices": [
+      "お前",
+      "上手だ",
+      "今",
+      "遅らせる"
+    ],
+    "answer": "遅らせる",
+    "meaning": "늦추다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "동사",
+    "prompt": "おくらせる",
+    "choices": [
+      "너",
+      "나",
+      "늦추다",
+      "저것"
+    ],
+    "answer": "늦추다",
+    "meaning": "늦추다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "동사",
+    "prompt": "늦추다",
+    "choices": [
+      "まもなく",
+      "ふたり",
+      "おくらせる",
+      "いま"
+    ],
+    "answer": "おくらせる",
+    "meaning": "늦추다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "い형용사",
     "prompt": "良い",
     "choices": [
-      "몇개",
-      "좋다",
-      "제멋대로다",
-      "고민, 걱정"
-    ],
-    "answer": "좋다",
-    "meaning": "좋다",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_IA_0003",
-    "prompt": "좋다",
-    "choices": [
-      "良い",
-      "それ",
-      "一人",
-      "まず"
-    ],
-    "answer": "良い",
-    "meaning": "좋다",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_IA_0003",
-    "prompt": "いい",
-    "choices": [
-      "사이",
-      "좋다",
-      "두명",
-      "일단"
-    ],
-    "answer": "좋다",
-    "meaning": "좋다",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_IA_0003",
-    "prompt": "좋다",
-    "choices": [
-      "おまえ",
-      "かって だ",
-      "やる",
-      "いい"
-    ],
-    "answer": "いい",
-    "meaning": "좋다",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_IA_0003",
-    "prompt": "よい",
-    "choices": [
-      "~개",
-      "많다",
-      "걱정하다",
+      "일하다",
+      "부모",
+      "집",
       "좋다"
     ],
     "answer": "좋다",
@@ -742,12 +2338,68 @@
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_IA_0004",
+    "word_id": "い형용사",
+    "prompt": "좋다",
+    "choices": [
+      "娘",
+      "良い",
+      "遅れる",
+      "昼"
+    ],
+    "answer": "良い",
+    "meaning": "좋다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "い형용사",
+    "prompt": "よい",
+    "choices": [
+      "얼마",
+      "둘",
+      "좋다",
+      "넓다"
+    ],
+    "answer": "좋다",
+    "meaning": "좋다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "い형용사",
+    "prompt": "좋다",
+    "choices": [
+      "よい",
+      "いま",
+      "しん",
+      "あいだ"
+    ],
+    "answer": "よい",
+    "meaning": "좋다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "い형용사",
+    "prompt": "いい",
+    "choices": [
+      "내일",
+      "딸",
+      "좋다",
+      "사이"
+    ],
+    "answer": "좋다",
+    "meaning": "좋다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "い형용사",
     "prompt": "悪い",
     "choices": [
-      "(회사·조직)다니다",
-      "곧",
-      "기간",
+      "셋",
+      "먼저",
+      "연락",
       "나쁘다"
     ],
     "answer": "나쁘다",
@@ -756,13 +2408,13 @@
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_IA_0004",
+    "word_id": "い형용사",
     "prompt": "나쁘다",
     "choices": [
-      "勤める",
-      "苦手だ",
+      "今",
       "悪い",
-      "もうすぐ"
+      "明日",
+      "ご飯"
     ],
     "answer": "悪い",
     "meaning": "나쁘다",
@@ -770,13 +2422,13 @@
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_IA_0004",
+    "word_id": "い형용사",
     "prompt": "わるい",
     "choices": [
-      "같다",
       "나쁘다",
-      "둘",
-      "저것"
+      "하나",
+      "늦게",
+      "늦다"
     ],
     "answer": "나쁘다",
     "meaning": "나쁘다",
@@ -784,13 +2436,13 @@
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_IA_0004",
+    "word_id": "い형용사",
     "prompt": "나쁘다",
     "choices": [
-      "わるい",
-      "もうすぐ",
-      "なやむ",
-      "しんぱいする"
+      "とりあえず",
+      "はやい",
+      "おとうさん",
+      "わるい"
     ],
     "answer": "わるい",
     "meaning": "나쁘다",
@@ -798,13 +2450,13 @@
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_IA_0005",
+    "word_id": "い형용사",
     "prompt": "高い",
     "choices": [
-      "작다",
+      "이것",
       "높다",
-      "일하다",
-      "일단"
+      "늦다",
+      "기간"
     ],
     "answer": "높다",
     "meaning": "높다",
@@ -812,13 +2464,13 @@
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_IA_0005",
+    "word_id": "い형용사",
     "prompt": "높다",
     "choices": [
+      "狭い",
       "高い",
-      "私",
-      "仕事する",
-      "来る"
+      "娘",
+      "夜"
     ],
     "answer": "高い",
     "meaning": "높다",
@@ -826,13 +2478,13 @@
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_IA_0005",
+    "word_id": "い형용사",
     "prompt": "たかい",
     "choices": [
-      "늦다",
+      "뒤",
+      "곧",
       "높다",
-      "~개",
-      "이것"
+      "좁다"
     ],
     "answer": "높다",
     "meaning": "높다",
@@ -840,12 +2492,12 @@
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_IA_0005",
+    "word_id": "い형용사",
     "prompt": "높다",
     "choices": [
+      "あさ",
       "たかい",
-      "すぐ",
-      "すくない",
+      "あさって",
       "あの"
     ],
     "answer": "たかい",
@@ -854,13 +2506,13 @@
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_IA_0006",
+    "word_id": "い형용사",
     "prompt": "低い",
     "choices": [
-      "낮다",
-      "늦다",
-      "일단",
-      "너"
+      "연락",
+      "넓다",
+      "저",
+      "낮다"
     ],
     "answer": "낮다",
     "meaning": "낮다",
@@ -868,13 +2520,13 @@
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_IA_0006",
+    "word_id": "い형용사",
     "prompt": "낮다",
     "choices": [
       "低い",
-      "汚い",
-      "多い",
-      "悩む"
+      "この",
+      "後ろ",
+      "狭い"
     ],
     "answer": "低い",
     "meaning": "낮다",
@@ -882,13 +2534,13 @@
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_IA_0006",
+    "word_id": "い형용사",
     "prompt": "ひくい",
     "choices": [
-      "이~",
+      "밥",
+      "우선",
       "낮다",
-      "더럽다",
-      "좋다"
+      "저것"
     ],
     "answer": "낮다",
     "meaning": "낮다",
@@ -896,13 +2548,13 @@
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_IA_0006",
+    "word_id": "い형용사",
     "prompt": "낮다",
     "choices": [
-      "やすい",
-      "この",
       "ひくい",
-      "おおい"
+      "むすめ",
+      "やる",
+      "ごご"
     ],
     "answer": "ひくい",
     "meaning": "낮다",
@@ -910,13 +2562,125 @@
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_IA_0007",
+    "word_id": "い형용사",
+    "prompt": "広い",
+    "choices": [
+      "지금",
+      "거기",
+      "좋다",
+      "넓다"
+    ],
+    "answer": "넓다",
+    "meaning": "넓다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "い형용사",
+    "prompt": "넓다",
+    "choices": [
+      "狭い",
+      "午後",
+      "お母さん",
+      "広い"
+    ],
+    "answer": "広い",
+    "meaning": "넓다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "い형용사",
+    "prompt": "ひろい",
+    "choices": [
+      "물건",
+      "하나",
+      "지금바로",
+      "넓다"
+    ],
+    "answer": "넓다",
+    "meaning": "넓다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "い형용사",
+    "prompt": "넓다",
+    "choices": [
+      "たかい",
+      "れんらく",
+      "おまえ",
+      "ひろい"
+    ],
+    "answer": "ひろい",
+    "meaning": "넓다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "い형용사",
+    "prompt": "狭い",
+    "choices": [
+      "좁다",
+      "일",
+      "위",
+      "내일"
+    ],
+    "answer": "좁다",
+    "meaning": "좁다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "い형용사",
+    "prompt": "좁다",
+    "choices": [
+      "今すぐ",
+      "狭い",
+      "働く",
+      "前"
+    ],
+    "answer": "狭い",
+    "meaning": "좁다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "い형용사",
+    "prompt": "せまい",
+    "choices": [
+      "좁다",
+      "그저께",
+      "바로",
+      "딸"
+    ],
+    "answer": "좁다",
+    "meaning": "좁다",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "い형용사",
+    "prompt": "좁다",
+    "choices": [
+      "きかん",
+      "あそこ",
+      "せまい",
+      "うち"
+    ],
+    "answer": "せまい",
+    "meaning": "좁다",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "い형용사",
     "prompt": "安い",
     "choices": [
-      "같다",
+      "걱정하다",
+      "모레",
       "싸다",
-      "기간",
-      "걱정하다"
+      "좁다"
     ],
     "answer": "싸다",
     "meaning": "싸다",
@@ -924,13 +2688,13 @@
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_IA_0007",
+    "word_id": "い형용사",
     "prompt": "싸다",
     "choices": [
-      "上手だ",
       "安い",
-      "大丈夫だ",
-      "とりあえず"
+      "綺麗だ",
+      "三つ",
+      "君"
     ],
     "answer": "安い",
     "meaning": "싸다",
@@ -938,13 +2702,13 @@
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_IA_0007",
+    "word_id": "い형용사",
     "prompt": "やすい",
     "choices": [
+      "내일",
+      "얼마",
       "싸다",
-      "곧",
-      "일하다",
-      "많다"
+      "나쁘다"
     ],
     "answer": "싸다",
     "meaning": "싸다",
@@ -952,12 +2716,12 @@
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_IA_0007",
+    "word_id": "い형용사",
     "prompt": "싸다",
     "choices": [
-      "あいだ",
-      "あいだ もなく",
-      "ふたつ",
+      "みっつ",
+      "いくつ",
+      "ぼく",
       "やすい"
     ],
     "answer": "やすい",
@@ -966,293 +2730,13 @@
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_IA_0008",
-    "prompt": "多い",
-    "choices": [
-      "일단",
-      "나쁘다",
-      "많다",
-      "거기"
-    ],
-    "answer": "많다",
-    "meaning": "많다",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_IA_0008",
-    "prompt": "많다",
-    "choices": [
-      "勝手だ",
-      "綺麗だ",
-      "多い",
-      "安い"
-    ],
-    "answer": "多い",
-    "meaning": "많다",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_IA_0008",
-    "prompt": "おおい",
-    "choices": [
-      "많다",
-      "얼마",
-      "고민, 걱정",
-      "한명"
-    ],
-    "answer": "많다",
-    "meaning": "많다",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_IA_0008",
-    "prompt": "많다",
-    "choices": [
-      "きみ",
-      "いくら",
-      "ひくい",
-      "おおい"
-    ],
-    "answer": "おおい",
-    "meaning": "많다",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_IA_0009",
-    "prompt": "少ない",
-    "choices": [
-      "오다",
-      "적다",
-      "좋다",
-      "몇개"
-    ],
-    "answer": "적다",
-    "meaning": "적다",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_IA_0009",
-    "prompt": "적다",
-    "choices": [
-      "とりあえず",
-      "綺麗だ",
-      "少ない",
-      "まず"
-    ],
-    "answer": "少ない",
-    "meaning": "적다",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_IA_0009",
-    "prompt": "すくない",
-    "choices": [
-      "둘",
-      "깨끗하다",
-      "적다",
-      "하나"
-    ],
-    "answer": "적다",
-    "meaning": "적다",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_IA_0009",
-    "prompt": "적다",
-    "choices": [
-      "みっつ",
-      "いい",
-      "すくない",
-      "あいだ"
-    ],
-    "answer": "すくない",
-    "meaning": "적다",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_IA_0010",
-    "prompt": "大きい",
-    "choices": [
-      "여기",
-      "~할 틈도 없이",
-      "크다",
-      "먼저"
-    ],
-    "answer": "크다",
-    "meaning": "크다",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_IA_0010",
-    "prompt": "크다",
-    "choices": [
-      "勤める",
-      "すぐ",
-      "大きい",
-      "三つ"
-    ],
-    "answer": "大きい",
-    "meaning": "크다",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_IA_0010",
-    "prompt": "おおきい",
-    "choices": [
-      "같다",
-      "크다",
-      "바로",
-      "깨끗하다"
-    ],
-    "answer": "크다",
-    "meaning": "크다",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_IA_0010",
-    "prompt": "크다",
-    "choices": [
-      "おれ",
-      "もうすぐ",
-      "おおきい",
-      "する"
-    ],
-    "answer": "おおきい",
-    "meaning": "크다",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_IA_0011",
-    "prompt": "小さい",
-    "choices": [
-      "작다",
-      "이제곧",
-      "먼저",
-      "잘하다"
-    ],
-    "answer": "작다",
-    "meaning": "작다",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_IA_0011",
-    "prompt": "작다",
-    "choices": [
-      "間もなく",
-      "小さい",
-      "大丈夫だ",
-      "多い"
-    ],
-    "answer": "小さい",
-    "meaning": "작다",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_IA_0011",
-    "prompt": "ちいさい",
-    "choices": [
-      "작다",
-      "(회사·조직)다니다",
-      "몇개",
-      "사이"
-    ],
-    "answer": "작다",
-    "meaning": "작다",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_IA_0011",
-    "prompt": "작다",
-    "choices": [
-      "とりあえず",
-      "すぐ",
-      "ちいさい",
-      "おおきい"
-    ],
-    "answer": "ちいさい",
-    "meaning": "작다",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_IA_0012",
-    "prompt": "汚い",
-    "choices": [
-      "기간",
-      "거기",
-      "저~",
-      "더럽다"
-    ],
-    "answer": "더럽다",
-    "meaning": "더럽다",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_IA_0012",
-    "prompt": "더럽다",
-    "choices": [
-      "俺",
-      "すぐ",
-      "汚い",
-      "私"
-    ],
-    "answer": "汚い",
-    "meaning": "더럽다",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_IA_0012",
-    "prompt": "きたない",
-    "choices": [
-      "한명",
-      "더럽다",
-      "구체적이다",
-      "여기"
-    ],
-    "answer": "더럽다",
-    "meaning": "더럽다",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_IA_0012",
-    "prompt": "더럽다",
-    "choices": [
-      "この",
-      "きたない",
-      "たかい",
-      "なやみ"
-    ],
-    "answer": "きたない",
-    "meaning": "더럽다",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
     "word_id": "JA_NA_0001",
     "prompt": "具体的だ",
     "choices": [
-      "능숙하다",
-      "기간",
+      "나",
+      "높다",
       "구체적이다",
-      "고민하다"
+      "오전"
     ],
     "answer": "구체적이다",
     "meaning": "구체적이다",
@@ -1263,10 +2747,10 @@
     "word_id": "JA_NA_0001",
     "prompt": "구체적이다",
     "choices": [
+      "狭い",
       "今すぐ",
-      "すぐ",
-      "具体的だ",
-      "上手だ"
+      "ここ",
+      "具体的だ"
     ],
     "answer": "具体的だ",
     "meaning": "구체적이다",
@@ -1277,10 +2761,10 @@
     "word_id": "JA_NA_0001",
     "prompt": "ぐたいてきだ",
     "choices": [
-      "하다",
-      "제멋대로다",
+      "친",
       "구체적이다",
-      "곧"
+      "아침",
+      "오전"
     ],
     "answer": "구체적이다",
     "meaning": "구체적이다",
@@ -1291,10 +2775,10 @@
     "word_id": "JA_NA_0001",
     "prompt": "구체적이다",
     "choices": [
+      "おととい",
+      "まえ",
       "ぐたいてきだ",
-      "つとめる",
-      "くる",
-      "いい"
+      "かってだ"
     ],
     "answer": "ぐたいてきだ",
     "meaning": "구체적이다",
@@ -1305,10 +2789,10 @@
     "word_id": "JA_NA_0002",
     "prompt": "大丈夫だ",
     "choices": [
+      "몇개",
       "괜찮다",
-      "바로",
-      "사이",
-      "몇개"
+      "둘",
+      "친"
     ],
     "answer": "괜찮다",
     "meaning": "괜찮다",
@@ -1319,10 +2803,10 @@
     "word_id": "JA_NA_0002",
     "prompt": "괜찮다",
     "choices": [
-      "得意だ",
+      "その",
       "大丈夫だ",
-      "来る",
-      "勤める"
+      "遅い",
+      "二人"
     ],
     "answer": "大丈夫だ",
     "meaning": "괜찮다",
@@ -1333,10 +2817,10 @@
     "word_id": "JA_NA_0002",
     "prompt": "だいじょうぶだ",
     "choices": [
-      "걱정하다",
       "괜찮다",
-      "하다",
-      "~개"
+      "너",
+      "나중에",
+      "그저께"
     ],
     "answer": "괜찮다",
     "meaning": "괜찮다",
@@ -1347,10 +2831,10 @@
     "word_id": "JA_NA_0002",
     "prompt": "괜찮다",
     "choices": [
-      "だいじょうぶだ",
-      "いくら",
-      "にがてだ",
-      "おまえ"
+      "にがて",
+      "ぐたいてきだ",
+      "おれ",
+      "だいじょうぶだ"
     ],
     "answer": "だいじょうぶだ",
     "meaning": "괜찮다",
@@ -1361,10 +2845,10 @@
     "word_id": "JA_NA_0003",
     "prompt": "綺麗だ",
     "choices": [
-      "일하다",
-      "작다",
       "깨끗하다",
-      "적다"
+      "저기",
+      "오늘",
+      "잘하다"
     ],
     "answer": "깨끗하다",
     "meaning": "깨끗하다",
@@ -1375,10 +2859,10 @@
     "word_id": "JA_NA_0003",
     "prompt": "깨끗하다",
     "choices": [
-      "二人",
-      "勤める",
-      "僕",
-      "綺麗だ"
+      "大丈夫だ",
+      "仕事",
+      "綺麗だ",
+      "その"
     ],
     "answer": "綺麗だ",
     "meaning": "깨끗하다",
@@ -1389,10 +2873,10 @@
     "word_id": "JA_NA_0003",
     "prompt": "きれいだ",
     "choices": [
-      "고민하다",
-      "좋다",
+      "밤",
       "깨끗하다",
-      "낮다"
+      "늦추다",
+      "앞"
     ],
     "answer": "깨끗하다",
     "meaning": "깨끗하다",
@@ -1403,10 +2887,10 @@
     "word_id": "JA_NA_0003",
     "prompt": "깨끗하다",
     "choices": [
-      "きれいだ",
-      "くる",
-      "みっつ",
-      "おく"
+      "まず",
+      "ごご",
+      "あと",
+      "きれいだ"
     ],
     "answer": "きれいだ",
     "meaning": "깨끗하다",
@@ -1417,10 +2901,10 @@
     "word_id": "JA_NA_0004",
     "prompt": "同じだ",
     "choices": [
-      "기간",
-      "늦다",
-      "같다",
-      "두명"
+      "지금",
+      "저녁",
+      "먼저",
+      "같다"
     ],
     "answer": "같다",
     "meaning": "같다",
@@ -1431,10 +2915,10 @@
     "word_id": "JA_NA_0004",
     "prompt": "같다",
     "choices": [
-      "心配する",
+      "仕事",
       "同じだ",
-      "良い",
-      "私"
+      "今",
+      "息子"
     ],
     "answer": "同じだ",
     "meaning": "같다",
@@ -1446,9 +2930,9 @@
     "prompt": "おなじだ",
     "choices": [
       "같다",
-      "그것",
-      "저~",
-      "셋"
+      "오전",
+      "뒤",
+      "하다"
     ],
     "answer": "같다",
     "meaning": "같다",
@@ -1459,10 +2943,10 @@
     "word_id": "JA_NA_0004",
     "prompt": "같다",
     "choices": [
-      "へただ",
+      "ここ",
       "おなじだ",
-      "はたらく",
-      "そこ"
+      "ごご",
+      "うえ"
     ],
     "answer": "おなじだ",
     "meaning": "같다",
@@ -1473,27 +2957,27 @@
     "word_id": "JA_NA_0005",
     "prompt": "上手だ",
     "choices": [
-      "이~",
-      "두명",
-      "능숙하다",
-      "서투르다"
+      "잘하다",
+      "나",
+      "하나",
+      "깨끗하다"
     ],
-    "answer": "능숙하다",
-    "meaning": "능숙하다",
+    "answer": "잘하다",
+    "meaning": "잘하다",
     "difficulty": "1",
     "question_type": "word_to_meaning"
   },
   {
     "word_id": "JA_NA_0005",
-    "prompt": "능숙하다",
+    "prompt": "잘하다",
     "choices": [
-      "とりあえず",
-      "小さい",
-      "勤める",
+      "午前",
+      "夜",
+      "お前",
       "上手だ"
     ],
     "answer": "上手だ",
-    "meaning": "능숙하다",
+    "meaning": "잘하다",
     "difficulty": "1",
     "question_type": "meaning_to_word"
   },
@@ -1501,27 +2985,27 @@
     "word_id": "JA_NA_0005",
     "prompt": "じょうずだ",
     "choices": [
-      "괜찮다",
-      "능숙하다",
-      "같다",
-      "곧"
+      "일하다",
+      "이것",
+      "잘하다",
+      "늦추다"
     ],
-    "answer": "능숙하다",
-    "meaning": "능숙하다",
+    "answer": "잘하다",
+    "meaning": "잘하다",
     "difficulty": "1",
     "question_type": "word_to_meaning"
   },
   {
     "word_id": "JA_NA_0005",
-    "prompt": "능숙하다",
+    "prompt": "잘하다",
     "choices": [
+      "へただ",
       "じょうずだ",
-      "ちいさい",
-      "おなじだ",
-      "おそい"
+      "うち",
+      "おくらせる"
     ],
     "answer": "じょうずだ",
-    "meaning": "능숙하다",
+    "meaning": "잘하다",
     "difficulty": "1",
     "question_type": "meaning_to_word"
   },
@@ -1529,27 +3013,27 @@
     "word_id": "JA_NA_0006",
     "prompt": "下手だ",
     "choices": [
-      "서투르다",
-      "한명",
-      "더럽다",
-      "바로"
+      "느리다",
+      "깨끗하다",
+      "못하다",
+      "하나"
     ],
-    "answer": "서투르다",
-    "meaning": "서투르다",
+    "answer": "못하다",
+    "meaning": "못하다",
     "difficulty": "1",
     "question_type": "word_to_meaning"
   },
   {
     "word_id": "JA_NA_0006",
-    "prompt": "서투르다",
+    "prompt": "못하다",
     "choices": [
-      "少ない",
       "下手だ",
-      "多い",
-      "俺"
+      "する",
+      "上手だ",
+      "お前"
     ],
     "answer": "下手だ",
-    "meaning": "서투르다",
+    "meaning": "못하다",
     "difficulty": "1",
     "question_type": "meaning_to_word"
   },
@@ -1557,94 +3041,94 @@
     "word_id": "JA_NA_0006",
     "prompt": "へただ",
     "choices": [
-      "두명",
-      "크다",
-      "능숙하다",
-      "서투르다"
+      "아버지",
+      "점심",
+      "일하다",
+      "못하다"
     ],
-    "answer": "서투르다",
-    "meaning": "서투르다",
+    "answer": "못하다",
+    "meaning": "못하다",
     "difficulty": "1",
     "question_type": "word_to_meaning"
   },
   {
     "word_id": "JA_NA_0006",
-    "prompt": "서투르다",
+    "prompt": "못하다",
     "choices": [
-      "ひくい",
-      "へただ",
-      "ぼく",
-      "はやい"
+      "あさ",
+      "じょうずだ",
+      "ゆう",
+      "へただ"
     ],
     "answer": "へただ",
-    "meaning": "서투르다",
+    "meaning": "못하다",
     "difficulty": "1",
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_NA_0007",
-    "prompt": "苦手だ",
+    "word_id": "명사",
+    "prompt": "苦手",
     "choices": [
-      "이~",
-      "서투르다",
-      "일단",
-      "적다"
+      "서투름",
+      "저기",
+      "기간",
+      "나"
     ],
-    "answer": "서투르다",
-    "meaning": "서투르다",
+    "answer": "서투름",
+    "meaning": "서투름",
     "difficulty": "1",
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_NA_0007",
-    "prompt": "서투르다",
+    "word_id": "명사",
+    "prompt": "서투름",
     "choices": [
-      "悩み",
+      "お前",
+      "苦手",
+      "働く",
+      "午後"
+    ],
+    "answer": "苦手",
+    "meaning": "서투름",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "명사",
+    "prompt": "にがて",
+    "choices": [
+      "얼마",
+      "늦추다",
+      "서투름",
+      "싸다"
+    ],
+    "answer": "서투름",
+    "meaning": "서투름",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "명사",
+    "prompt": "서투름",
+    "choices": [
       "やる",
-      "低い",
-      "苦手だ"
+      "これ",
+      "にがて",
+      "まず"
     ],
-    "answer": "苦手だ",
-    "meaning": "서투르다",
+    "answer": "にがて",
+    "meaning": "서투름",
     "difficulty": "1",
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_NA_0007",
-    "prompt": "にがてだ",
-    "choices": [
-      "서투르다",
-      "같다",
-      "적다",
-      "능숙하다"
-    ],
-    "answer": "서투르다",
-    "meaning": "서투르다",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_NA_0007",
-    "prompt": "서투르다",
-    "choices": [
-      "かって だ",
-      "なやむ",
-      "にがてだ",
-      "ぼく"
-    ],
-    "answer": "にがてだ",
-    "meaning": "서투르다",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_NA_0008",
+    "word_id": "な형용사",
     "prompt": "得意だ",
     "choices": [
-      "싸다",
-      "몇개",
       "잘하다",
-      "같다"
+      "나쁘다",
+      "어제",
+      "두명"
     ],
     "answer": "잘하다",
     "meaning": "잘하다",
@@ -1652,13 +3136,13 @@
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_NA_0008",
+    "word_id": "な형용사",
     "prompt": "잘하다",
     "choices": [
-      "勝手だ",
-      "とりあえず",
+      "午後",
       "得意だ",
-      "少ない"
+      "大丈夫だ",
+      "朝"
     ],
     "answer": "得意だ",
     "meaning": "잘하다",
@@ -1666,13 +3150,13 @@
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_NA_0008",
+    "word_id": "な형용사",
     "prompt": "とくいだ",
     "choices": [
-      "저기",
-      "일단",
+      "서투름",
       "잘하다",
-      "바로"
+      "못하다",
+      "오늘"
     ],
     "answer": "잘하다",
     "meaning": "잘하다",
@@ -1680,13 +3164,13 @@
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_NA_0008",
+    "word_id": "な형용사",
     "prompt": "잘하다",
     "choices": [
-      "こ",
-      "すくない",
-      "ひとつ",
-      "とくいだ"
+      "ふたり",
+      "とくいだ",
+      "とりあえず",
+      "むすめ"
     ],
     "answer": "とくいだ",
     "meaning": "잘하다",
@@ -1694,13 +3178,13 @@
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_NA_0009",
+    "word_id": "な형용사",
     "prompt": "勝手だ",
     "choices": [
-      "지금 당장",
+      "뒤",
+      "괜찮다",
       "제멋대로다",
-      "(회사·조직)다니다",
-      "잘하다"
+      "저녁"
     ],
     "answer": "제멋대로다",
     "meaning": "제멋대로다",
@@ -1708,13 +3192,13 @@
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_NA_0009",
+    "word_id": "な형용사",
     "prompt": "제멋대로다",
     "choices": [
-      "二つ",
-      "勝手だ",
-      "君",
-      "間"
+      "昼",
+      "一つ",
+      "あそこ",
+      "勝手だ"
     ],
     "answer": "勝手だ",
     "meaning": "제멋대로다",
@@ -1722,13 +3206,13 @@
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_NA_0009",
-    "prompt": "かって だ",
+    "word_id": "な형용사",
+    "prompt": "かってだ",
     "choices": [
-      "구체적이다",
-      "크다",
       "제멋대로다",
-      "일단"
+      "낮다",
+      "셋",
+      "어제"
     ],
     "answer": "제멋대로다",
     "meaning": "제멋대로다",
@@ -1736,15 +3220,15 @@
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_NA_0009",
+    "word_id": "な형용사",
     "prompt": "제멋대로다",
     "choices": [
-      "みっつ",
-      "かって だ",
-      "とくいだ",
-      "とりあえず"
+      "これ",
+      "あさって",
+      "かってだ",
+      "おそく"
     ],
-    "answer": "かって だ",
+    "answer": "かってだ",
     "meaning": "제멋대로다",
     "difficulty": "1",
     "question_type": "meaning_to_word"
@@ -1753,10 +3237,10 @@
     "word_id": "JA_AD_0001",
     "prompt": "すぐ",
     "choices": [
-      "하나",
+      "빠르다",
       "바로",
-      "저~",
-      "이것"
+      "넓다",
+      "사이"
     ],
     "answer": "바로",
     "meaning": "바로",
@@ -1767,10 +3251,10 @@
     "word_id": "JA_AD_0001",
     "prompt": "바로",
     "choices": [
-      "これ",
       "すぐ",
+      "僕",
       "あれ",
-      "来る"
+      "遅く"
     ],
     "answer": "すぐ",
     "meaning": "바로",
@@ -1781,10 +3265,10 @@
     "word_id": "JA_AD_0001",
     "prompt": "すぐ",
     "choices": [
-      "많다",
-      "일하다",
-      "오다",
-      "바로"
+      "잘하다",
+      "바로",
+      "먼저",
+      "깨끗하다"
     ],
     "answer": "바로",
     "meaning": "바로",
@@ -1795,10 +3279,10 @@
     "word_id": "JA_AD_0001",
     "prompt": "바로",
     "choices": [
-      "わたし",
-      "その",
       "すぐ",
-      "はやい"
+      "ぐたいてきだ",
+      "わたし",
+      "れんらくさき"
     ],
     "answer": "すぐ",
     "meaning": "바로",
@@ -1809,27 +3293,27 @@
     "word_id": "JA_AD_0001",
     "prompt": "今すぐ",
     "choices": [
-      "지금 당장",
       "하다",
-      "구체적이다",
-      "그것"
+      "고민하다",
+      "너",
+      "지금바로"
     ],
-    "answer": "지금 당장",
-    "meaning": "지금 당장",
+    "answer": "지금바로",
+    "meaning": "지금바로",
     "difficulty": "1",
     "question_type": "word_to_meaning"
   },
   {
     "word_id": "JA_AD_0001",
-    "prompt": "지금 당장",
+    "prompt": "지금바로",
     "choices": [
-      "それ",
-      "今すぐ",
-      "あの",
-      "大きい"
+      "家",
+      "とりあえず",
+      "する",
+      "今すぐ"
     ],
     "answer": "今すぐ",
-    "meaning": "지금 당장",
+    "meaning": "지금바로",
     "difficulty": "1",
     "question_type": "meaning_to_word"
   },
@@ -1837,27 +3321,27 @@
     "word_id": "JA_AD_0001",
     "prompt": "いますぐ",
     "choices": [
-      "기간",
-      "일단",
-      "(회사·조직)다니다",
-      "지금 당장"
+      "저",
+      "지금바로",
+      "아침",
+      "못하다"
     ],
-    "answer": "지금 당장",
-    "meaning": "지금 당장",
+    "answer": "지금바로",
+    "meaning": "지금바로",
     "difficulty": "1",
     "question_type": "word_to_meaning"
   },
   {
     "word_id": "JA_AD_0001",
-    "prompt": "지금 당장",
+    "prompt": "지금바로",
     "choices": [
-      "ぐたいてきだ",
-      "いますぐ",
-      "おおきい",
-      "だいじょうぶだ"
+      "こ",
+      "そこ",
+      "ひる",
+      "いますぐ"
     ],
     "answer": "いますぐ",
-    "meaning": "지금 당장",
+    "meaning": "지금바로",
     "difficulty": "1",
     "question_type": "meaning_to_word"
   },
@@ -1865,27 +3349,27 @@
     "word_id": "JA_AD_0001",
     "prompt": "もうすぐ",
     "choices": [
-      "이제곧",
-      "잘하다",
-      "여기",
-      "한명"
+      "곧",
+      "연락처",
+      "일하다",
+      "아들"
     ],
-    "answer": "이제곧",
-    "meaning": "이제곧",
+    "answer": "곧",
+    "meaning": "곧",
     "difficulty": "1",
     "question_type": "word_to_meaning"
   },
   {
     "word_id": "JA_AD_0001",
-    "prompt": "이제곧",
+    "prompt": "곧",
     "choices": [
-      "個",
-      "僕",
       "もうすぐ",
+      "お母さん",
+      "ここ",
       "勝手だ"
     ],
     "answer": "もうすぐ",
-    "meaning": "이제곧",
+    "meaning": "곧",
     "difficulty": "1",
     "question_type": "meaning_to_word"
   },
@@ -1893,27 +3377,27 @@
     "word_id": "JA_AD_0001",
     "prompt": "もうすぐ",
     "choices": [
-      "나",
-      "~할 틈도 없이",
-      "이~",
-      "이제곧"
+      "아침",
+      "저녁",
+      "곧",
+      "넓다"
     ],
-    "answer": "이제곧",
-    "meaning": "이제곧",
+    "answer": "곧",
+    "meaning": "곧",
     "difficulty": "1",
     "question_type": "word_to_meaning"
   },
   {
     "word_id": "JA_AD_0001",
-    "prompt": "이제곧",
+    "prompt": "곧",
     "choices": [
-      "きみ",
-      "おまえ",
-      "やる",
-      "もうすぐ"
+      "はやい",
+      "おととい",
+      "もうすぐ",
+      "いい"
     ],
     "answer": "もうすぐ",
-    "meaning": "이제곧",
+    "meaning": "곧",
     "difficulty": "1",
     "question_type": "meaning_to_word"
   },
@@ -1921,10 +3405,10 @@
     "word_id": "JA_AD_0001",
     "prompt": "間もなく",
     "choices": [
-      "나",
-      "나쁘다",
-      "곧",
-      "제멋대로다"
+      "개",
+      "하다",
+      "저",
+      "곧"
     ],
     "answer": "곧",
     "meaning": "곧",
@@ -1936,9 +3420,9 @@
     "prompt": "곧",
     "choices": [
       "間もなく",
-      "悪い",
-      "上手だ",
-      "一つ"
+      "お母さん",
+      "いくら",
+      "僕"
     ],
     "answer": "間もなく",
     "meaning": "곧",
@@ -1949,10 +3433,10 @@
     "word_id": "JA_AD_0001",
     "prompt": "まもなく",
     "choices": [
-      "오다",
+      "좁다",
+      "오후",
       "곧",
-      "나",
-      "싸다"
+      "낮다"
     ],
     "answer": "곧",
     "meaning": "곧",
@@ -1963,9 +3447,9 @@
     "word_id": "JA_AD_0001",
     "prompt": "곧",
     "choices": [
-      "この",
+      "やる",
       "たかい",
-      "とくいだ",
+      "しごと",
       "まもなく"
     ],
     "answer": "まもなく",
@@ -1977,66 +3461,66 @@
     "word_id": "JA_AD_0001",
     "prompt": "間もなく",
     "choices": [
-      "그~",
-      "구체적이다",
-      "저것",
-      "~할 틈도 없이"
+      "곧",
+      "연락",
+      "친",
+      "물건"
     ],
-    "answer": "~할 틈도 없이",
-    "meaning": "~할 틈도 없이",
+    "answer": "곧",
+    "meaning": "곧",
     "difficulty": "1",
     "question_type": "word_to_meaning"
   },
   {
     "word_id": "JA_AD_0001",
-    "prompt": "~할 틈도 없이",
+    "prompt": "곧",
     "choices": [
-      "置く",
+      "家",
+      "明後日",
       "間もなく",
-      "この",
-      "安い"
+      "二人"
     ],
     "answer": "間もなく",
-    "meaning": "~할 틈도 없이",
+    "meaning": "곧",
     "difficulty": "1",
     "question_type": "meaning_to_word"
   },
   {
     "word_id": "JA_AD_0001",
-    "prompt": "あいだ もなく",
+    "prompt": "まもなく",
     "choices": [
-      "오다",
-      "일하다",
-      "~할 틈도 없이",
-      "바로"
+      "곧",
+      "휴대폰",
+      "하다",
+      "좋다"
     ],
-    "answer": "~할 틈도 없이",
-    "meaning": "~할 틈도 없이",
+    "answer": "곧",
+    "meaning": "곧",
     "difficulty": "1",
     "question_type": "word_to_meaning"
   },
   {
     "word_id": "JA_AD_0001",
-    "prompt": "~할 틈도 없이",
+    "prompt": "곧",
     "choices": [
-      "きみ",
-      "あれ",
-      "はたらく",
-      "あいだ もなく"
+      "まもなく",
+      "むすめ",
+      "とくいだ",
+      "ごご"
     ],
-    "answer": "あいだ もなく",
-    "meaning": "~할 틈도 없이",
+    "answer": "まもなく",
+    "meaning": "곧",
     "difficulty": "1",
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_AD_0001",
+    "word_id": "명사",
     "prompt": "間",
     "choices": [
-      "나쁘다",
-      "제멋대로다",
+      "잘하다",
+      "셋",
       "사이",
-      "고민하다"
+      "오후"
     ],
     "answer": "사이",
     "meaning": "사이",
@@ -2044,13 +3528,13 @@
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_AD_0001",
+    "word_id": "명사",
     "prompt": "사이",
     "choices": [
-      "来る",
-      "一つ",
+      "後ろ",
       "間",
-      "少ない"
+      "遅らせる",
+      "一昨日"
     ],
     "answer": "間",
     "meaning": "사이",
@@ -2058,13 +3542,13 @@
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_AD_0001",
+    "word_id": "명사",
     "prompt": "あいだ",
     "choices": [
-      "낮다",
+      "우선",
       "사이",
-      "이~",
-      "두다"
+      "곧",
+      "그저께"
     ],
     "answer": "사이",
     "meaning": "사이",
@@ -2072,13 +3556,13 @@
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_AD_0001",
+    "word_id": "명사",
     "prompt": "사이",
     "choices": [
-      "あいだ",
-      "しごとする",
-      "きれいだ",
-      "ぐたいてきだ"
+      "かってだ",
+      "あさって",
+      "いくら",
+      "あいだ"
     ],
     "answer": "あいだ",
     "meaning": "사이",
@@ -2086,69 +3570,83 @@
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_AD_0001",
-    "prompt": "とりあえず",
+    "word_id": "명사",
+    "prompt": "ま",
     "choices": [
-      "오다",
       "구체적이다",
-      "저~",
-      "일단"
+      "사이",
+      "저",
+      "앞"
     ],
-    "answer": "일단",
-    "meaning": "일단",
+    "answer": "사이",
+    "meaning": "사이",
     "difficulty": "1",
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_AD_0001",
-    "prompt": "일단",
-    "choices": [
-      "もうすぐ",
-      "とりあえず",
-      "あそこ",
-      "働く"
-    ],
-    "answer": "とりあえず",
-    "meaning": "일단",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_AD_0001",
+    "word_id": "부사",
     "prompt": "とりあえず",
     "choices": [
-      "적다",
-      "일단",
-      "고민, 걱정",
-      "크다"
+      "친",
+      "못하다",
+      "우선",
+      "부모"
     ],
-    "answer": "일단",
-    "meaning": "일단",
+    "answer": "우선",
+    "meaning": "우선",
     "difficulty": "1",
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_AD_0001",
-    "prompt": "일단",
+    "word_id": "부사",
+    "prompt": "우선",
     "choices": [
-      "とりあえず",
-      "ちいさい",
-      "こ",
-      "はやい"
+      "三つ",
+      "昨日",
+      "二つ",
+      "とりあえず"
     ],
     "answer": "とりあえず",
-    "meaning": "일단",
+    "meaning": "우선",
     "difficulty": "1",
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_AD_0001",
+    "word_id": "부사",
+    "prompt": "とりあえず",
+    "choices": [
+      "부모",
+      "우선",
+      "저기",
+      "내일"
+    ],
+    "answer": "우선",
+    "meaning": "우선",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "부사",
+    "prompt": "우선",
+    "choices": [
+      "きょう",
+      "じょうずだ",
+      "ひとり",
+      "とりあえず"
+    ],
+    "answer": "とりあえず",
+    "meaning": "우선",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "부사",
     "prompt": "まず",
     "choices": [
-      "(회사·조직)다니다",
-      "걱정하다",
-      "지금 당장",
-      "먼저"
+      "연락",
+      "아들",
+      "먼저",
+      "나중에"
     ],
     "answer": "먼저",
     "meaning": "먼저",
@@ -2156,13 +3654,13 @@
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_AD_0001",
+    "word_id": "부사",
     "prompt": "먼저",
     "choices": [
-      "その",
-      "とりあえず",
+      "家",
       "まず",
-      "いくら"
+      "一人",
+      "親"
     ],
     "answer": "まず",
     "meaning": "먼저",
@@ -2170,13 +3668,13 @@
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_AD_0001",
+    "word_id": "부사",
     "prompt": "まず",
     "choices": [
-      "일하다",
-      "싸다",
+      "낮다",
       "먼저",
-      "이것"
+      "같다",
+      "내일"
     ],
     "answer": "먼저",
     "meaning": "먼저",
@@ -2184,12 +3682,12 @@
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_AD_0001",
+    "word_id": "부사",
     "prompt": "먼저",
     "choices": [
-      "いくつ",
+      "すぐ",
+      "おかあさん",
       "もうすぐ",
-      "じょうずだ",
       "まず"
     ],
     "answer": "まず",
@@ -2201,10 +3699,10 @@
     "word_id": "JA_E_0001",
     "prompt": "私",
     "choices": [
-      "곧",
-      "작다",
-      "좋다",
-      "나"
+      "하다",
+      "셋",
+      "나",
+      "너"
     ],
     "answer": "나",
     "meaning": "나",
@@ -2215,10 +3713,10 @@
     "word_id": "JA_E_0001",
     "prompt": "나",
     "choices": [
-      "悩む",
-      "ここ",
       "私",
-      "俺"
+      "一昨日",
+      "まず",
+      "間もなく"
     ],
     "answer": "私",
     "meaning": "나",
@@ -2229,10 +3727,10 @@
     "word_id": "JA_E_0001",
     "prompt": "わたし",
     "choices": [
+      "아들",
+      "우선",
       "나",
-      "거기",
-      "하나",
-      "한명"
+      "빠르다"
     ],
     "answer": "나",
     "meaning": "나",
@@ -2243,10 +3741,10 @@
     "word_id": "JA_E_0001",
     "prompt": "나",
     "choices": [
-      "まず",
+      "やすい",
       "わたし",
-      "きたない",
-      "きれいだ"
+      "むすめ",
+      "ゆう"
     ],
     "answer": "わたし",
     "meaning": "나",
@@ -2254,27 +3752,13 @@
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_E_0001",
-    "prompt": "わたくし",
-    "choices": [
-      "낮다",
-      "이것",
-      "나",
-      "구체적이다"
-    ],
-    "answer": "나",
-    "meaning": "나",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
     "word_id": "JA_E_0002",
     "prompt": "僕",
     "choices": [
-      "나",
-      "(회사·조직)다니다",
-      "하다",
-      "기간"
+      "지금",
+      "오늘",
+      "뒤",
+      "나"
     ],
     "answer": "나",
     "meaning": "나",
@@ -2285,10 +3769,10 @@
     "word_id": "JA_E_0002",
     "prompt": "나",
     "choices": [
-      "悩み",
-      "僕",
-      "これ",
-      "遅い"
+      "連絡先",
+      "もうすぐ",
+      "一つ",
+      "僕"
     ],
     "answer": "僕",
     "meaning": "나",
@@ -2299,10 +3783,10 @@
     "word_id": "JA_E_0002",
     "prompt": "ぼく",
     "choices": [
-      "저기",
-      "그~",
+      "하다",
+      "바로",
       "나",
-      "깨끗하다"
+      "밤"
     ],
     "answer": "나",
     "meaning": "나",
@@ -2313,10 +3797,10 @@
     "word_id": "JA_E_0002",
     "prompt": "나",
     "choices": [
-      "ひとつ",
       "ぼく",
-      "しんぱいする",
-      "おまえ"
+      "あさ",
+      "きみ",
+      "しんぱいする"
     ],
     "answer": "ぼく",
     "meaning": "나",
@@ -2327,10 +3811,10 @@
     "word_id": "JA_E_0003",
     "prompt": "俺",
     "choices": [
+      "느리다",
+      "오후",
       "나",
-      "이~",
-      "(회사·조직)다니다",
-      "높다"
+      "빠르다"
     ],
     "answer": "나",
     "meaning": "나",
@@ -2341,10 +3825,10 @@
     "word_id": "JA_E_0003",
     "prompt": "나",
     "choices": [
-      "高い",
-      "お前",
+      "後ろ",
       "俺",
-      "多い"
+      "朝",
+      "事"
     ],
     "answer": "俺",
     "meaning": "나",
@@ -2355,10 +3839,10 @@
     "word_id": "JA_E_0003",
     "prompt": "おれ",
     "choices": [
-      "많다",
-      "늦다",
-      "두다",
-      "나"
+      "나",
+      "넓다",
+      "저녁",
+      "그저께"
     ],
     "answer": "나",
     "meaning": "나",
@@ -2369,10 +3853,10 @@
     "word_id": "JA_E_0003",
     "prompt": "나",
     "choices": [
+      "きのう",
       "おれ",
-      "わたし",
-      "ひとつ",
-      "おく"
+      "ごはん",
+      "やる"
     ],
     "answer": "おれ",
     "meaning": "나",
@@ -2383,9 +3867,9 @@
     "word_id": "JA_E_0004",
     "prompt": "君",
     "choices": [
-      "작다",
-      "바로",
-      "(회사·조직)다니다",
+      "기간",
+      "그것",
+      "하다",
       "너"
     ],
     "answer": "너",
@@ -2398,9 +3882,9 @@
     "prompt": "너",
     "choices": [
       "君",
-      "する",
-      "綺麗だ",
-      "苦手だ"
+      "同じだ",
+      "下手だ",
+      "個"
     ],
     "answer": "君",
     "meaning": "너",
@@ -2411,10 +3895,10 @@
     "word_id": "JA_E_0004",
     "prompt": "きみ",
     "choices": [
-      "너",
-      "지금 당장",
-      "~개",
-      "저~"
+      "늦게",
+      "하다",
+      "어머니",
+      "너"
     ],
     "answer": "너",
     "meaning": "너",
@@ -2425,10 +3909,10 @@
     "word_id": "JA_E_0004",
     "prompt": "너",
     "choices": [
-      "する",
+      "ひろい",
       "きみ",
-      "わたくし",
-      "おなじだ"
+      "だいじょうぶだ",
+      "ぐたいてきだ"
     ],
     "answer": "きみ",
     "meaning": "너",
@@ -2436,13 +3920,13 @@
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_E_0005",
+    "word_id": "대명사",
     "prompt": "お前",
     "choices": [
+      "어머니",
+      "셋",
       "너",
-      "나쁘다",
-      "싸다",
-      "먼저"
+      "그것"
     ],
     "answer": "너",
     "meaning": "너",
@@ -2450,13 +3934,13 @@
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_E_0005",
+    "word_id": "대명사",
     "prompt": "너",
     "choices": [
-      "勝手だ",
+      "遅らせる",
       "お前",
-      "今すぐ",
-      "間"
+      "お母さん",
+      "ここ"
     ],
     "answer": "お前",
     "meaning": "너",
@@ -2464,13 +3948,13 @@
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_E_0005",
+    "word_id": "대명사",
     "prompt": "おまえ",
     "choices": [
       "너",
-      "같다",
-      "두다",
-      "괜찮다"
+      "저기",
+      "어제",
+      "사이"
     ],
     "answer": "너",
     "meaning": "너",
@@ -2478,13 +3962,13 @@
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_E_0005",
+    "word_id": "대명사",
     "prompt": "너",
     "choices": [
-      "にがてだ",
       "おまえ",
-      "すくない",
-      "しんぱいする"
+      "おくれる",
+      "きょう",
+      "ゆう"
     ],
     "answer": "おまえ",
     "meaning": "너",
@@ -2492,111 +3976,83 @@
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_E_0006",
+    "word_id": "대명사",
     "prompt": "これ",
     "choices": [
-      "서투르다",
-      "작다",
       "이것",
-      "구체적이다"
-    ],
-    "answer": "이것",
-    "meaning": "이것",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_E_0006",
-    "prompt": "이것",
-    "choices": [
-      "悩み",
-      "これ",
-      "俺",
-      "高い"
-    ],
-    "answer": "これ",
-    "meaning": "이것",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_E_0006",
-    "prompt": "これ",
-    "choices": [
-      "크다",
-      "같다",
-      "오다",
-      "이것"
-    ],
-    "answer": "이것",
-    "meaning": "이것",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_E_0006",
-    "prompt": "이것",
-    "choices": [
-      "きみ",
-      "ひくい",
-      "これ",
-      "この"
-    ],
-    "answer": "これ",
-    "meaning": "이것",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_E_0007",
-    "prompt": "それ",
-    "choices": [
-      "하다",
-      "그것",
-      "~할 틈도 없이",
-      "크다"
-    ],
-    "answer": "그것",
-    "meaning": "그것",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_E_0007",
-    "prompt": "그것",
-    "choices": [
-      "ここ",
-      "それ",
-      "俺",
-      "置く"
-    ],
-    "answer": "それ",
-    "meaning": "그것",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_E_0007",
-    "prompt": "それ",
-    "choices": [
-      "한명",
-      "그것",
-      "일단",
+      "곧",
+      "그저께",
       "걱정하다"
     ],
+    "answer": "이것",
+    "meaning": "이것",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "대명사",
+    "prompt": "이것",
+    "choices": [
+      "間",
+      "あの",
+      "家",
+      "これ"
+    ],
+    "answer": "これ",
+    "meaning": "이것",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "대명사",
+    "prompt": "これ",
+    "choices": [
+      "둘",
+      "이것",
+      "저것",
+      "먼저"
+    ],
+    "answer": "이것",
+    "meaning": "이것",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "대명사",
+    "prompt": "이것",
+    "choices": [
+      "これ",
+      "れんらく",
+      "おくらせる",
+      "いくつ"
+    ],
+    "answer": "これ",
+    "meaning": "이것",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "대명사",
+    "prompt": "それ",
+    "choices": [
+      "그것",
+      "저것",
+      "아버지",
+      "밥"
+    ],
     "answer": "그것",
     "meaning": "그것",
     "difficulty": "1",
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_E_0007",
+    "word_id": "대명사",
     "prompt": "그것",
     "choices": [
-      "とくいだ",
-      "あの",
-      "いい",
-      "それ"
+      "苦手",
+      "後で",
+      "それ",
+      "私"
     ],
     "answer": "それ",
     "meaning": "그것",
@@ -2604,13 +4060,41 @@
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_E_0008",
+    "word_id": "대명사",
+    "prompt": "それ",
+    "choices": [
+      "괜찮다",
+      "빠르다",
+      "일하다",
+      "그것"
+    ],
+    "answer": "그것",
+    "meaning": "그것",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "대명사",
+    "prompt": "그것",
+    "choices": [
+      "やる",
+      "とくいだ",
+      "それ",
+      "おかあさん"
+    ],
+    "answer": "それ",
+    "meaning": "그것",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "대명사",
     "prompt": "あれ",
     "choices": [
-      "바로",
+      "먼저",
       "저것",
-      "좋다",
-      "같다"
+      "느리다",
+      "밤"
     ],
     "answer": "저것",
     "meaning": "저것",
@@ -2618,12 +4102,40 @@
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_E_0008",
+    "word_id": "대명사",
     "prompt": "저것",
     "choices": [
-      "苦手だ",
-      "安い",
-      "これ",
+      "あれ",
+      "そこ",
+      "あの",
+      "お母さん"
+    ],
+    "answer": "あれ",
+    "meaning": "저것",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "대명사",
+    "prompt": "あれ",
+    "choices": [
+      "두명",
+      "저것",
+      "오후",
+      "위"
+    ],
+    "answer": "저것",
+    "meaning": "저것",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "대명사",
+    "prompt": "저것",
+    "choices": [
+      "それ",
+      "ま",
+      "しん",
       "あれ"
     ],
     "answer": "あれ",
@@ -2632,41 +4144,13 @@
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_E_0008",
-    "prompt": "あれ",
-    "choices": [
-      "셋",
-      "저것",
-      "일단",
-      "몇개"
-    ],
-    "answer": "저것",
-    "meaning": "저것",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_E_0008",
-    "prompt": "저것",
-    "choices": [
-      "たかい",
-      "あれ",
-      "じょうずだ",
-      "すぐ"
-    ],
-    "answer": "あれ",
-    "meaning": "저것",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_E_0009",
+    "word_id": "대명사",
     "prompt": "ここ",
     "choices": [
+      "둘",
+      "그저께",
       "여기",
-      "많다",
-      "작다",
-      "그~"
+      "아버지"
     ],
     "answer": "여기",
     "meaning": "여기",
@@ -2674,13 +4158,13 @@
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_E_0009",
+    "word_id": "대명사",
     "prompt": "여기",
     "choices": [
       "ここ",
-      "勝手だ",
-      "来る",
-      "その"
+      "下手だ",
+      "俺",
+      "携帯"
     ],
     "answer": "ここ",
     "meaning": "여기",
@@ -2688,13 +4172,13 @@
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_E_0009",
+    "word_id": "대명사",
     "prompt": "ここ",
     "choices": [
+      "앞",
       "일하다",
-      "일단",
-      "곧",
-      "여기"
+      "여기",
+      "어제"
     ],
     "answer": "여기",
     "meaning": "여기",
@@ -2702,13 +4186,13 @@
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_E_0009",
+    "word_id": "대명사",
     "prompt": "여기",
     "choices": [
       "ここ",
-      "まもなく",
-      "あの",
-      "とくいだ"
+      "すぐ",
+      "ひくい",
+      "かってだ"
     ],
     "answer": "ここ",
     "meaning": "여기",
@@ -2716,349 +4200,349 @@
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_E_0010",
+    "word_id": "대명사",
     "prompt": "そこ",
-    "choices": [
-      "먼저",
-      "거기",
-      "서투르다",
-      "고민하다"
-    ],
-    "answer": "거기",
-    "meaning": "거기",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_E_0010",
-    "prompt": "거기",
-    "choices": [
-      "悪い",
-      "そこ",
-      "この",
-      "具体的だ"
-    ],
-    "answer": "そこ",
-    "meaning": "거기",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_E_0010",
-    "prompt": "そこ",
-    "choices": [
-      "거기",
-      "서투르다",
-      "여기",
-      "낮다"
-    ],
-    "answer": "거기",
-    "meaning": "거기",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_E_0010",
-    "prompt": "거기",
-    "choices": [
-      "やすい",
-      "そこ",
-      "それ",
-      "いくら"
-    ],
-    "answer": "そこ",
-    "meaning": "거기",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_E_0011",
-    "prompt": "あそこ",
-    "choices": [
-      "두다",
-      "이것",
-      "몇개",
-      "저기"
-    ],
-    "answer": "저기",
-    "meaning": "저기",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_E_0011",
-    "prompt": "저기",
-    "choices": [
-      "二つ",
-      "あそこ",
-      "低い",
-      "この"
-    ],
-    "answer": "あそこ",
-    "meaning": "저기",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_E_0011",
-    "prompt": "あそこ",
-    "choices": [
-      "저~",
-      "저기",
-      "고민하다",
-      "좋다"
-    ],
-    "answer": "저기",
-    "meaning": "저기",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_E_0011",
-    "prompt": "저기",
-    "choices": [
-      "とりあえず",
-      "あそこ",
-      "よい",
-      "ひとつ"
-    ],
-    "answer": "あそこ",
-    "meaning": "저기",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_E_0012",
-    "prompt": "この",
-    "choices": [
-      "두명",
-      "서투르다",
-      "나",
-      "이~"
-    ],
-    "answer": "이~",
-    "meaning": "이~",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_E_0012",
-    "prompt": "이~",
-    "choices": [
-      "この",
-      "働く",
-      "良い",
-      "勤める"
-    ],
-    "answer": "この",
-    "meaning": "이~",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_E_0012",
-    "prompt": "この",
-    "choices": [
-      "거기",
-      "이~",
-      "일하다",
-      "하나"
-    ],
-    "answer": "이~",
-    "meaning": "이~",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_E_0012",
-    "prompt": "이~",
-    "choices": [
-      "ここ",
-      "この",
-      "やる",
-      "おおい"
-    ],
-    "answer": "この",
-    "meaning": "이~",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_E_0013",
-    "prompt": "その",
-    "choices": [
-      "서투르다",
-      "고민하다",
-      "하나",
-      "그~"
-    ],
-    "answer": "그~",
-    "meaning": "그~",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_E_0013",
-    "prompt": "그~",
-    "choices": [
-      "あそこ",
-      "その",
-      "得意だ",
-      "間もなく"
-    ],
-    "answer": "その",
-    "meaning": "그~",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_E_0013",
-    "prompt": "その",
-    "choices": [
-      "그~",
-      "잘하다",
-      "하다",
-      "거기"
-    ],
-    "answer": "그~",
-    "meaning": "그~",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_E_0013",
-    "prompt": "그~",
-    "choices": [
-      "おそい",
-      "きみ",
-      "その",
-      "ちいさい"
-    ],
-    "answer": "その",
-    "meaning": "그~",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_E_0014",
-    "prompt": "あの",
-    "choices": [
-      "두다",
-      "한명",
-      "~개",
-      "저~"
-    ],
-    "answer": "저~",
-    "meaning": "저~",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_E_0014",
-    "prompt": "저~",
-    "choices": [
-      "あの",
-      "同じだ",
-      "大きい",
-      "いくら"
-    ],
-    "answer": "あの",
-    "meaning": "저~",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_E_0014",
-    "prompt": "あの",
-    "choices": [
-      "이것",
-      "그것",
-      "저~",
-      "늦다"
-    ],
-    "answer": "저~",
-    "meaning": "저~",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_E_0014",
-    "prompt": "저~",
-    "choices": [
-      "あいだ もなく",
-      "あの",
-      "この",
-      "きれいだ"
-    ],
-    "answer": "あの",
-    "meaning": "저~",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_E_0015",
-    "prompt": "いくら",
-    "choices": [
-      "몇개",
-      "나쁘다",
-      "얼마",
-      "이제곧"
-    ],
-    "answer": "얼마",
-    "meaning": "얼마",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_E_0015",
-    "prompt": "얼마",
-    "choices": [
-      "いくら",
-      "その",
-      "大丈夫だ",
-      "勤める"
-    ],
-    "answer": "いくら",
-    "meaning": "얼마",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_E_0015",
-    "prompt": "いくら",
-    "choices": [
-      "기간",
-      "고민, 걱정",
-      "얼마",
-      "저~"
-    ],
-    "answer": "얼마",
-    "meaning": "얼마",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_E_0015",
-    "prompt": "얼마",
-    "choices": [
-      "その",
-      "わたし",
-      "あいだ もなく",
-      "いくら"
-    ],
-    "answer": "いくら",
-    "meaning": "얼마",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_E_0016",
-    "prompt": "一つ",
     "choices": [
       "너",
+      "거기",
+      "그저께",
+      "곧"
+    ],
+    "answer": "거기",
+    "meaning": "거기",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "대명사",
+    "prompt": "거기",
+    "choices": [
+      "同じだ",
+      "そこ",
+      "個",
+      "この"
+    ],
+    "answer": "そこ",
+    "meaning": "거기",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "대명사",
+    "prompt": "そこ",
+    "choices": [
       "하나",
+      "이것",
+      "부모",
+      "거기"
+    ],
+    "answer": "거기",
+    "meaning": "거기",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "대명사",
+    "prompt": "거기",
+    "choices": [
+      "ふたり",
+      "そこ",
+      "すぐ",
+      "ぼく"
+    ],
+    "answer": "そこ",
+    "meaning": "거기",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "대명사",
+    "prompt": "あそこ",
+    "choices": [
+      "저기",
+      "제멋대로다",
+      "앞",
+      "걱정하다"
+    ],
+    "answer": "저기",
+    "meaning": "저기",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "대명사",
+    "prompt": "저기",
+    "choices": [
+      "あそこ",
+      "夜",
+      "僕",
+      "俺"
+    ],
+    "answer": "あそこ",
+    "meaning": "저기",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "대명사",
+    "prompt": "あそこ",
+    "choices": [
+      "연락처",
+      "저기",
+      "친",
+      "앞"
+    ],
+    "answer": "저기",
+    "meaning": "저기",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "대명사",
+    "prompt": "저기",
+    "choices": [
+      "おかあさん",
+      "あそこ",
+      "いますぐ",
+      "やすい"
+    ],
+    "answer": "あそこ",
+    "meaning": "저기",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "기타",
+    "prompt": "この",
+    "choices": [
+      "저기",
+      "나쁘다",
+      "부모",
+      "이"
+    ],
+    "answer": "이",
+    "meaning": "이",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "기타",
+    "prompt": "이",
+    "choices": [
+      "今日",
+      "この",
+      "明後日",
+      "働く"
+    ],
+    "answer": "この",
+    "meaning": "이",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "기타",
+    "prompt": "この",
+    "choices": [
+      "기간",
+      "이",
+      "넓다",
+      "못하다"
+    ],
+    "answer": "이",
+    "meaning": "이",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "기타",
+    "prompt": "이",
+    "choices": [
+      "だいじょうぶだ",
+      "この",
+      "まえ",
+      "たかい"
+    ],
+    "answer": "この",
+    "meaning": "이",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "기타",
+    "prompt": "その",
+    "choices": [
+      "나",
+      "그",
+      "저기",
+      "한명"
+    ],
+    "answer": "그",
+    "meaning": "그",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "기타",
+    "prompt": "그",
+    "choices": [
+      "午前",
+      "同じだ",
+      "その",
+      "心配する"
+    ],
+    "answer": "その",
+    "meaning": "그",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "기타",
+    "prompt": "その",
+    "choices": [
+      "물건",
+      "싸다",
+      "그",
+      "모레"
+    ],
+    "answer": "그",
+    "meaning": "그",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "기타",
+    "prompt": "그",
+    "choices": [
+      "その",
+      "あす",
+      "これ",
+      "うしろ"
+    ],
+    "answer": "その",
+    "meaning": "그",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "기타",
+    "prompt": "あの",
+    "choices": [
+      "아버지",
+      "나중에",
+      "저",
+      "구체적이다"
+    ],
+    "answer": "저",
+    "meaning": "저",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "기타",
+    "prompt": "저",
+    "choices": [
+      "一つ",
+      "早い",
+      "今",
+      "あの"
+    ],
+    "answer": "あの",
+    "meaning": "저",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "기타",
+    "prompt": "あの",
+    "choices": [
+      "일하다",
+      "사이",
+      "그",
+      "저"
+    ],
+    "answer": "저",
+    "meaning": "저",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "기타",
+    "prompt": "저",
+    "choices": [
+      "きれいだ",
+      "やる",
+      "けいたい",
+      "あの"
+    ],
+    "answer": "あの",
+    "meaning": "저",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "부사",
+    "prompt": "いくら",
+    "choices": [
       "얼마",
-      "높다"
+      "저녁",
+      "깨끗하다",
+      "그저께"
+    ],
+    "answer": "얼마",
+    "meaning": "얼마",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "부사",
+    "prompt": "얼마",
+    "choices": [
+      "夕",
+      "いくら",
+      "今すぐ",
+      "連絡"
+    ],
+    "answer": "いくら",
+    "meaning": "얼마",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "부사",
+    "prompt": "いくら",
+    "choices": [
+      "거기",
+      "밥",
+      "이것",
+      "얼마"
+    ],
+    "answer": "얼마",
+    "meaning": "얼마",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "부사",
+    "prompt": "얼마",
+    "choices": [
+      "こ",
+      "れんらく",
+      "いくら",
+      "かってだ"
+    ],
+    "answer": "いくら",
+    "meaning": "얼마",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "명사",
+    "prompt": "一つ",
+    "choices": [
+      "그저께",
+      "너",
+      "하나",
+      "우선"
     ],
     "answer": "하나",
     "meaning": "하나",
@@ -3066,13 +4550,13 @@
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_E_0016",
+    "word_id": "명사",
     "prompt": "하나",
     "choices": [
-      "心配する",
-      "下手だ",
+      "あの",
       "一つ",
-      "三つ"
+      "いくら",
+      "その"
     ],
     "answer": "一つ",
     "meaning": "하나",
@@ -3080,13 +4564,13 @@
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_E_0016",
+    "word_id": "명사",
     "prompt": "ひとつ",
     "choices": [
-      "고민하다",
-      "오다",
+      "위",
+      "거기",
       "하나",
-      "저~"
+      "걱정하다"
     ],
     "answer": "하나",
     "meaning": "하나",
@@ -3094,13 +4578,13 @@
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_E_0016",
+    "word_id": "명사",
     "prompt": "하나",
     "choices": [
-      "わたくし",
-      "なやむ",
-      "しごとする",
-      "ひとつ"
+      "ひとつ",
+      "おくらせる",
+      "よる",
+      "やすい"
     ],
     "answer": "ひとつ",
     "meaning": "하나",
@@ -3108,13 +4592,13 @@
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_E_0017",
+    "word_id": "명사",
     "prompt": "二つ",
     "choices": [
-      "늦다",
       "둘",
-      "~개",
-      "오다"
+      "딸",
+      "물건",
+      "위"
     ],
     "answer": "둘",
     "meaning": "둘",
@@ -3122,13 +4606,13 @@
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_E_0017",
+    "word_id": "명사",
     "prompt": "둘",
     "choices": [
-      "小さい",
-      "お前",
+      "事",
+      "まず",
       "二つ",
-      "少ない"
+      "低い"
     ],
     "answer": "二つ",
     "meaning": "둘",
@@ -3136,13 +4620,13 @@
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_E_0017",
+    "word_id": "명사",
     "prompt": "ふたつ",
     "choices": [
-      "둘",
-      "이것",
-      "많다",
-      "저것"
+      "느리다",
+      "한명",
+      "나",
+      "둘"
     ],
     "answer": "둘",
     "meaning": "둘",
@@ -3150,12 +4634,12 @@
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_E_0017",
+    "word_id": "명사",
     "prompt": "둘",
     "choices": [
-      "あいだ",
-      "もうすぐ",
-      "これ",
+      "いくつ",
+      "ひくい",
+      "うち",
       "ふたつ"
     ],
     "answer": "ふたつ",
@@ -3164,13 +4648,13 @@
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_E_0018",
+    "word_id": "명사",
     "prompt": "三つ",
     "choices": [
-      "저것",
+      "기간",
+      "물건",
       "셋",
-      "괜찮다",
-      "높다"
+      "잘하다"
     ],
     "answer": "셋",
     "meaning": "셋",
@@ -3178,12 +4662,12 @@
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_E_0018",
+    "word_id": "명사",
     "prompt": "셋",
     "choices": [
-      "やる",
-      "期間",
-      "小さい",
+      "一人",
+      "これ",
+      "朝",
       "三つ"
     ],
     "answer": "三つ",
@@ -3192,13 +4676,13 @@
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_E_0018",
+    "word_id": "명사",
     "prompt": "みっつ",
     "choices": [
-      "높다",
-      "~개",
-      "저기",
-      "셋"
+      "셋",
+      "모레",
+      "집",
+      "밥"
     ],
     "answer": "셋",
     "meaning": "셋",
@@ -3206,13 +4690,13 @@
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_E_0018",
+    "word_id": "명사",
     "prompt": "셋",
     "choices": [
-      "あそこ",
+      "よい",
       "みっつ",
-      "きたない",
-      "あの"
+      "あと",
+      "まもなく"
     ],
     "answer": "みっつ",
     "meaning": "셋",
@@ -3220,13 +4704,13 @@
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_E_0019",
+    "word_id": "명사",
     "prompt": "いくつ",
     "choices": [
+      "두명",
       "먼저",
-      "한명",
-      "나",
-      "몇개"
+      "몇개",
+      "늦다"
     ],
     "answer": "몇개",
     "meaning": "몇개",
@@ -3234,13 +4718,13 @@
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_E_0019",
+    "word_id": "명사",
     "prompt": "몇개",
     "choices": [
-      "働く",
       "いくつ",
-      "ここ",
-      "する"
+      "間",
+      "そこ",
+      "低い"
     ],
     "answer": "いくつ",
     "meaning": "몇개",
@@ -3248,13 +4732,13 @@
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_E_0019",
+    "word_id": "명사",
     "prompt": "いくつ",
     "choices": [
-      "여기",
-      "하다",
-      "나",
-      "몇개"
+      "오늘",
+      "오전",
+      "몇개",
+      "괜찮다"
     ],
     "answer": "몇개",
     "meaning": "몇개",
@@ -3262,13 +4746,13 @@
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_E_0019",
+    "word_id": "명사",
     "prompt": "몇개",
     "choices": [
-      "あいだ もなく",
-      "すくない",
-      "おれ",
-      "いくつ"
+      "いくつ",
+      "むすこ",
+      "とりあえず",
+      "もうすぐ"
     ],
     "answer": "いくつ",
     "meaning": "몇개",
@@ -3276,13 +4760,13 @@
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_E_0020",
+    "word_id": "명사",
     "prompt": "一人",
     "choices": [
+      "늦다",
       "한명",
-      "두다",
-      "사이",
-      "이제곧"
+      "우선",
+      "밥"
     ],
     "answer": "한명",
     "meaning": "한명",
@@ -3290,13 +4774,13 @@
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_E_0020",
+    "word_id": "명사",
     "prompt": "한명",
     "choices": [
       "一人",
-      "いくつ",
-      "やる",
-      "早い"
+      "間",
+      "明後日",
+      "ご飯"
     ],
     "answer": "一人",
     "meaning": "한명",
@@ -3304,13 +4788,13 @@
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_E_0020",
+    "word_id": "명사",
     "prompt": "ひとり",
     "choices": [
+      "친",
       "한명",
-      "같다",
-      "~할 틈도 없이",
-      "이제곧"
+      "셋",
+      "늦게"
     ],
     "answer": "한명",
     "meaning": "한명",
@@ -3318,13 +4802,13 @@
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_E_0020",
+    "word_id": "명사",
     "prompt": "한명",
     "choices": [
-      "ひとり",
-      "しんぱいする",
-      "じょうずだ",
-      "この"
+      "いま",
+      "なやむ",
+      "うしろ",
+      "ひとり"
     ],
     "answer": "ひとり",
     "meaning": "한명",
@@ -3332,40 +4816,12 @@
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_E_0021",
+    "word_id": "명사",
     "prompt": "二人",
     "choices": [
-      "~할 틈도 없이",
-      "나",
-      "두명",
-      "늦다"
-    ],
-    "answer": "두명",
-    "meaning": "두명",
-    "difficulty": "1",
-    "question_type": "word_to_meaning"
-  },
-  {
-    "word_id": "JA_E_0021",
-    "prompt": "두명",
-    "choices": [
-      "まず",
-      "この",
-      "今すぐ",
-      "二人"
-    ],
-    "answer": "二人",
-    "meaning": "두명",
-    "difficulty": "1",
-    "question_type": "meaning_to_word"
-  },
-  {
-    "word_id": "JA_E_0021",
-    "prompt": "ふたり",
-    "choices": [
-      "나",
-      "기간",
-      "저~",
+      "같다",
+      "일",
+      "먼저",
       "두명"
     ],
     "answer": "두명",
@@ -3374,13 +4830,41 @@
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_E_0021",
+    "word_id": "명사",
     "prompt": "두명",
     "choices": [
-      "よい",
-      "いい",
-      "ふたり",
-      "くる"
+      "まず",
+      "二人",
+      "君",
+      "綺麗だ"
+    ],
+    "answer": "二人",
+    "meaning": "두명",
+    "difficulty": "1",
+    "question_type": "meaning_to_word"
+  },
+  {
+    "word_id": "명사",
+    "prompt": "ふたり",
+    "choices": [
+      "두명",
+      "셋",
+      "연락",
+      "걱정하다"
+    ],
+    "answer": "두명",
+    "meaning": "두명",
+    "difficulty": "1",
+    "question_type": "word_to_meaning"
+  },
+  {
+    "word_id": "명사",
+    "prompt": "두명",
+    "choices": [
+      "こと",
+      "やすい",
+      "とりあえず",
+      "ふたり"
     ],
     "answer": "ふたり",
     "meaning": "두명",
@@ -3388,69 +4872,69 @@
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_E_0022",
+    "word_id": "명사",
     "prompt": "個",
     "choices": [
-      "~개",
-      "너",
-      "한명",
-      "제멋대로다"
+      "일",
+      "몇개",
+      "아침",
+      "개"
     ],
-    "answer": "~개",
-    "meaning": "~개",
+    "answer": "개",
+    "meaning": "개",
     "difficulty": "1",
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_E_0022",
-    "prompt": "~개",
+    "word_id": "명사",
+    "prompt": "개",
     "choices": [
       "もうすぐ",
-      "悩み",
-      "一つ",
-      "個"
+      "個",
+      "お父さん",
+      "すぐ"
     ],
     "answer": "個",
-    "meaning": "~개",
+    "meaning": "개",
     "difficulty": "1",
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_E_0022",
+    "word_id": "명사",
     "prompt": "こ",
     "choices": [
-      "바로",
-      "너",
-      "~개",
-      "저것"
+      "모레",
+      "아버지",
+      "개",
+      "저기"
     ],
-    "answer": "~개",
-    "meaning": "~개",
+    "answer": "개",
+    "meaning": "개",
     "difficulty": "1",
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_E_0022",
-    "prompt": "~개",
+    "word_id": "명사",
+    "prompt": "개",
     "choices": [
-      "おおきい",
-      "いくら",
+      "きみ",
+      "あとで",
       "こ",
-      "へただ"
+      "ひる"
     ],
     "answer": "こ",
-    "meaning": "~개",
+    "meaning": "개",
     "difficulty": "1",
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_E_0023",
+    "word_id": "명사",
     "prompt": "期間",
     "choices": [
-      "기간",
-      "이르다",
-      "나쁘다",
-      "몇개"
+      "늦다",
+      "부모",
+      "물건",
+      "기간"
     ],
     "answer": "기간",
     "meaning": "기간",
@@ -3458,13 +4942,13 @@
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_E_0023",
+    "word_id": "명사",
     "prompt": "기간",
     "choices": [
+      "この",
+      "二つ",
       "期間",
-      "間もなく",
-      "来る",
-      "悪い"
+      "午後"
     ],
     "answer": "期間",
     "meaning": "기간",
@@ -3472,13 +4956,13 @@
     "question_type": "meaning_to_word"
   },
   {
-    "word_id": "JA_E_0023",
+    "word_id": "명사",
     "prompt": "きかん",
     "choices": [
-      "낮다",
-      "기간",
-      "저기",
-      "하나"
+      "같다",
+      "그저께",
+      "거기",
+      "기간"
     ],
     "answer": "기간",
     "meaning": "기간",
@@ -3486,13 +4970,13 @@
     "question_type": "word_to_meaning"
   },
   {
-    "word_id": "JA_E_0023",
+    "word_id": "명사",
     "prompt": "기간",
     "choices": [
-      "おれ",
-      "ぐたいてきだ",
-      "おなじだ",
-      "きかん"
+      "きれいだ",
+      "いくら",
+      "きかん",
+      "あとで"
     ],
     "answer": "きかん",
     "meaning": "기간",
