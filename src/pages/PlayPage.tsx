@@ -533,6 +533,22 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
   }, [playerId, selectedLanguage, sessionConfig]);
 
   useEffect(() => {
+    if (!isSessionStarted) {
+      return;
+    }
+
+    if (!playerId || !selectedLanguage) {
+      appLogger.warning("play", "세션 중 필수 상태가 사라짐", {
+        mode,
+        currentIndex,
+        playerId,
+        selectedLanguage,
+        path: location.pathname,
+      });
+    }
+  }, [currentIndex, isSessionStarted, location.pathname, mode, playerId, selectedLanguage]);
+
+  useEffect(() => {
     if (availablePartOfSpeechFilters.length === 0) {
       return;
     }
@@ -662,6 +678,12 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
 
   async function finishGame(nextAnswerLog: PendingAnswer[], nextScore: number, nextHeartsLeft: number) {
     if (!playerId || !selectedLanguage) {
+      appLogger.warning("play", "세션 종료 중 필수 상태 부족으로 홈 이동", {
+        mode,
+        currentIndex,
+        playerId,
+        selectedLanguage,
+      });
       navigate("/home");
       return;
     }

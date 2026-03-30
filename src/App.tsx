@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { AppShell } from "./components/AppShell";
 import { ProtectedRoute } from "./components/ProtectedRoute";
@@ -9,8 +10,40 @@ import { PlayPage } from "./pages/PlayPage";
 import { ResultPage } from "./pages/ResultPage";
 import { ReviewPage } from "./pages/ReviewPage";
 import { StatsPage } from "./pages/StatsPage";
+import { appLogger } from "./services/logger";
 
 export default function App() {
+  useEffect(() => {
+    function handleError(event: ErrorEvent) {
+      appLogger.error("runtime", "전역 런타임 오류 감지", {
+        message: event.message,
+        filename: event.filename,
+        lineno: event.lineno,
+        colno: event.colno,
+      });
+    }
+
+    function handleRejection(event: PromiseRejectionEvent) {
+      appLogger.error("runtime", "처리되지 않은 Promise 오류 감지", {
+        reason:
+          event.reason instanceof Error
+            ? {
+                message: event.reason.message,
+                stack: event.reason.stack,
+              }
+            : String(event.reason),
+      });
+    }
+
+    window.addEventListener("error", handleError);
+    window.addEventListener("unhandledrejection", handleRejection);
+
+    return () => {
+      window.removeEventListener("error", handleError);
+      window.removeEventListener("unhandledrejection", handleRejection);
+    };
+  }, []);
+
   return (
     <AppShell>
       <Routes>

@@ -1,4 +1,16 @@
-﻿## 2026-03-27 Phase 5 CI static-json export fix
+﻿## 2026-03-30 Phase 5 session-exit debug logging
+
+- Completed:
+  - Added persistent debug logging in localStorage so redirects and runtime errors can be inspected after page transitions
+  - Logged ProtectedRoute auth redirects, global runtime errors, and missing session state inside PlayPage
+- Verified:
+  - 
+pm run test -- src/services/logger.test.ts
+  - 
+pm run build
+- Next:
+  - Reproduce the unexpected session exit once and inspect the stored debug log entries to isolate the actual trigger
+## 2026-03-27 Phase 5 CI static-json export fix
 
 - Completed:
   - Rebuilt the GitHub Actions static JSON export workflow to refresh Japanese and English together
@@ -1331,6 +1343,7 @@ Phase 4: ?⑥쥒??疫꿸퀡???곕떽?
   - GUI?먯꽌 ?쒕퉬??怨꾩젙 寃쎈줈/?쒗듃 ID/異쒕젰 ?대뜑/?몄뼱 ?뺣낫/而ㅻ컠 硫붿떆吏瑜??ъ엯?ν븯吏 ?딅룄濡?媛쒖꽑
 - 寃利?
   - `python -m py_compile scripts/json_publish_gui.py scripts/export_words_json.py`
+
 
 
 
