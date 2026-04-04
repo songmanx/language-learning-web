@@ -1,24 +1,36 @@
 import { mockEnglishWords, mockJapaneseWords } from "../features/game/mockWords";
 import {
+  type LeaderboardEntryDto,
+  type LeaderboardRecord,
   type ApiResponse,
+  type ClearPlayerProgressResponseDto,
   type LanguageMeta,
   type LanguageMetaDto,
   type LoginRequest,
   type LoginResponseDto,
   type LoginSession,
+  type PlayerStats,
+  type PlayerStatsDto,
   type SaveSessionRequest,
   type SaveSessionResponseDto,
   type WordItem,
   type WordItemDto,
 } from "./apiTypes";
 import {
+  mapLeaderboardEntry,
   mapLanguageMeta,
   mapLoginResponse,
+  mapPlayerStats,
   mapSaveSessionResponse,
   mapWordItem,
 } from "./gasMappers";
 import { appLogger } from "./logger";
 import { getRuntimeConfig } from "./runtimeConfig";
+import {
+  readDailyStatsSnapshot,
+  readGlobalLeaderboard,
+  readLeaderboard,
+} from "./sessionRecovery";
 
 export type {
   AnswerLog,
@@ -26,9 +38,11 @@ export type {
   ApiErrorResponse,
   ApiResponse,
   ApiSuccessResponse,
+  LeaderboardRecord,
   LanguageMeta,
   LoginRequest,
   LoginSession,
+  PlayerStats,
   QuestionType,
   ReviewStateRecord,
   SaveSessionRequest,
@@ -275,5 +289,70 @@ export const apiClient = {
     });
     const dto: SaveSessionResponseDto = await mockDelay({ saved: true }, 100);
     return mapSaveSessionResponse(dto);
+  },
+  async getPlayerStats(playerId: string, languageCode: string): Promise<PlayerStats | null> {
+    if (!useMockApi) {
+      const dto = await postToGas<PlayerStatsDto | null>("getPlayerStats", { playerId, languageCode });
+      return dto ? mapPlayerStats(dto) : null;
+    }
+
+    const snapshot = readDailyStatsSnapshot(playerId, languageCode);
+    if (!snapshot) {
+      return mockDelay(null);
+    }
+
+    return mockDelay({
+      playerId,
+      sessionCount: snapshot.sessionCount,
+      practiceSessionCount: snapshot.practiceSessionCount,
+      totalScore: snapshot.totalScore,
+      bestScore: snapshot.bestScore,
+      totalQuestions: snapshot.totalQuestions,
+      correctAnswers: snapshot.correctAnswers,
+      averageAccuracy: snapshot.averageAccuracy,
+      lastPlayedAt: snapshot.lastPlayedAt,
+    });
+  },
+  async getLeaderboard(playerId: string, languageCode: string): Promise<LeaderboardRecord[]> {
+    if (!useMockApi) {
+      const dto = await postToGas<LeaderboardEntryDto[]>("getLeaderboard", { playerId, languageCode });
+      return dto.map(mapLeaderboardEntry);
+    }
+
+    return mockDelay(
+      readLeaderboard(playerId, languageCode).map((entry) => ({
+        playedAt: entry.playedAt,
+        totalTimeSec: entry.totalTimeSec,
+        score: entry.score,
+        quizMode: entry.quizMode,
+        playerId: entry.playerId,
+        nickname: entry.nickname,
+      })),
+    );
+  },
+  async getOverallLeaderboard(languageCode: string): Promise<LeaderboardRecord[]> {
+    if (!useMockApi) {
+      const dto = await postToGas<LeaderboardEntryDto[]>("getOverallLeaderboard", { languageCode });
+      return dto.map(mapLeaderboardEntry);
+    }
+
+    return mockDelay(
+      readGlobalLeaderboard(languageCode).map((entry) => ({
+        playedAt: entry.playedAt,
+        totalTimeSec: entry.totalTimeSec,
+        score: entry.score,
+        quizMode: entry.quizMode,
+        playerId: entry.playerId,
+        nickname: entry.nickname,
+      })),
+    );
+  },
+  async clearPlayerProgress(playerId: string, languageCode: string): Promise<void> {
+    if (!useMockApi) {
+      await postToGas<ClearPlayerProgressResponseDto>("clearPlayerProgress", { playerId, languageCode });
+      return;
+    }
+
+    return Promise.resolve();
   },
 };

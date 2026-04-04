@@ -3,10 +3,9 @@ import userEvent from "@testing-library/user-event";
 import { MemoryRouter, Route, Routes, useLocation } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { StatsPage } from "./StatsPage";
+import { apiClient } from "../services/apiClient";
 import {
   readDailyStatsSnapshot,
-  writeDailyStatsSnapshot,
-  writeLeaderboard,
   writeSessionConfigSnapshot,
 } from "../services/sessionRecovery";
 import { useAuthStore } from "../stores/authStore";
@@ -27,6 +26,7 @@ function RouteProbe() {
 describe("StatsPage", () => {
   beforeEach(() => {
     window.localStorage.clear();
+    vi.restoreAllMocks();
     useAuthStore.setState({
       isLoggedIn: true,
       token: "mock-token",
@@ -49,8 +49,8 @@ describe("StatsPage", () => {
 
   it("shows reordered sections with quiz-mode leaderboard filtering", async () => {
     const user = userEvent.setup();
-
-    writeDailyStatsSnapshot("player-demo", "ja", {
+    vi.spyOn(apiClient, "getPlayerStats").mockResolvedValue({
+      playerId: "player-demo",
       sessionCount: 3,
       practiceSessionCount: 1,
       totalScore: 86,
@@ -60,7 +60,7 @@ describe("StatsPage", () => {
       averageAccuracy: 80,
       lastPlayedAt: "2026-03-18T10:00:00.000Z",
     });
-    writeLeaderboard("player-demo", "ja", [
+    vi.spyOn(apiClient, "getLeaderboard").mockResolvedValue([
       {
         playedAt: "2026-03-18T10:00:00.000Z",
         totalTimeSec: 18,
@@ -81,13 +81,12 @@ describe("StatsPage", () => {
       </MemoryRouter>,
     );
 
-    const headings = screen.getAllByRole("heading");
-    expect(headings[1]).toHaveTextContent("\uC131\uACFC \uC694\uC57D");
-    expect(headings[2]).toHaveTextContent("\uC21C\uC704\uD45C");
+    expect(await screen.findByRole("heading", { name: "\uC131\uACFC \uC694\uC57D" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "\uC21C\uC704\uD45C" })).toBeInTheDocument();
     expect(screen.getByText("\uB204\uC801 \uC9D1\uACC4 \uC644\uB8CC")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "\uC804\uCCB4 \uC21C\uC704\uD45C" })).toBeInTheDocument();
 
-    expect(screen.getAllByText("42").length).toBeGreaterThan(0);
+    expect((await screen.findAllByText("42")).length).toBeGreaterThan(0);
     expect(screen.queryByText("35")).not.toBeInTheDocument();
 
     await user.click(screen.getByRole("button", { name: MODE_MEANING_KANJI }));
@@ -96,6 +95,9 @@ describe("StatsPage", () => {
   });
 
   it("shows empty stats and empty leaderboard messages without snapshot", () => {
+    vi.spyOn(apiClient, "getPlayerStats").mockResolvedValue(null);
+    vi.spyOn(apiClient, "getLeaderboard").mockResolvedValue([]);
+
     render(
       <MemoryRouter>
         <StatsPage />
@@ -108,6 +110,8 @@ describe("StatsPage", () => {
 
   it("moves home from stats", async () => {
     const user = userEvent.setup();
+    vi.spyOn(apiClient, "getPlayerStats").mockResolvedValue(null);
+    vi.spyOn(apiClient, "getLeaderboard").mockResolvedValue([]);
 
     render(
       <MemoryRouter initialEntries={["/stats"]}>
@@ -125,6 +129,8 @@ describe("StatsPage", () => {
 
   it("passes session config when replay starts", async () => {
     const user = userEvent.setup();
+    vi.spyOn(apiClient, "getPlayerStats").mockResolvedValue(null);
+    vi.spyOn(apiClient, "getLeaderboard").mockResolvedValue([]);
 
     render(
       <MemoryRouter initialEntries={["/stats"]}>
@@ -143,8 +149,9 @@ describe("StatsPage", () => {
   it("clears only the current player's saved progress when confirmed", async () => {
     const user = userEvent.setup();
     const confirmSpy = vi.spyOn(window, "confirm").mockReturnValue(true);
-
-    writeDailyStatsSnapshot("player-demo", "ja", {
+    const clearProgressSpy = vi.spyOn(apiClient, "clearPlayerProgress").mockResolvedValue();
+    vi.spyOn(apiClient, "getPlayerStats").mockResolvedValue({
+      playerId: "player-demo",
       sessionCount: 3,
       practiceSessionCount: 1,
       totalScore: 86,
@@ -154,6 +161,7 @@ describe("StatsPage", () => {
       averageAccuracy: 80,
       lastPlayedAt: "2026-03-18T10:00:00.000Z",
     });
+    vi.spyOn(apiClient, "getLeaderboard").mockResolvedValue([]);
 
     render(
       <MemoryRouter>
@@ -163,11 +171,15 @@ describe("StatsPage", () => {
 
     await user.click(screen.getByRole("button", { name: "\uB0B4 \uAE30\uB85D \uC0AD\uC81C" }));
 
+    expect(clearProgressSpy).toHaveBeenCalledWith("player-demo", "ja");
     expect(readDailyStatsSnapshot("player-demo", "ja")).toBeNull();
     confirmSpy.mockRestore();
   });
 
   it("shows only english quiz modes when english is selected", () => {
+    vi.spyOn(apiClient, "getPlayerStats").mockResolvedValue(null);
+    vi.spyOn(apiClient, "getLeaderboard").mockResolvedValue([]);
+
     useLanguageStore.setState({
       selectedLanguage: "en",
       availableLanguages: [{ languageCode: "en", label: "\uC601\uC5B4", totalWords: 12 }],

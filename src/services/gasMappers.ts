@@ -1,8 +1,12 @@
 import {
+  type LeaderboardEntryDto,
+  type LeaderboardRecord,
   type LanguageMeta,
   type LanguageMetaDto,
   type LoginResponseDto,
   type LoginSession,
+  type PlayerStats,
+  type PlayerStatsDto,
   type SaveSessionResponseDto,
   type WordItem,
   type WordItemDto,
@@ -39,5 +43,30 @@ export function mapWordItem(dto: WordItemDto): WordItem {
 export function mapSaveSessionResponse(dto: SaveSessionResponseDto) {
   return {
     ok: dto.saved,
+  };
+}
+
+export function mapPlayerStats(dto: PlayerStatsDto): PlayerStats {
+  return {
+    playerId: dto.player_id,
+    sessionCount: dto.session_count,
+    practiceSessionCount: dto.practice_session_count,
+    totalScore: dto.total_score,
+    bestScore: dto.best_score,
+    totalQuestions: dto.total_questions,
+    correctAnswers: dto.correct_answers,
+    averageAccuracy: dto.average_accuracy,
+    lastPlayedAt: dto.last_played_at,
+  };
+}
+
+export function mapLeaderboardEntry(dto: LeaderboardEntryDto): LeaderboardRecord {
+  return {
+    playedAt: dto.played_at,
+    totalTimeSec: dto.total_time_sec,
+    score: dto.score,
+    quizMode: dto.quiz_mode,
+    playerId: dto.player_id,
+    nickname: dto.nickname,
   };
 }

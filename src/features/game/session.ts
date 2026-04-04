@@ -25,6 +25,7 @@ function resolveQuizType(answers: SessionAnswerInput[]): QuestionType | "mixed" 
 
 export function buildSaveSessionPayload(args: {
   playerId: string;
+  nickname?: string;
   languageCode: string;
   modeType: SessionMode;
   totalTimeSec: number;
@@ -46,6 +47,7 @@ export function buildSaveSessionPayload(args: {
 
   return {
     playerId: args.playerId,
+    nickname: args.nickname,
     languageCode: args.languageCode,
     modeType: args.modeType,
     quizType: resolveQuizType(args.answers),

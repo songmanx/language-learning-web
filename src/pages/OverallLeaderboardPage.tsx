@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   getQuizModeLabel,
@@ -6,7 +6,7 @@ import {
   normalizeQuizModeFilter,
   type SessionConfig,
 } from "../features/game/sessionConfig";
-import { readGlobalLeaderboard, type LeaderboardEntry } from "../services/sessionRecovery";
+import { apiClient, type LeaderboardRecord } from "../services/apiClient";
 import { useLanguageStore } from "../stores/languageStore";
 
 type QuizModeValue = SessionConfig["quizMode"];
@@ -34,7 +34,7 @@ function formatDateParts(value: string) {
   };
 }
 
-function normalizeQuizMode(entry: LeaderboardEntry) {
+function normalizeQuizMode(entry: LeaderboardRecord) {
   return normalizeQuizModeFilter(entry.quizMode);
 }
 
@@ -43,6 +43,7 @@ export function OverallLeaderboardPage() {
   const selectedLanguage = useLanguageStore((state) => state.selectedLanguage);
   const availableLanguages = useLanguageStore((state) => state.availableLanguages);
   const [selectedQuizMode, setSelectedQuizMode] = useState<QuizModeValue>("kanji_to_meaning");
+  const [leaderboardEntries, setLeaderboardEntries] = useState<LeaderboardRecord[]>([]);
   const quizModeOptions = useMemo(
     () =>
       getSupportedQuizModes(selectedLanguage).map((value) => ({
@@ -57,15 +58,40 @@ export function OverallLeaderboardPage() {
     selectedLanguage ??
     "-";
 
-  const leaderboard = useMemo(() => {
-    if (!selectedLanguage) {
-      return [];
+  const leaderboard = useMemo(
+    () => leaderboardEntries.filter((entry) => normalizeQuizMode(entry) === selectedQuizMode).slice(0, 50),
+    [leaderboardEntries, selectedQuizMode],
+  );
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadOverallLeaderboard() {
+      if (!selectedLanguage) {
+        if (!cancelled) {
+          setLeaderboardEntries([]);
+        }
+        return;
+      }
+
+      try {
+        const nextLeaderboard = await apiClient.getOverallLeaderboard(selectedLanguage);
+        if (!cancelled) {
+          setLeaderboardEntries(nextLeaderboard);
+        }
+      } catch {
+        if (!cancelled) {
+          setLeaderboardEntries([]);
+        }
+      }
     }
 
-    return readGlobalLeaderboard(selectedLanguage)
-      .filter((entry) => normalizeQuizMode(entry) === selectedQuizMode)
-      .slice(0, 50);
-  }, [selectedLanguage, selectedQuizMode]);
+    void loadOverallLeaderboard();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [selectedLanguage]);
 
   return (
     <section className="space-y-4 pb-4">

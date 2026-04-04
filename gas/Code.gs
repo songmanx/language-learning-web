@@ -17,7 +17,31 @@ var SHEET_NAMES = {
   ANSWER_LOG: "Answer_Log",
   REVIEW_STATE: "Review_State",
   DAILY_STATS: "Daily_Stats",
+  PLAYER_STATS: "Player_Stats",
+  PERSONAL_LEADERBOARD: "Personal_Leaderboard",
+  GLOBAL_LEADERBOARD: "Global_Leaderboard",
 };
+
+var PLAYER_STATS_HEADERS_ = [
+  { label: "Player ID", key: "player_id" },
+  { label: "Session Count", key: "session_count" },
+  { label: "Practice Session Count", key: "practice_session_count" },
+  { label: "Total Score", key: "total_score" },
+  { label: "Best Score", key: "best_score" },
+  { label: "Total Questions", key: "total_questions" },
+  { label: "Correct Answers", key: "correct_answers" },
+  { label: "Average Accuracy", key: "average_accuracy" },
+  { label: "Last Played At", key: "last_played_at" },
+];
+
+var LEADERBOARD_HEADERS_ = [
+  { label: "Player ID", key: "player_id" },
+  { label: "Nickname", key: "nickname" },
+  { label: "Quiz Mode", key: "quiz_mode" },
+  { label: "Played At", key: "played_at" },
+  { label: "Total Time Sec", key: "total_time_sec" },
+  { label: "Score", key: "score" },
+];
 
 var DEFAULT_TIMEZONE = "Asia/Seoul";
 var DEFAULT_CHOICE_COUNT = 4;
@@ -36,6 +60,14 @@ function doPost(e) {
         return jsonSuccess_(handleGetWords_(body));
       case "saveSession":
         return jsonSuccess_(handleSaveSession_(body));
+      case "getPlayerStats":
+        return jsonSuccess_(handleGetPlayerStats_(body));
+      case "getLeaderboard":
+        return jsonSuccess_(handleGetLeaderboard_(body));
+      case "getOverallLeaderboard":
+        return jsonSuccess_(handleGetOverallLeaderboard_(body));
+      case "clearPlayerProgress":
+        return jsonSuccess_(handleClearPlayerProgress_(body));
       default:
         return jsonError_("UNKNOWN_ERROR", "지원하지 않는 action 입니다.");
     }
@@ -138,13 +170,14 @@ function handleSaveSession_(body) {
 
     var recordSpreadsheet = openSpreadsheetByKey_(recordKey);
     var now = new Date();
-    var sessionId = buildSessionId_(payload.playerId, now);
     var savedAt = formatTimestamp_(now);
 
-    appendGameLog_(recordSpreadsheet, sessionId, savedAt, payload);
-    appendAnswerLog_(recordSpreadsheet, sessionId, savedAt, payload);
-    upsertReviewState_(recordSpreadsheet, savedAt, payload);
-    upsertDailyStats_(recordSpreadsheet, now, savedAt, payload);
+    upsertPlayerStats_(recordSpreadsheet, savedAt, payload);
+
+    if (isLeaderboardEligibleSession_(payload)) {
+      upsertPersonalLeaderboard_(recordSpreadsheet, savedAt, payload);
+      upsertGlobalLeaderboard_(recordSpreadsheet, savedAt, payload);
+    }
 
     return {
       saved: true,
@@ -154,6 +187,109 @@ function handleSaveSession_(body) {
       throw error;
     }
     throwApiError_("SAVE_FAILED", error && error.message ? error.message : "세션 저장에 실패했습니다.");
+  }
+}
+
+function handleGetPlayerStats_(body) {
+  try {
+    var playerId = String(body.playerId || "");
+    var languageCode = String(body.languageCode || "");
+    var recordKey = getRecordSheetKeyByLanguage_(languageCode);
+
+    if (!playerId || !recordKey) {
+      return null;
+    }
+
+    var spreadsheet = openSpreadsheetByKey_(recordKey);
+    var sheet = getOrCreateAggregateSheet_(spreadsheet, SHEET_NAMES.PLAYER_STATS, PLAYER_STATS_HEADERS_);
+    var rows = sheetToObjects_(sheet);
+    var row = rows.find(function(item) {
+      return String(item.player_id || "") === playerId;
+    });
+
+    return row ? mapPlayerStatsDto_(row) : null;
+  } catch (error) {
+    throwApiError_("STATS_LOAD_FAILED", error && error.message ? error.message : "통계를 불러오지 못했습니다.");
+  }
+}
+
+function handleGetLeaderboard_(body) {
+  try {
+    var playerId = String(body.playerId || "");
+    var languageCode = String(body.languageCode || "");
+    var recordKey = getRecordSheetKeyByLanguage_(languageCode);
+
+    if (!playerId || !recordKey) {
+      return [];
+    }
+
+    var spreadsheet = openSpreadsheetByKey_(recordKey);
+    var sheet = getOrCreateAggregateSheet_(spreadsheet, SHEET_NAMES.PERSONAL_LEADERBOARD, LEADERBOARD_HEADERS_);
+
+    return sheetToObjects_(sheet)
+      .filter(function(row) {
+        return String(row.player_id || "") === playerId;
+      })
+      .sort(compareLeaderboardRows_)
+      .map(mapLeaderboardDto_);
+  } catch (error) {
+    throwApiError_("LEADERBOARD_LOAD_FAILED", error && error.message ? error.message : "순위표를 불러오지 못했습니다.");
+  }
+}
+
+function handleGetOverallLeaderboard_(body) {
+  try {
+    var languageCode = String(body.languageCode || "");
+    var recordKey = getRecordSheetKeyByLanguage_(languageCode);
+
+    if (!recordKey) {
+      return [];
+    }
+
+    var spreadsheet = openSpreadsheetByKey_(recordKey);
+    var sheet = getOrCreateAggregateSheet_(spreadsheet, SHEET_NAMES.GLOBAL_LEADERBOARD, LEADERBOARD_HEADERS_);
+
+    return sheetToObjects_(sheet)
+      .sort(compareLeaderboardRows_)
+      .map(mapLeaderboardDto_);
+  } catch (error) {
+    throwApiError_("LEADERBOARD_LOAD_FAILED", error && error.message ? error.message : "전체 순위표를 불러오지 못했습니다.");
+  }
+}
+
+function handleClearPlayerProgress_(body) {
+  try {
+    var playerId = String(body.playerId || "");
+    var languageCode = String(body.languageCode || "");
+    var recordKey = getRecordSheetKeyByLanguage_(languageCode);
+
+    if (!playerId || !recordKey) {
+      return { cleared: false };
+    }
+
+    var spreadsheet = openSpreadsheetByKey_(recordKey);
+    removeRowsByMatcher_(
+      getOrCreateAggregateSheet_(spreadsheet, SHEET_NAMES.PLAYER_STATS, PLAYER_STATS_HEADERS_),
+      function(row) {
+        return String(row.player_id || "") !== playerId;
+      }
+    );
+    removeRowsByMatcher_(
+      getOrCreateAggregateSheet_(spreadsheet, SHEET_NAMES.PERSONAL_LEADERBOARD, LEADERBOARD_HEADERS_),
+      function(row) {
+        return String(row.player_id || "") !== playerId;
+      }
+    );
+    removeRowsByMatcher_(
+      getOrCreateAggregateSheet_(spreadsheet, SHEET_NAMES.GLOBAL_LEADERBOARD, LEADERBOARD_HEADERS_),
+      function(row) {
+        return String(row.player_id || "") !== playerId;
+      }
+    );
+
+    return { cleared: true };
+  } catch (error) {
+    throwApiError_("SAVE_FAILED", error && error.message ? error.message : "기록 삭제에 실패했습니다.");
   }
 }
 
@@ -295,6 +431,122 @@ function upsertDailyStats_(spreadsheet, now, savedAt, payload) {
   }
 
   appendObjectRow_(sheet, nextRow);
+}
+
+function upsertPlayerStats_(spreadsheet, savedAt, payload) {
+  var sheet = getOrCreateAggregateSheet_(spreadsheet, SHEET_NAMES.PLAYER_STATS, PLAYER_STATS_HEADERS_);
+  var rows = sheetToObjects_(sheet);
+  var existingIndex = -1;
+  var existingRow = null;
+
+  rows.some(function(row, index) {
+    var matched = String(row.player_id || "") === String(payload.playerId);
+    if (matched) {
+      existingIndex = index + getDataStartRow_(sheet);
+      existingRow = row;
+    }
+    return matched;
+  });
+
+  var nextSessionCount = Number(existingRow && existingRow.session_count || 0) + (payload.modeType === "standard" ? 1 : 0);
+  var nextPracticeCount = Number(existingRow && existingRow.practice_session_count || 0) + (payload.modeType === "practice" ? 1 : 0);
+  var nextTotalScore = Number(existingRow && existingRow.total_score || 0) + Number(payload.score || 0);
+  var nextTotalQuestions = Number(existingRow && existingRow.total_questions || 0) + Number(payload.totalQuestions || 0);
+  var nextCorrectAnswers = Number(existingRow && existingRow.correct_answers || 0) + Number(payload.correctAnswers || 0);
+
+  var nextRow = {
+    player_id: payload.playerId,
+    session_count: nextSessionCount,
+    practice_session_count: nextPracticeCount,
+    total_score: nextTotalScore,
+    best_score: Math.max(Number(existingRow && existingRow.best_score || 0), Number(payload.score || 0)),
+    total_questions: nextTotalQuestions,
+    correct_answers: nextCorrectAnswers,
+    average_accuracy: nextTotalQuestions > 0 ? Math.round((nextCorrectAnswers / nextTotalQuestions) * 100) : 0,
+    last_played_at: savedAt,
+  };
+
+  if (existingIndex > 0) {
+    updateObjectRow_(sheet, existingIndex, nextRow);
+    return;
+  }
+
+  appendObjectRow_(sheet, nextRow);
+}
+
+function upsertPersonalLeaderboard_(spreadsheet, savedAt, payload) {
+  var sheet = getOrCreateAggregateSheet_(spreadsheet, SHEET_NAMES.PERSONAL_LEADERBOARD, LEADERBOARD_HEADERS_);
+  var nextEntry = buildLeaderboardRow_(savedAt, payload);
+
+  rewriteRankedSheetRows_(
+    sheet,
+    function(row) {
+      return String(row.player_id || "") === String(payload.playerId) &&
+        String(row.quiz_mode || "") === String(payload.quizType || "");
+    },
+    function(row) {
+      return String(row.player_id || "") === String(payload.playerId);
+    },
+    nextEntry,
+    10
+  );
+}
+
+function upsertGlobalLeaderboard_(spreadsheet, savedAt, payload) {
+  var sheet = getOrCreateAggregateSheet_(spreadsheet, SHEET_NAMES.GLOBAL_LEADERBOARD, LEADERBOARD_HEADERS_);
+  var nextEntry = buildLeaderboardRow_(savedAt, payload);
+
+  rewriteRankedSheetRows_(
+    sheet,
+    function(row) {
+      return String(row.quiz_mode || "") === String(payload.quizType || "");
+    },
+    function() {
+      return true;
+    },
+    nextEntry,
+    50
+  );
+}
+
+function rewriteRankedSheetRows_(sheet, scopeMatcher, preserveMatcher, nextEntry, limit) {
+  var rows = sheetToObjects_(sheet);
+  var scopedRows = rows.filter(scopeMatcher);
+  var preservedRows = rows.filter(function(row) {
+    return preserveMatcher(row) && !scopeMatcher(row);
+  });
+  var nextScopedRows = scopedRows.concat([nextEntry]).sort(compareLeaderboardRows_).slice(0, limit);
+  var headerKeys = getHeaderKeys_(sheet);
+  var dataStartRow = getDataStartRow_(sheet);
+  var finalRows = preservedRows.concat(nextScopedRows);
+
+  clearSheetDataRows_(sheet, dataStartRow, headerKeys.length);
+
+  if (finalRows.length === 0) {
+    return;
+  }
+
+  sheet
+    .getRange(dataStartRow, 1, finalRows.length, headerKeys.length)
+    .setValues(finalRows.map(function(row) {
+      return buildRowValuesByKeys_(headerKeys, row);
+    }));
+}
+
+function buildLeaderboardRow_(savedAt, payload) {
+  return {
+    player_id: payload.playerId,
+    nickname: String(payload.nickname || payload.playerId || ""),
+    quiz_mode: String(payload.quizType || ""),
+    played_at: savedAt,
+    total_time_sec: Number(payload.totalTimeSec || 0),
+    score: Number(payload.score || 0),
+  };
+}
+
+function isLeaderboardEligibleSession_(payload) {
+  return payload.modeType === "standard" &&
+    !(Number(payload.heartsLeft || 0) <= 0 && Number(payload.totalQuestions || 0) < 20);
 }
 
 function parseRequestBody_(e) {
@@ -475,6 +727,50 @@ function updateObjectRow_(sheet, rowNumber, rowObject) {
   var headerKeys = getHeaderKeys_(sheet);
   var rowValues = buildRowValuesByKeys_(headerKeys, rowObject);
   sheet.getRange(rowNumber, 1, 1, rowValues.length).setValues([rowValues]);
+}
+
+function getOrCreateAggregateSheet_(spreadsheet, sheetName, headers) {
+  var sheet = spreadsheet.getSheetByName(sheetName);
+
+  if (sheet) {
+    return sheet;
+  }
+
+  sheet = spreadsheet.insertSheet(sheetName);
+  sheet.getRange(1, 1, 1, headers.length).setValues([headers.map(function(header) {
+    return header.label;
+  })]);
+  sheet.getRange(2, 1, 1, headers.length).setValues([headers.map(function(header) {
+    return header.key;
+  })]);
+  return sheet;
+}
+
+function clearSheetDataRows_(sheet, dataStartRow, columnCount) {
+  var maxRows = sheet.getMaxRows();
+  if (maxRows < dataStartRow) {
+    return;
+  }
+
+  sheet.getRange(dataStartRow, 1, maxRows - dataStartRow + 1, columnCount).clearContent();
+}
+
+function removeRowsByMatcher_(sheet, keepMatcher) {
+  var headerKeys = getHeaderKeys_(sheet);
+  var dataStartRow = getDataStartRow_(sheet);
+  var nextRows = sheetToObjects_(sheet).filter(keepMatcher);
+
+  clearSheetDataRows_(sheet, dataStartRow, headerKeys.length);
+
+  if (nextRows.length === 0) {
+    return;
+  }
+
+  sheet
+    .getRange(dataStartRow, 1, nextRows.length, headerKeys.length)
+    .setValues(nextRows.map(function(row) {
+      return buildRowValuesByKeys_(headerKeys, row);
+    }));
 }
 
 function buildRowValuesByKeys_(headerKeys, rowObject) {
@@ -684,6 +980,49 @@ function groupAnswerLogByWord_(answerLog) {
     }
     return result;
   }, {});
+}
+
+function compareLeaderboardRows_(left, right) {
+  var leftScore = Number(left.score || 0);
+  var rightScore = Number(right.score || 0);
+
+  if (rightScore !== leftScore) {
+    return rightScore - leftScore;
+  }
+
+  var leftTime = Number(left.total_time_sec || 0);
+  var rightTime = Number(right.total_time_sec || 0);
+
+  if (leftTime !== rightTime) {
+    return leftTime - rightTime;
+  }
+
+  return String(right.played_at || "").localeCompare(String(left.played_at || ""));
+}
+
+function mapPlayerStatsDto_(row) {
+  return {
+    player_id: String(row.player_id || ""),
+    session_count: Number(row.session_count || 0),
+    practice_session_count: Number(row.practice_session_count || 0),
+    total_score: Number(row.total_score || 0),
+    best_score: Number(row.best_score || 0),
+    total_questions: Number(row.total_questions || 0),
+    correct_answers: Number(row.correct_answers || 0),
+    average_accuracy: Number(row.average_accuracy || 0),
+    last_played_at: String(row.last_played_at || ""),
+  };
+}
+
+function mapLeaderboardDto_(row) {
+  return {
+    played_at: String(row.played_at || ""),
+    total_time_sec: Number(row.total_time_sec || 0),
+    score: Number(row.score || 0),
+    quiz_mode: String(row.quiz_mode || ""),
+    player_id: String(row.player_id || ""),
+    nickname: String(row.nickname || ""),
+  };
 }
 
 function mapReviewStageToStatus_(reviewStage) {

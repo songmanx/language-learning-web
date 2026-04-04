@@ -1,4 +1,4 @@
-import { useMemo, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import type { SessionResultState } from "../features/game/resultState";
 import {
@@ -6,7 +6,7 @@ import {
   getReadableSessionConfigLabels as getSessionConfigLabels,
   normalizeQuizModeFilter,
 } from "../features/game/sessionConfig";
-import { readLeaderboard } from "../services/sessionRecovery";
+import { apiClient, type LeaderboardRecord } from "../services/apiClient";
 
 const STANDARD_QUESTION_LIMIT = 20;
 
@@ -139,6 +139,41 @@ export function ResultPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const result = location.state as SessionResultState | undefined;
+  const [leaderboard, setLeaderboard] = useState<LeaderboardRecord[]>([]);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadLeaderboard() {
+      if (!result || result.payload.modeType !== "standard") {
+        if (!cancelled) {
+          setLeaderboard([]);
+        }
+        return;
+      }
+
+      try {
+        const nextLeaderboard = await apiClient.getLeaderboard(result.payload.playerId, result.payload.languageCode);
+        if (!cancelled) {
+          setLeaderboard(
+            nextLeaderboard
+              .filter((entry) => normalizeQuizModeFilter(entry.quizMode) === (result.sessionConfig ?? DEFAULT_SESSION_CONFIG).quizMode)
+              .slice(0, 10),
+          );
+        }
+      } catch {
+        if (!cancelled) {
+          setLeaderboard([]);
+        }
+      }
+    }
+
+    void loadLeaderboard();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [result]);
 
   if (!result) {
     return (
@@ -177,17 +212,6 @@ export function ResultPage() {
         : accuracy >= 70
           ? TEXT.practiceStart
           : TEXT.moveReview;
-
-  const leaderboard = useMemo(() => {
-    if (payload.modeType !== "standard") {
-      return [];
-    }
-
-    return readLeaderboard(payload.playerId, payload.languageCode)
-      .filter((entry) => normalizeQuizModeFilter(entry.quizMode) === sessionConfig.quizMode)
-      .slice(0, 10);
-  }, [payload.languageCode, payload.modeType, payload.playerId, sessionConfig.quizMode]);
-
   const actionCards = [
     {
       title: TEXT.playAgain,

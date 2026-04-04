@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   DEFAULT_SESSION_CONFIG,
@@ -9,11 +9,9 @@ import {
 } from "../features/game/sessionConfig";
 import {
   clearPlayerProgress,
-  readDailyStatsSnapshot,
-  readLeaderboard,
   readSessionConfigSnapshot,
-  type LeaderboardEntry,
 } from "../services/sessionRecovery";
+import { apiClient, type LeaderboardRecord, type PlayerStats } from "../services/apiClient";
 import { useAuthStore } from "../stores/authStore";
 import { useLanguageStore } from "../stores/languageStore";
 
@@ -67,7 +65,7 @@ function formatDateParts(value: string) {
   };
 }
 
-function normalizeQuizMode(entry: LeaderboardEntry) {
+function normalizeQuizMode(entry: LeaderboardRecord) {
   return normalizeQuizModeFilter(entry.quizMode);
 }
 
@@ -78,6 +76,8 @@ export function StatsPage() {
   const availableLanguages = useLanguageStore((state) => state.availableLanguages);
   const [selectedQuizMode, setSelectedQuizMode] = useState<QuizModeValue>("kanji_to_meaning");
   const [resetTick, setResetTick] = useState(0);
+  const [snapshot, setSnapshot] = useState<PlayerStats | null>(null);
+  const [leaderboard, setLeaderboard] = useState<LeaderboardRecord[]>([]);
   const quizModeOptions = useMemo(
     () =>
       getSupportedQuizModes(selectedLanguage).map((value) => ({
@@ -86,14 +86,6 @@ export function StatsPage() {
       })),
     [selectedLanguage],
   );
-
-  const snapshot = useMemo(() => {
-    if (!playerId || !selectedLanguage) {
-      return null;
-    }
-
-    return readDailyStatsSnapshot(playerId, selectedLanguage);
-  }, [playerId, resetTick, selectedLanguage]);
 
   const sessionConfigSnapshot = useMemo(() => {
     if (!playerId || !selectedLanguage) {
@@ -104,14 +96,47 @@ export function StatsPage() {
   }, [playerId, resetTick, selectedLanguage]);
 
   const filteredLeaderboard = useMemo(() => {
-    if (!playerId || !selectedLanguage) {
-      return [];
+    return leaderboard.filter((entry) => normalizeQuizMode(entry) === selectedQuizMode).slice(0, 10);
+  }, [leaderboard, selectedQuizMode]);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadRemoteStats() {
+      if (!playerId || !selectedLanguage) {
+        if (!cancelled) {
+          setSnapshot(null);
+          setLeaderboard([]);
+        }
+        return;
+      }
+
+      try {
+        const [nextSnapshot, nextLeaderboard] = await Promise.all([
+          apiClient.getPlayerStats(playerId, selectedLanguage),
+          apiClient.getLeaderboard(playerId, selectedLanguage),
+        ]);
+
+        if (cancelled) {
+          return;
+        }
+
+        setSnapshot(nextSnapshot);
+        setLeaderboard(nextLeaderboard);
+      } catch {
+        if (!cancelled) {
+          setSnapshot(null);
+          setLeaderboard([]);
+        }
+      }
     }
 
-    return readLeaderboard(playerId, selectedLanguage)
-      .filter((entry) => normalizeQuizMode(entry) === selectedQuizMode)
-      .slice(0, 10);
-  }, [playerId, resetTick, selectedLanguage, selectedQuizMode]);
+    void loadRemoteStats();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [playerId, resetTick, selectedLanguage]);
 
   const languageLabel =
     availableLanguages.find((language) => language.languageCode === selectedLanguage)?.label ??
@@ -157,7 +182,7 @@ export function StatsPage() {
     },
   ];
 
-  function handleResetAll() {
+  async function handleResetAll() {
     if (!playerId || !selectedLanguage) {
       return;
     }
@@ -166,6 +191,7 @@ export function StatsPage() {
       return;
     }
 
+    await apiClient.clearPlayerProgress(playerId, selectedLanguage);
     clearPlayerProgress(playerId, selectedLanguage);
     setResetTick((previous) => previous + 1);
   }

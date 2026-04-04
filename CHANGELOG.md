@@ -1816,3 +1816,8 @@ pm run test 39揶????궢, `npm run build` ???궢
 - Fixed standard-mode fail-out sessions so runs that end by losing all hearts no longer enter the personal/global leaderboards.
 - Added a PlayPage regression test to keep failed standard runs out of leaderboard storage.
 - Validation: `npm run test -- src/pages/PlayPage.test.tsx`, `npm run build`.
+## 2026-04-04
+
+- Switched stats, personal leaderboard, and overall leaderboard reads from browser-local snapshots to GAS-backed aggregate APIs.
+- Reduced GAS save persistence to compact aggregate sheets (`Player_Stats`, `Personal_Leaderboard`, `Global_Leaderboard`) so cross-device rankings stay shared without scanning full answer logs.
+- Validation: `npm run test -- src/pages/StatsPage.test.tsx src/pages/OverallLeaderboardPage.test.tsx src/pages/ResultPage.test.tsx`, `npm run test -- src/pages/PlayPage.test.tsx`, `npm run build`.

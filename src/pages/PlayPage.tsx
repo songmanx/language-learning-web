@@ -770,6 +770,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
 
     const payload: SaveSessionRequest = buildSaveSessionPayload({
       playerId,
+      nickname: nickname ?? playerId,
       languageCode: selectedLanguage,
       modeType: isReviewMode ? "practice" : mode,
       totalTimeSec: Math.max(0, Math.ceil((Date.now() - sessionStartedAt) / 1000)),

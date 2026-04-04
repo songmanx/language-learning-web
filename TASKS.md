@@ -1413,3 +1413,15 @@ Phase 4: ?⑥쥒??疫꿸퀡???곕떽?
   - `npm run build`
 - Next:
   - Verify on the deployed app that 탈락 결과는 순위표에 보이지 않고 완주 기록만 남는지 확인
+## 2026-04-04 Phase 5 GAS aggregate leaderboard sync
+
+- Completed:
+  - Moved stats, personal leaderboard, and overall leaderboard reads to new GAS aggregate APIs instead of per-device localStorage snapshots
+  - Changed GAS session saving to maintain compact aggregate sheets for player stats and ranking tables
+  - Kept leaderboard writes limited to standard completed runs so cross-device ranking stays lightweight and shared
+- Verified:
+  - `npm run test -- src/pages/StatsPage.test.tsx src/pages/OverallLeaderboardPage.test.tsx src/pages/ResultPage.test.tsx`
+  - `npm run test -- src/pages/PlayPage.test.tsx`
+  - `npm run build`
+- Next:
+  - Deploy the updated GAS script and verify the same account and different accounts share the same ranking/stat data across PC and mobile

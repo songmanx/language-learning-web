@@ -1,10 +1,10 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter, Route, Routes, useLocation } from "react-router-dom";
-import { beforeEach, describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { ResultPage } from "./ResultPage";
 import type { SessionResultState } from "../features/game/resultState";
-import { writeLeaderboard } from "../services/sessionRecovery";
+import { apiClient } from "../services/apiClient";
 
 function RouteProbe() {
   const location = useLocation();
@@ -60,7 +60,8 @@ const resultState: SessionResultState = {
 describe("ResultPage", () => {
   beforeEach(() => {
     window.localStorage.clear();
-    writeLeaderboard("player-demo", "ja", [
+    vi.restoreAllMocks();
+    vi.spyOn(apiClient, "getLeaderboard").mockResolvedValue([
       {
         playedAt: "2026-03-25T10:00:00.000Z",
         totalTimeSec: 32,
@@ -76,7 +77,7 @@ describe("ResultPage", () => {
     ]);
   });
 
-  it("shows compact result summary with ranking", () => {
+  it("shows compact result summary with ranking", async () => {
     render(
       <MemoryRouter initialEntries={[{ pathname: "/result", state: resultState }]}>
         <Routes>
@@ -93,7 +94,7 @@ describe("ResultPage", () => {
     expect(screen.getByRole("button", { name: "다시하기" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "통계" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "홈" })).toBeInTheDocument();
-    expect(screen.getByText("180")).toBeInTheDocument();
+    expect(await screen.findByText("180")).toBeInTheDocument();
     expect(screen.getAllByRole("button")[0]).toHaveAccessibleName("다시하기");
     expect(screen.getByRole("heading", { name: "오답 정리" })).toBeInTheDocument();
     expect(screen.getByText("猫")).toBeInTheDocument();
@@ -194,8 +195,8 @@ describe("ResultPage", () => {
     expect(screen.getByText("meaning_to_kanji")).toBeInTheDocument();
   });
 
-  it("shows english session config labels and english leaderboard entries", () => {
-    writeLeaderboard("player-demo", "en", [
+  it("shows english session config labels and english leaderboard entries", async () => {
+    vi.spyOn(apiClient, "getLeaderboard").mockResolvedValue([
       {
         playedAt: "2026-03-26T10:00:00.000Z",
         totalTimeSec: 22,
@@ -232,6 +233,6 @@ describe("ResultPage", () => {
     );
 
     expect(screen.getByText(/출제 구성:\s*뜻 → 단어/)).toBeInTheDocument();
-    expect(screen.getByText("210")).toBeInTheDocument();
+    expect(await screen.findByText("210")).toBeInTheDocument();
   });
 });

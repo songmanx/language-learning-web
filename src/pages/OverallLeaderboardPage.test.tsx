@@ -1,9 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
-import { beforeEach, describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { OverallLeaderboardPage } from "./OverallLeaderboardPage";
-import { writeGlobalLeaderboard } from "../services/sessionRecovery";
+import { apiClient } from "../services/apiClient";
 import { useLanguageStore } from "../stores/languageStore";
 
 const MODE_MEANING_KANJI = "\uB73B \u2192 \uD55C\uC790";
@@ -14,6 +14,7 @@ const MODE_AUDIO_MEANING = "\uC74C\uC131 \u2192 \uB73B";
 describe("OverallLeaderboardPage", () => {
   beforeEach(() => {
     window.localStorage.clear();
+    vi.restoreAllMocks();
     useLanguageStore.setState({
       selectedLanguage: "ja",
       availableLanguages: [{ languageCode: "ja", label: "\uC77C\uBCF8\uC5B4", totalWords: 10 }],
@@ -25,8 +26,7 @@ describe("OverallLeaderboardPage", () => {
 
   it("shows global top 50 entries filtered by quiz mode", async () => {
     const user = userEvent.setup();
-
-    writeGlobalLeaderboard("ja", [
+    vi.spyOn(apiClient, "getOverallLeaderboard").mockResolvedValue([
       {
         playedAt: "2026-03-18T10:00:00.000Z",
         totalTimeSec: 18,
@@ -52,7 +52,7 @@ describe("OverallLeaderboardPage", () => {
     );
 
     expect(screen.getAllByText("\uC804\uCCB4 \uC21C\uC704\uD45C").length).toBeGreaterThan(0);
-    expect(screen.getByText("Alpha")).toBeInTheDocument();
+    expect(await screen.findByText("Alpha")).toBeInTheDocument();
     expect(screen.queryByText("Beta")).not.toBeInTheDocument();
 
     await user.click(screen.getByRole("button", { name: MODE_MEANING_KANJI }));
@@ -62,6 +62,7 @@ describe("OverallLeaderboardPage", () => {
 
   it("moves home from overall leaderboard", async () => {
     const user = userEvent.setup();
+    vi.spyOn(apiClient, "getOverallLeaderboard").mockResolvedValue([]);
 
     render(
       <MemoryRouter initialEntries={["/leaderboard"]}>
@@ -78,6 +79,8 @@ describe("OverallLeaderboardPage", () => {
   });
 
   it("shows only english quiz modes when english is selected", () => {
+    vi.spyOn(apiClient, "getOverallLeaderboard").mockResolvedValue([]);
+
     useLanguageStore.setState({
       selectedLanguage: "en",
       availableLanguages: [{ languageCode: "en", label: "\uC601\uC5B4", totalWords: 12 }],
