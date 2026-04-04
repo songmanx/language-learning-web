@@ -695,7 +695,6 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
       sessionConfig,
       queueSize: configuredWords.length,
     });
-    const incorrectAnswers = buildIncorrectAnswerSummaries(nextAnswerLog, configuredWords);
   }
 
   useEffect(() => {
@@ -787,6 +786,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
         earnedScore: answer.earnedScore,
       })),
     });
+    const incorrectAnswers = buildIncorrectAnswerSummaries(nextAnswerLog, configuredWords);
 
     const mergedReviewState = mergeReviewState(reviewSnapshot?.reviewState ?? [], nextAnswerLog, mode);
     writeReviewSnapshot(playerId, selectedLanguage, mergedReviewState);

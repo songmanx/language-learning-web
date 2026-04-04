@@ -1356,6 +1356,18 @@ Phase 4: ?⑥쥒??疫꿸퀡???곕떽?
 
 
 
+## 2026-04-04 Phase 5 result wrong-answer summary
+
+- Completed:
+  - Added result-state incorrect-answer summaries from PlayPage so ResultPage can show missed prompts with correct answers
+  - Added a compact `오답 정리` section to the result screen that only renders missed items
+  - Added regression coverage for the wrong-answer summary rendering on ResultPage
+- Verified:
+  - `npm run test -- src/pages/ResultPage.test.tsx src/pages/PlayPage.test.tsx`
+  - `npm run build`
+- Next:
+  - Check one real failed answer flow in the browser to confirm wording and spacing feel right on mobile
+
 ## 2026-04-04 Phase 5 result replay auto-start
 
 - Completed:
