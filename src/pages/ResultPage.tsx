@@ -20,9 +20,11 @@ const TEXT = {
   resultSummary: "결과 요약",
   score: "점수",
   correctAnswers: "정답 수",
+  incorrectAnswers: "오답 수",
   accuracy: "정답률",
   failed: "탈락",
   heartsLeft: "남은 하트",
+  totalQuestions: "총 문제",
   sessionMode: "플레이 모드",
   quizType: "출제 구성",
   totalTime: "세션 시간",
@@ -34,7 +36,7 @@ const TEXT = {
   moveReview: "복습",
   statsPage: "통계",
   backHome: "홈",
-  gradeExcellent: "매우 좋아요",
+  gradeExcellent: "매우 좋았어요",
   gradeGood: "좋은 흐름",
   gradeKeepGoing: "계속 해봐요",
   gradeRetry: "복습 추천",
@@ -42,8 +44,8 @@ const TEXT = {
   standardModeLabel: "기본 플레이",
   practiceModeLabel: "연습 모드",
   reviewModeLabel: "복습 모드",
-  wordToMeaningLabel: "단어 -> 뜻",
-  meaningToWordLabel: "뜻 -> 단어",
+  wordToMeaningLabel: "단어 → 뜻",
+  meaningToWordLabel: "뜻 → 단어",
   wrongAnswersTitle: "오답 정리",
   wrongAnswersEmpty: "이번 세션에는 오답이 없습니다.",
   promptLabel: "문제",
@@ -145,7 +147,7 @@ export function ResultPage() {
     let cancelled = false;
 
     async function loadLeaderboard() {
-      if (!result || result.payload.modeType !== "standard") {
+      if (!result || result.payload.modeType !== "standard" || result.sessionConfig?.gameStyle === "self_check") {
         if (!cancelled) {
           setLeaderboard([]);
         }
@@ -157,7 +159,10 @@ export function ResultPage() {
         if (!cancelled) {
           setLeaderboard(
             nextLeaderboard
-              .filter((entry) => normalizeQuizModeFilter(entry.quizMode) === (result.sessionConfig ?? DEFAULT_SESSION_CONFIG).quizMode)
+              .filter(
+                (entry) =>
+                  normalizeQuizModeFilter(entry.quizMode) === (result.sessionConfig ?? DEFAULT_SESSION_CONFIG).quizMode,
+              )
               .slice(0, 10),
           );
         }
@@ -191,21 +196,25 @@ export function ResultPage() {
   }
 
   const { payload, saveStatus, message, incorrectAnswers = [] } = result;
+  const sessionConfig = result.sessionConfig ?? DEFAULT_SESSION_CONFIG;
   const accuracy = getAccuracy(payload.correctAnswers, payload.totalQuestions);
   const didFailOut =
     payload.modeType === "standard" &&
     payload.heartsLeft <= 0 &&
     payload.totalQuestions < STANDARD_QUESTION_LIMIT;
+  const isSelfCheckResult = sessionConfig.gameStyle === "self_check";
   const performanceGrade = getPerformanceGrade(accuracy, payload.heartsLeft);
   const modeLabel = getModeLabel(payload.modeType, result.displayMode);
   const quizTypeLabel = getQuizTypeLabel(payload.quizType);
   const durationLabel = formatDuration(payload.totalTimeSec);
   const averageResponseLabel = formatAverageResponse(payload.answerLog);
-  const sessionConfig = result.sessionConfig ?? DEFAULT_SESSION_CONFIG;
   const sessionConfigLabels = getSessionConfigLabels(sessionConfig, payload.languageCode);
   const replayPath = getReplayPath(result.displayMode);
-  const primaryAction =
-    saveStatus === "pending"
+  const primaryAction = isSelfCheckResult
+    ? incorrectAnswers.length > 0
+      ? TEXT.moveReview
+      : TEXT.playAgain
+    : saveStatus === "pending"
       ? TEXT.moveReview
       : accuracy >= 90
         ? TEXT.playAgain
@@ -237,7 +246,7 @@ export function ResultPage() {
           : "border-white/10 bg-white/8 text-stone-100 hover:border-white/15 hover:bg-white/10",
       action: () => navigate("/practice", { state: { sessionConfig } }),
     },
-  ];
+  ].filter((card) => !isSelfCheckResult || card.title !== TEXT.practiceStart);
 
   return (
     <section className="space-y-3 pb-2">
@@ -254,10 +263,21 @@ export function ResultPage() {
           {TEXT.resultSummary}
         </h2>
         <div className="mt-1 grid grid-cols-2 gap-px">
-          <SummaryCard label={TEXT.score} value={String(payload.score)} compact />
-          <SummaryCard label={TEXT.correctAnswers} value={`${payload.correctAnswers} / ${payload.totalQuestions}`} compact />
-          <SummaryCard label={TEXT.accuracy} value={didFailOut ? TEXT.failed : `${accuracy}%`} compact />
-          <SummaryCard label={TEXT.heartsLeft} value={String(payload.heartsLeft)} compact />
+          {isSelfCheckResult ? (
+            <>
+              <SummaryCard label={TEXT.correctAnswers} value={String(payload.correctAnswers)} compact />
+              <SummaryCard label={TEXT.incorrectAnswers} value={String(payload.totalQuestions - payload.correctAnswers)} compact />
+              <SummaryCard label={TEXT.accuracy} value={`${accuracy}%`} compact />
+              <SummaryCard label={TEXT.totalQuestions} value={String(payload.totalQuestions)} compact />
+            </>
+          ) : (
+            <>
+              <SummaryCard label={TEXT.score} value={String(payload.score)} compact />
+              <SummaryCard label={TEXT.correctAnswers} value={`${payload.correctAnswers} / ${payload.totalQuestions}`} compact />
+              <SummaryCard label={TEXT.accuracy} value={didFailOut ? TEXT.failed : `${accuracy}%`} compact />
+              <SummaryCard label={TEXT.heartsLeft} value={String(payload.heartsLeft)} compact />
+            </>
+          )}
         </div>
         <div className="mt-1 border-t border-white/10 pt-1">
           <div className="flex flex-wrap items-center gap-1.5">
@@ -327,6 +347,7 @@ export function ResultPage() {
         </div>
         <div className="mt-1 rounded-[0.6rem] border border-white/10 bg-stone-950/30 p-1.5">
           <div className="flex flex-wrap gap-1">
+            <Chip>{TEXT.sessionMode}: {sessionConfigLabels.gameStyle}</Chip>
             <Chip>{TEXT.partOfSpeech}: {sessionConfigLabels.partOfSpeech}</Chip>
             <Chip>{TEXT.difficulty}: {sessionConfigLabels.difficulty}</Chip>
             <Chip>{TEXT.quizType}: {sessionConfigLabels.quizMode}</Chip>
@@ -350,7 +371,7 @@ export function ResultPage() {
         </div>
       </div>
 
-      {payload.modeType === "standard" ? (
+      {payload.modeType === "standard" && !isSelfCheckResult ? (
         <div className="rounded-[1.1rem] border border-white/10 bg-stone-950/40 p-3">
           <div className="flex items-center justify-between gap-3">
             <h3 className="text-[1.02rem] font-black tracking-[-0.03em] text-white">{TEXT.rankingTitle}</h3>

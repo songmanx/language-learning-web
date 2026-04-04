@@ -12,8 +12,10 @@ import {
   getQuizModeLabel,
   getSupportedQuizModes,
   getReadableSessionConfigLabels as getSessionConfigLabels,
+  normalizeGameStyleFilter,
   normalizeQuizModeFilter,
   type DifficultyFilter,
+  type GameStyle,
   type PartOfSpeechFilter,
   type QuizModeFilter,
   type SessionConfig,
@@ -63,6 +65,9 @@ const NEXT_QUESTION_DELAY_MS = 180;
 const QUESTION_ENTER_DELAY_MS = 180;
 const CHOICE_MARKERS = ["A", "B", "C", "D"];
 const TEXT = {
+  gameStyleTitle: "\uAC8C\uC784 \uBC29\uC2DD",
+  gameStyleMultipleChoice: "\u0034\uC9C0\uC120\uB2E4\uD615",
+  gameStyleSelfCheck: "\uBB38\uB2F5\uD615",
   practiceMode: "\uC5F0\uC2B5",
   reviewMode: "\uBCF5\uC2B5",
   standardMode: "\uAE30\uBCF8",
@@ -82,6 +87,14 @@ const TEXT = {
   correctAnswer: "\uC815\uB2F5\uC774\uC5D0\uC694!",
   incorrectAnswer: "\uC624\uB2F5\uC774\uC5C8\uC5B4\uC694. \uB2E4\uC74C \uBB38\uC81C\uB85C \uB118\uC5B4\uAC08\uAC8C\uC694.",
   correctAnswerLabel: "\uC815\uB2F5",
+  revealAnswer: "\uB2F5 \uD45C\uC2DC",
+  selfCheckInstruction: "\uB2F5\uC744 \uD655\uC778\uD55C \uB4A4 \uC2A4\uC2A4\uB85C O/X\uB97C \uB20C\uB7EC \uC8FC\uC138\uC694.",
+  selfCheckCorrect: "O",
+  selfCheckIncorrect: "X",
+  selfCheckCorrectLabel: "\uB9DE\uC558\uC5B4\uC694",
+  selfCheckIncorrectLabel: "\uD2C0\uB838\uC5B4\uC694",
+  selfCheckAnswerTitle: "\uC815\uB2F5 \uD655\uC778",
+  selfCheckCorrectCount: "\uC815\uB2F5 \uC218",
   loadingQuestions: "\uBB38\uC81C\uB97C \uC900\uBE44\uD558\uB294 \uC911\uC785\uB2C8\uB2E4...",
   reloadWords: "\uB2E8\uC5B4 \uB2E4\uC2DC \uBD88\uB7EC\uC624\uAE30",
   reloadingWords: "\uB2E8\uC5B4 \uB2E4\uC2DC \uBD88\uB7EC\uC624\uB294 \uC911...",
@@ -171,8 +184,14 @@ const DIFFICULTY_OPTIONS: Array<{ value: DifficultyFilter; label: string }> = [
   { value: "3", label: TEXT.difficulty3 },
 ];
 
+const GAME_STYLE_OPTIONS: Array<{ value: GameStyle; label: string }> = [
+  { value: "multiple_choice", label: TEXT.gameStyleMultipleChoice },
+  { value: "self_check", label: TEXT.gameStyleSelfCheck },
+];
+
 function normalizeSessionConfig(config?: SessionConfig | null): SessionConfig {
   return {
+    gameStyle: normalizeGameStyleFilter(config?.gameStyle),
     partOfSpeech: config?.partOfSpeech ?? DEFAULT_SESSION_CONFIG.partOfSpeech,
     difficulty: config?.difficulty ?? DEFAULT_SESSION_CONFIG.difficulty,
     quizMode: normalizeQuizModeFilter(config?.quizMode),
@@ -287,6 +306,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
   const [isFinishingSession, setIsFinishingSession] = useState(false);
   const [answerFeedback, setAnswerFeedback] = useState<AnswerFeedback>(null);
   const [selectedChoice, setSelectedChoice] = useState<string | null>(null);
+  const [isAnswerRevealed, setIsAnswerRevealed] = useState(false);
   const [answerSummary, setAnswerSummary] = useState<AnswerSummary | null>(null);
   const [sessionStartedAt, setSessionStartedAt] = useState(() => Date.now());
   const [questionStartedAt, setQuestionStartedAt] = useState(() => Date.now());
@@ -316,10 +336,12 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
   const isPracticeMode = mode === "practice";
   const isReviewMode = mode === "review";
   const isNonStandardMode = isPracticeMode || isReviewMode;
-  const isAudioQuizMode = sessionConfig.quizMode === "audio_to_meaning";
+  const isSelfCheckMode = sessionConfig.gameStyle === "self_check";
+  const isUntimedMode = isNonStandardMode || isSelfCheckMode;
+  const isAudioQuizMode = !isSelfCheckMode && sessionConfig.quizMode === "audio_to_meaning";
   const supportedQuizModes = useMemo(
-    () => getSupportedQuizModes(selectedLanguage),
-    [selectedLanguage],
+    () => getSupportedQuizModes(selectedLanguage, sessionConfig.gameStyle),
+    [selectedLanguage, sessionConfig.gameStyle],
   );
   const quizModeOptions = useMemo(
     () =>
@@ -352,6 +374,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
       setIsFinishingSession(false);
       setAnswerFeedback(null);
       setSelectedChoice(null);
+      setIsAnswerRevealed(false);
       setAnswerSummary(null);
       setSessionStartedAt(Date.now());
       setQuestionStartedAt(Date.now());
@@ -440,34 +463,38 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
   const availableQuizModes = useMemo(
     () =>
       getAvailableQuizModes(sourceWords, {
+        gameStyle: sessionConfig.gameStyle,
         partOfSpeech: sessionConfig.partOfSpeech,
         difficulty: sessionConfig.difficulty,
       }),
-    [sessionConfig.difficulty, sessionConfig.partOfSpeech, sourceWords],
+    [sessionConfig.difficulty, sessionConfig.gameStyle, sessionConfig.partOfSpeech, sourceWords],
   );
   const quizModeCounts = useMemo(
     () =>
       getQuizModeCounts(sourceWords, {
+        gameStyle: sessionConfig.gameStyle,
         partOfSpeech: sessionConfig.partOfSpeech,
         difficulty: sessionConfig.difficulty,
       }),
-    [sessionConfig.difficulty, sessionConfig.partOfSpeech, sourceWords],
+    [sessionConfig.difficulty, sessionConfig.gameStyle, sessionConfig.partOfSpeech, sourceWords],
   );
   const availablePartOfSpeechFilters = useMemo(
     () =>
       getAvailablePartOfSpeechFilters(sourceWords, {
         difficulty: sessionConfig.difficulty,
+        gameStyle: sessionConfig.gameStyle,
         quizMode: sessionConfig.quizMode,
       }),
-    [sessionConfig.difficulty, sessionConfig.quizMode, sourceWords],
+    [sessionConfig.difficulty, sessionConfig.gameStyle, sessionConfig.quizMode, sourceWords],
   );
   const availableDifficultyFilters = useMemo(
     () =>
       getAvailableDifficultyFilters(sourceWords, {
+        gameStyle: sessionConfig.gameStyle,
         partOfSpeech: sessionConfig.partOfSpeech,
         quizMode: sessionConfig.quizMode,
       }),
-    [sessionConfig.partOfSpeech, sessionConfig.quizMode, sourceWords],
+    [sessionConfig.gameStyle, sessionConfig.partOfSpeech, sessionConfig.quizMode, sourceWords],
   );
   const sessionConfigLabels = useMemo(
     () => ({
@@ -482,8 +509,10 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
       return null;
     }
 
-    return buildQuestionRound(currentWord, configuredWords);
-  }, [configuredWords, currentWord]);
+    return isSelfCheckMode
+      ? buildSelfCheckRound(currentWord, sourceWords, sessionConfig.quizMode)
+      : buildQuestionRound(currentWord, configuredWords);
+  }, [configuredWords, currentWord, isSelfCheckMode, sessionConfig.quizMode, sourceWords]);
 
   useEffect(() => {
     if (currentWord) {
@@ -501,6 +530,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
       setIsFinishingSession(false);
       setAnswerFeedback(null);
       setSelectedChoice(null);
+      setIsAnswerRevealed(false);
       setAnswerSummary(null);
       setQuestionStartedAt(Date.now());
       setElapsedMs(0);
@@ -543,7 +573,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
   }, [currentQuestion, isAnswerLocked, isAudioQuizMode, isSaving, isSessionStarted]);
 
   useEffect(() => {
-    if (isNonStandardMode || !isSessionStarted || !currentWord || !currentQuestion || isSaving || isAnswerLocked) {
+    if (isUntimedMode || !isSessionStarted || !currentWord || !currentQuestion || isSaving || isAnswerLocked) {
       return;
     }
 
@@ -572,7 +602,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
         answerTimeoutRef.current = null;
       }
     };
-  }, [currentQuestion, currentWord, isAnswerLocked, isNonStandardMode, isSaving, isSessionStarted]);
+  }, [currentQuestion, currentWord, isAnswerLocked, isSaving, isSessionStarted, isUntimedMode]);
 
   useEffect(() => {
     if (!playerId || !selectedLanguage) {
@@ -653,10 +683,11 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
     setAnswerLog([]);
     setIsSaving(false);
     setIsAnswerLocked(false);
-    setIsFinishingSession(false);
-    setAnswerFeedback(null);
-    setSelectedChoice(null);
-    setAnswerSummary(null);
+      setIsFinishingSession(false);
+      setAnswerFeedback(null);
+      setSelectedChoice(null);
+      setIsAnswerRevealed(false);
+      setAnswerSummary(null);
     setSessionStartedAt(Date.now());
     setQuestionStartedAt(Date.now());
     setElapsedMs(0);
@@ -684,6 +715,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
     setIsFinishingSession(false);
     setAnswerFeedback(null);
     setSelectedChoice(null);
+    setIsAnswerRevealed(false);
     setAnswerSummary(null);
     setSessionStartedAt(Date.now());
     setQuestionStartedAt(Date.now());
@@ -729,6 +761,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
       : "border-white/10 bg-white/10 hover:-translate-y-0.5 hover:scale-[1.01] hover:border-amber-300/60 hover:bg-white/12";
   const responseTimeText = answerSummary ? formatResponseTime(answerSummary.responseTimeMs) : formatResponseTime(elapsedMs);
   const scoreSummaryLabel = String(score);
+  const selfCheckCorrectCount = answerLog.filter((answer) => answer.correct).length;
   const focusTone = getStatusTone(answerFeedback, isFinishingSession);
   const pacePercent = Math.min(elapsedMs / TIME_LIMIT_MS, 1) * 100;
   const questionCardStateClassName =
@@ -795,9 +828,10 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
 
     const mergedReviewState = mergeReviewState(reviewSnapshot?.reviewState ?? [], nextAnswerLog, mode);
     writeReviewSnapshot(playerId, selectedLanguage, mergedReviewState);
+    const shouldSkipSessionSave = isSelfCheckMode;
     const shouldSkipLeaderboard = isFailedStandardRun(mode, payload.heartsLeft, payload.totalQuestions);
 
-    if (!isNonStandardMode) {
+    if (!isNonStandardMode && !shouldSkipSessionSave) {
       const previousStats = readDailyStatsSnapshot(playerId, selectedLanguage);
       const nextSessionCount = (previousStats?.sessionCount ?? 0) + 1;
       const nextTotalScore = (previousStats?.totalScore ?? 0) + payload.score;
@@ -872,6 +906,28 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
 
     navigate("/result", { state: resultState });
 
+    if (shouldSkipSessionSave) {
+      appLogger.info("play", "문답형 세션 종료", {
+        sessionId: sessionIdRef.current,
+        playerId,
+        languageCode: selectedLanguage,
+        answers: nextAnswerLog.length,
+        incorrectAnswers: incorrectAnswers.length,
+        sessionConfig,
+      });
+      navigate("/result", {
+        replace: true,
+        state: {
+          payload,
+          saveStatus: "saved",
+          sessionConfig,
+          displayMode: mode,
+          incorrectAnswers,
+        } satisfies SessionResultState,
+      });
+      return;
+    }
+
     try {
       await apiClient.saveSession(payload);
       appLogger.info("play", TEXT.savingSuccess, {
@@ -945,8 +1001,8 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
     const nextCombo = correct ? combo + 1 : 0;
     const earnedScore = correct ? 10 + nextCombo * 2 : 0;
     const nextScore = score + earnedScore;
-    const nextHeartsLeft = isNonStandardMode ? MAX_HEARTS : correct ? heartsLeft : Math.max(0, heartsLeft - 1);
-    const responseTimeMs = isNonStandardMode
+    const nextHeartsLeft = isUntimedMode ? MAX_HEARTS : correct ? heartsLeft : Math.max(0, heartsLeft - 1);
+    const responseTimeMs = isUntimedMode
       ? Math.max(0, Date.now() - questionStartedAt)
       : isTimeout
         ? TIME_LIMIT_MS
@@ -990,7 +1046,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
     });
 
     const reachedLastQuestion = currentIndex >= configuredWords.length - 1;
-    const noHeartsLeft = !isNonStandardMode && nextHeartsLeft <= 0;
+    const noHeartsLeft = !isUntimedMode && nextHeartsLeft <= 0;
 
     if (reachedLastQuestion || noHeartsLeft) {
       setIsFinishingSession(true);
@@ -1004,6 +1060,51 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
 
   async function handleAnswer(choice: string) {
     await submitAnswer(choice, false);
+  }
+
+  async function handleSelfCheckAnswer(correct: boolean) {
+    if (!currentWord || !currentQuestion || answerLockRef.current) {
+      return;
+    }
+
+    answerLockRef.current = true;
+    stopSpeech();
+    setIsAnswerLocked(true);
+    setSelectedChoice(correct ? "__self_check_o__" : "__self_check_x__");
+    setQuestionVisualPhase("impact");
+    playAnswerTone(correct);
+    setAnswerFeedback(correct ? "correct" : "incorrect");
+
+    const responseTimeMs = Math.max(0, Date.now() - questionStartedAt);
+    const answer: PendingAnswer = {
+      wordId: currentWord.id,
+      questionType: currentQuestion.questionType,
+      shownPrompt: currentQuestion.prompt,
+      difficultySnapshot: currentWord.difficulty,
+      responseTimeMs,
+      selectedAnswer: correct ? "__self_check_o__" : "__self_check_x__",
+      correct,
+      comboAfterAnswer: 0,
+      earnedScore: 0,
+    };
+    const nextAnswerLog = [...answerLog, answer];
+
+    setCombo(0);
+    setScore(0);
+    setHeartsLeft(MAX_HEARTS);
+    setAnswerLog(nextAnswerLog);
+    setAnswerSummary(null);
+
+    const reachedLastQuestion = currentIndex >= configuredWords.length - 1;
+
+    if (reachedLastQuestion) {
+      setIsFinishingSession(true);
+      await finishGame(nextAnswerLog, 0, MAX_HEARTS);
+      return;
+    }
+
+    await wait(NEXT_QUESTION_DELAY_MS);
+    setCurrentIndex((previous) => previous + 1);
   }
 
   useEffect(() => {
@@ -1163,6 +1264,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
           startLabel={isReviewMode ? TEXT.startReview : isPracticeMode ? TEXT.startPractice : TEXT.startGame}
           sessionConfig={sessionConfig}
           sessionConfigLabels={sessionConfigLabels}
+          gameStyleOptions={GAME_STYLE_OPTIONS}
           quizModeOptions={quizModeOptions}
           availableQuizModes={availableQuizModes}
           quizModeCounts={quizModeCounts}
@@ -1193,16 +1295,24 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
                 </span>
               </div>
             ) : null}
-            <div className={`grid gap-1.5 ${isNonStandardMode ? "grid-cols-1" : "grid-cols-2"}`}>
-              {!isNonStandardMode ? <HeartHudCard current={heartsLeft} /> : null}
-              <HudStatCard label={TEXT.scoreLabel} value={scoreSummaryLabel} accentClassName="text-sky-100" />
+            <div className={`grid gap-1.5 ${isUntimedMode ? "grid-cols-1" : "grid-cols-2"}`}>
+              {!isUntimedMode ? <HeartHudCard current={heartsLeft} /> : null}
+              {isSelfCheckMode ? (
+                <HudStatCard
+                  label={TEXT.selfCheckCorrectCount}
+                  value={`${selfCheckCorrectCount} / ${answerLog.length}`}
+                  accentClassName="text-emerald-100"
+                />
+              ) : (
+                <HudStatCard label={TEXT.scoreLabel} value={scoreSummaryLabel} accentClassName="text-sky-100" />
+              )}
             </div>
-            {!isNonStandardMode ? <PaceMeter elapsedMs={elapsedMs} pacePercent={pacePercent} /> : null}
+            {!isUntimedMode ? <PaceMeter elapsedMs={elapsedMs} pacePercent={pacePercent} /> : null}
             <div className={`rounded-[0.8rem] border px-2.5 py-1.25 transition duration-300 ${focusTone.panel}`} aria-live="polite">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <div className="flex min-w-0 flex-wrap items-center gap-2">
                   <span className="rounded-full border border-white/10 bg-gradient-to-r from-amber-300/12 via-white/8 to-sky-300/12 px-3 py-1 text-[11px] font-semibold text-stone-100 sm:text-[12px]">
-                    {modeTitle} / {sessionConfigLabels.quizMode}
+                    {modeTitle} / {sessionConfigLabels.gameStyle} / {sessionConfigLabels.quizMode}
                   </span>
                 </div>
               </div>
@@ -1292,47 +1402,92 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
           </div>
 
           <div className="px-3 py-1.75 sm:px-3.5 sm:py-2">
-            <div className={`grid gap-1.5 transition duration-300 ${choicesStateClassName}`}>
-              {currentQuestion.choices.map((choice, index) => (
-                <ChoiceCard
-                  key={`${currentWord.id}-${choice}-${index}`}
-                  marker={CHOICE_MARKERS[index] ?? String(index + 1)}
-                  choice={choice}
-                  state={
-                    selectedChoice === choice
-                      ? answerFeedback === "correct"
-                        ? "selected-correct"
-                        : "selected-wrong"
-                      : answerFeedback === "incorrect" && currentQuestion.answer === choice
-                        ? "revealed-correct"
-                        : isAnswerLocked && !isSaving
-                          ? "dimmed"
-                          : "idle"
-                  }
-                  className={
-                    selectedChoice === choice
-                      ? selectedChoiceClassName
-                      : answerFeedback === "incorrect" && currentQuestion.answer === choice
-                        ? revealedCorrectChoiceClassName
-                        : idleChoiceClassName
-                  }
-                  isDisabled={isSaving || isAnswerLocked}
-                  isSelected={selectedChoice === choice}
-                  onClick={() => void handleAnswer(choice)}
-                >
-                  {isAnswerLocked && selectedChoice === choice ? (
-                    <span className="rounded-full border border-current/30 px-2 py-1 text-[11px] font-semibold">
-                      {TEXT.selectedBadge}
-                    </span>
-                  ) : null}
-                  {answerFeedback === "incorrect" && currentQuestion.answer === choice ? (
-                    <span className="rounded-full border border-current/30 px-2 py-1 text-[11px] font-semibold">
-                      {TEXT.correctAnswerLabel}
-                    </span>
-                  ) : null}
-                </ChoiceCard>
-              ))}
-            </div>
+            {isSelfCheckMode ? (
+              <div className="space-y-3">
+                <p className="text-sm leading-6 text-stone-300">{TEXT.selfCheckInstruction}</p>
+                {!isAnswerRevealed ? (
+                  <button
+                    className="flex min-h-16 w-full items-center justify-center rounded-[1.4rem] border border-amber-200/20 bg-amber-300/12 px-4 py-4 text-[1.05rem] font-black text-amber-50 shadow-[0_18px_40px_rgba(251,191,36,0.12)] transition hover:bg-amber-300/18"
+                    type="button"
+                    onClick={() => setIsAnswerRevealed(true)}
+                    disabled={isSaving}
+                  >
+                    {TEXT.revealAnswer}
+                  </button>
+                ) : (
+                  <div className="space-y-3">
+                    <div className="rounded-[1.35rem] border border-emerald-200/20 bg-emerald-300/10 px-4 py-4">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-100/80">
+                        {TEXT.selfCheckAnswerTitle}
+                      </p>
+                      <p className="mt-2 text-[1.1rem] font-black leading-tight text-emerald-50 sm:text-[1.3rem]">
+                        {currentQuestion.answer}
+                      </p>
+                    </div>
+                    <div className="grid grid-cols-2 gap-2">
+                      <button
+                        className="flex min-h-16 items-center justify-center rounded-[1.35rem] border border-emerald-200/25 bg-emerald-300/14 px-4 py-4 text-[1.1rem] font-black text-emerald-50 transition hover:bg-emerald-300/20"
+                        type="button"
+                        onClick={() => void handleSelfCheckAnswer(true)}
+                        disabled={isSaving || isAnswerLocked}
+                      >
+                        {TEXT.selfCheckCorrect} / {TEXT.selfCheckCorrectLabel}
+                      </button>
+                      <button
+                        className="flex min-h-16 items-center justify-center rounded-[1.35rem] border border-rose-200/25 bg-rose-300/14 px-4 py-4 text-[1.1rem] font-black text-rose-50 transition hover:bg-rose-300/20"
+                        type="button"
+                        onClick={() => void handleSelfCheckAnswer(false)}
+                        disabled={isSaving || isAnswerLocked}
+                      >
+                        {TEXT.selfCheckIncorrect} / {TEXT.selfCheckIncorrectLabel}
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className={`grid gap-1.5 transition duration-300 ${choicesStateClassName}`}>
+                {currentQuestion.choices.map((choice, index) => (
+                  <ChoiceCard
+                    key={`${currentWord.id}-${choice}-${index}`}
+                    marker={CHOICE_MARKERS[index] ?? String(index + 1)}
+                    choice={choice}
+                    state={
+                      selectedChoice === choice
+                        ? answerFeedback === "correct"
+                          ? "selected-correct"
+                          : "selected-wrong"
+                        : answerFeedback === "incorrect" && currentQuestion.answer === choice
+                          ? "revealed-correct"
+                          : isAnswerLocked && !isSaving
+                            ? "dimmed"
+                            : "idle"
+                    }
+                    className={
+                      selectedChoice === choice
+                        ? selectedChoiceClassName
+                        : answerFeedback === "incorrect" && currentQuestion.answer === choice
+                          ? revealedCorrectChoiceClassName
+                          : idleChoiceClassName
+                    }
+                    isDisabled={isSaving || isAnswerLocked}
+                    isSelected={selectedChoice === choice}
+                    onClick={() => void handleAnswer(choice)}
+                  >
+                    {isAnswerLocked && selectedChoice === choice ? (
+                      <span className="rounded-full border border-current/30 px-2 py-1 text-[11px] font-semibold">
+                        {TEXT.selectedBadge}
+                      </span>
+                    ) : null}
+                    {answerFeedback === "incorrect" && currentQuestion.answer === choice ? (
+                      <span className="rounded-full border border-current/30 px-2 py-1 text-[11px] font-semibold">
+                        {TEXT.correctAnswerLabel}
+                      </span>
+                    ) : null}
+                  </ChoiceCard>
+                ))}
+              </div>
+            )}
           </div>
         </div>
 
@@ -1349,6 +1504,35 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
       </div>
     </section>
   );
+}
+
+function buildSelfCheckRound(currentWord: WordItem, configuredWords: WordItem[], quizMode: QuizModeFilter) {
+  if (quizMode === "kanji_to_furigana") {
+    const pairedPrompt =
+      configuredWords.find(
+        (word) =>
+          word.id === currentWord.id &&
+          word.questionType === "word_to_meaning" &&
+          String(word.meaning ?? "").trim() === String(currentWord.meaning ?? "").trim(),
+      )?.prompt ?? currentWord.prompt;
+
+    return {
+      questionType: currentWord.questionType,
+      prompt: pairedPrompt,
+      choices: [],
+      answer: currentWord.answer,
+      instruction: TEXT.selfCheckInstruction,
+      typeLabel: getQuizModeLabel(quizMode),
+    };
+  }
+
+  const questionRound = buildQuestionRound(currentWord, configuredWords);
+
+  return {
+    ...questionRound,
+    choices: [],
+    instruction: TEXT.selfCheckInstruction,
+  };
 }
 
 function buildIncorrectAnswerSummaries(
@@ -1503,6 +1687,7 @@ type SessionStartScreenProps = {
   startLabel: string;
   sessionConfig: SessionConfig;
   sessionConfigLabels: ReturnType<typeof getSessionConfigLabels>;
+  gameStyleOptions: Array<{ value: GameStyle; label: string }>;
   quizModeOptions: Array<{ value: QuizModeFilter; label: string }>;
   availableQuizModes: QuizModeFilter[];
   quizModeCounts: Record<QuizModeFilter, number>;
@@ -1521,6 +1706,7 @@ function SessionStartScreen({
   startLabel,
   sessionConfig,
   sessionConfigLabels,
+  gameStyleOptions,
   quizModeOptions,
   availableQuizModes,
   quizModeCounts,
@@ -1563,6 +1749,13 @@ function SessionStartScreen({
 
         <div className="mt-1 space-y-0.5">
           <div className="grid gap-1 rounded-[0.6rem] border border-white/10 bg-white/[0.04] p-[0.65rem]">
+            <SetupOptionGroup
+              title={TEXT.gameStyleTitle}
+              options={gameStyleOptions}
+              currentValue={sessionConfig.gameStyle ?? DEFAULT_SESSION_CONFIG.gameStyle ?? "multiple_choice"}
+              isDisabled={false}
+              onSelect={(value) => onUpdate({ gameStyle: value as GameStyle })}
+            />
             <SetupOptionGroup
               title={TEXT.partOfSpeechTitle}
             options={PART_OF_SPEECH_OPTIONS}
@@ -1607,7 +1800,7 @@ function SessionStartScreen({
                   <span className="ml-1 text-[12px] font-medium text-stone-300">/ {totalWordsCount}</span>
                 </p>
                 <p className="mt-px text-[12px] font-medium leading-4 text-stone-400">
-                  {sessionConfigLabels.partOfSpeech} / {sessionConfigLabels.difficulty} / {sessionConfigLabels.quizMode}
+                  {sessionConfigLabels.gameStyle} / {sessionConfigLabels.partOfSpeech} / {sessionConfigLabels.quizMode}
                 </p>
               </div>
               <button

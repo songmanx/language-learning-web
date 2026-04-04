@@ -4,7 +4,7 @@ import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { PlayPage } from "./PlayPage";
 import { ResultPage } from "./ResultPage";
-import { clearMockGasFailures, setMockGasFailure } from "../services/apiClient";
+import { apiClient, clearMockGasFailures, setMockGasFailure } from "../services/apiClient";
 import { readGlobalLeaderboard, readLeaderboard, readPendingSession } from "../services/sessionRecovery";
 import { useAuthStore } from "../stores/authStore";
 import { useLanguageStore } from "../stores/languageStore";
@@ -14,8 +14,10 @@ const START_GAME = "\uAC8C\uC784 \uC2DC\uC791";
 const RESET = "\uCD08\uAE30\uD654";
 const RESULT_SUMMARY = "\uACB0\uACFC \uC694\uC57D";
 const MODE_KANJI = "\uD55C\uC790 \u2192 \uB73B";
+const MODE_KANJI_FURIGANA = "\uD55C\uC790 \u2192 \uD6C4\uB9AC\uAC00\uB098";
 const MODE_MEANING_KANJI = "\uB73B \u2192 \uD55C\uC790";
 const AUDIO = "\uC74C\uC131 \u2192 \uB73B";
+const SELF_CHECK = "\uBB38\uB2F5\uD615";
 const EN_MODE_WORD = "\uB2E8\uC5B4 \u2192 \uB73B";
 const EN_MODE_MEANING_WORD = "\uB73B \u2192 \uB2E8\uC5B4";
 const NO_AUDIO_DATA = "\uB370\uC774\uD130 \uC5C6\uC74C";
@@ -104,6 +106,34 @@ function createAudioReadyWords(): WordItem[] {
       questionType: "word_to_meaning",
     },
   ];
+}
+
+function createSelfCheckWords(count: number): WordItem[] {
+  return Array.from({ length: count }, (_, index) => {
+    const number = index + 1;
+    const id = `JA_N_${String(number).padStart(4, "0")}`;
+
+    return [
+      {
+        id,
+        prompt: `漢字${number}`,
+        choices: [`뜻${number}`, `오답A${number}`, `오답B${number}`, `오답C${number}`],
+        answer: `뜻${number}`,
+        meaning: `뜻${number}`,
+        difficulty: "1",
+        questionType: "word_to_meaning" as const,
+      },
+      {
+        id,
+        prompt: `뜻${number}`,
+        choices: [`かな${number}`, `한자${number}`, `발음${number}`, `단어${number}`],
+        answer: `かな${number}`,
+        meaning: `뜻${number}`,
+        difficulty: "1",
+        questionType: "meaning_to_word" as const,
+      },
+    ];
+  }).flat();
 }
 
 function createEnglishWords(): WordItem[] {
@@ -291,6 +321,43 @@ describe("PlayPage", () => {
     expect(await screen.findByRole("heading", { level: 2 })).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: START_GAME })).not.toBeInTheDocument();
   });
+
+  it("runs self-check mode without saving a ranked session", async () => {
+    const sessionWords = createSelfCheckWords(20);
+    const user = userEvent.setup();
+    const saveSessionSpy = vi.spyOn(apiClient, "saveSession");
+
+    useLanguageStore.setState({
+      selectedLanguage: "ja",
+      availableLanguages: [{ languageCode: "ja", label: JAPANESE, totalWords: sessionWords.length }],
+      words: sessionWords,
+      isLoading: false,
+      loadError: null,
+    });
+
+    renderPlayFlow();
+    await user.click(screen.getByRole("button", { name: SELF_CHECK }));
+    await user.click(screen.getByRole("button", { name: MODE_KANJI_FURIGANA }));
+    await user.click(screen.getByRole("button", { name: START_GAME }));
+
+    const firstPrompt = (await screen.findByRole("heading", { level: 2 })).textContent ?? "";
+    expect(firstPrompt).toMatch(/^漢字\d+$/);
+    await user.click(screen.getByRole("button", { name: "답 표시" }));
+    expect(screen.getByText(`かな${firstPrompt.replace("漢字", "")}`)).toBeInTheDocument();
+
+    for (let index = 0; index < 20; index += 1) {
+      if (index > 0) {
+        await screen.findByRole("button", { name: "답 표시" });
+        await user.click(screen.getByRole("button", { name: "답 표시" }));
+      }
+
+      await user.click(screen.getByRole("button", { name: /O \/ 맞았어요/ }));
+    }
+
+    expect(await screen.findByRole("heading", { name: RESULT_SUMMARY })).toBeInTheDocument();
+    expect(saveSessionSpy).not.toHaveBeenCalled();
+    expect(screen.queryByText("순위표")).not.toBeInTheDocument();
+  }, 20000);
 
   it("starts the selected meaning to kanji mode", async () => {
     const user = userEvent.setup();

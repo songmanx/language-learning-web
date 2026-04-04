@@ -2,15 +2,18 @@ import type { QuestionType, ReviewStateRecord, SessionMode, WordItem } from "../
 
 export type PartOfSpeechFilter = "all" | "noun" | "verb" | "adjective" | "adverb" | "other";
 export type DifficultyFilter = "all" | "1" | "2" | "3";
+export type GameStyle = "multiple_choice" | "self_check";
 export type QuizModeFilter =
   | "kanji_to_meaning"
   | "furigana_to_meaning"
+  | "kanji_to_furigana"
   | "audio_to_meaning"
   | "meaning_to_kanji"
   | "meaning_to_furigana";
 export type SupportedLanguageCode = "ja" | "en";
 
 export type SessionConfig = {
+  gameStyle?: GameStyle;
   partOfSpeech: PartOfSpeechFilter;
   difficulty: DifficultyFilter;
   quizMode: QuizModeFilter;
@@ -29,6 +32,7 @@ type WordLike = WordItem &
   }>;
 
 export const DEFAULT_SESSION_CONFIG: SessionConfig = {
+  gameStyle: "multiple_choice",
   partOfSpeech: "all",
   difficulty: "all",
   quizMode: "kanji_to_meaning",
@@ -37,10 +41,15 @@ export const DEFAULT_SESSION_CONFIG: SessionConfig = {
 export const QUIZ_MODE_ORDER: QuizModeFilter[] = [
   "kanji_to_meaning",
   "furigana_to_meaning",
+  "kanji_to_furigana",
   "meaning_to_kanji",
   "meaning_to_furigana",
   "audio_to_meaning",
 ];
+
+export function normalizeGameStyleFilter(value?: string | null): GameStyle {
+  return value === "self_check" ? "self_check" : "multiple_choice";
+}
 
 export function normalizeQuizModeFilter(value?: string | null): QuizModeFilter {
   if (value === "meaning_to_word") {
@@ -182,6 +191,16 @@ export function inferPartOfSpeech(wordId: string): PartOfSpeechFilter {
   return "other";
 }
 
+function isKanjiToFuriganaCompatibleWord(word: WordItem) {
+  const languageCode = inferLanguageCodeFromWordId(getWordId(word));
+
+  if (languageCode !== "ja" || getQuestionType(word) !== "meaning_to_word") {
+    return false;
+  }
+
+  return containsKana(String(word.answer ?? "").trim());
+}
+
 export function getWordPromptMode(word: WordItem): QuizModeFilter {
   const languageCode = inferLanguageCodeFromWordId(getWordId(word));
 
@@ -219,7 +238,24 @@ function isAudioCompatibleWord(word: WordItem) {
   return getWordPromptMode(word) === "furigana_to_meaning";
 }
 
-export function getSupportedQuizModes(languageCode?: string | null): QuizModeFilter[] {
+export function getSupportedQuizModes(
+  languageCode?: string | null,
+  gameStyle: GameStyle = "multiple_choice",
+): QuizModeFilter[] {
+  if (gameStyle === "self_check") {
+    if (languageCode === "en") {
+      return ["kanji_to_meaning", "meaning_to_kanji"];
+    }
+
+    return [
+      "kanji_to_meaning",
+      "furigana_to_meaning",
+      "kanji_to_furigana",
+      "meaning_to_kanji",
+      "meaning_to_furigana",
+    ];
+  }
+
   if (languageCode === "en") {
     return ["kanji_to_meaning", "meaning_to_kanji", "audio_to_meaning"];
   }
@@ -227,7 +263,21 @@ export function getSupportedQuizModes(languageCode?: string | null): QuizModeFil
   return QUIZ_MODE_ORDER;
 }
 
-function wordMatchesQuizMode(word: WordItem, quizMode: QuizModeFilter) {
+function wordMatchesQuizMode(
+  word: WordItem,
+  quizMode: QuizModeFilter,
+  gameStyle: GameStyle = "multiple_choice",
+) {
+  if (gameStyle === "self_check") {
+    if (quizMode === "kanji_to_furigana") {
+      return isKanjiToFuriganaCompatibleWord(word);
+    }
+
+    if (quizMode === "audio_to_meaning") {
+      return false;
+    }
+  }
+
   if (quizMode === "audio_to_meaning") {
     return isAudioCompatibleWord(word);
   }
@@ -250,16 +300,16 @@ function matchesBaseFilters(word: WordItem, sessionConfig: Pick<SessionConfig, "
 
 export function getAvailableQuizModes(
   words: WordItem[],
-  sessionConfig: Pick<SessionConfig, "partOfSpeech" | "difficulty">,
+  sessionConfig: Pick<SessionConfig, "partOfSpeech" | "difficulty" | "gameStyle">,
 ) {
   const counts = getQuizModeCounts(words, sessionConfig);
 
-  return QUIZ_MODE_ORDER.filter((mode) => counts[mode] > 0);
+  return getSupportedQuizModes(undefined, sessionConfig.gameStyle).filter((mode) => counts[mode] > 0);
 }
 
 export function getQuizModeCounts(
   words: WordItem[],
-  sessionConfig: Pick<SessionConfig, "partOfSpeech" | "difficulty">,
+  sessionConfig: Pick<SessionConfig, "partOfSpeech" | "difficulty" | "gameStyle">,
 ) {
   const counts = QUIZ_MODE_ORDER.reduce(
     (accumulator, mode) => {
@@ -274,11 +324,10 @@ export function getQuizModeCounts(
       continue;
     }
 
-    const promptMode = getWordPromptMode(word);
-    counts[promptMode] += 1;
-
-    if (isAudioCompatibleWord(word)) {
-      counts.audio_to_meaning += 1;
+    for (const mode of getSupportedQuizModes(undefined, sessionConfig.gameStyle)) {
+      if (wordMatchesQuizMode(word, mode, sessionConfig.gameStyle)) {
+        counts[mode] += 1;
+      }
     }
   }
 
@@ -287,14 +336,14 @@ export function getQuizModeCounts(
 
 export function getAvailablePartOfSpeechFilters(
   words: WordItem[],
-  sessionConfig: Pick<SessionConfig, "difficulty" | "quizMode">,
+  sessionConfig: Pick<SessionConfig, "difficulty" | "quizMode" | "gameStyle">,
 ) {
   const available = new Set<PartOfSpeechFilter>(["all"]);
 
   for (const word of words) {
     const matchesDifficulty =
       sessionConfig.difficulty === "all" || String(word.difficulty || "").trim() === sessionConfig.difficulty;
-    const matchesQuizMode = wordMatchesQuizMode(word, sessionConfig.quizMode);
+    const matchesQuizMode = wordMatchesQuizMode(word, sessionConfig.quizMode, sessionConfig.gameStyle);
 
     if (!matchesDifficulty || !matchesQuizMode) {
       continue;
@@ -310,14 +359,14 @@ export function getAvailablePartOfSpeechFilters(
 
 export function getAvailableDifficultyFilters(
   words: WordItem[],
-  sessionConfig: Pick<SessionConfig, "partOfSpeech" | "quizMode">,
+  sessionConfig: Pick<SessionConfig, "partOfSpeech" | "quizMode" | "gameStyle">,
 ) {
   const available = new Set<DifficultyFilter>(["all"]);
 
   for (const word of words) {
     const matchesPartOfSpeech =
       sessionConfig.partOfSpeech === "all" || inferPartOfSpeech(getWordId(word)) === sessionConfig.partOfSpeech;
-    const matchesQuizMode = wordMatchesQuizMode(word, sessionConfig.quizMode);
+    const matchesQuizMode = wordMatchesQuizMode(word, sessionConfig.quizMode, sessionConfig.gameStyle);
 
     if (!matchesPartOfSpeech || !matchesQuizMode) {
       continue;
@@ -338,8 +387,22 @@ export function filterWordsBySessionConfig(words: WordItem[], sessionConfig: Ses
       return false;
     }
 
-    return wordMatchesQuizMode(word, sessionConfig.quizMode);
+    return wordMatchesQuizMode(word, sessionConfig.quizMode, sessionConfig.gameStyle);
   });
+
+  if (sessionConfig.quizMode === "kanji_to_furigana") {
+    const deduped = new Map<string, WordItem>();
+
+    for (const word of filtered) {
+      const familyKey = getFamilyKey(word);
+
+      if (!deduped.has(familyKey)) {
+        deduped.set(familyKey, word);
+      }
+    }
+
+    return [...deduped.values()];
+  }
 
   if (!isMeaningToWordQuizMode(sessionConfig.quizMode)) {
     return filtered;
@@ -494,6 +557,10 @@ export function getQuizModeLabel(mode: QuizModeFilter, languageCode: string | nu
       return "\uC2A4\uD3A0\uB9C1 \u2192 \uB73B";
     }
 
+    if (mode === "kanji_to_furigana") {
+      return "\uB2E8\uC5B4 \u2192 \uC2A4\uD3A0\uB9C1";
+    }
+
     if (mode === "meaning_to_kanji") {
       return "\uB73B \u2192 \uB2E8\uC5B4";
     }
@@ -513,6 +580,10 @@ export function getQuizModeLabel(mode: QuizModeFilter, languageCode: string | nu
     return "\uD6C4\uB9AC\uAC00\uB098 \u2192 \uB73B";
   }
 
+  if (mode === "kanji_to_furigana") {
+    return "\uD55C\uC790 \u2192 \uD6C4\uB9AC\uAC00\uB098";
+  }
+
   if (mode === "meaning_to_kanji") {
     return "\uB73B \u2192 \uD55C\uC790";
   }
@@ -526,6 +597,10 @@ export function getQuizModeLabel(mode: QuizModeFilter, languageCode: string | nu
 
 export function getSessionConfigLabels(sessionConfig: SessionConfig, languageCode: string | null = "ja") {
   return {
+    gameStyle:
+      sessionConfig.gameStyle === "self_check"
+        ? "\uBB38\uB2F5\uD615"
+        : "\u0034\uC9C0\uC120\uB2E4\uD615",
     partOfSpeech:
       sessionConfig.partOfSpeech === "all"
         ? "\uC804\uCCB4"

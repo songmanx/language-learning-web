@@ -1425,3 +1425,15 @@ Phase 4: ?⑥쥒??疫꿸퀡???곕떽?
   - `npm run build`
 - Next:
   - Deploy the updated GAS script and verify the same account and different accounts share the same ranking/stat data across PC and mobile
+## 2026-04-04 Phase 5 self-check game style
+
+- Completed:
+  - Added `문답형` as a new game style option on the play setup screen while keeping `4지선다형` as the default flow
+  - Added self-check round flow with `답 표시` and large `O / X` buttons, plus Japanese `한자 → 후리가나` support
+  - Skipped score/ranking session saves for self-check runs while still feeding wrong answers into the result screen and review state
+- Verified:
+  - `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx`
+  - `npm run build`
+- Next:
+  - Check one real mobile run for `문답형` to confirm the reveal button size and O/X spacing feel natural
+  - Decide whether self-check results should also hide total session time/average response in the result details card

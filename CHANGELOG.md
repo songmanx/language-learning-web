@@ -1794,6 +1794,12 @@ pm run test 39揶????궢, `npm run build` ???궢
 
 ## 2026-04-04
 
+- Added a new `문답형` game style alongside the default `4지선다형`, including Japanese `한자 → 후리가나` self-check flow with `답 표시` and `O / X` buttons.
+- Kept self-check sessions out of score/ranking save paths while still carrying wrong answers into the result summary and review flow.
+- Validation: `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx`, `npm run build`
+
+## 2026-04-04
+
 - Added a result-screen wrong-answer summary that lists only missed prompts and their correct answers after a game ends.
 - Validation: `npm run test -- src/pages/ResultPage.test.tsx src/pages/PlayPage.test.tsx`, `npm run build`
 

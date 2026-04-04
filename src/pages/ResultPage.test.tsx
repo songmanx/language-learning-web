@@ -8,12 +8,13 @@ import { apiClient } from "../services/apiClient";
 
 function RouteProbe() {
   const location = useLocation();
-  const state = location.state as { sessionConfig?: { quizMode?: string } } | null;
+  const state = location.state as { sessionConfig?: { quizMode?: string; gameStyle?: string } } | null;
 
   return (
     <div>
       <div>{location.pathname}</div>
       <div>{state?.sessionConfig?.quizMode ?? "no-config"}</div>
+      <div>{state?.sessionConfig?.gameStyle ?? "no-style"}</div>
     </div>
   );
 }
@@ -41,18 +42,19 @@ const resultState: SessionResultState = {
     ],
   },
   sessionConfig: {
+    gameStyle: "multiple_choice",
     partOfSpeech: "noun",
     difficulty: "2",
     quizMode: "meaning_to_kanji",
   },
   incorrectAnswers: [
     {
-      shownPrompt: "猫",
-      correctAnswer: "고양이",
+      shownPrompt: "고양이",
+      correctAnswer: "猫",
     },
     {
-      shownPrompt: "学生",
-      correctAnswer: "がくせい",
+      shownPrompt: "가방",
+      correctAnswer: "鞄",
     },
   ],
 };
@@ -97,8 +99,8 @@ describe("ResultPage", () => {
     expect(await screen.findByText("180")).toBeInTheDocument();
     expect(screen.getAllByRole("button")[0]).toHaveAccessibleName("다시하기");
     expect(screen.getByRole("heading", { name: "오답 정리" })).toBeInTheDocument();
-    expect(screen.getByText("猫")).toBeInTheDocument();
     expect(screen.getByText("고양이")).toBeInTheDocument();
+    expect(screen.getByText("猫")).toBeInTheDocument();
   });
 
   it("shows 탈락 instead of accuracy when the run ends early", () => {
@@ -161,6 +163,7 @@ describe("ResultPage", () => {
 
     expect(screen.getByText("/play")).toBeInTheDocument();
     expect(screen.getByText("meaning_to_kanji")).toBeInTheDocument();
+    expect(screen.getByText("multiple_choice")).toBeInTheDocument();
   });
 
   it("replays review results back into review mode", async () => {
@@ -195,6 +198,42 @@ describe("ResultPage", () => {
     expect(screen.getByText("meaning_to_kanji")).toBeInTheDocument();
   });
 
+  it("shows self-check results without leaderboard or practice CTA", async () => {
+    render(
+      <MemoryRouter
+        initialEntries={[
+          {
+            pathname: "/result",
+            state: {
+              ...resultState,
+              payload: {
+                ...resultState.payload,
+                score: 0,
+                heartsLeft: 10,
+                correctAnswers: 14,
+              },
+              sessionConfig: {
+                gameStyle: "self_check",
+                partOfSpeech: "noun",
+                difficulty: "2",
+                quizMode: "kanji_to_furigana",
+              },
+            } satisfies SessionResultState,
+          },
+        ]}
+      >
+        <Routes>
+          <Route path="/result" element={<ResultPage />} />
+        </Routes>
+      </MemoryRouter>,
+    );
+
+    expect(screen.queryByText("순위표")).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "연습" })).not.toBeInTheDocument();
+    expect(screen.getByText("오답 수")).toBeInTheDocument();
+    expect(apiClient.getLeaderboard).not.toHaveBeenCalled();
+  });
+
   it("shows english session config labels and english leaderboard entries", async () => {
     vi.spyOn(apiClient, "getLeaderboard").mockResolvedValue([
       {
@@ -218,6 +257,7 @@ describe("ResultPage", () => {
                 quizType: "meaning_to_word",
               },
               sessionConfig: {
+                gameStyle: "multiple_choice",
                 partOfSpeech: "noun",
                 difficulty: "2",
                 quizMode: "meaning_to_kanji",
@@ -232,7 +272,7 @@ describe("ResultPage", () => {
       </MemoryRouter>,
     );
 
-    expect(screen.getByText(/출제 구성:\s*뜻 → 단어/)).toBeInTheDocument();
+    expect(screen.getByText(/플레이 모드:\s*4지선다형/)).toBeInTheDocument();
     expect(await screen.findByText("210")).toBeInTheDocument();
   });
 });
