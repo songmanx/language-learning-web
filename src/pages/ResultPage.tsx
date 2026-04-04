@@ -281,12 +281,13 @@ export function ResultPage() {
             incorrectAnswers.map((item, index) => (
               <div
                 key={`${item.shownPrompt}-${item.correctAnswer}-${index}`}
-                className="rounded-2xl border border-white/10 bg-white/6 px-3 py-3"
+                className="rounded-2xl border border-white/10 bg-white/6 px-3 py-2.5 text-sm leading-6 text-stone-200"
               >
-                <p className="text-[11px] uppercase tracking-[0.18em] text-stone-400">{TEXT.promptLabel}</p>
-                <p className="mt-1 text-sm font-semibold text-stone-100">{item.shownPrompt}</p>
-                <p className="mt-2 text-[11px] uppercase tracking-[0.18em] text-stone-400">{TEXT.correctAnswerLabel}</p>
-                <p className="mt-1 text-sm font-semibold text-emerald-100">{item.correctAnswer}</p>
+                <span className="text-stone-400">{TEXT.promptLabel}:</span>{" "}
+                <span className="font-semibold text-stone-100">{item.shownPrompt}</span>
+                <span className="mx-2 text-stone-500">/</span>
+                <span className="text-stone-400">{TEXT.correctAnswerLabel}:</span>{" "}
+                <span className="font-semibold text-emerald-100">{item.correctAnswer}</span>
               </div>
             ))
           )}
