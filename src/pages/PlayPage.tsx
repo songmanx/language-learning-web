@@ -292,6 +292,19 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
   const questionPhaseTimeoutRef = useRef<number | null>(null);
   const answerTimeoutRef = useRef<number | null>(null);
   const answerTickerRef = useRef<number | null>(null);
+  const sessionIdRef = useRef(`session-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`);
+  const latestStateRef = useRef({
+    isSessionStarted: false,
+    isSaving: false,
+    currentIndex: 0,
+    score: 0,
+    heartsLeft: MAX_HEARTS,
+    answerCount: 0,
+    mode,
+    selectedLanguage: selectedLanguage ?? null,
+    playerId: playerId ?? null,
+    sessionConfig: normalizeSessionConfig(incomingSessionConfig ?? DEFAULT_SESSION_CONFIG),
+  });
 
   const isPracticeMode = mode === "practice";
   const isReviewMode = mode === "review";
@@ -339,6 +352,32 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
       setQuestionVisualPhase("steady");
     }
   }, [incomingSessionConfig]);
+
+  useEffect(() => {
+    latestStateRef.current = {
+      isSessionStarted,
+      isSaving,
+      currentIndex,
+      score,
+      heartsLeft,
+      answerCount: answerLog.length,
+      mode,
+      selectedLanguage: selectedLanguage ?? null,
+      playerId: playerId ?? null,
+      sessionConfig,
+    };
+  }, [
+    answerLog.length,
+    currentIndex,
+    heartsLeft,
+    isSaving,
+    isSessionStarted,
+    mode,
+    playerId,
+    score,
+    selectedLanguage,
+    sessionConfig,
+  ]);
 
   useEffect(() => {
     if (supportedQuizModes.includes(sessionConfig.quizMode)) {
@@ -621,6 +660,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
   }
 
   function startSession() {
+    sessionIdRef.current = `session-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
     const nextSeed = Date.now();
     answerLockRef.current = false;
     setCurrentIndex(0);
@@ -640,6 +680,14 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
     setIsSessionStarted(true);
     setQuestionVisualPhase("steady");
     setQueueSeed(nextSeed);
+    appLogger.info("play", "세션 시작", {
+      sessionId: sessionIdRef.current,
+      mode,
+      playerId,
+      languageCode: selectedLanguage,
+      sessionConfig,
+      queueSize: configuredWords.length,
+    });
   }
 
   const progressLabel = useMemo(
@@ -690,6 +738,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
 
     setIsSaving(true);
     appLogger.info("play", TEXT.savingStart, {
+      sessionId: sessionIdRef.current,
       playerId,
       languageCode: selectedLanguage,
       answers: nextAnswerLog.length,
@@ -876,6 +925,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
         : Math.max(0, Date.now() - questionStartedAt);
 
     appLogger.info("play", TEXT.answerHandled, {
+      sessionId: sessionIdRef.current,
       wordId: currentWord.id,
       questionType: currentWord.questionType,
       correct,
@@ -927,6 +977,67 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
   async function handleAnswer(choice: string) {
     await submitAnswer(choice, false);
   }
+
+  useEffect(() => {
+    function logPageExit(trigger: "beforeunload" | "pagehide") {
+      const state = latestStateRef.current;
+
+      if (!state.isSessionStarted || state.isSaving) {
+        return;
+      }
+
+      appLogger.warning("play", "브라우저 이탈 감지", {
+        trigger,
+        sessionId: sessionIdRef.current,
+        mode: state.mode,
+        playerId: state.playerId,
+        languageCode: state.selectedLanguage,
+        currentIndex: state.currentIndex,
+        answerCount: state.answerCount,
+        score: state.score,
+        heartsLeft: state.heartsLeft,
+        sessionConfig: state.sessionConfig,
+      });
+    }
+
+    function handleBeforeUnload() {
+      logPageExit("beforeunload");
+    }
+
+    function handlePageHide() {
+      logPageExit("pagehide");
+    }
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    window.addEventListener("pagehide", handlePageHide);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+      window.removeEventListener("pagehide", handlePageHide);
+    };
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      const state = latestStateRef.current;
+
+      if (!state.isSessionStarted || state.isSaving) {
+        return;
+      }
+
+      appLogger.warning("play", "플레이 화면이 세션 중 종료됨", {
+        sessionId: sessionIdRef.current,
+        mode: state.mode,
+        playerId: state.playerId,
+        languageCode: state.selectedLanguage,
+        currentIndex: state.currentIndex,
+        answerCount: state.answerCount,
+        score: state.score,
+        heartsLeft: state.heartsLeft,
+        sessionConfig: state.sessionConfig,
+      });
+    };
+  }, []);
 
   async function handleStopPractice() {
     if (!isNonStandardMode) {

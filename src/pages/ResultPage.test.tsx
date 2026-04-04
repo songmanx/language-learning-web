@@ -10,7 +10,12 @@ function RouteProbe() {
   const location = useLocation();
   const state = location.state as { sessionConfig?: { quizMode?: string } } | null;
 
-  return <div>{state?.sessionConfig?.quizMode ?? "no-config"}</div>;
+  return (
+    <div>
+      <div>{location.pathname}</div>
+      <div>{state?.sessionConfig?.quizMode ?? "no-config"}</div>
+    </div>
+  );
 }
 
 const resultState: SessionResultState = {
@@ -75,10 +80,11 @@ describe("ResultPage", () => {
     expect(screen.getByText("순위표")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "복습" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "연습" })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "재도전" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "다시하기" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "통계" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "홈" })).toBeInTheDocument();
     expect(screen.getByText("180")).toBeInTheDocument();
+    expect(screen.getAllByRole("button")[0]).toHaveAccessibleName("다시하기");
   });
 
   it("shows 탈락 instead of accuracy when the run ends early", () => {
@@ -137,8 +143,41 @@ describe("ResultPage", () => {
       </MemoryRouter>,
     );
 
-    await user.click(screen.getByRole("button", { name: "재도전" }));
+    await user.click(screen.getByRole("button", { name: "다시하기" }));
 
+    expect(screen.getByText("/play")).toBeInTheDocument();
+    expect(screen.getByText("meaning_to_kanji")).toBeInTheDocument();
+  });
+
+  it("replays review results back into review mode", async () => {
+    const user = userEvent.setup();
+
+    render(
+      <MemoryRouter
+        initialEntries={[
+          {
+            pathname: "/result",
+            state: {
+              ...resultState,
+              payload: {
+                ...resultState.payload,
+                modeType: "practice",
+              },
+              displayMode: "review",
+            } satisfies SessionResultState,
+          },
+        ]}
+      >
+        <Routes>
+          <Route path="/result" element={<ResultPage />} />
+          <Route path="/review" element={<RouteProbe />} />
+        </Routes>
+      </MemoryRouter>,
+    );
+
+    await user.click(screen.getByRole("button", { name: "다시하기" }));
+
+    expect(screen.getByText("/review")).toBeInTheDocument();
     expect(screen.getByText("meaning_to_kanji")).toBeInTheDocument();
   });
 

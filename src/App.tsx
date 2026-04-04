@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { AppShell } from "./components/AppShell";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { HomePage } from "./pages/HomePage";
@@ -13,6 +13,8 @@ import { StatsPage } from "./pages/StatsPage";
 import { appLogger } from "./services/logger";
 
 export default function App() {
+  const location = useLocation();
+
   useEffect(() => {
     function handleError(event: ErrorEvent) {
       appLogger.error("runtime", "전역 런타임 오류 감지", {
@@ -43,6 +45,14 @@ export default function App() {
       window.removeEventListener("unhandledrejection", handleRejection);
     };
   }, []);
+
+  useEffect(() => {
+    appLogger.info("route", "라우트 이동", {
+      pathname: location.pathname,
+      search: location.search,
+      hash: location.hash,
+    });
+  }, [location.hash, location.pathname, location.search]);
 
   return (
     <AppShell>

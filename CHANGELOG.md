@@ -1792,3 +1792,12 @@ pm run test 39揶????궢, `npm run build` ???궢
 
 
 
+## 2026-04-04
+
+- Changed the result-screen top action so `다시하기` appears first and restarts the same game mode with the same session config.
+- Validation: `npm run test -- src/pages/ResultPage.test.tsx`, `npm run build`
+
+## 2026-04-04
+
+- Added route-change debug logging plus PlayPage session-start/browser-exit/unexpected-unmount traces so interrupted sessions leave clearer localStorage breadcrumbs.
+- Validation: `npm run test -- src/services/logger.test.ts src/pages/PlayPage.test.tsx`, `npm run build`

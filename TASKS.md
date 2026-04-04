@@ -1356,3 +1356,26 @@ Phase 4: ?⑥쥒??疫꿸퀡???곕떽?
 
 
 
+## 2026-04-04 Phase 5 result replay button ordering
+
+- Completed:
+  - Moved the result-screen `다시하기` action to the first/top position
+  - Made `다시하기` restart the same mode (`기본`, `연습`, `복습`) with the same session config
+  - Added ResultPage regression coverage for first-button ordering and review-mode replay routing
+- Verified:
+  - `npm run test -- src/pages/ResultPage.test.tsx`
+  - `npm run build`
+- Next:
+  - Check on-device that result screens for standard/practice/review all feel natural with the new first action
+
+## 2026-04-04 Phase 5 session-exit trace logging
+
+- Completed:
+  - Added route-change logging so page transitions are preserved in localStorage debug logs
+  - Added PlayPage session trace markers for session start, browser/tab exit, and unexpected page unmount during an active session
+  - Added sessionId attachment to key PlayPage logs so a single interrupted run can be followed more easily
+- Verified:
+  - `npm run test -- src/services/logger.test.ts src/pages/PlayPage.test.tsx`
+  - `npm run build`
+- Next:
+  - Reproduce the unexpected session exit once and inspect `study-web-debug-logs` to confirm which trigger fired first

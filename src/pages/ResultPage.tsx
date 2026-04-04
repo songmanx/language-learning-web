@@ -29,7 +29,7 @@ const TEXT = {
   averageResponse: "평균 반응",
   partOfSpeech: "품사",
   difficulty: "난이도",
-  playAgain: "재도전",
+  playAgain: "다시하기",
   practiceStart: "연습",
   moveReview: "복습",
   statsPage: "통계",
@@ -81,6 +81,18 @@ function getModeLabel(modeType: SessionResultState["payload"]["modeType"], displ
   }
 
   return modeType === "practice" ? TEXT.practiceModeLabel : TEXT.standardModeLabel;
+}
+
+function getReplayPath(displayMode?: SessionResultState["displayMode"]) {
+  if (displayMode === "review") {
+    return "/review";
+  }
+
+  if (displayMode === "practice") {
+    return "/practice";
+  }
+
+  return "/play";
 }
 
 function getQuizTypeLabel(quizType: SessionResultState["payload"]["quizType"]) {
@@ -152,6 +164,7 @@ export function ResultPage() {
   const averageResponseLabel = formatAverageResponse(payload.answerLog);
   const sessionConfig = result.sessionConfig ?? DEFAULT_SESSION_CONFIG;
   const sessionConfigLabels = getSessionConfigLabels(sessionConfig, payload.languageCode);
+  const replayPath = getReplayPath(result.displayMode);
   const primaryAction =
     saveStatus === "pending"
       ? TEXT.moveReview
@@ -173,6 +186,14 @@ export function ResultPage() {
 
   const actionCards = [
     {
+      title: TEXT.playAgain,
+      toneClassName:
+        primaryAction === TEXT.playAgain
+          ? "border-emerald-300/50 bg-gradient-to-br from-emerald-300/20 to-emerald-200/8 text-emerald-50 shadow-[0_16px_40px_rgba(16,185,129,0.12)]"
+          : "border-white/10 bg-white/8 text-stone-100 hover:border-white/15 hover:bg-white/10",
+      action: () => navigate(replayPath, { state: { sessionConfig } }),
+    },
+    {
       title: TEXT.moveReview,
       toneClassName:
         primaryAction === TEXT.moveReview
@@ -187,14 +208,6 @@ export function ResultPage() {
           ? "border-sky-200/40 bg-gradient-to-br from-sky-300/20 to-cyan-200/8 text-sky-50 shadow-[0_16px_40px_rgba(56,189,248,0.12)]"
           : "border-white/10 bg-white/8 text-stone-100 hover:border-white/15 hover:bg-white/10",
       action: () => navigate("/practice", { state: { sessionConfig } }),
-    },
-    {
-      title: TEXT.playAgain,
-      toneClassName:
-        primaryAction === TEXT.playAgain
-          ? "border-emerald-300/50 bg-gradient-to-br from-emerald-300/20 to-emerald-200/8 text-emerald-50 shadow-[0_16px_40px_rgba(16,185,129,0.12)]"
-          : "border-white/10 bg-white/8 text-stone-100 hover:border-white/15 hover:bg-white/10",
-      action: () => navigate("/play", { state: { sessionConfig } }),
     },
   ];
 

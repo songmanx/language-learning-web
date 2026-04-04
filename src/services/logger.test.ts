@@ -18,5 +18,9 @@ describe("logger", () => {
     expect(logs[0]?.scope).toBe("route");
     expect(logs[0]?.level).toBe("WARNING");
     expect(logs[0]?.message).toContain("인증이 풀려");
+    expect(logs[0]?.path).toBeTruthy();
+    expect(logs[0]?.meta).toMatchObject({
+      from: "/play",
+    });
   });
 });
