@@ -215,6 +215,10 @@ function findWordForAnswer(configuredWords: WordItem[], answer: PendingAnswer) {
   );
 }
 
+function isFailedStandardRun(mode: PlayMode, heartsLeft: number, totalQuestions: number) {
+  return mode === "standard" && heartsLeft <= 0 && totalQuestions < QUESTION_LIMIT;
+}
+
 function getStatusTone(answerFeedback: AnswerFeedback, isFinishingSession: boolean) {
   if (isFinishingSession) {
     return {
@@ -790,6 +794,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
 
     const mergedReviewState = mergeReviewState(reviewSnapshot?.reviewState ?? [], nextAnswerLog, mode);
     writeReviewSnapshot(playerId, selectedLanguage, mergedReviewState);
+    const shouldSkipLeaderboard = isFailedStandardRun(mode, payload.heartsLeft, payload.totalQuestions);
 
     if (!isNonStandardMode) {
       const previousStats = readDailyStatsSnapshot(playerId, selectedLanguage);
@@ -809,49 +814,51 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
         lastPlayedAt: new Date().toISOString(),
       });
 
-      const leaderboard = readLeaderboard(playerId, selectedLanguage);
-      const nextLeaderboard = [
-        ...leaderboard,
-        {
-          playedAt: new Date().toISOString(),
-          totalTimeSec: payload.totalTimeSec,
-          score: payload.score,
-          quizMode: sessionConfig.quizMode,
-          playerId,
-          nickname: nickname ?? playerId,
-        },
-      ]
-        .sort((left, right) => {
+      if (!shouldSkipLeaderboard) {
+        const leaderboard = readLeaderboard(playerId, selectedLanguage);
+        const nextLeaderboard = [
+          ...leaderboard,
+          {
+            playedAt: new Date().toISOString(),
+            totalTimeSec: payload.totalTimeSec,
+            score: payload.score,
+            quizMode: sessionConfig.quizMode,
+            playerId,
+            nickname: nickname ?? playerId,
+          },
+        ]
+          .sort((left, right) => {
+            if (right.score !== left.score) {
+              return right.score - left.score;
+            }
+
+            return left.totalTimeSec - right.totalTimeSec;
+          })
+          .slice(0, 10);
+
+        writeLeaderboard(playerId, selectedLanguage, nextLeaderboard);
+
+        const globalLeaderboard = readGlobalLeaderboard(selectedLanguage);
+        const nextGlobalLeaderboard = [
+          ...globalLeaderboard,
+          {
+            playedAt: new Date().toISOString(),
+            totalTimeSec: payload.totalTimeSec,
+            score: payload.score,
+            quizMode: sessionConfig.quizMode,
+            playerId,
+            nickname: nickname ?? playerId,
+          },
+        ].sort((left, right) => {
           if (right.score !== left.score) {
             return right.score - left.score;
           }
 
           return left.totalTimeSec - right.totalTimeSec;
-        })
-        .slice(0, 10);
+        });
 
-      writeLeaderboard(playerId, selectedLanguage, nextLeaderboard);
-
-      const globalLeaderboard = readGlobalLeaderboard(selectedLanguage);
-      const nextGlobalLeaderboard = [
-        ...globalLeaderboard,
-        {
-          playedAt: new Date().toISOString(),
-          totalTimeSec: payload.totalTimeSec,
-          score: payload.score,
-          quizMode: sessionConfig.quizMode,
-          playerId,
-          nickname: nickname ?? playerId,
-        },
-      ].sort((left, right) => {
-        if (right.score !== left.score) {
-          return right.score - left.score;
-        }
-
-        return left.totalTimeSec - right.totalTimeSec;
-      });
-
-      writeGlobalLeaderboard(selectedLanguage, nextGlobalLeaderboard);
+        writeGlobalLeaderboard(selectedLanguage, nextGlobalLeaderboard);
+      }
     }
 
     const resultState: SessionResultState = {

@@ -1403,3 +1403,13 @@ Phase 4: ?⑥쥒??疫꿸퀡???곕떽?
   - `npm run build`
 - Next:
   - Reproduce the unexpected session exit once and inspect `study-web-debug-logs` to confirm which trigger fired first
+## 2026-04-04 Phase 5 leaderboard fail-out exclusion
+
+- Completed:
+  - Excluded standard-mode fail-out sessions from personal and global leaderboard writes
+  - Added PlayPage regression coverage so heart-loss 탈락 runs no longer appear in ranking storage
+- Verified:
+  - `npm run test -- src/pages/PlayPage.test.tsx`
+  - `npm run build`
+- Next:
+  - Verify on the deployed app that 탈락 결과는 순위표에 보이지 않고 완주 기록만 남는지 확인

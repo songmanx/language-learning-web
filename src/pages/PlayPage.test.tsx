@@ -487,6 +487,48 @@ describe("PlayPage", () => {
     });
   }, 15000);
 
+  it("does not write failed standard runs to personal or global leaderboards", async () => {
+    const sessionWords = createWordToMeaningWords(20);
+    useLanguageStore.setState({
+      selectedLanguage: "ja",
+      availableLanguages: [{ languageCode: "ja", label: JAPANESE, totalWords: 20 }],
+      words: sessionWords,
+      isLoading: false,
+      loadError: null,
+    });
+
+    const user = userEvent.setup();
+    renderPlayFlow();
+
+    await user.click(screen.getByRole("button", { name: START_GAME }));
+
+    for (let index = 0; index < 10; index += 1) {
+      const prompt = (await screen.findByRole("heading", { level: 2 })).textContent ?? "";
+      const word = sessionWords.find((entry) => entry.prompt === prompt);
+
+      expect(word).toBeTruthy();
+      const choiceButtons = screen.getAllByRole("button");
+      const wrongButton = choiceButtons.find((button) => !button.textContent?.includes(word?.answer ?? ""));
+
+      expect(wrongButton).toBeTruthy();
+
+      await user.click(wrongButton!);
+
+      if (index < 9) {
+        await waitFor(() => {
+          expect(screen.getByRole("heading", { level: 2 }).textContent).not.toBe(prompt);
+        });
+      }
+    }
+
+    expect(await screen.findByRole("heading", { name: RESULT_SUMMARY })).toBeInTheDocument();
+
+    await waitFor(() => {
+      expect(readLeaderboard("player-demo", "ja")).toHaveLength(0);
+      expect(readGlobalLeaderboard("ja")).toHaveLength(0);
+    });
+  }, 15000);
+
   it("shows reload action when load fails", async () => {
     const user = userEvent.setup();
     const loadWordsMock = vi.fn().mockResolvedValue(undefined);
