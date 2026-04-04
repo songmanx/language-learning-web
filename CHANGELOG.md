@@ -1829,6 +1829,10 @@ pm run test 39揶????궢, `npm run build` ???궢
 - Validation: `npm run test -- src/pages/StatsPage.test.tsx src/pages/OverallLeaderboardPage.test.tsx src/pages/ResultPage.test.tsx`, `npm run test -- src/pages/PlayPage.test.tsx`, `npm run build`.
 ## 2026-04-04
 
+- Removed the standalone `마지막 문제` chip so the last question no longer shows a separate final-question banner.
+- Tightened self-check `한자 → 후리가나` filtering so only families with both kanji and kana prompts are used, preventing Korean-meaning prompts from slipping in.
+- Added PlayPage regression coverage to keep kanji-only prompts in self-check furigana mode.
+
 - Fixed self-check `한자 → 후리가나` answers to reveal kana-only readings instead of mixed kanji forms when paired data exists.
 - Kept the self-check answer area reserved before reveal so `답 표시` and `O/X` controls stay on the same vertical row.
 - Added a focused PlayPage regression test for kana-only reveal behavior.

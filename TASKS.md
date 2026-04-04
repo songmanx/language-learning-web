@@ -1440,9 +1440,11 @@ Phase 4: ?⑥쥒??疫꿸퀡???곕떽?
 ## 2026-04-04 Phase 5 self-check furigana reveal polish
 
 - Completed:
+  - Removed the separate `마지막 문제` chip from the final question state
   - Fixed self-check `한자 → 후리가나` to reveal kana-only readings when paired furigana data is available
+  - Filtered self-check `한자 → 후리가나` candidates to families that contain both kanji and kana prompts, avoiding Korean-meaning prompts in the quiz flow
   - Reserved the self-check answer area before reveal so `답 표시` and `O/X` buttons stay at the same vertical position
-  - Added focused PlayPage regression coverage for kana-only reveal behavior
+  - Added focused PlayPage regression coverage for kana-only reveal behavior and kanji-only prompts
 - Verified:
   - `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx`
   - `npm run build`

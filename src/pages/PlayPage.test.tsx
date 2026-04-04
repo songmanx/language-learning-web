@@ -254,6 +254,21 @@ function createKanjiFuriganaSelfCheckWords(): WordItem[] {
   ];
 }
 
+function createKanjiFuriganaWithInvalidFamilyWords(): WordItem[] {
+  return [
+    ...createKanjiFuriganaSelfCheckWords(),
+    {
+      id: "JA_V_0103",
+      prompt: "\uACF5\uBD80\uD558\uB2E4",
+      choices: ["\u3079\u3093\u304D\u3087\u3046\u3059\u308B", "\u307F\u308B", "\u306E\u3080", "\u305F\u3079\u308B"],
+      answer: "\u3079\u3093\u304D\u3087\u3046\u3059\u308B",
+      meaning: "\uACF5\uBD80\uD558\uB2E4",
+      difficulty: "1",
+      questionType: "meaning_to_word",
+    },
+  ];
+}
+
 function createEnglishWords(): WordItem[] {
   return [
     {
@@ -454,7 +469,7 @@ describe("PlayPage", () => {
   });
 
   it("runs self-check mode without saving a ranked session", async () => {
-    const sessionWords = createSelfCheckWords(20);
+    const sessionWords = createKanjiFuriganaSelfCheckWords();
     const user = userEvent.setup();
     const saveSessionSpy = vi.spyOn(apiClient, "saveSession");
 
@@ -472,14 +487,14 @@ describe("PlayPage", () => {
     await user.click(screen.getByRole("button", { name: START_GAME }));
 
     const firstPrompt = (await screen.findByRole("heading", { level: 2 })).textContent ?? "";
-    expect(firstPrompt).toMatch(/^漢字\d+$/);
-    await user.click(screen.getByRole("button", { name: "답 표시" }));
-    expect(screen.getByText(`かな${firstPrompt.replace("漢字", "")}`)).toBeInTheDocument();
+    expect(/[\u3400-\u4DBF\u4E00-\u9FFF]/u.test(firstPrompt)).toBe(true);
+    await user.click(screen.getByRole("button", { name: /답 표시/ }));
+    expect(screen.getByText(/^(たべる|のむ)$/)).toBeInTheDocument();
 
     for (let index = 0; index < 20; index += 1) {
       if (index > 0) {
-        await screen.findByRole("button", { name: "답 표시" });
-        await user.click(screen.getByRole("button", { name: "답 표시" }));
+        await screen.findByRole("button", { name: /답 표시/ });
+        await user.click(screen.getByRole("button", { name: /답 표시/ }));
       }
 
       await user.click(screen.getByRole("button", { name: /O \/ 맞았어요/ }));
@@ -544,6 +559,43 @@ describe("PlayPage", () => {
     const revealedAnswer = screen.getByText(/^(たべる|のむ)$/);
 
     expect(revealedAnswer).toBeInTheDocument();
+  });
+
+  it("keeps kanji prompts only in kanji to furigana self-check", async () => {
+    const user = userEvent.setup();
+
+    useLanguageStore.setState({
+      selectedLanguage: "ja",
+      availableLanguages: [{ languageCode: "ja", label: JAPANESE, totalWords: 7 }],
+      words: createKanjiFuriganaWithInvalidFamilyWords(),
+      isLoading: false,
+      loadError: null,
+    });
+
+    renderPlayFlow({
+      pathname: "/play",
+      state: {
+        sessionConfig: {
+          gameStyle: "self_check",
+          partOfSpeech: "all",
+          difficulty: "all",
+          quizMode: "kanji_to_furigana",
+        },
+        autoStart: true,
+      },
+    });
+
+    for (let index = 0; index < 3; index += 1) {
+      const promptHeading = await screen.findByRole("heading", { level: 2 });
+      expect(/[\u3400-\u4DBF\u4E00-\u9FFF]/u.test(promptHeading.textContent ?? "")).toBe(true);
+
+      await user.click(screen.getByRole("button", { name: /답 표시|표시/ }));
+      await user.click(screen.getByRole("button", { name: /O/ }));
+
+      if (index < 2) {
+        await screen.findByRole("button", { name: /답 표시|표시/ });
+      }
+    }
   });
 
   it("starts the selected meaning to kanji mode", async () => {

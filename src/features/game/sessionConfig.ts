@@ -203,6 +203,24 @@ function isKanjiToFuriganaCompatibleWord(word: WordItem) {
   return containsKana(answer) && !containsKanji(answer);
 }
 
+function hasKanjiToFuriganaPromptPair(words: WordItem[], candidate: WordItem) {
+  const familyWords = words.filter(
+    (word) => getWordId(word) === getWordId(candidate) && getMeaningKey(word) === getMeaningKey(candidate),
+  );
+
+  const hasKanjiPrompt = familyWords.some(
+    (word) => getQuestionType(word) === "word_to_meaning" && containsKanji(String(word.prompt ?? "").trim()),
+  );
+  const hasKanaPrompt = familyWords.some(
+    (word) =>
+      getQuestionType(word) === "word_to_meaning" &&
+      containsKana(String(word.prompt ?? "").trim()) &&
+      !containsKanji(String(word.prompt ?? "").trim()),
+  );
+
+  return hasKanjiPrompt && hasKanaPrompt;
+}
+
 export function getWordPromptMode(word: WordItem): QuizModeFilter {
   const languageCode = inferLanguageCodeFromWordId(getWordId(word));
 
@@ -327,7 +345,15 @@ export function getQuizModeCounts(
     }
 
     for (const mode of getSupportedQuizModes(undefined, sessionConfig.gameStyle)) {
-      if (wordMatchesQuizMode(word, mode, sessionConfig.gameStyle)) {
+      if (!wordMatchesQuizMode(word, mode, sessionConfig.gameStyle)) {
+        continue;
+      }
+
+      if (mode === "kanji_to_furigana" && !hasKanjiToFuriganaPromptPair(words, word)) {
+        continue;
+      }
+
+      {
         counts[mode] += 1;
       }
     }
@@ -396,6 +422,10 @@ export function filterWordsBySessionConfig(words: WordItem[], sessionConfig: Ses
     const deduped = new Map<string, WordItem>();
 
     for (const word of filtered) {
+      if (!hasKanjiToFuriganaPromptPair(words, word)) {
+        continue;
+      }
+
       const familyKey = getFamilyKey(word);
 
       if (!deduped.has(familyKey)) {

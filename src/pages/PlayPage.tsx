@@ -103,7 +103,6 @@ const TEXT = {
     "\uC120\uD0DD\uD55C \uC5B8\uC5B4 \uC815\uBCF4\uAC00 \uC5C6\uC5B4 \uD648\uC5D0\uC11C \uB2E4\uC2DC \uC2DC\uC791\uD574 \uC8FC\uC138\uC694.",
   progress: "\uC9C4\uD589\uB3C4",
   sessionProgressLabel: "\uC138\uC158 \uC9C4\uD589",
-  finalQuestion: "\uB9C8\uC9C0\uB9C9 \uBB38\uC81C",
   movingResult: "\uACB0\uACFC \uC774\uB3D9 \uC911",
   correctStatusChip: "\uC815\uB2F5 \uD655\uC815",
   incorrectStatusChip: "\uC624\uB2F5 \uD655\uC778",
@@ -1288,10 +1287,10 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
       <div className="space-y-2">
         <div className="overflow-hidden rounded-[1.35rem] border border-white/10 bg-stone-950/65">
           <div className="space-y-1.5 px-3 py-2 sm:px-3.5">
-            {remainingCount === 0 ? (
+            {remainingCount === 0 && isFinishingSession ? (
               <div className="flex flex-wrap items-center gap-2 text-[11px] font-semibold">
                 <span className="rounded-full border border-amber-200/20 bg-amber-300/12 px-3 py-1 text-amber-100">
-                  {isFinishingSession ? TEXT.movingResult : TEXT.finalQuestion}
+                  {TEXT.movingResult}
                 </span>
               </div>
             ) : null}
