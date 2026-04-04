@@ -1827,3 +1827,9 @@ pm run test 39揶????궢, `npm run build` ???궢
 - Switched stats, personal leaderboard, and overall leaderboard reads from browser-local snapshots to GAS-backed aggregate APIs.
 - Reduced GAS save persistence to compact aggregate sheets (`Player_Stats`, `Personal_Leaderboard`, `Global_Leaderboard`) so cross-device rankings stay shared without scanning full answer logs.
 - Validation: `npm run test -- src/pages/StatsPage.test.tsx src/pages/OverallLeaderboardPage.test.tsx src/pages/ResultPage.test.tsx`, `npm run test -- src/pages/PlayPage.test.tsx`, `npm run build`.
+## 2026-04-04
+
+- Fixed self-check `한자 → 후리가나` answers to reveal kana-only readings instead of mixed kanji forms when paired data exists.
+- Kept the self-check answer area reserved before reveal so `답 표시` and `O/X` controls stay on the same vertical row.
+- Added a focused PlayPage regression test for kana-only reveal behavior.
+- Validation: `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx`, `npm run build`.

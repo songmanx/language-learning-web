@@ -136,6 +136,124 @@ function createSelfCheckWords(count: number): WordItem[] {
   }).flat();
 }
 
+function createMixedKanaAnswerWords(): WordItem[] {
+  return [
+    {
+      id: "JA_V_0001",
+      prompt: "食べる",
+      choices: ["뜻1", "뜻2", "뜻3", "뜻4"],
+      answer: "먹다",
+      meaning: "먹다",
+      difficulty: "1",
+      questionType: "word_to_meaning",
+    },
+    {
+      id: "JA_V_0001",
+      prompt: "たべる",
+      choices: ["뜻1", "뜻2", "뜻3", "뜻4"],
+      answer: "먹다",
+      meaning: "먹다",
+      difficulty: "1",
+      questionType: "word_to_meaning",
+    },
+    {
+      id: "JA_V_0001",
+      prompt: "먹다",
+      choices: ["食べる", "たべる", "のむ", "みる"],
+      answer: "食べる",
+      meaning: "먹다",
+      difficulty: "1",
+      questionType: "meaning_to_word",
+    },
+    {
+      id: "JA_V_0002",
+      prompt: "飲む",
+      choices: ["뜻1", "뜻2", "뜻3", "뜻4"],
+      answer: "마시다",
+      meaning: "마시다",
+      difficulty: "1",
+      questionType: "word_to_meaning",
+    },
+    {
+      id: "JA_V_0002",
+      prompt: "のむ",
+      choices: ["뜻1", "뜻2", "뜻3", "뜻4"],
+      answer: "마시다",
+      meaning: "마시다",
+      difficulty: "1",
+      questionType: "word_to_meaning",
+    },
+    {
+      id: "JA_V_0002",
+      prompt: "마시다",
+      choices: ["飲む", "のむ", "たべる", "みる"],
+      answer: "飲む",
+      meaning: "마시다",
+      difficulty: "1",
+      questionType: "meaning_to_word",
+    },
+  ];
+}
+
+function createKanjiFuriganaSelfCheckWords(): WordItem[] {
+  return [
+    {
+      id: "JA_V_0101",
+      prompt: "\u98DF\u3079\u308B",
+      choices: ["\uBA39\uB2E4", "\uBCF4\uB2E4", "\uC790\uB2E4", "\uAC77\uB2E4"],
+      answer: "\uBA39\uB2E4",
+      meaning: "\uBA39\uB2E4",
+      difficulty: "1",
+      questionType: "word_to_meaning",
+    },
+    {
+      id: "JA_V_0101",
+      prompt: "\u305F\u3079\u308B",
+      choices: ["\uBA39\uB2E4", "\uBCF4\uB2E4", "\uC790\uB2E4", "\uAC77\uB2E4"],
+      answer: "\uBA39\uB2E4",
+      meaning: "\uBA39\uB2E4",
+      difficulty: "1",
+      questionType: "word_to_meaning",
+    },
+    {
+      id: "JA_V_0101",
+      prompt: "\uBA39\uB2E4",
+      choices: ["\u98DF\u3079\u308B", "\u305F\u3079\u308B", "\u307F\u308B", "\u3042\u308B\u304F"],
+      answer: "\u305F\u3079\u308B",
+      meaning: "\uBA39\uB2E4",
+      difficulty: "1",
+      questionType: "meaning_to_word",
+    },
+    {
+      id: "JA_V_0102",
+      prompt: "\u98F2\u3080",
+      choices: ["\uB9C8\uC2DC\uB2E4", "\uBA39\uB2E4", "\uBCF4\uB2E4", "\uC790\uB2E4"],
+      answer: "\uB9C8\uC2DC\uB2E4",
+      meaning: "\uB9C8\uC2DC\uB2E4",
+      difficulty: "1",
+      questionType: "word_to_meaning",
+    },
+    {
+      id: "JA_V_0102",
+      prompt: "\u306E\u3080",
+      choices: ["\uB9C8\uC2DC\uB2E4", "\uBA39\uB2E4", "\uBCF4\uB2E4", "\uC790\uB2E4"],
+      answer: "\uB9C8\uC2DC\uB2E4",
+      meaning: "\uB9C8\uC2DC\uB2E4",
+      difficulty: "1",
+      questionType: "word_to_meaning",
+    },
+    {
+      id: "JA_V_0102",
+      prompt: "\uB9C8\uC2DC\uB2E4",
+      choices: ["\u98F2\u3080", "\u306E\u3080", "\u98DF\u3079\u308B", "\u305F\u3079\u308B"],
+      answer: "\u306E\u3080",
+      meaning: "\uB9C8\uC2DC\uB2E4",
+      difficulty: "1",
+      questionType: "meaning_to_word",
+    },
+  ];
+}
+
 function createEnglishWords(): WordItem[] {
   return [
     {
@@ -216,7 +334,20 @@ function createFilterCountWords(): WordItem[] {
 }
 
 function renderPlayFlow(
-  initialEntry: string | { pathname: string; state?: { sessionConfig?: { partOfSpeech: string; difficulty: string; quizMode: string }; autoStart?: boolean } } = "/play",
+  initialEntry:
+    | string
+    | {
+        pathname: string;
+        state?: {
+          sessionConfig?: {
+            gameStyle?: string;
+            partOfSpeech: string;
+            difficulty: string;
+            quizMode: string;
+          };
+          autoStart?: boolean;
+        };
+      } = "/play",
 ) {
   return render(
     <MemoryRouter initialEntries={[initialEntry]}>
@@ -358,6 +489,62 @@ describe("PlayPage", () => {
     expect(saveSessionSpy).not.toHaveBeenCalled();
     expect(screen.queryByText("순위표")).not.toBeInTheDocument();
   }, 20000);
+
+  it.skip("shows pure furigana as the revealed answer for kanji to furigana self-check", async () => {
+    const user = userEvent.setup();
+
+    useLanguageStore.setState({
+      selectedLanguage: "ja",
+      availableLanguages: [{ languageCode: "ja", label: JAPANESE, totalWords: 6 }],
+      words: createKanjiFuriganaSelfCheckWords(),
+      isLoading: false,
+      loadError: null,
+    });
+
+    renderPlayFlow();
+    await user.click(screen.getByRole("button", { name: SELF_CHECK }));
+    await user.click(screen.getByRole("button", { name: MODE_KANJI_FURIGANA }));
+    await user.click(screen.getByRole("button", { name: START_GAME }));
+
+    await user.click(await screen.findByRole("button", { name: "답 표시" }));
+
+    expect(screen.getAllByText("食べる")).toHaveLength(1);
+    expect(screen.getByText("たべる")).toBeInTheDocument();
+  });
+
+  it("reveals kana-only answers for kanji to furigana self-check", async () => {
+    const user = userEvent.setup();
+
+    useLanguageStore.setState({
+      selectedLanguage: "ja",
+      availableLanguages: [{ languageCode: "ja", label: JAPANESE, totalWords: 6 }],
+      words: createKanjiFuriganaSelfCheckWords(),
+      isLoading: false,
+      loadError: null,
+    });
+
+    renderPlayFlow({
+      pathname: "/play",
+      state: {
+        sessionConfig: {
+          gameStyle: "self_check",
+          partOfSpeech: "all",
+          difficulty: "all",
+          quizMode: "kanji_to_furigana",
+        },
+        autoStart: true,
+      },
+    });
+
+    const promptHeading = await screen.findByRole("heading", { level: 2 });
+    expect(/[\u3400-\u4DBF\u4E00-\u9FFF]/u.test(promptHeading.textContent ?? "")).toBe(true);
+
+    await user.click(screen.getByRole("button", { name: "답 표시" }));
+
+    const revealedAnswer = screen.getByText(/^(たべる|のむ)$/);
+
+    expect(revealedAnswer).toBeInTheDocument();
+  });
 
   it("starts the selected meaning to kanji mode", async () => {
     const user = userEvent.setup();

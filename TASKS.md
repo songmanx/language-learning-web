@@ -1437,3 +1437,14 @@ Phase 4: ?⑥쥒??疫꿸퀡???곕떽?
 - Next:
   - Check one real mobile run for `문답형` to confirm the reveal button size and O/X spacing feel natural
   - Decide whether self-check results should also hide total session time/average response in the result details card
+## 2026-04-04 Phase 5 self-check furigana reveal polish
+
+- Completed:
+  - Fixed self-check `한자 → 후리가나` to reveal kana-only readings when paired furigana data is available
+  - Reserved the self-check answer area before reveal so `답 표시` and `O/X` buttons stay at the same vertical position
+  - Added focused PlayPage regression coverage for kana-only reveal behavior
+- Verified:
+  - `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx`
+  - `npm run build`
+- Next:
+  - Verify on mobile that long furigana answers still fit cleanly in the reserved answer area

@@ -198,7 +198,9 @@ function isKanjiToFuriganaCompatibleWord(word: WordItem) {
     return false;
   }
 
-  return containsKana(String(word.answer ?? "").trim());
+  const answer = String(word.answer ?? "").trim();
+
+  return containsKana(answer) && !containsKanji(answer);
 }
 
 export function getWordPromptMode(word: WordItem): QuizModeFilter {

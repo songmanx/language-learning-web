@@ -1405,45 +1405,53 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
             {isSelfCheckMode ? (
               <div className="space-y-3">
                 <p className="text-sm leading-6 text-stone-300">{TEXT.selfCheckInstruction}</p>
-                {!isAnswerRevealed ? (
-                  <button
-                    className="flex min-h-16 w-full items-center justify-center rounded-[1.4rem] border border-amber-200/20 bg-amber-300/12 px-4 py-4 text-[1.05rem] font-black text-amber-50 shadow-[0_18px_40px_rgba(251,191,36,0.12)] transition hover:bg-amber-300/18"
-                    type="button"
-                    onClick={() => setIsAnswerRevealed(true)}
-                    disabled={isSaving}
-                  >
-                    {TEXT.revealAnswer}
-                  </button>
-                ) : (
-                  <div className="space-y-3">
-                    <div className="rounded-[1.35rem] border border-emerald-200/20 bg-emerald-300/10 px-4 py-4">
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-100/80">
-                        {TEXT.selfCheckAnswerTitle}
-                      </p>
-                      <p className="mt-2 text-[1.1rem] font-black leading-tight text-emerald-50 sm:text-[1.3rem]">
-                        {currentQuestion.answer}
-                      </p>
-                    </div>
-                    <div className="grid grid-cols-2 gap-2">
-                      <button
-                        className="flex min-h-16 items-center justify-center rounded-[1.35rem] border border-emerald-200/25 bg-emerald-300/14 px-4 py-4 text-[1.1rem] font-black text-emerald-50 transition hover:bg-emerald-300/20"
-                        type="button"
-                        onClick={() => void handleSelfCheckAnswer(true)}
-                        disabled={isSaving || isAnswerLocked}
-                      >
-                        {TEXT.selfCheckCorrect} / {TEXT.selfCheckCorrectLabel}
-                      </button>
-                      <button
-                        className="flex min-h-16 items-center justify-center rounded-[1.35rem] border border-rose-200/25 bg-rose-300/14 px-4 py-4 text-[1.1rem] font-black text-rose-50 transition hover:bg-rose-300/20"
-                        type="button"
-                        onClick={() => void handleSelfCheckAnswer(false)}
-                        disabled={isSaving || isAnswerLocked}
-                      >
-                        {TEXT.selfCheckIncorrect} / {TEXT.selfCheckIncorrectLabel}
-                      </button>
-                    </div>
+                <div className="space-y-3">
+                  <div className="min-h-[6.5rem]">
+                    {isAnswerRevealed ? (
+                      <div className="rounded-[1.35rem] border border-emerald-200/20 bg-emerald-300/10 px-4 py-4">
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-100/80">
+                          {TEXT.selfCheckAnswerTitle}
+                        </p>
+                        <p className="mt-2 text-[1.1rem] font-black leading-tight text-emerald-50 sm:text-[1.3rem]">
+                          {currentQuestion.answer}
+                        </p>
+                      </div>
+                    ) : (
+                      <div className="min-h-[6.5rem] rounded-[1.35rem] border border-dashed border-white/10 bg-white/5" aria-hidden="true" />
+                    )}
                   </div>
-                )}
+                  <div className="min-h-[4.5rem]">
+                    {!isAnswerRevealed ? (
+                      <button
+                        className="flex min-h-16 w-full items-center justify-center rounded-[1.4rem] border border-amber-200/20 bg-amber-300/12 px-4 py-4 text-[1.05rem] font-black text-amber-50 shadow-[0_18px_40px_rgba(251,191,36,0.12)] transition hover:bg-amber-300/18"
+                        type="button"
+                        onClick={() => setIsAnswerRevealed(true)}
+                        disabled={isSaving}
+                      >
+                        {TEXT.revealAnswer}
+                      </button>
+                    ) : (
+                      <div className="grid grid-cols-2 gap-2">
+                        <button
+                          className="flex min-h-16 items-center justify-center rounded-[1.35rem] border border-emerald-200/25 bg-emerald-300/14 px-4 py-4 text-[1.1rem] font-black text-emerald-50 transition hover:bg-emerald-300/20"
+                          type="button"
+                          onClick={() => void handleSelfCheckAnswer(true)}
+                          disabled={isSaving || isAnswerLocked}
+                        >
+                          {TEXT.selfCheckCorrect} / {TEXT.selfCheckCorrectLabel}
+                        </button>
+                        <button
+                          className="flex min-h-16 items-center justify-center rounded-[1.35rem] border border-rose-200/25 bg-rose-300/14 px-4 py-4 text-[1.1rem] font-black text-rose-50 transition hover:bg-rose-300/20"
+                          type="button"
+                          onClick={() => void handleSelfCheckAnswer(false)}
+                          disabled={isSaving || isAnswerLocked}
+                        >
+                          {TEXT.selfCheckIncorrect} / {TEXT.selfCheckIncorrectLabel}
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
             ) : (
               <div className={`grid gap-1.5 transition duration-300 ${choicesStateClassName}`}>
@@ -1508,19 +1516,28 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
 
 function buildSelfCheckRound(currentWord: WordItem, configuredWords: WordItem[], quizMode: QuizModeFilter) {
   if (quizMode === "kanji_to_furigana") {
+    const siblingWords = configuredWords.filter(
+      (word) => word.id === currentWord.id && String(word.meaning ?? "").trim() === String(currentWord.meaning ?? "").trim(),
+    );
     const pairedPrompt =
-      configuredWords.find(
+      siblingWords.find(
         (word) =>
-          word.id === currentWord.id &&
           word.questionType === "word_to_meaning" &&
-          String(word.meaning ?? "").trim() === String(currentWord.meaning ?? "").trim(),
+          /[\u3400-\u4DBF\u4E00-\u9FFF]/u.test(String(word.prompt ?? "").trim()),
       )?.prompt ?? currentWord.prompt;
+    const furiganaAnswer =
+      siblingWords.find(
+        (word) =>
+          word.questionType === "word_to_meaning" &&
+          /[\u3040-\u30FF]/u.test(String(word.prompt ?? "").trim()) &&
+          !/[\u3400-\u4DBF\u4E00-\u9FFF]/u.test(String(word.prompt ?? "").trim()),
+      )?.prompt ?? currentWord.answer;
 
     return {
       questionType: currentWord.questionType,
       prompt: pairedPrompt,
       choices: [],
-      answer: currentWord.answer,
+      answer: furiganaAnswer,
       instruction: TEXT.selfCheckInstruction,
       typeLabel: getQuizModeLabel(quizMode),
     };
