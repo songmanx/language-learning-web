@@ -1794,6 +1794,11 @@ pm run test 39揶????궢, `npm run build` ???궢
 
 ## 2026-04-04
 
+- Updated result-screen replay so `다시하기` skips the setup screen and immediately starts the same mode with the same session config.
+- Validation: `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx`, `npm run build`
+
+## 2026-04-04
+
 - Changed the result-screen top action so `다시하기` appears first and restarts the same game mode with the same session config.
 - Validation: `npm run test -- src/pages/ResultPage.test.tsx`, `npm run build`
 

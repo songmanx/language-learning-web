@@ -44,6 +44,10 @@ const TEXT = {
   reviewModeLabel: "복습 모드",
   wordToMeaningLabel: "단어 -> 뜻",
   meaningToWordLabel: "뜻 -> 단어",
+  wrongAnswersTitle: "오답 정리",
+  wrongAnswersEmpty: "이번 세션에는 오답이 없습니다.",
+  promptLabel: "문제",
+  correctAnswerLabel: "정답",
   rankingTitle: "순위표",
   rankingEmpty: "아직 기록이 없습니다.",
   rankingDate: "날짜",
@@ -151,7 +155,7 @@ export function ResultPage() {
     );
   }
 
-  const { payload, saveStatus, message } = result;
+  const { payload, saveStatus, message, incorrectAnswers = [] } = result;
   const accuracy = getAccuracy(payload.correctAnswers, payload.totalQuestions);
   const didFailOut =
     payload.modeType === "standard" &&
@@ -265,6 +269,29 @@ export function ResultPage() {
           {message}
         </div>
       ) : null}
+
+      <div className="rounded-[0.72rem] border border-white/10 bg-stone-950/40 p-3">
+        <h3 className="text-[1.02rem] font-black tracking-[-0.03em] text-white">{TEXT.wrongAnswersTitle}</h3>
+        <div className="mt-2 space-y-2">
+          {incorrectAnswers.length === 0 ? (
+            <div className="rounded-2xl border border-dashed border-white/10 bg-white/5 px-3 py-3 text-sm text-stone-300">
+              {TEXT.wrongAnswersEmpty}
+            </div>
+          ) : (
+            incorrectAnswers.map((item, index) => (
+              <div
+                key={`${item.shownPrompt}-${item.correctAnswer}-${index}`}
+                className="rounded-2xl border border-white/10 bg-white/6 px-3 py-3"
+              >
+                <p className="text-[11px] uppercase tracking-[0.18em] text-stone-400">{TEXT.promptLabel}</p>
+                <p className="mt-1 text-sm font-semibold text-stone-100">{item.shownPrompt}</p>
+                <p className="mt-2 text-[11px] uppercase tracking-[0.18em] text-stone-400">{TEXT.correctAnswerLabel}</p>
+                <p className="mt-1 text-sm font-semibold text-emerald-100">{item.correctAnswer}</p>
+              </div>
+            ))
+          )}
+        </div>
+      </div>
 
       <div className="rounded-[0.72rem] border border-white/10 bg-white/8 p-2">
         <div className="grid grid-cols-2 gap-1 sm:grid-cols-4">

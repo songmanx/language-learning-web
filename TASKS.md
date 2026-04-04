@@ -1356,6 +1356,18 @@ Phase 4: ?⑥쥒??疫꿸퀡???곕떽?
 
 
 
+## 2026-04-04 Phase 5 result replay auto-start
+
+- Completed:
+  - Added `autoStart` replay navigation so result-screen `다시하기` skips the setup page
+  - Made PlayPage immediately begin the same mode with the same session config when replay state requests auto-start
+  - Added regression coverage for auto-start replay state on PlayPage
+- Verified:
+  - `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx`
+  - `npm run build`
+- Next:
+  - Check one real result flow on device to confirm `다시하기` enters the first question without flashing the setup UI
+
 ## 2026-04-04 Phase 5 result replay button ordering
 
 - Completed:

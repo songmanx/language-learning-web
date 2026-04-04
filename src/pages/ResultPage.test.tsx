@@ -45,6 +45,16 @@ const resultState: SessionResultState = {
     difficulty: "2",
     quizMode: "meaning_to_kanji",
   },
+  incorrectAnswers: [
+    {
+      shownPrompt: "猫",
+      correctAnswer: "고양이",
+    },
+    {
+      shownPrompt: "学生",
+      correctAnswer: "がくせい",
+    },
+  ],
 };
 
 describe("ResultPage", () => {
@@ -85,6 +95,9 @@ describe("ResultPage", () => {
     expect(screen.getByRole("button", { name: "홈" })).toBeInTheDocument();
     expect(screen.getByText("180")).toBeInTheDocument();
     expect(screen.getAllByRole("button")[0]).toHaveAccessibleName("다시하기");
+    expect(screen.getByRole("heading", { name: "오답 정리" })).toBeInTheDocument();
+    expect(screen.getByText("猫")).toBeInTheDocument();
+    expect(screen.getByText("고양이")).toBeInTheDocument();
   });
 
   it("shows 탈락 instead of accuracy when the run ends early", () => {

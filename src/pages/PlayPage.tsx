@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import type { SessionResultState } from "../features/game/resultState";
+import type { IncorrectAnswerSummary, SessionResultState } from "../features/game/resultState";
 import {
   buildSessionWordQueue,
   DEFAULT_SESSION_CONFIG,
@@ -695,6 +695,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
       sessionConfig,
       queueSize: configuredWords.length,
     });
+    const incorrectAnswers = buildIncorrectAnswerSummaries(nextAnswerLog, configuredWords);
   }
 
   useEffect(() => {
@@ -858,6 +859,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
       saveStatus: "saving",
       sessionConfig,
       displayMode: mode,
+      incorrectAnswers,
     };
 
     navigate("/result", { state: resultState });
@@ -877,6 +879,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
           saveStatus: "saved",
           sessionConfig,
           displayMode: mode,
+          incorrectAnswers,
         } satisfies SessionResultState,
       });
     } catch (error) {
@@ -899,6 +902,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
           message: `${TEXT.pendingSavedMessage} ${message}`,
           sessionConfig,
           displayMode: mode,
+          incorrectAnswers,
         } satisfies SessionResultState,
       });
     }
@@ -1337,6 +1341,22 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
       </div>
     </section>
   );
+}
+
+function buildIncorrectAnswerSummaries(
+  answers: PendingAnswer[],
+  configuredWords: WordItem[],
+): IncorrectAnswerSummary[] {
+  return answers
+    .filter((answer) => !answer.correct)
+    .map((answer) => {
+      const matchedWord = findWordForAnswer(configuredWords, answer);
+
+      return {
+        shownPrompt: answer.shownPrompt,
+        correctAnswer: matchedWord?.answer ?? "-",
+      };
+    });
 }
 
 function buildPlayQueue(words: WordItem[], sessionConfig: SessionConfig, mode: PlayMode, reviewState: ReviewStateRecord[] | undefined, seed: number) {
