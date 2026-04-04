@@ -191,7 +191,7 @@ export function ResultPage() {
         primaryAction === TEXT.playAgain
           ? "border-emerald-300/50 bg-gradient-to-br from-emerald-300/20 to-emerald-200/8 text-emerald-50 shadow-[0_16px_40px_rgba(16,185,129,0.12)]"
           : "border-white/10 bg-white/8 text-stone-100 hover:border-white/15 hover:bg-white/10",
-      action: () => navigate(replayPath, { state: { sessionConfig } }),
+      action: () => navigate(replayPath, { state: { sessionConfig, autoStart: true } }),
     },
     {
       title: TEXT.moveReview,

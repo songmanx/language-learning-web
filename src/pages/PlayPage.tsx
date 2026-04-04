@@ -266,7 +266,9 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
   const loadError = useLanguageStore((state) => state.loadError);
   const isLoading = useLanguageStore((state) => state.isLoading);
   const clearLoadError = useLanguageStore((state) => state.clearLoadError);
-  const incomingSessionConfig = (location.state as { sessionConfig?: SessionConfig } | null)?.sessionConfig;
+  const incomingState = (location.state as { sessionConfig?: SessionConfig; autoStart?: boolean } | null) ?? null;
+  const incomingSessionConfig = incomingState?.sessionConfig;
+  const incomingAutoStart = incomingState?.autoStart === true;
 
   const [sessionConfig, setSessionConfig] = useState<SessionConfig>(
     normalizeSessionConfig(incomingSessionConfig ?? DEFAULT_SESSION_CONFIG),
@@ -292,6 +294,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
   const questionPhaseTimeoutRef = useRef<number | null>(null);
   const answerTimeoutRef = useRef<number | null>(null);
   const answerTickerRef = useRef<number | null>(null);
+  const autoStartConsumedRef = useRef(false);
   const sessionIdRef = useRef(`session-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`);
   const latestStateRef = useRef({
     isSessionStarted: false,
@@ -352,6 +355,10 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
       setQuestionVisualPhase("steady");
     }
   }, [incomingSessionConfig]);
+
+  useEffect(() => {
+    autoStartConsumedRef.current = false;
+  }, [incomingAutoStart, incomingSessionConfig]);
 
   useEffect(() => {
     latestStateRef.current = {
@@ -689,6 +696,15 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
       queueSize: configuredWords.length,
     });
   }
+
+  useEffect(() => {
+    if (!incomingAutoStart || autoStartConsumedRef.current || isSessionStarted || configuredWords.length === 0) {
+      return;
+    }
+
+    autoStartConsumedRef.current = true;
+    startSession();
+  }, [configuredWords.length, incomingAutoStart, isSessionStarted]);
 
   const progressLabel = useMemo(
     () => `${Math.min(currentIndex + 1, configuredWords.length)} / ${configuredWords.length}`,

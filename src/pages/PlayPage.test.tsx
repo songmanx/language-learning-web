@@ -185,7 +185,9 @@ function createFilterCountWords(): WordItem[] {
   ];
 }
 
-function renderPlayFlow(initialEntry = "/play") {
+function renderPlayFlow(
+  initialEntry: string | { pathname: string; state?: { sessionConfig?: { partOfSpeech: string; difficulty: string; quizMode: string }; autoStart?: boolean } } = "/play",
+) {
   return render(
     <MemoryRouter initialEntries={[initialEntry]}>
       <Routes>
@@ -271,6 +273,23 @@ describe("PlayPage", () => {
 
     expect(await screen.findByRole("heading", { level: 2 })).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: RESET })).not.toBeInTheDocument();
+  });
+
+  it("auto starts immediately when autoStart replay state is provided", async () => {
+    renderPlayFlow({
+      pathname: "/play",
+      state: {
+        sessionConfig: {
+          partOfSpeech: "all",
+          difficulty: "all",
+          quizMode: "kanji_to_meaning",
+        },
+        autoStart: true,
+      },
+    });
+
+    expect(await screen.findByRole("heading", { level: 2 })).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: START_GAME })).not.toBeInTheDocument();
   });
 
   it("starts the selected meaning to kanji mode", async () => {
