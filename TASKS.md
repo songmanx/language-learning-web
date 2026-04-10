@@ -1,4 +1,15 @@
-﻿## 2026-03-30 Phase 5 session-exit debug logging
+﻿## 2026-04-10 Phase 5 self-check answer card polish
+
+- Completed:
+  - Enlarged the self-check prompt and revealed-answer typography for better mobile readability
+  - Added two-line answer reveal cards so each self-check quiz mode shows the main answer plus a smaller helper answer
+  - Fixed Japanese self-check answer mapping so kanji/furigana/meaning prompts stay aligned through the full session
+- Verified:
+  - npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx
+  - npm run build
+- Next:
+  - Verify long Japanese readings and meanings still wrap cleanly on a narrow mobile screen
+## 2026-03-30 Phase 5 session-exit debug logging
 
 - Completed:
   - Added persistent debug logging in localStorage so redirects and runtime errors can be inspected after page transitions
@@ -1450,3 +1461,4 @@ Phase 4: ?⑥쥒??疫꿸퀡???곕떽?
   - `npm run build`
 - Next:
   - Verify on mobile that long furigana answers still fit cleanly in the reserved answer area
+

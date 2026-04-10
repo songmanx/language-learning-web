@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+﻿import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
@@ -18,6 +18,8 @@ const MODE_KANJI_FURIGANA = "\uD55C\uC790 \u2192 \uD6C4\uB9AC\uAC00\uB098";
 const MODE_MEANING_KANJI = "\uB73B \u2192 \uD55C\uC790";
 const AUDIO = "\uC74C\uC131 \u2192 \uB73B";
 const SELF_CHECK = "\uBB38\uB2F5\uD615";
+const REVEAL_ANSWER = "\uB2F5 \uD45C\uC2DC";
+const SELF_CHECK_CORRECT = "O / \uB9DE\uC558\uC5B4\uC694";
 const EN_MODE_WORD = "\uB2E8\uC5B4 \u2192 \uB73B";
 const EN_MODE_MEANING_WORD = "\uB73B \u2192 \uB2E8\uC5B4";
 const NO_AUDIO_DATA = "\uB370\uC774\uD130 \uC5C6\uC74C";
@@ -116,19 +118,19 @@ function createSelfCheckWords(count: number): WordItem[] {
     return [
       {
         id,
-        prompt: `漢字${number}`,
-        choices: [`뜻${number}`, `오답A${number}`, `오답B${number}`, `오답C${number}`],
-        answer: `뜻${number}`,
-        meaning: `뜻${number}`,
+        prompt: `\u6F22\u5B57${number}`,
+        choices: [`\uB73B${number}`, `\uC624\uB2F5A${number}`, `\uC624\uB2F5B${number}`, `\uC624\uB2F5C${number}`],
+        answer: `\uB73B${number}`,
+        meaning: `\uB73B${number}`,
         difficulty: "1",
         questionType: "word_to_meaning" as const,
       },
       {
         id,
-        prompt: `뜻${number}`,
-        choices: [`かな${number}`, `한자${number}`, `발음${number}`, `단어${number}`],
-        answer: `かな${number}`,
-        meaning: `뜻${number}`,
+        prompt: `\uB73B${number}`,
+        choices: [`\u304B\u306A${number}`, `\uD55C\uC790${number}`, `\uBC1C\uC74C${number}`, `\uB2E8\uC5B4${number}`],
+        answer: `\u304B\u306A${number}`,
+        meaning: `\uB73B${number}`,
         difficulty: "1",
         questionType: "meaning_to_word" as const,
       },
@@ -136,64 +138,6 @@ function createSelfCheckWords(count: number): WordItem[] {
   }).flat();
 }
 
-function createMixedKanaAnswerWords(): WordItem[] {
-  return [
-    {
-      id: "JA_V_0001",
-      prompt: "食べる",
-      choices: ["뜻1", "뜻2", "뜻3", "뜻4"],
-      answer: "먹다",
-      meaning: "먹다",
-      difficulty: "1",
-      questionType: "word_to_meaning",
-    },
-    {
-      id: "JA_V_0001",
-      prompt: "たべる",
-      choices: ["뜻1", "뜻2", "뜻3", "뜻4"],
-      answer: "먹다",
-      meaning: "먹다",
-      difficulty: "1",
-      questionType: "word_to_meaning",
-    },
-    {
-      id: "JA_V_0001",
-      prompt: "먹다",
-      choices: ["食べる", "たべる", "のむ", "みる"],
-      answer: "食べる",
-      meaning: "먹다",
-      difficulty: "1",
-      questionType: "meaning_to_word",
-    },
-    {
-      id: "JA_V_0002",
-      prompt: "飲む",
-      choices: ["뜻1", "뜻2", "뜻3", "뜻4"],
-      answer: "마시다",
-      meaning: "마시다",
-      difficulty: "1",
-      questionType: "word_to_meaning",
-    },
-    {
-      id: "JA_V_0002",
-      prompt: "のむ",
-      choices: ["뜻1", "뜻2", "뜻3", "뜻4"],
-      answer: "마시다",
-      meaning: "마시다",
-      difficulty: "1",
-      questionType: "word_to_meaning",
-    },
-    {
-      id: "JA_V_0002",
-      prompt: "마시다",
-      choices: ["飲む", "のむ", "たべる", "みる"],
-      answer: "飲む",
-      meaning: "마시다",
-      difficulty: "1",
-      questionType: "meaning_to_word",
-    },
-  ];
-}
 
 function createKanjiFuriganaSelfCheckWords(): WordItem[] {
   return [
@@ -303,11 +247,11 @@ function createEnglishWords(): WordItem[] {
 
 function createEnglishWordToMeaningWords(count: number): WordItem[] {
   return Array.from({ length: count }, (_, index) => {
-    const answer = `뜻${index + 1}`;
+    const answer = `\uB73B${index + 1}`;
     return {
       id: `EN_N_${String(index + 1).padStart(4, "0")}`,
       prompt: `english${index + 1}`,
-      choices: [answer, `오답A${index + 1}`, `오답B${index + 1}`, `오답C${index + 1}`],
+      choices: [answer, `\uC624\uB2F5A${index + 1}`, `\uC624\uB2F5B${index + 1}`, `\uC624\uB2F5C${index + 1}`],
       answer,
       meaning: answer,
       difficulty: index < 7 ? "1" : index < 14 ? "2" : "3",
@@ -413,6 +357,27 @@ describe("PlayPage", () => {
   beforeEach(() => {
     window.localStorage.clear();
     clearMockGasFailures();
+    class MockSpeechSynthesisUtterance {
+      text: string;
+      lang?: string;
+      rate?: number;
+      pitch?: number;
+      volume?: number;
+      voice?: unknown;
+
+      constructor(text: string) {
+        this.text = text;
+      }
+    }
+
+    Object.defineProperty(window, "SpeechSynthesisUtterance", {
+      configurable: true,
+      value: MockSpeechSynthesisUtterance,
+    });
+    Object.defineProperty(globalThis, "SpeechSynthesisUtterance", {
+      configurable: true,
+      value: MockSpeechSynthesisUtterance,
+    });
     Object.defineProperty(window, "speechSynthesis", {
       configurable: true,
       value: {
@@ -488,46 +453,25 @@ describe("PlayPage", () => {
 
     const firstPrompt = (await screen.findByRole("heading", { level: 2 })).textContent ?? "";
     expect(/[\u3400-\u4DBF\u4E00-\u9FFF]/u.test(firstPrompt)).toBe(true);
-    await user.click(screen.getByRole("button", { name: /답 표시/ }));
+    await user.click(screen.getByRole("button", { name: REVEAL_ANSWER }));
     expect(screen.getByText(/^(たべる|のむ)$/)).toBeInTheDocument();
+    expect(screen.getByText(/^(먹다|마시다)$/)).toBeInTheDocument();
 
     for (let index = 0; index < 20; index += 1) {
       if (index > 0) {
-        await screen.findByRole("button", { name: /답 표시/ });
-        await user.click(screen.getByRole("button", { name: /답 표시/ }));
+        await screen.findByRole("button", { name: REVEAL_ANSWER });
+        await user.click(screen.getByRole("button", { name: REVEAL_ANSWER }));
       }
 
-      await user.click(screen.getByRole("button", { name: /O \/ 맞았어요/ }));
+      await user.click(screen.getByRole("button", { name: SELF_CHECK_CORRECT }));
     }
 
     expect(await screen.findByRole("heading", { name: RESULT_SUMMARY })).toBeInTheDocument();
     expect(saveSessionSpy).not.toHaveBeenCalled();
-    expect(screen.queryByText("순위표")).not.toBeInTheDocument();
+    expect(screen.queryByText("순위")).not.toBeInTheDocument();
   }, 20000);
 
-  it.skip("shows pure furigana as the revealed answer for kanji to furigana self-check", async () => {
-    const user = userEvent.setup();
-
-    useLanguageStore.setState({
-      selectedLanguage: "ja",
-      availableLanguages: [{ languageCode: "ja", label: JAPANESE, totalWords: 6 }],
-      words: createKanjiFuriganaSelfCheckWords(),
-      isLoading: false,
-      loadError: null,
-    });
-
-    renderPlayFlow();
-    await user.click(screen.getByRole("button", { name: SELF_CHECK }));
-    await user.click(screen.getByRole("button", { name: MODE_KANJI_FURIGANA }));
-    await user.click(screen.getByRole("button", { name: START_GAME }));
-
-    await user.click(await screen.findByRole("button", { name: "답 표시" }));
-
-    expect(screen.getAllByText("食べる")).toHaveLength(1);
-    expect(screen.getByText("たべる")).toBeInTheDocument();
-  });
-
-  it("reveals kana-only answers for kanji to furigana self-check", async () => {
+  it("reveals kana first and meaning second for kanji to furigana self-check", async () => {
     const user = userEvent.setup();
 
     useLanguageStore.setState({
@@ -554,11 +498,40 @@ describe("PlayPage", () => {
     const promptHeading = await screen.findByRole("heading", { level: 2 });
     expect(/[\u3400-\u4DBF\u4E00-\u9FFF]/u.test(promptHeading.textContent ?? "")).toBe(true);
 
-    await user.click(screen.getByRole("button", { name: "답 표시" }));
+    await user.click(screen.getByRole("button", { name: REVEAL_ANSWER }));
 
-    const revealedAnswer = screen.getByText(/^(たべる|のむ)$/);
+    expect(screen.getByText(/^(たべる|のむ)$/)).toBeInTheDocument();
+    expect(screen.getByText(/^(먹다|마시다)$/)).toBeInTheDocument();
+  });
 
-    expect(revealedAnswer).toBeInTheDocument();
+  it("shows meaning first and furigana second in kanji to meaning self-check", async () => {
+    const user = userEvent.setup();
+
+    useLanguageStore.setState({
+      selectedLanguage: "ja",
+      availableLanguages: [{ languageCode: "ja", label: JAPANESE, totalWords: 6 }],
+      words: createKanjiFuriganaSelfCheckWords(),
+      isLoading: false,
+      loadError: null,
+    });
+
+    renderPlayFlow({
+      pathname: "/play",
+      state: {
+        sessionConfig: {
+          gameStyle: "self_check",
+          partOfSpeech: "all",
+          difficulty: "all",
+          quizMode: "kanji_to_meaning",
+        },
+        autoStart: true,
+      },
+    });
+
+    await user.click(screen.getByRole("button", { name: REVEAL_ANSWER }));
+
+    expect(screen.getByText(/^(먹다|마시다)$/)).toBeInTheDocument();
+    expect(screen.getByText(/^(たべる|のむ)$/)).toBeInTheDocument();
   });
 
   it("keeps kanji prompts only in kanji to furigana self-check", async () => {
@@ -589,11 +562,11 @@ describe("PlayPage", () => {
       const promptHeading = await screen.findByRole("heading", { level: 2 });
       expect(/[\u3400-\u4DBF\u4E00-\u9FFF]/u.test(promptHeading.textContent ?? "")).toBe(true);
 
-      await user.click(screen.getByRole("button", { name: /답 표시|표시/ }));
+      await user.click(screen.getByRole("button", { name: REVEAL_ANSWER }));
       await user.click(screen.getByRole("button", { name: /O/ }));
 
       if (index < 2) {
-        await screen.findByRole("button", { name: /답 표시|표시/ });
+        await screen.findByRole("button", { name: REVEAL_ANSWER });
       }
     }
   });

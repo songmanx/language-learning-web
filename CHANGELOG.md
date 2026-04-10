@@ -1,4 +1,10 @@
-﻿## 2026-03-30
+﻿## 2026-04-10
+
+- Enlarged the self-check quiz prompt and revealed-answer typography for easier reading on mobile.
+- Changed self-check answer reveal cards to show a primary answer plus a secondary helper line for each quiz mode.
+- Fixed Japanese self-check answer mapping so `한자 → 뜻`, `후리가나 → 뜻`, and `한자 → 후리가나` no longer mix the wrong prompt/answer type mid-session.
+- Validation: `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx`, `npm run build`.
+## 2026-03-30
 
 - Added persistent debug logging to localStorage so redirect/runtime traces survive page transitions.
 - Logged auth-route redirects, global runtime errors, and PlayPage session-state loss warnings for unexpected exits.
@@ -1837,3 +1843,4 @@ pm run test 39揶????궢, `npm run build` ???궢
 - Kept the self-check answer area reserved before reveal so `답 표시` and `O/X` controls stay on the same vertical row.
 - Added a focused PlayPage regression test for kana-only reveal behavior.
 - Validation: `npm run test -- src/pages/PlayPage.test.tsx src/pages/ResultPage.test.tsx`, `npm run build`.
+

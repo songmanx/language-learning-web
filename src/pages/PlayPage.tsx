@@ -52,6 +52,9 @@ type AnswerSummary = {
   heartsLeft: number;
   responseTimeMs: number;
 };
+type SelfCheckQuestionRound = ReturnType<typeof buildQuestionRound> & {
+  secondaryAnswer?: string | null;
+};
 
 type PlayPageProps = {
   mode?: PlayMode;
@@ -503,7 +506,7 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
     [selectedLanguage, sessionConfig],
   );
   const currentWord = configuredWords[currentIndex];
-  const currentQuestion = useMemo(() => {
+  const currentQuestion = useMemo<SelfCheckQuestionRound | ReturnType<typeof buildQuestionRound> | null>(() => {
     if (!currentWord) {
       return null;
     }
@@ -1393,30 +1396,42 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
                 <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-stone-500">
                   {TEXT.difficultyTitle} {sessionConfigLabels.difficulty}
                 </p>
-                <h2 className="text-[1.28rem] font-black leading-tight tracking-[-0.045em] text-white drop-shadow-[0_6px_24px_rgba(0,0,0,0.28)] sm:text-[1.75rem]">
-                  {currentQuestion.prompt}
-                </h2>
-              </div>
-            )}
-          </div>
+                  <h2
+                    className={`font-black leading-tight tracking-[-0.045em] text-white drop-shadow-[0_6px_24px_rgba(0,0,0,0.28)] ${
+                      isSelfCheckMode ? "text-[2.3rem] sm:text-[3rem]" : "text-[1.28rem] sm:text-[1.75rem]"
+                    }`}
+                  >
+                    {currentQuestion.prompt}
+                  </h2>
+                </div>
+              )}
+            </div>
 
           <div className="px-3 py-1.75 sm:px-3.5 sm:py-2">
             {isSelfCheckMode ? (
               <div className="space-y-3">
                 <p className="text-sm leading-6 text-stone-300">{TEXT.selfCheckInstruction}</p>
                 <div className="space-y-3">
-                  <div className="min-h-[6.5rem]">
+                  <div className="min-h-[9.75rem]">
                     {isAnswerRevealed ? (
                       <div className="rounded-[1.35rem] border border-emerald-200/20 bg-emerald-300/10 px-4 py-4">
                         <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-100/80">
                           {TEXT.selfCheckAnswerTitle}
                         </p>
-                        <p className="mt-2 text-[1.1rem] font-black leading-tight text-emerald-50 sm:text-[1.3rem]">
+                        <p className="mt-2 text-[2rem] font-black leading-tight text-emerald-50 sm:text-[2.35rem]">
                           {currentQuestion.answer}
                         </p>
+                        {"secondaryAnswer" in currentQuestion && currentQuestion.secondaryAnswer ? (
+                          <p className="mt-2 text-[1.08rem] font-semibold leading-tight text-emerald-100/82 sm:text-[1.28rem]">
+                            {currentQuestion.secondaryAnswer}
+                          </p>
+                        ) : null}
                       </div>
                     ) : (
-                      <div className="min-h-[6.5rem] rounded-[1.35rem] border border-dashed border-white/10 bg-white/5" aria-hidden="true" />
+                      <div
+                        className="min-h-[9.75rem] rounded-[1.35rem] border border-dashed border-white/10 bg-white/5"
+                        aria-hidden="true"
+                      />
                     )}
                   </div>
                   <div className="min-h-[4.5rem]">
@@ -1513,42 +1528,105 @@ export function PlayPage({ mode = "standard" }: PlayPageProps) {
   );
 }
 
-function buildSelfCheckRound(currentWord: WordItem, configuredWords: WordItem[], quizMode: QuizModeFilter) {
-  if (quizMode === "kanji_to_furigana") {
-    const siblingWords = configuredWords.filter(
-      (word) => word.id === currentWord.id && String(word.meaning ?? "").trim() === String(currentWord.meaning ?? "").trim(),
-    );
-    const pairedPrompt =
-      siblingWords.find(
-        (word) =>
-          word.questionType === "word_to_meaning" &&
-          /[\u3400-\u4DBF\u4E00-\u9FFF]/u.test(String(word.prompt ?? "").trim()),
-      )?.prompt ?? currentWord.prompt;
-    const furiganaAnswer =
-      siblingWords.find(
-        (word) =>
-          word.questionType === "word_to_meaning" &&
-          /[\u3040-\u30FF]/u.test(String(word.prompt ?? "").trim()) &&
-          !/[\u3400-\u4DBF\u4E00-\u9FFF]/u.test(String(word.prompt ?? "").trim()),
-      )?.prompt ?? currentWord.answer;
+function getSelfCheckSiblingWords(currentWord: WordItem, sourceWords: WordItem[]) {
+  return sourceWords.filter(
+    (word) => word.id === currentWord.id && String(word.meaning ?? "").trim() === String(currentWord.meaning ?? "").trim(),
+  );
+}
 
+function getKanjiPrompt(words: WordItem[]) {
+  return (
+    words.find(
+      (word) =>
+        word.questionType === "word_to_meaning" &&
+        /[\u3400-\u4DBF\u4E00-\u9FFF]/u.test(String(word.prompt ?? "").trim()),
+    )?.prompt ?? null
+  );
+}
+
+function getKanaPrompt(words: WordItem[]) {
+  return (
+    words.find(
+      (word) =>
+        word.questionType === "word_to_meaning" &&
+        /[\u3040-\u30FF]/u.test(String(word.prompt ?? "").trim()) &&
+        !/[\u3400-\u4DBF\u4E00-\u9FFF]/u.test(String(word.prompt ?? "").trim()),
+    )?.prompt ?? null
+  );
+}
+
+function getMeaningAnswer(words: WordItem[], currentWord: WordItem) {
+  return (
+    words.find((word) => word.questionType === "word_to_meaning")?.answer ??
+    words.find((word) => String(word.meaning ?? "").trim())?.meaning ??
+    currentWord.meaning ??
+    currentWord.answer ??
+    ""
+  )
+    .trim() || null;
+}
+
+function buildSelfCheckRound(currentWord: WordItem, sourceWords: WordItem[], quizMode: QuizModeFilter): SelfCheckQuestionRound {
+  const siblingWords = getSelfCheckSiblingWords(currentWord, sourceWords);
+  const kanjiPrompt = getKanjiPrompt(siblingWords);
+  const kanaPrompt = getKanaPrompt(siblingWords);
+  const meaningAnswer = getMeaningAnswer(siblingWords, currentWord);
+  const meaningPrompt = String(currentWord.meaning ?? meaningAnswer ?? currentWord.prompt ?? "").trim() || currentWord.prompt;
+
+  const baseRound = {
+    questionType: currentWord.questionType,
+    choices: [],
+    instruction: TEXT.selfCheckInstruction,
+    typeLabel: getQuizModeLabel(quizMode),
+  } satisfies Pick<SelfCheckQuestionRound, "questionType" | "choices" | "instruction" | "typeLabel">;
+
+  if (quizMode === "kanji_to_furigana") {
     return {
-      questionType: currentWord.questionType,
-      prompt: pairedPrompt,
-      choices: [],
-      answer: furiganaAnswer,
-      instruction: TEXT.selfCheckInstruction,
-      typeLabel: getQuizModeLabel(quizMode),
+      ...baseRound,
+      prompt: kanjiPrompt ?? currentWord.prompt,
+      answer: kanaPrompt ?? String(currentWord.answer ?? "").trim(),
+      secondaryAnswer: meaningAnswer,
     };
   }
 
-  const questionRound = buildQuestionRound(currentWord, configuredWords);
+  if (quizMode === "kanji_to_meaning") {
+    return {
+      ...baseRound,
+      prompt: kanjiPrompt ?? currentWord.prompt,
+      answer: meaningAnswer ?? String(currentWord.answer ?? "").trim(),
+      secondaryAnswer: kanaPrompt,
+    };
+  }
 
-  return {
-    ...questionRound,
-    choices: [],
-    instruction: TEXT.selfCheckInstruction,
-  };
+  if (quizMode === "furigana_to_meaning") {
+    return {
+      ...baseRound,
+      prompt: kanaPrompt ?? currentWord.prompt,
+      answer: meaningAnswer ?? String(currentWord.answer ?? "").trim(),
+      secondaryAnswer: kanjiPrompt,
+    };
+  }
+
+  if (quizMode === "meaning_to_kanji") {
+    return {
+      ...baseRound,
+      prompt: meaningPrompt,
+      answer: kanjiPrompt ?? String(currentWord.answer ?? "").trim(),
+      secondaryAnswer: kanaPrompt,
+    };
+  }
+
+  if (quizMode === "meaning_to_furigana") {
+    return {
+      ...baseRound,
+      prompt: meaningPrompt,
+      answer: kanaPrompt ?? String(currentWord.answer ?? "").trim(),
+      secondaryAnswer: kanjiPrompt,
+    };
+  }
+
+  const questionRound = buildQuestionRound(currentWord, sourceWords);
+  return { ...questionRound, ...baseRound, secondaryAnswer: null };
 }
 
 function buildIncorrectAnswerSummaries(
