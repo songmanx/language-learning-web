@@ -73,8 +73,8 @@ Actual POST JSON:
 ```json
 {
   "action": "login",
-  "loginId": "demo",
-  "password": "1234"
+  "loginId": "YOUR_LOGIN_ID",
+  "password": "YOUR_PASSWORD"
 }
 ```
 

@@ -115,7 +115,7 @@ npm run build
 - `npm install` 성공
 - `npm run test` 성공
 - `npm run build` 성공
-- `npm run smoke:gas -- --login-id test --password 1234` 성공
+- `npm run smoke:gas -- --login-id YOUR_LOGIN_ID --password YOUR_PASSWORD` 성공
 
 ## 외부 연동 정보
 

@@ -26,7 +26,7 @@ npm run smoke:gas
 명시적으로 값을 넣고 싶으면:
 
 ```powershell
-npm run smoke:gas -- --login-id test --password 1234
+npm run smoke:gas -- --login-id YOUR_LOGIN_ID --password YOUR_PASSWORD
 ```
 
 확인 범위:
@@ -88,7 +88,7 @@ npm run check:live
 
 ## 지금 프로젝트 기준 기본값
 
-- 테스트 계정: `test / 1234`
+- 테스트 계정: `YOUR_LOGIN_ID / YOUR_PASSWORD`
 - 기대 `player_id`: `u001`
 - service account JSON: 프로젝트 루트에서 자동 감지
 - JA Record Sheet ID: 템플릿 문서에서 자동 읽기

@@ -10,8 +10,8 @@ USER_SHEET_ID=1YxwcHXtrUFStlO_8KBrnHK9BIaSAwo1t-uy_SbQnBuE
 JA_MASTER_SHEET_ID=1OMrgGZID4ClV1J6ptoliLh1jRLe1yoNnUMot10Mr02s
 JA_RECORD_SHEET_ID=1hhQxfszQD3ZdZnYuoNjWrRMymktaJ0ctgXp54aFIFF0
 WEB_APP_URL=https://script.google.com/macros/s/AKfycbxEfSUJcLU-mvGlB6mzMX8G_JDER5kCHMHkwR2v_iY1PtAPt9fiF58IM_kPf-bmcUEGjg/exec
-LOGIN_ID=test
-PASSWORD=1234
+LOGIN_ID=YOUR_LOGIN_ID
+PASSWORD=YOUR_PASSWORD
 PLAYER_ID=u001
 NICKNAME=테스트
 LANGUAGE_LABEL=
@@ -73,8 +73,8 @@ VITE_STATIC_DATA_WORDS_BASE_PATH=/data
 
 ## 5. 테스트 계정 / smoke 기본값
 
-- `login_id`:test
-- `password`:1234
+- `login_id`:YOUR_LOGIN_ID
+- `password`:YOUR_PASSWORD
 - `player_id`:u001
 - `nickname`:테스트
 
@@ -90,7 +90,7 @@ VITE_STATIC_DATA_WORDS_BASE_PATH=/data
 
 ## 7. 최근 확인 결과 메모
 
-- `npm run smoke:gas -- --login-id test --password 1234`: 성공
+- `npm run smoke:gas -- --login-id YOUR_LOGIN_ID --password YOUR_PASSWORD`: 성공
 - 로그인 성공 여부: 성공 (`player_id=u001`)
 - `일본어` 표시 여부: 성공 (`language_code=ja`, `total_words=94`)
 - 플레이 시작 여부: API smoke 기준 `getWords 377개`, `saveSession saved:true` 확인

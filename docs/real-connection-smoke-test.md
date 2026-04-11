@@ -57,7 +57,7 @@ npm run verify:record
 두 단계를 한 번에 돌리고 싶다면 아래 통합 명령을 쓴다.
 
 ```bash
-npm run check:live -- --login-id test --password 1234 --credentials path\to\service-account.json --spreadsheet-id YOUR_JA_RECORD_SHEET_ID
+npm run check:live -- --login-id YOUR_LOGIN_ID --password YOUR_PASSWORD --credentials path\to\service-account.json --spreadsheet-id YOUR_JA_RECORD_SHEET_ID
 ```
 
 이 명령은 `smoke:gas` 실행 후 바로 `verify:record`까지 이어서 실행한다.

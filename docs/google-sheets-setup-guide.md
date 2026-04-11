@@ -68,7 +68,7 @@ login_id,password_plain_or_hash,player_id,display_name,is_active
 3행 예시 데이터:
 
 ```text
-demo,1234,player-demo,데모,true
+YOUR_LOGIN_ID,YOUR_PASSWORD_HASH_OR_VALUE,player-demo,데모,true
 ```
 
 주의:
