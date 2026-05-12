@@ -3,10 +3,10 @@
     "word_id": "EN_N_0001",
     "prompt": "issue",
     "choices": [
+      "만약 ~라면",
+      "따로",
       "문제",
-      "다시",
-      "일시적인",
-      "그래서"
+      "필요한"
     ],
     "answer": "문제",
     "meaning": "문제",
@@ -17,10 +17,10 @@
     "word_id": "EN_N_0001",
     "prompt": "문제",
     "choices": [
-      "recognize",
+      "build",
+      "complex",
       "issue",
-      "generally",
-      "behavior"
+      "recent"
     ],
     "answer": "issue",
     "meaning": "문제",
@@ -31,10 +31,10 @@
     "word_id": "EN_N_0002",
     "prompt": "policy",
     "choices": [
-      "강하게",
-      "개선하다",
-      "천천히",
-      "정책"
+      "세계적인",
+      "전통적인",
+      "정책",
+      "선택"
     ],
     "answer": "정책",
     "meaning": "정책",
@@ -45,10 +45,10 @@
     "word_id": "EN_N_0002",
     "prompt": "정책",
     "choices": [
-      "almost",
-      "policy",
-      "no one",
-      "respond"
+      "always",
+      "many",
+      "specific",
+      "policy"
     ],
     "answer": "policy",
     "meaning": "정책",
@@ -59,10 +59,10 @@
     "word_id": "EN_N_0003",
     "prompt": "evidence",
     "choices": [
-      "어디든지",
-      "범위",
       "증거",
-      "일시적인"
+      "사소한",
+      "개념",
+      "경향"
     ],
     "answer": "증거",
     "meaning": "증거",
@@ -73,10 +73,10 @@
     "word_id": "EN_N_0003",
     "prompt": "증거",
     "choices": [
-      "produce",
-      "even",
+      "normally",
       "evidence",
-      "involve"
+      "method",
+      "develop"
     ],
     "answer": "evidence",
     "meaning": "증거",
@@ -87,10 +87,10 @@
     "word_id": "EN_N_0004",
     "prompt": "theory",
     "choices": [
+      "이점",
       "이론",
-      "분석하다",
-      "경제의",
-      "너 자신"
+      "우리 자신들",
+      "결과"
     ],
     "answer": "이론",
     "meaning": "이론",
@@ -101,10 +101,10 @@
     "word_id": "EN_N_0004",
     "prompt": "이론",
     "choices": [
-      "efficient",
-      "before",
-      "create",
-      "theory"
+      "everyone",
+      "stable",
+      "theory",
+      "social"
     ],
     "answer": "theory",
     "meaning": "이론",
@@ -115,10 +115,10 @@
     "word_id": "EN_N_0005",
     "prompt": "research",
     "choices": [
-      "가끔",
       "연구",
-      "달성하다",
-      "제한된"
+      "처리하다",
+      "가능성이 높은",
+      "세대"
     ],
     "answer": "연구",
     "meaning": "연구",
@@ -129,10 +129,10 @@
     "word_id": "EN_N_0005",
     "prompt": "연구",
     "choices": [
-      "authority",
-      "useful",
-      "already",
-      "research"
+      "helpful",
+      "research",
+      "impossible",
+      "basically"
     ],
     "answer": "research",
     "meaning": "연구",
@@ -143,10 +143,10 @@
     "word_id": "EN_N_0006",
     "prompt": "analysis",
     "choices": [
-      "수반하다",
-      "지지하다",
       "분석",
-      "모든"
+      "선택",
+      "~하는 동안",
+      "그리고"
     ],
     "answer": "분석",
     "meaning": "분석",
@@ -157,10 +157,10 @@
     "word_id": "EN_N_0006",
     "prompt": "분석",
     "choices": [
-      "social",
-      "basically",
-      "opportunity",
-      "analysis"
+      "twice",
+      "analysis",
+      "standard",
+      "support"
     ],
     "answer": "analysis",
     "meaning": "분석",
@@ -171,9 +171,9 @@
     "word_id": "EN_N_0007",
     "prompt": "approach",
     "choices": [
-      "그러므로",
-      "많은 (불가산)",
-      "비록 ~일지라도",
+      "복잡한",
+      "형성하다",
+      "구체적인",
       "접근법"
     ],
     "answer": "접근법",
@@ -185,10 +185,10 @@
     "word_id": "EN_N_0007",
     "prompt": "접근법",
     "choices": [
-      "develop",
-      "economic",
-      "benefit",
-      "approach"
+      "approach",
+      "most",
+      "seriously",
+      "population"
     ],
     "answer": "approach",
     "meaning": "접근법",
@@ -199,10 +199,10 @@
     "word_id": "EN_N_0008",
     "prompt": "method",
     "choices": [
-      "분명히",
-      "거의 없는 (불가산)",
-      "건설하다",
-      "방법"
+      "느린",
+      "방법",
+      "또는",
+      "결과를 낳다"
     ],
     "answer": "방법",
     "meaning": "방법",
@@ -213,10 +213,10 @@
     "word_id": "EN_N_0008",
     "prompt": "방법",
     "choices": [
+      "produce",
       "method",
-      "normally",
-      "system",
-      "challenge"
+      "resource",
+      "understand"
     ],
     "answer": "method",
     "meaning": "방법",
@@ -227,10 +227,10 @@
     "word_id": "EN_N_0009",
     "prompt": "process",
     "choices": [
-      "같은",
       "과정",
-      "개선하다",
-      "사회적인"
+      "일반적으로",
+      "일부",
+      "긍정적인"
     ],
     "answer": "과정",
     "meaning": "과정",
@@ -241,10 +241,10 @@
     "word_id": "EN_N_0009",
     "prompt": "과정",
     "choices": [
-      "recent",
+      "interpret",
       "process",
-      "sometimes",
-      "argument"
+      "describe",
+      "fail"
     ],
     "answer": "process",
     "meaning": "과정",
@@ -255,10 +255,10 @@
     "word_id": "EN_N_0010",
     "prompt": "result",
     "choices": [
-      "긍정적인",
-      "실패하다",
-      "~처럼",
-      "결과"
+      "해로운",
+      "결과",
+      "관련 있는",
+      "가능성이 높은"
     ],
     "answer": "결과",
     "meaning": "결과",
@@ -269,10 +269,10 @@
     "word_id": "EN_N_0010",
     "prompt": "결과",
     "choices": [
-      "depend",
-      "quite",
-      "access",
-      "result"
+      "some",
+      "culture",
+      "result",
+      "everywhere"
     ],
     "answer": "result",
     "meaning": "결과",
@@ -283,10 +283,10 @@
     "word_id": "EN_N_0011",
     "prompt": "effect",
     "choices": [
+      "확실한",
       "영향",
-      "기준",
-      "공동체",
-      "원칙"
+      "직접적으로",
+      "어느 것"
     ],
     "answer": "영향",
     "meaning": "영향",
@@ -297,10 +297,10 @@
     "word_id": "EN_N_0011",
     "prompt": "영향",
     "choices": [
-      "stable",
-      "soon",
       "effect",
-      "temporary"
+      "highlight",
+      "impossible",
+      "either"
     ],
     "answer": "effect",
     "meaning": "영향",
@@ -311,10 +311,10 @@
     "word_id": "EN_N_0012",
     "prompt": "cause",
     "choices": [
-      "다루다",
+      "증가하다",
       "원인",
-      "영향력",
-      "지속적인"
+      "가능성이 낮은",
+      "그리고"
     ],
     "answer": "원인",
     "meaning": "원인",
@@ -325,10 +325,10 @@
     "word_id": "EN_N_0012",
     "prompt": "원인",
     "choices": [
-      "nothing",
-      "barely",
-      "before",
-      "cause"
+      "both",
+      "slowly",
+      "cause",
+      "now"
     ],
     "answer": "cause",
     "meaning": "원인",
@@ -339,10 +339,10 @@
     "word_id": "EN_N_0013",
     "prompt": "factor",
     "choices": [
-      "조절하다",
-      "누구를",
-      "가능한",
-      "요인"
+      "분배",
+      "요인",
+      "무언가",
+      "어디에나"
     ],
     "answer": "요인",
     "meaning": "요인",
@@ -353,10 +353,10 @@
     "word_id": "EN_N_0013",
     "prompt": "요인",
     "choices": [
-      "that",
       "factor",
-      "improve",
-      "available"
+      "seriously",
+      "challenge",
+      "effective"
     ],
     "answer": "factor",
     "meaning": "요인",
@@ -367,10 +367,10 @@
     "word_id": "EN_N_0014",
     "prompt": "role",
     "choices": [
+      "약간",
       "역할",
-      "인구",
-      "영향력",
-      "무제한의"
+      "포함하다",
+      "원인"
     ],
     "answer": "역할",
     "meaning": "역할",
@@ -381,10 +381,10 @@
     "word_id": "EN_N_0014",
     "prompt": "역할",
     "choices": [
-      "research",
-      "role",
-      "change",
-      "now"
+      "realize",
+      "similar",
+      "before",
+      "role"
     ],
     "answer": "role",
     "meaning": "역할",
@@ -395,10 +395,10 @@
     "word_id": "EN_N_0015",
     "prompt": "responsibility",
     "choices": [
-      "모든 것",
-      "깨닫다",
-      "책임",
-      "두 번"
+      "왜냐하면",
+      "곧",
+      "~후에",
+      "책임"
     ],
     "answer": "책임",
     "meaning": "책임",
@@ -409,10 +409,10 @@
     "word_id": "EN_N_0015",
     "prompt": "책임",
     "choices": [
-      "itself",
-      "just",
-      "responsibility",
-      "change"
+      "totally",
+      "easily",
+      "describe",
+      "responsibility"
     ],
     "answer": "responsibility",
     "meaning": "책임",
@@ -423,10 +423,10 @@
     "word_id": "EN_N_0016",
     "prompt": "opportunity",
     "choices": [
-      "~하는 동안",
       "기회",
-      "가능성이 낮은",
-      "이것들"
+      "지금",
+      "반면에",
+      "이점"
     ],
     "answer": "기회",
     "meaning": "기회",
@@ -437,10 +437,10 @@
     "word_id": "EN_N_0016",
     "prompt": "기회",
     "choices": [
-      "relevant",
-      "later",
       "opportunity",
-      "process"
+      "regard",
+      "access",
+      "as"
     ],
     "answer": "opportunity",
     "meaning": "기회",
@@ -452,9 +452,9 @@
     "prompt": "challenge",
     "choices": [
       "도전",
-      "일시적인",
-      "쉽게",
-      "다른"
+      "모든",
+      "일반적인",
+      "조절하다"
     ],
     "answer": "도전",
     "meaning": "도전",
@@ -465,10 +465,10 @@
     "word_id": "EN_N_0017",
     "prompt": "도전",
     "choices": [
-      "suitable",
-      "whenever",
-      "challenge",
-      "essential"
+      "easy",
+      "economic",
+      "actually",
+      "challenge"
     ],
     "answer": "challenge",
     "meaning": "도전",
@@ -479,10 +479,10 @@
     "word_id": "EN_N_0018",
     "prompt": "solution",
     "choices": [
-      "공동체",
-      "책임",
+      "최근의",
       "해결책",
-      "지속적인"
+      "많은 (불가산)",
+      "의지하다"
     ],
     "answer": "해결책",
     "meaning": "해결책",
@@ -493,10 +493,10 @@
     "word_id": "EN_N_0018",
     "prompt": "해결책",
     "choices": [
-      "slow",
+      "however",
+      "suitable",
       "solution",
-      "efficient",
-      "depend"
+      "slow"
     ],
     "answer": "solution",
     "meaning": "해결책",
@@ -507,10 +507,10 @@
     "word_id": "EN_N_0019",
     "prompt": "benefit",
     "choices": [
-      "심지어",
+      "아무도 ~않다",
+      "정의하다",
       "이점",
-      "제안하다",
-      "필수적인"
+      "명확한"
     ],
     "answer": "이점",
     "meaning": "이점",
@@ -521,10 +521,10 @@
     "word_id": "EN_N_0019",
     "prompt": "이점",
     "choices": [
-      "decision",
+      "highlight",
+      "traditional",
       "benefit",
-      "adjust",
-      "particularly"
+      "prevent"
     ],
     "answer": "benefit",
     "meaning": "이점",
@@ -535,10 +535,10 @@
     "word_id": "EN_N_0020",
     "prompt": "risk",
     "choices": [
+      "그리고",
+      "가끔",
       "위험",
-      "적절한",
-      "대부분",
-      "제공하다"
+      "관련시키다"
     ],
     "answer": "위험",
     "meaning": "위험",
@@ -549,10 +549,10 @@
     "word_id": "EN_N_0020",
     "prompt": "위험",
     "choices": [
-      "never",
+      "themselves",
+      "strongly",
       "risk",
-      "major",
-      "slow"
+      "responsibility"
     ],
     "answer": "risk",
     "meaning": "위험",
@@ -563,10 +563,10 @@
     "word_id": "EN_N_0021",
     "prompt": "impact",
     "choices": [
+      "무언가",
+      "접근",
       "영향",
-      "모든 것",
-      "불안정한",
-      "지속적인"
+      "가정하다"
     ],
     "answer": "영향",
     "meaning": "영향",
@@ -577,10 +577,10 @@
     "word_id": "EN_N_0021",
     "prompt": "영향",
     "choices": [
-      "relevant",
-      "risk",
       "impact",
-      "temporary"
+      "little",
+      "limited",
+      "now"
     ],
     "answer": "impact",
     "meaning": "영향",
@@ -591,10 +591,10 @@
     "word_id": "EN_N_0022",
     "prompt": "relationship",
     "choices": [
-      "관련된",
       "관계",
-      "대신에",
-      "도전"
+      "~보다",
+      "그녀 자신",
+      "가능성이 낮은"
     ],
     "answer": "관계",
     "meaning": "관계",
@@ -605,10 +605,10 @@
     "word_id": "EN_N_0022",
     "prompt": "관계",
     "choices": [
-      "however",
+      "quite",
       "relationship",
-      "efficient",
-      "create"
+      "population",
+      "effective"
     ],
     "answer": "relationship",
     "meaning": "관계",
@@ -619,10 +619,10 @@
     "word_id": "EN_N_0023",
     "prompt": "communication",
     "choices": [
-      "환경",
-      "따로",
       "의사소통",
-      "자주"
+      "보통",
+      "유지하다",
+      "주장하다"
     ],
     "answer": "의사소통",
     "meaning": "의사소통",
@@ -633,10 +633,10 @@
     "word_id": "EN_N_0023",
     "prompt": "의사소통",
     "choices": [
+      "issue",
       "communication",
-      "argue",
-      "who",
-      "rather"
+      "stable",
+      "collective"
     ],
     "answer": "communication",
     "meaning": "의사소통",
@@ -647,10 +647,10 @@
     "word_id": "EN_N_0024",
     "prompt": "decision",
     "choices": [
-      "부분적으로",
-      "~처럼",
-      "결정",
-      "다양한"
+      "집단의",
+      "거의",
+      "거의 ~않다",
+      "결정"
     ],
     "answer": "결정",
     "meaning": "결정",
@@ -661,10 +661,10 @@
     "word_id": "EN_N_0024",
     "prompt": "결정",
     "choices": [
+      "significant",
       "decision",
-      "build",
-      "partly",
-      "same"
+      "somewhere",
+      "quickly"
     ],
     "answer": "decision",
     "meaning": "결정",
@@ -675,10 +675,10 @@
     "word_id": "EN_N_0025",
     "prompt": "choice",
     "choices": [
-      "약간",
+      "인식하다",
+      "저것",
       "선택",
-      "대신에",
-      "소득"
+      "분석"
     ],
     "answer": "선택",
     "meaning": "선택",
@@ -689,10 +689,10 @@
     "word_id": "EN_N_0025",
     "prompt": "선택",
     "choices": [
-      "result",
-      "sometimes",
       "choice",
-      "difficult"
+      "risk",
+      "if",
+      "factor"
     ],
     "answer": "choice",
     "meaning": "선택",
@@ -703,10 +703,10 @@
     "word_id": "EN_N_0026",
     "prompt": "behavior",
     "choices": [
-      "행동",
-      "비교하다",
-      "누구",
-      "저기"
+      "천천히",
+      "접근법",
+      "어떤 것",
+      "행동"
     ],
     "answer": "행동",
     "meaning": "행동",
@@ -717,10 +717,10 @@
     "word_id": "EN_N_0026",
     "prompt": "행동",
     "choices": [
+      "otherwise",
+      "carefully",
       "behavior",
-      "argument",
-      "rapid",
-      "such"
+      "whenever"
     ],
     "answer": "behavior",
     "meaning": "행동",
@@ -731,10 +731,10 @@
     "word_id": "EN_N_0027",
     "prompt": "attitude",
     "choices": [
+      "야기하다",
       "태도",
-      "쉬운",
-      "창조하다",
-      "필수적인"
+      "둘 중 하나",
+      "깨닫다"
     ],
     "answer": "태도",
     "meaning": "태도",
@@ -745,10 +745,10 @@
     "word_id": "EN_N_0027",
     "prompt": "태도",
     "choices": [
-      "as",
-      "modern",
+      "offer",
+      "build",
       "attitude",
-      "little"
+      "useful"
     ],
     "answer": "attitude",
     "meaning": "태도",
@@ -759,10 +759,10 @@
     "word_id": "EN_N_0028",
     "prompt": "value",
     "choices": [
-      "구체적인",
       "가치",
-      "인식하다",
-      "분석"
+      "제안하다",
+      "사소한",
+      "의사소통"
     ],
     "answer": "가치",
     "meaning": "가치",
@@ -773,10 +773,10 @@
     "word_id": "EN_N_0028",
     "prompt": "가치",
     "choices": [
-      "context",
-      "value",
-      "each",
-      "theory"
+      "whose",
+      "when",
+      "twice",
+      "value"
     ],
     "answer": "value",
     "meaning": "가치",
@@ -787,10 +787,10 @@
     "word_id": "EN_N_0029",
     "prompt": "culture",
     "choices": [
+      "접근",
+      "주요한",
       "문화",
-      "무엇",
-      "생산하다",
-      "누구의"
+      "꽤"
     ],
     "answer": "문화",
     "meaning": "문화",
@@ -801,10 +801,10 @@
     "word_id": "EN_N_0029",
     "prompt": "문화",
     "choices": [
-      "specific",
-      "adapt",
-      "culture",
-      "possible"
+      "all",
+      "because",
+      "challenge",
+      "culture"
     ],
     "answer": "culture",
     "meaning": "문화",
@@ -815,10 +815,10 @@
     "word_id": "EN_N_0030",
     "prompt": "society",
     "choices": [
+      "창조하다",
       "사회",
-      "중대한",
-      "지금",
-      "결과"
+      "일부",
+      "거의"
     ],
     "answer": "사회",
     "meaning": "사회",
@@ -829,10 +829,10 @@
     "word_id": "EN_N_0030",
     "prompt": "사회",
     "choices": [
-      "emphasize",
+      "once",
+      "quite",
       "society",
-      "various",
-      "challenge"
+      "partly"
     ],
     "answer": "society",
     "meaning": "사회",
@@ -843,10 +843,10 @@
     "word_id": "EN_N_0031",
     "prompt": "concept",
     "choices": [
-      "왜냐하면",
+      "요인",
+      "이점",
       "개념",
-      "이끌다",
-      "사회"
+      "권위"
     ],
     "answer": "개념",
     "meaning": "개념",
@@ -857,10 +857,10 @@
     "word_id": "EN_N_0031",
     "prompt": "개념",
     "choices": [
-      "nothing",
       "concept",
-      "both",
-      "resource"
+      "individual",
+      "somewhere",
+      "himself"
     ],
     "answer": "concept",
     "meaning": "개념",
@@ -871,10 +871,10 @@
     "word_id": "EN_N_0032",
     "prompt": "principle",
     "choices": [
-      "긍정적인",
-      "개선하다",
       "원칙",
-      "따로"
+      "누구의",
+      "가능성이 높은",
+      "심각하게"
     ],
     "answer": "원칙",
     "meaning": "원칙",
@@ -885,10 +885,10 @@
     "word_id": "EN_N_0032",
     "prompt": "원칙",
     "choices": [
+      "principle",
       "reduce",
-      "totally",
-      "who",
-      "principle"
+      "likely",
+      "fail"
     ],
     "answer": "principle",
     "meaning": "원칙",
@@ -899,10 +899,10 @@
     "word_id": "EN_N_0033",
     "prompt": "standard",
     "choices": [
-      "연결하다",
       "기준",
-      "아무도 ~않다",
-      "특히"
+      "체계",
+      "세대",
+      "~보다"
     ],
     "answer": "기준",
     "meaning": "기준",
@@ -913,10 +913,10 @@
     "word_id": "EN_N_0033",
     "prompt": "기준",
     "choices": [
-      "communication",
-      "focus",
+      "method",
+      "scale",
       "standard",
-      "few"
+      "global"
     ],
     "answer": "standard",
     "meaning": "기준",
@@ -927,10 +927,10 @@
     "word_id": "EN_N_0034",
     "prompt": "trend",
     "choices": [
-      "조심스럽게",
+      "이점",
+      "둘 중 하나",
       "경향",
-      "지속적인",
-      "인식하다"
+      "다루다"
     ],
     "answer": "경향",
     "meaning": "경향",
@@ -941,10 +941,10 @@
     "word_id": "EN_N_0034",
     "prompt": "경향",
     "choices": [
-      "social",
-      "include",
-      "communication",
-      "trend"
+      "anywhere",
+      "carefully",
+      "trend",
+      "contrast"
     ],
     "answer": "trend",
     "meaning": "경향",
@@ -955,10 +955,10 @@
     "word_id": "EN_N_0035",
     "prompt": "issue",
     "choices": [
-      "많은",
-      "문제",
-      "쉽게",
-      "일부"
+      "가능성이 낮은",
+      "어느 것",
+      "성공하다",
+      "문제"
     ],
     "answer": "문제",
     "meaning": "문제",
@@ -969,10 +969,10 @@
     "word_id": "EN_N_0035",
     "prompt": "문제",
     "choices": [
-      "important",
-      "suggest",
+      "instead",
       "issue",
-      "strongly"
+      "since",
+      "carefully"
     ],
     "answer": "issue",
     "meaning": "문제",
@@ -983,10 +983,10 @@
     "word_id": "EN_N_0036",
     "prompt": "debate",
     "choices": [
-      "이것",
-      "이론",
-      "분배",
-      "논쟁"
+      "논쟁",
+      "문화",
+      "정의하다",
+      "관련시키다"
     ],
     "answer": "논쟁",
     "meaning": "논쟁",
@@ -997,10 +997,10 @@
     "word_id": "EN_N_0036",
     "prompt": "논쟁",
     "choices": [
-      "debate",
-      "quite",
-      "environment",
-      "twice"
+      "related",
+      "harmful",
+      "deal",
+      "debate"
     ],
     "answer": "debate",
     "meaning": "논쟁",
@@ -1011,10 +1011,10 @@
     "word_id": "EN_N_0037",
     "prompt": "argument",
     "choices": [
-      "비록 ~일지라도",
-      "접근 가능한",
-      "지역의",
-      "주장"
+      "소득",
+      "주장",
+      "그들 자신",
+      "과정"
     ],
     "answer": "주장",
     "meaning": "주장",
@@ -1025,10 +1025,10 @@
     "word_id": "EN_N_0037",
     "prompt": "주장",
     "choices": [
-      "argument",
-      "available",
-      "unless",
-      "power"
+      "slightly",
+      "somewhere",
+      "than",
+      "argument"
     ],
     "answer": "argument",
     "meaning": "주장",
@@ -1039,10 +1039,10 @@
     "word_id": "EN_N_0038",
     "prompt": "claim",
     "choices": [
-      "모든",
+      "기능",
       "주장",
-      "저것들",
-      "깨닫다"
+      "통제",
+      "반대하다"
     ],
     "answer": "주장",
     "meaning": "주장",
@@ -1053,10 +1053,10 @@
     "word_id": "EN_N_0038",
     "prompt": "주장",
     "choices": [
-      "specific",
       "claim",
-      "assume",
-      "accomplish"
+      "global",
+      "standard",
+      "change"
     ],
     "answer": "claim",
     "meaning": "주장",
@@ -1067,10 +1067,10 @@
     "word_id": "EN_N_0039",
     "prompt": "evidence",
     "choices": [
-      "영향",
-      "정책",
       "증거",
-      "발전시키다"
+      "한계",
+      "관련 있는",
+      "주로"
     ],
     "answer": "증거",
     "meaning": "증거",
@@ -1081,10 +1081,10 @@
     "word_id": "EN_N_0039",
     "prompt": "증거",
     "choices": [
-      "efficient",
-      "evidence",
-      "consider",
-      "offer"
+      "clearly",
+      "appropriate",
+      "these",
+      "evidence"
     ],
     "answer": "evidence",
     "meaning": "증거",
@@ -1095,9 +1095,9 @@
     "word_id": "EN_N_0040",
     "prompt": "context",
     "choices": [
-      "간접적으로",
-      "접근 가능한",
-      "~하지 않는 한",
+      "변화시키다",
+      "그 자신",
+      "~후에",
       "맥락"
     ],
     "answer": "맥락",
@@ -1109,10 +1109,10 @@
     "word_id": "EN_N_0040",
     "prompt": "맥락",
     "choices": [
-      "behavior",
+      "reduce",
       "context",
-      "together",
-      "control"
+      "only",
+      "relationship"
     ],
     "answer": "context",
     "meaning": "맥락",
@@ -1123,10 +1123,10 @@
     "word_id": "EN_N_0041",
     "prompt": "structure",
     "choices": [
+      "범위",
       "구조",
-      "자주",
-      "많은 (불가산)",
-      "어디든지"
+      "건설하다",
+      "가장 많은"
     ],
     "answer": "구조",
     "meaning": "구조",
@@ -1137,10 +1137,10 @@
     "word_id": "EN_N_0041",
     "prompt": "구조",
     "choices": [
-      "constant",
-      "behavior",
-      "common",
-      "structure"
+      "temporary",
+      "whereas",
+      "structure",
+      "partly"
     ],
     "answer": "structure",
     "meaning": "구조",
@@ -1151,10 +1151,10 @@
     "word_id": "EN_N_0042",
     "prompt": "system",
     "choices": [
-      "함께",
       "체계",
-      "불가능한",
-      "약간"
+      "저기",
+      "또는",
+      "통제"
     ],
     "answer": "체계",
     "meaning": "체계",
@@ -1165,10 +1165,10 @@
     "word_id": "EN_N_0042",
     "prompt": "체계",
     "choices": [
-      "offer",
-      "every",
+      "analyze",
+      "few",
       "system",
-      "together"
+      "too"
     ],
     "answer": "system",
     "meaning": "체계",
@@ -1179,10 +1179,10 @@
     "word_id": "EN_N_0043",
     "prompt": "function",
     "choices": [
-      "분명한",
-      "단지",
-      "~하는 동안",
-      "기능"
+      "일반적으로",
+      "세대",
+      "기능",
+      "연결하다"
     ],
     "answer": "기능",
     "meaning": "기능",
@@ -1193,10 +1193,10 @@
     "word_id": "EN_N_0043",
     "prompt": "기능",
     "choices": [
-      "completely",
-      "debate",
-      "than",
-      "function"
+      "function",
+      "later",
+      "totally",
+      "collective"
     ],
     "answer": "function",
     "meaning": "기능",
@@ -1207,10 +1207,10 @@
     "word_id": "EN_N_0044",
     "prompt": "resource",
     "choices": [
-      "분명히",
-      "아무것도 ~않다",
-      "명백하게",
-      "자원"
+      "명확한",
+      "~할 때마다",
+      "자원",
+      "명백하게"
     ],
     "answer": "자원",
     "meaning": "자원",
@@ -1221,10 +1221,10 @@
     "word_id": "EN_N_0044",
     "prompt": "자원",
     "choices": [
-      "global",
-      "reduce",
+      "whom",
+      "too",
       "resource",
-      "distribution"
+      "limit"
     ],
     "answer": "resource",
     "meaning": "자원",
@@ -1236,9 +1236,9 @@
     "prompt": "environment",
     "choices": [
       "환경",
-      "또는",
-      "그것",
-      "그 자신"
+      "이것들",
+      "결과",
+      "처리하다"
     ],
     "answer": "환경",
     "meaning": "환경",
@@ -1249,10 +1249,10 @@
     "word_id": "EN_N_0045",
     "prompt": "환경",
     "choices": [
-      "environment",
-      "actually",
-      "slightly",
-      "even"
+      "who",
+      "before",
+      "policy",
+      "environment"
     ],
     "answer": "environment",
     "meaning": "환경",
@@ -1263,10 +1263,10 @@
     "word_id": "EN_N_0046",
     "prompt": "population",
     "choices": [
+      "효과적인",
+      "어디에나",
       "인구",
-      "환경의",
-      "다양한",
-      "왜냐하면"
+      "환경의"
     ],
     "answer": "인구",
     "meaning": "인구",
@@ -1277,10 +1277,10 @@
     "word_id": "EN_N_0046",
     "prompt": "인구",
     "choices": [
+      "consider",
+      "either",
       "population",
-      "support",
-      "choice",
-      "almost"
+      "suggest"
     ],
     "answer": "population",
     "meaning": "인구",
@@ -1291,10 +1291,10 @@
     "word_id": "EN_N_0047",
     "prompt": "generation",
     "choices": [
-      "필요한",
+      "깨닫다",
       "세대",
-      "반대하다",
-      "반응하다"
+      "원칙",
+      "따로"
     ],
     "answer": "세대",
     "meaning": "세대",
@@ -1305,10 +1305,10 @@
     "word_id": "EN_N_0047",
     "prompt": "세대",
     "choices": [
-      "never",
+      "general",
       "generation",
-      "neither",
-      "certain"
+      "behavior",
+      "regard"
     ],
     "answer": "generation",
     "meaning": "세대",
@@ -1319,10 +1319,10 @@
     "word_id": "EN_N_0048",
     "prompt": "individual",
     "choices": [
+      "부분적으로",
       "개인",
-      "반면에",
-      "그 자신",
-      "적절한"
+      "소득",
+      "접근 가능한"
     ],
     "answer": "개인",
     "meaning": "개인",
@@ -1333,10 +1333,10 @@
     "word_id": "EN_N_0048",
     "prompt": "개인",
     "choices": [
-      "accomplish",
-      "if",
-      "challenge",
-      "individual"
+      "slowly",
+      "individual",
+      "important",
+      "relationship"
     ],
     "answer": "individual",
     "meaning": "개인",
@@ -1347,10 +1347,10 @@
     "word_id": "EN_N_0049",
     "prompt": "community",
     "choices": [
+      "~할 때마다",
+      "증거",
       "공동체",
-      "단지",
-      "적합한",
-      "영향력"
+      "경제의"
     ],
     "answer": "공동체",
     "meaning": "공동체",
@@ -1361,10 +1361,10 @@
     "word_id": "EN_N_0049",
     "prompt": "공동체",
     "choices": [
-      "realize",
-      "little",
-      "community",
-      "certain"
+      "accessible",
+      "traditional",
+      "totally",
+      "community"
     ],
     "answer": "community",
     "meaning": "공동체",
@@ -1375,10 +1375,10 @@
     "word_id": "EN_N_0050",
     "prompt": "authority",
     "choices": [
-      "수반하다",
-      "빠르게",
       "권위",
-      "증가하다"
+      "기준",
+      "가능성이 높은",
+      "해결책"
     ],
     "answer": "권위",
     "meaning": "권위",
@@ -1389,10 +1389,10 @@
     "word_id": "EN_N_0050",
     "prompt": "권위",
     "choices": [
-      "distribution",
-      "but",
-      "authority",
-      "anywhere"
+      "still",
+      "anywhere",
+      "everyone",
+      "authority"
     ],
     "answer": "authority",
     "meaning": "권위",
@@ -1403,10 +1403,10 @@
     "word_id": "EN_N_0051",
     "prompt": "power",
     "choices": [
-      "태도",
-      "연구",
+      "이용 가능한",
       "힘",
-      "접근 가능한"
+      "어디에나",
+      "둘 중 하나"
     ],
     "answer": "힘",
     "meaning": "힘",
@@ -1417,10 +1417,10 @@
     "word_id": "EN_N_0051",
     "prompt": "힘",
     "choices": [
-      "instead",
-      "community",
-      "power",
-      "permanent"
+      "authority",
+      "argument",
+      "himself",
+      "power"
     ],
     "answer": "power",
     "meaning": "힘",
@@ -1431,10 +1431,10 @@
     "word_id": "EN_N_0052",
     "prompt": "influence",
     "choices": [
+      "자주",
+      "누구의",
       "영향력",
-      "여기",
-      "개념",
-      "단지"
+      "한 번"
     ],
     "answer": "영향력",
     "meaning": "영향력",
@@ -1445,10 +1445,10 @@
     "word_id": "EN_N_0052",
     "prompt": "영향력",
     "choices": [
-      "everywhere",
+      "society",
+      "quickly",
       "influence",
-      "impact",
-      "collective"
+      "obviously"
     ],
     "answer": "influence",
     "meaning": "영향력",
@@ -1459,9 +1459,9 @@
     "word_id": "EN_N_0053",
     "prompt": "access",
     "choices": [
-      "유용한",
-      "형성하다",
-      "수반하다",
+      "아무것도 ~않다",
+      "심지어",
+      "한계",
       "접근"
     ],
     "answer": "접근",
@@ -1473,10 +1473,10 @@
     "word_id": "EN_N_0053",
     "prompt": "접근",
     "choices": [
-      "minor",
-      "solution",
-      "resource",
-      "access"
+      "mainly",
+      "decision",
+      "access",
+      "always"
     ],
     "answer": "access",
     "meaning": "접근",
@@ -1487,10 +1487,10 @@
     "word_id": "EN_N_0054",
     "prompt": "control",
     "choices": [
-      "통제",
-      "위험",
-      "주요한",
-      "곧"
+      "접근법",
+      "개인",
+      "제한된",
+      "통제"
     ],
     "answer": "통제",
     "meaning": "통제",
@@ -1501,10 +1501,10 @@
     "word_id": "EN_N_0054",
     "prompt": "통제",
     "choices": [
+      "slowly",
       "control",
-      "unless",
-      "clear",
-      "build"
+      "simple",
+      "obviously"
     ],
     "answer": "control",
     "meaning": "통제",
@@ -1515,10 +1515,10 @@
     "word_id": "EN_N_0055",
     "prompt": "limit",
     "choices": [
-      "문화의",
       "한계",
-      "그러므로",
-      "줄이다"
+      "정책",
+      "쉽게",
+      "통제"
     ],
     "answer": "한계",
     "meaning": "한계",
@@ -1529,10 +1529,10 @@
     "word_id": "EN_N_0055",
     "prompt": "한계",
     "choices": [
-      "positive",
-      "control",
-      "limit",
-      "instead"
+      "soon",
+      "later",
+      "system",
+      "limit"
     ],
     "answer": "limit",
     "meaning": "한계",
@@ -1543,10 +1543,10 @@
     "word_id": "EN_N_0056",
     "prompt": "range",
     "choices": [
-      "범위",
-      "사회",
-      "그 자신",
-      "개인의"
+      "기능",
+      "문제",
+      "어디든지",
+      "범위"
     ],
     "answer": "범위",
     "meaning": "범위",
@@ -1557,10 +1557,10 @@
     "word_id": "EN_N_0056",
     "prompt": "범위",
     "choices": [
-      "form",
+      "therefore",
       "range",
-      "relationship",
-      "responsibility"
+      "both",
+      "approach"
     ],
     "answer": "range",
     "meaning": "범위",
@@ -1571,10 +1571,10 @@
     "word_id": "EN_N_0057",
     "prompt": "scale",
     "choices": [
+      "자원",
+      "이론",
       "규모",
-      "비슷한",
-      "어디든지",
-      "처리하다"
+      "영향을 미치다"
     ],
     "answer": "규모",
     "meaning": "규모",
@@ -1585,10 +1585,10 @@
     "word_id": "EN_N_0057",
     "prompt": "규모",
     "choices": [
-      "factor",
-      "helpful",
-      "scale",
-      "much"
+      "explain",
+      "individual",
+      "environment",
+      "scale"
     ],
     "answer": "scale",
     "meaning": "규모",
@@ -1599,10 +1599,10 @@
     "word_id": "EN_N_0058",
     "prompt": "distribution",
     "choices": [
-      "다른",
+      "약간",
+      "범위",
       "분배",
-      "개선하다",
-      "어디든지"
+      "처리하다"
     ],
     "answer": "분배",
     "meaning": "분배",
@@ -1613,10 +1613,10 @@
     "word_id": "EN_N_0058",
     "prompt": "분배",
     "choices": [
-      "everyone",
-      "suggest",
+      "some",
+      "again",
       "distribution",
-      "attitude"
+      "assume"
     ],
     "answer": "distribution",
     "meaning": "분배",
@@ -1627,10 +1627,10 @@
     "word_id": "EN_N_0059",
     "prompt": "income",
     "choices": [
+      "이용 가능한",
+      "집단의",
       "소득",
-      "모든",
-      "세계적인",
-      "그녀 자신"
+      "대부분"
     ],
     "answer": "소득",
     "meaning": "소득",
@@ -1641,10 +1641,10 @@
     "word_id": "EN_N_0059",
     "prompt": "소득",
     "choices": [
-      "connect",
-      "income",
-      "recent",
-      "neither"
+      "otherwise",
+      "communication",
+      "more",
+      "income"
     ],
     "answer": "income",
     "meaning": "소득",
@@ -1655,10 +1655,10 @@
     "word_id": "EN_N_0060",
     "prompt": "wealth",
     "choices": [
-      "세대",
-      "위험",
       "부",
-      "쉬운"
+      "가끔",
+      "~전에",
+      "복잡한"
     ],
     "answer": "부",
     "meaning": "부",
@@ -1669,10 +1669,10 @@
     "word_id": "EN_N_0060",
     "prompt": "부",
     "choices": [
-      "wealth",
-      "argument",
-      "critical",
-      "each"
+      "issue",
+      "trend",
+      "principle",
+      "wealth"
     ],
     "answer": "wealth",
     "meaning": "부",
@@ -1683,10 +1683,10 @@
     "word_id": "EN_V_0001",
     "prompt": "analyze",
     "choices": [
+      "거의",
       "분석하다",
-      "그러므로",
-      "안정적인",
-      "어디에나"
+      "불확실한",
+      "지지하다"
     ],
     "answer": "분석하다",
     "meaning": "분석하다",
@@ -1697,10 +1697,10 @@
     "word_id": "EN_V_0001",
     "prompt": "분석하다",
     "choices": [
-      "varied",
-      "however",
-      "debate",
-      "analyze"
+      "anyone",
+      "analyze",
+      "authority",
+      "provide"
     ],
     "answer": "analyze",
     "meaning": "분석하다",
@@ -1711,10 +1711,10 @@
     "word_id": "EN_V_0002",
     "prompt": "assume",
     "choices": [
-      "그녀 자신",
-      "효과적인",
-      "거의 없는 (가산)",
-      "가정하다"
+      "가정하다",
+      "요구하다",
+      "너무",
+      "환경"
     ],
     "answer": "가정하다",
     "meaning": "가정하다",
@@ -1725,10 +1725,10 @@
     "word_id": "EN_V_0002",
     "prompt": "가정하다",
     "choices": [
-      "particularly",
-      "consider",
-      "rely",
-      "assume"
+      "individual",
+      "range",
+      "assume",
+      "again"
     ],
     "answer": "assume",
     "meaning": "가정하다",
@@ -1739,10 +1739,10 @@
     "word_id": "EN_V_0003",
     "prompt": "suggest",
     "choices": [
-      "그러한",
-      "의존하다",
-      "포함하다",
-      "제안하다"
+      "반면에",
+      "모든",
+      "제안하다",
+      "구체적인"
     ],
     "answer": "제안하다",
     "meaning": "제안하다",
@@ -1753,10 +1753,10 @@
     "word_id": "EN_V_0003",
     "prompt": "제안하다",
     "choices": [
-      "recognize",
+      "rarely",
+      "very",
       "suggest",
-      "after",
-      "important"
+      "if"
     ],
     "answer": "suggest",
     "meaning": "제안하다",
@@ -1767,10 +1767,10 @@
     "word_id": "EN_V_0004",
     "prompt": "argue",
     "choices": [
-      "유용한",
-      "모든 것",
-      "형성하다",
-      "주장하다"
+      "통제",
+      "영향을 주다",
+      "주장하다",
+      "의사소통"
     ],
     "answer": "주장하다",
     "meaning": "주장하다",
@@ -1781,10 +1781,10 @@
     "word_id": "EN_V_0004",
     "prompt": "주장하다",
     "choices": [
-      "slow",
-      "realize",
-      "argue",
-      "otherwise"
+      "because",
+      "responsibility",
+      "whenever",
+      "argue"
     ],
     "answer": "argue",
     "meaning": "주장하다",
@@ -1795,10 +1795,10 @@
     "word_id": "EN_V_0005",
     "prompt": "claim",
     "choices": [
-      "그리고",
-      "방법",
-      "그 자신",
-      "주장하다"
+      "달성하다",
+      "어디에나",
+      "주장하다",
+      "반대하다"
     ],
     "answer": "주장하다",
     "meaning": "주장하다",
@@ -1809,10 +1809,10 @@
     "word_id": "EN_V_0005",
     "prompt": "주장하다",
     "choices": [
-      "relationship",
-      "uncertain",
-      "claim",
-      "mainly"
+      "barely",
+      "quite",
+      "often",
+      "claim"
     ],
     "answer": "claim",
     "meaning": "주장하다",
@@ -1823,10 +1823,10 @@
     "word_id": "EN_V_0006",
     "prompt": "support",
     "choices": [
-      "건설하다",
-      "이것",
       "지지하다",
-      "분배"
+      "설명하다",
+      "이미",
+      "비슷한"
     ],
     "answer": "지지하다",
     "meaning": "지지하다",
@@ -1837,10 +1837,10 @@
     "word_id": "EN_V_0006",
     "prompt": "지지하다",
     "choices": [
+      "who",
+      "permanent",
       "support",
-      "analysis",
-      "separately",
-      "easy"
+      "recognize"
     ],
     "answer": "support",
     "meaning": "지지하다",
@@ -1851,10 +1851,10 @@
     "word_id": "EN_V_0007",
     "prompt": "oppose",
     "choices": [
-      "요인",
-      "영향을 주다",
-      "아무것도 ~않다",
-      "반대하다"
+      "적절한",
+      "반대하다",
+      "증거",
+      "강조하다"
     ],
     "answer": "반대하다",
     "meaning": "반대하다",
@@ -1865,10 +1865,10 @@
     "word_id": "EN_V_0007",
     "prompt": "반대하다",
     "choices": [
-      "which",
+      "compare",
       "oppose",
-      "harmful",
-      "all"
+      "maintain",
+      "include"
     ],
     "answer": "oppose",
     "meaning": "반대하다",
@@ -1880,9 +1880,9 @@
     "prompt": "improve",
     "choices": [
       "개선하다",
-      "사회",
-      "고려하다",
-      "유지하다"
+      "약간",
+      "분석",
+      "효율적인"
     ],
     "answer": "개선하다",
     "meaning": "개선하다",
@@ -1893,10 +1893,10 @@
     "word_id": "EN_V_0008",
     "prompt": "개선하다",
     "choices": [
-      "instead",
       "improve",
-      "opportunity",
-      "that"
+      "slowly",
+      "unstable",
+      "useful"
     ],
     "answer": "improve",
     "meaning": "개선하다",
@@ -1907,10 +1907,10 @@
     "word_id": "EN_V_0009",
     "prompt": "reduce",
     "choices": [
-      "실패하다",
-      "원칙",
-      "줄이다",
-      "창조하다"
+      "필수적인",
+      "꽤",
+      "결코 ~않다",
+      "줄이다"
     ],
     "answer": "줄이다",
     "meaning": "줄이다",
@@ -1921,10 +1921,10 @@
     "word_id": "EN_V_0009",
     "prompt": "줄이다",
     "choices": [
+      "research",
+      "already",
       "reduce",
-      "power",
-      "common",
-      "limited"
+      "otherwise"
     ],
     "answer": "reduce",
     "meaning": "줄이다",
@@ -1935,10 +1935,10 @@
     "word_id": "EN_V_0010",
     "prompt": "increase",
     "choices": [
-      "처리하다",
+      "행동",
+      "관련된",
       "증가하다",
-      "저기",
-      "결정"
+      "어디에나"
     ],
     "answer": "증가하다",
     "meaning": "증가하다",
@@ -1949,10 +1949,10 @@
     "word_id": "EN_V_0010",
     "prompt": "증가하다",
     "choices": [
-      "impact",
+      "recent",
       "increase",
-      "decision",
-      "everyone"
+      "evidence",
+      "if"
     ],
     "answer": "increase",
     "meaning": "증가하다",
@@ -1963,10 +1963,10 @@
     "word_id": "EN_V_0011",
     "prompt": "affect",
     "choices": [
-      "개인의",
-      "거의 없는 (불가산)",
-      "단순한",
-      "영향을 미치다"
+      "영향을 미치다",
+      "건설하다",
+      "대신에",
+      "인구"
     ],
     "answer": "영향을 미치다",
     "meaning": "영향을 미치다",
@@ -1977,10 +1977,10 @@
     "word_id": "EN_V_0011",
     "prompt": "영향을 미치다",
     "choices": [
-      "already",
+      "never",
       "affect",
-      "effect",
-      "theory"
+      "strongly",
+      "partly"
     ],
     "answer": "affect",
     "meaning": "영향을 미치다",
@@ -1991,10 +1991,10 @@
     "word_id": "EN_V_0012",
     "prompt": "influence",
     "choices": [
-      "안정적인",
-      "누구의",
-      "사소한",
-      "영향을 주다"
+      "불가능한",
+      "구조",
+      "영향을 주다",
+      "제공하다"
     ],
     "answer": "영향을 주다",
     "meaning": "영향을 주다",
@@ -2005,10 +2005,10 @@
     "word_id": "EN_V_0012",
     "prompt": "영향을 주다",
     "choices": [
-      "many",
+      "distribution",
+      "much",
       "influence",
-      "scale",
-      "unstable"
+      "either"
     ],
     "answer": "influence",
     "meaning": "영향을 주다",
@@ -2019,10 +2019,10 @@
     "word_id": "EN_V_0013",
     "prompt": "result",
     "choices": [
+      "가끔",
+      "명백하게",
       "결과를 낳다",
-      "그것 자체",
-      "너무",
-      "~후에"
+      "확실한"
     ],
     "answer": "결과를 낳다",
     "meaning": "결과를 낳다",
@@ -2033,10 +2033,10 @@
     "word_id": "EN_V_0013",
     "prompt": "결과를 낳다",
     "choices": [
-      "solution",
-      "understand",
-      "standard",
-      "result"
+      "same",
+      "result",
+      "general",
+      "harmful"
     ],
     "answer": "result",
     "meaning": "결과를 낳다",
@@ -2047,10 +2047,10 @@
     "word_id": "EN_V_0014",
     "prompt": "lead",
     "choices": [
-      "수반하다",
-      "요구하다",
-      "이용 가능한",
-      "이끌다"
+      "강조하다",
+      "이끌다",
+      "나 자신",
+      "둘 다"
     ],
     "answer": "이끌다",
     "meaning": "이끌다",
@@ -2061,10 +2061,10 @@
     "word_id": "EN_V_0014",
     "prompt": "이끌다",
     "choices": [
-      "accessible",
       "lead",
-      "very",
-      "contain"
+      "involve",
+      "connect",
+      "principle"
     ],
     "answer": "lead",
     "meaning": "이끌다",
@@ -2075,10 +2075,10 @@
     "word_id": "EN_V_0015",
     "prompt": "cause",
     "choices": [
-      "막다",
-      "야기하다",
-      "~전에",
-      "이것들"
+      "두 번",
+      "정의하다",
+      "무제한의",
+      "야기하다"
     ],
     "answer": "야기하다",
     "meaning": "야기하다",
@@ -2089,10 +2089,10 @@
     "word_id": "EN_V_0015",
     "prompt": "야기하다",
     "choices": [
-      "cause",
-      "allow",
-      "community",
-      "system"
+      "describe",
+      "treat",
+      "concept",
+      "cause"
     ],
     "answer": "cause",
     "meaning": "야기하다",
@@ -2103,10 +2103,10 @@
     "word_id": "EN_V_0016",
     "prompt": "prevent",
     "choices": [
-      "분석",
-      "설명하다",
+      "결정",
       "막다",
-      "심지어"
+      "문화",
+      "처리하다"
     ],
     "answer": "막다",
     "meaning": "막다",
@@ -2117,10 +2117,10 @@
     "word_id": "EN_V_0016",
     "prompt": "막다",
     "choices": [
-      "relate",
       "prevent",
-      "often",
-      "here"
+      "herself",
+      "limited",
+      "relate"
     ],
     "answer": "prevent",
     "meaning": "막다",
@@ -2131,10 +2131,10 @@
     "word_id": "EN_V_0017",
     "prompt": "allow",
     "choices": [
-      "다시",
+      "강하게",
       "허용하다",
-      "저기",
-      "분명히"
+      "아직",
+      "주장"
     ],
     "answer": "허용하다",
     "meaning": "허용하다",
@@ -2145,10 +2145,10 @@
     "word_id": "EN_V_0017",
     "prompt": "허용하다",
     "choices": [
-      "anything",
-      "everyone",
-      "income",
-      "allow"
+      "minor",
+      "though",
+      "allow",
+      "however"
     ],
     "answer": "allow",
     "meaning": "허용하다",
@@ -2159,10 +2159,10 @@
     "word_id": "EN_V_0018",
     "prompt": "require",
     "choices": [
-      "강조하다",
-      "오직",
+      "자주",
       "요구하다",
-      "자주"
+      "이끌다",
+      "~처럼"
     ],
     "answer": "요구하다",
     "meaning": "요구하다",
@@ -2173,10 +2173,10 @@
     "word_id": "EN_V_0018",
     "prompt": "요구하다",
     "choices": [
-      "whenever",
       "require",
-      "just",
-      "claim"
+      "support",
+      "whereas",
+      "basically"
     ],
     "answer": "require",
     "meaning": "요구하다",
@@ -2187,10 +2187,10 @@
     "word_id": "EN_V_0019",
     "prompt": "provide",
     "choices": [
-      "지역의",
-      "기준",
       "제공하다",
-      "둘 다 ~아닌"
+      "영향",
+      "그러므로",
+      "누군가"
     ],
     "answer": "제공하다",
     "meaning": "제공하다",
@@ -2201,10 +2201,10 @@
     "word_id": "EN_V_0019",
     "prompt": "제공하다",
     "choices": [
-      "analysis",
-      "affect",
-      "everywhere",
-      "provide"
+      "interpret",
+      "provide",
+      "system",
+      "effect"
     ],
     "answer": "provide",
     "meaning": "제공하다",
@@ -2215,9 +2215,9 @@
     "word_id": "EN_V_0020",
     "prompt": "offer",
     "choices": [
-      "둘 다 ~아닌",
-      "사회",
-      "불확실한",
+      "부",
+      "이점",
+      "결과",
       "제공하다"
     ],
     "answer": "제공하다",
@@ -2229,10 +2229,10 @@
     "word_id": "EN_V_0020",
     "prompt": "제공하다",
     "choices": [
-      "yet",
       "offer",
-      "already",
-      "useful"
+      "claim",
+      "adapt",
+      "limited"
     ],
     "answer": "offer",
     "meaning": "제공하다",
@@ -2243,10 +2243,10 @@
     "word_id": "EN_V_0021",
     "prompt": "develop",
     "choices": [
+      "방법",
       "발전시키다",
-      "중요한",
-      "적합한",
-      "허용하다"
+      "흔한",
+      "유용한"
     ],
     "answer": "발전시키다",
     "meaning": "발전시키다",
@@ -2257,10 +2257,10 @@
     "word_id": "EN_V_0021",
     "prompt": "발전시키다",
     "choices": [
-      "clear",
-      "develop",
-      "approach",
-      "or"
+      "rather",
+      "result",
+      "yet",
+      "develop"
     ],
     "answer": "develop",
     "meaning": "발전시키다",
@@ -2272,9 +2272,9 @@
     "prompt": "create",
     "choices": [
       "창조하다",
-      "요인",
-      "가치",
-      "어딘가에"
+      "지역의",
+      "꽤",
+      "포함하다"
     ],
     "answer": "창조하다",
     "meaning": "창조하다",
@@ -2285,10 +2285,10 @@
     "word_id": "EN_V_0022",
     "prompt": "창조하다",
     "choices": [
-      "certain",
       "create",
-      "unlikely",
-      "all"
+      "support",
+      "environmental",
+      "harmful"
     ],
     "answer": "create",
     "meaning": "창조하다",
@@ -2299,10 +2299,10 @@
     "word_id": "EN_V_0023",
     "prompt": "produce",
     "choices": [
-      "~이후로",
-      "반응하다",
-      "유지하다",
-      "생산하다"
+      "생산하다",
+      "어디에나",
+      "~하는 동안",
+      "누구든지"
     ],
     "answer": "생산하다",
     "meaning": "생산하다",
@@ -2313,10 +2313,10 @@
     "word_id": "EN_V_0023",
     "prompt": "생산하다",
     "choices": [
+      "lead",
       "produce",
-      "accomplish",
-      "limit",
-      "affect"
+      "attitude",
+      "define"
     ],
     "answer": "produce",
     "meaning": "생산하다",
@@ -2327,9 +2327,9 @@
     "word_id": "EN_V_0024",
     "prompt": "build",
     "choices": [
-      "과정",
-      "또는",
-      "요구하다",
+      "여전히",
+      "이것",
+      "저것들",
       "건설하다"
     ],
     "answer": "건설하다",
@@ -2341,10 +2341,10 @@
     "word_id": "EN_V_0024",
     "prompt": "건설하다",
     "choices": [
-      "principle",
-      "normally",
+      "deal",
       "build",
-      "appropriate"
+      "opportunity",
+      "compare"
     ],
     "answer": "build",
     "meaning": "건설하다",
@@ -2355,10 +2355,10 @@
     "word_id": "EN_V_0025",
     "prompt": "form",
     "choices": [
-      "실패하다",
       "형성하다",
-      "누구의",
-      "최근의"
+      "나중에",
+      "어떤 것",
+      "명확한"
     ],
     "answer": "형성하다",
     "meaning": "형성하다",
@@ -2370,9 +2370,9 @@
     "prompt": "형성하다",
     "choices": [
       "form",
-      "this",
-      "general",
-      "clear"
+      "likely",
+      "focus",
+      "wealth"
     ],
     "answer": "form",
     "meaning": "형성하다",
@@ -2383,10 +2383,10 @@
     "word_id": "EN_V_0026",
     "prompt": "change",
     "choices": [
-      "가치",
-      "곧",
-      "효율적인",
-      "변화시키다"
+      "선택",
+      "이것들",
+      "변화시키다",
+      "세대"
     ],
     "answer": "변화시키다",
     "meaning": "변화시키다",
@@ -2397,10 +2397,10 @@
     "word_id": "EN_V_0026",
     "prompt": "변화시키다",
     "choices": [
-      "too",
-      "create",
-      "unlikely",
-      "change"
+      "seriously",
+      "change",
+      "hardly",
+      "benefit"
     ],
     "answer": "change",
     "meaning": "변화시키다",
@@ -2411,10 +2411,10 @@
     "word_id": "EN_V_0027",
     "prompt": "maintain",
     "choices": [
-      "저기",
-      "그것 자체",
-      "유지하다",
-      "분배"
+      "원칙",
+      "누구든지",
+      "그렇지 않으면",
+      "유지하다"
     ],
     "answer": "유지하다",
     "meaning": "유지하다",
@@ -2425,10 +2425,10 @@
     "word_id": "EN_V_0027",
     "prompt": "유지하다",
     "choices": [
-      "recent",
-      "accomplish",
-      "again",
-      "maintain"
+      "maintain",
+      "create",
+      "especially",
+      "slightly"
     ],
     "answer": "maintain",
     "meaning": "유지하다",
@@ -2439,10 +2439,10 @@
     "word_id": "EN_V_0028",
     "prompt": "manage",
     "choices": [
-      "반대하다",
       "관리하다",
-      "위험",
-      "방법"
+      "각각",
+      "통제",
+      "부분적으로"
     ],
     "answer": "관리하다",
     "meaning": "관리하다",
@@ -2453,10 +2453,10 @@
     "word_id": "EN_V_0028",
     "prompt": "관리하다",
     "choices": [
-      "global",
-      "manage",
-      "since",
-      "produce"
+      "uncertain",
+      "standard",
+      "herself",
+      "manage"
     ],
     "answer": "manage",
     "meaning": "관리하다",
@@ -2467,10 +2467,10 @@
     "word_id": "EN_V_0029",
     "prompt": "handle",
     "choices": [
-      "가능성이 높은",
-      "일반적인",
-      "어디에나",
-      "처리하다"
+      "도움이 되는",
+      "처리하다",
+      "분석하다",
+      "조절하다"
     ],
     "answer": "처리하다",
     "meaning": "처리하다",
@@ -2481,10 +2481,10 @@
     "word_id": "EN_V_0029",
     "prompt": "처리하다",
     "choices": [
-      "impossible",
+      "nothing",
       "handle",
-      "permanent",
-      "now"
+      "often",
+      "challenge"
     ],
     "answer": "handle",
     "meaning": "처리하다",
@@ -2495,10 +2495,10 @@
     "word_id": "EN_V_0030",
     "prompt": "deal",
     "choices": [
-      "~하는 동안",
-      "~보다",
-      "규모",
-      "다루다"
+      "다루다",
+      "사소한",
+      "소득",
+      "한계"
     ],
     "answer": "다루다",
     "meaning": "다루다",
@@ -2509,10 +2509,10 @@
     "word_id": "EN_V_0030",
     "prompt": "다루다",
     "choices": [
-      "varied",
-      "react",
-      "simple",
-      "deal"
+      "method",
+      "deal",
+      "slowly",
+      "result"
     ],
     "answer": "deal",
     "meaning": "다루다",
@@ -2523,10 +2523,10 @@
     "word_id": "EN_V_0031",
     "prompt": "consider",
     "choices": [
-      "누구",
-      "세계적인",
-      "야기하다",
-      "고려하다"
+      "불안정한",
+      "생산하다",
+      "고려하다",
+      "맥락"
     ],
     "answer": "고려하다",
     "meaning": "고려하다",
@@ -2537,10 +2537,10 @@
     "word_id": "EN_V_0031",
     "prompt": "고려하다",
     "choices": [
+      "analysis",
+      "lead",
       "consider",
-      "resource",
-      "achieve",
-      "same"
+      "related"
     ],
     "answer": "consider",
     "meaning": "고려하다",
@@ -2551,10 +2551,10 @@
     "word_id": "EN_V_0032",
     "prompt": "regard",
     "choices": [
-      "약간",
-      "행동",
+      "유지하다",
       "여기다",
-      "불가능한"
+      "주요한",
+      "대신에"
     ],
     "answer": "여기다",
     "meaning": "여기다",
@@ -2565,9 +2565,9 @@
     "word_id": "EN_V_0032",
     "prompt": "여기다",
     "choices": [
-      "risk",
-      "focus",
-      "limit",
+      "involve",
+      "sometimes",
+      "build",
       "regard"
     ],
     "answer": "regard",
@@ -2579,10 +2579,10 @@
     "word_id": "EN_V_0033",
     "prompt": "treat",
     "choices": [
-      "가치",
-      "소득",
-      "확실한",
-      "다루다"
+      "다루다",
+      "비교하다",
+      "문화",
+      "왜냐하면"
     ],
     "answer": "다루다",
     "meaning": "다루다",
@@ -2593,9 +2593,9 @@
     "word_id": "EN_V_0033",
     "prompt": "다루다",
     "choices": [
-      "and",
-      "adapt",
-      "possible",
+      "some",
+      "until",
+      "certain",
       "treat"
     ],
     "answer": "treat",
@@ -2607,10 +2607,10 @@
     "word_id": "EN_V_0034",
     "prompt": "describe",
     "choices": [
-      "접근",
-      "관리하다",
       "설명하다",
-      "적응하다"
+      "줄이다",
+      "~하는 동안",
+      "누구를"
     ],
     "answer": "설명하다",
     "meaning": "설명하다",
@@ -2621,10 +2621,10 @@
     "word_id": "EN_V_0034",
     "prompt": "설명하다",
     "choices": [
-      "still",
       "describe",
+      "society",
       "manage",
-      "realize"
+      "factor"
     ],
     "answer": "describe",
     "meaning": "설명하다",
@@ -2635,10 +2635,10 @@
     "word_id": "EN_V_0035",
     "prompt": "explain",
     "choices": [
-      "어디에나",
-      "설명하다",
-      "논쟁",
-      "불가능한"
+      "쉽게",
+      "여기다",
+      "만약 ~라면",
+      "설명하다"
     ],
     "answer": "설명하다",
     "meaning": "설명하다",
@@ -2649,10 +2649,10 @@
     "word_id": "EN_V_0035",
     "prompt": "설명하다",
     "choices": [
+      "research",
+      "something",
       "explain",
-      "realize",
-      "particularly",
-      "argue"
+      "provide"
     ],
     "answer": "explain",
     "meaning": "설명하다",
@@ -2663,10 +2663,10 @@
     "word_id": "EN_V_0036",
     "prompt": "define",
     "choices": [
-      "가능성이 낮은",
-      "주장하다",
-      "정의하다",
-      "보통"
+      "범위",
+      "중대한",
+      "과정",
+      "정의하다"
     ],
     "answer": "정의하다",
     "meaning": "정의하다",
@@ -2677,10 +2677,10 @@
     "word_id": "EN_V_0036",
     "prompt": "정의하다",
     "choices": [
-      "until",
-      "otherwise",
-      "authority",
-      "define"
+      "therefore",
+      "define",
+      "as",
+      "everything"
     ],
     "answer": "define",
     "meaning": "정의하다",
@@ -2691,10 +2691,10 @@
     "word_id": "EN_V_0037",
     "prompt": "compare",
     "choices": [
-      "비록 ~일지라도",
-      "고려하다",
+      "필수적인",
       "비교하다",
-      "가능성이 높은"
+      "건설하다",
+      "더 많은"
     ],
     "answer": "비교하다",
     "meaning": "비교하다",
@@ -2705,10 +2705,10 @@
     "word_id": "EN_V_0037",
     "prompt": "비교하다",
     "choices": [
-      "instead",
-      "compare",
-      "control",
-      "generally"
+      "mostly",
+      "claim",
+      "local",
+      "compare"
     ],
     "answer": "compare",
     "meaning": "비교하다",
@@ -2719,10 +2719,10 @@
     "word_id": "EN_V_0038",
     "prompt": "contrast",
     "choices": [
-      "~보다",
-      "접근법",
+      "해로운",
+      "부분적으로",
       "대조하다",
-      "더 많은"
+      "제한된"
     ],
     "answer": "대조하다",
     "meaning": "대조하다",
@@ -2733,10 +2733,10 @@
     "word_id": "EN_V_0038",
     "prompt": "대조하다",
     "choices": [
-      "later",
       "contrast",
-      "build",
-      "everyone"
+      "react",
+      "system",
+      "after"
     ],
     "answer": "contrast",
     "meaning": "대조하다",
@@ -2747,10 +2747,10 @@
     "word_id": "EN_V_0039",
     "prompt": "relate",
     "choices": [
-      "연결하다",
-      "거의 없는 (불가산)",
-      "관련시키다",
-      "적응하다"
+      "필요한",
+      "둘 다",
+      "여전히",
+      "관련시키다"
     ],
     "answer": "관련시키다",
     "meaning": "관련시키다",
@@ -2761,10 +2761,10 @@
     "word_id": "EN_V_0039",
     "prompt": "관련시키다",
     "choices": [
-      "still",
       "relate",
-      "certain",
-      "theory"
+      "every",
+      "likely",
+      "effect"
     ],
     "answer": "relate",
     "meaning": "관련시키다",
@@ -2775,10 +2775,10 @@
     "word_id": "EN_V_0040",
     "prompt": "connect",
     "choices": [
-      "책임",
-      "연결하다",
-      "야기하다",
-      "다양한"
+      "해결책",
+      "사회적인",
+      "한 번",
+      "연결하다"
     ],
     "answer": "연결하다",
     "meaning": "연결하다",
@@ -2789,10 +2789,10 @@
     "word_id": "EN_V_0040",
     "prompt": "연결하다",
     "choices": [
-      "lead",
+      "evidence",
+      "although",
       "connect",
-      "complex",
-      "reduce"
+      "impossible"
     ],
     "answer": "connect",
     "meaning": "연결하다",
@@ -2804,9 +2804,9 @@
     "prompt": "include",
     "choices": [
       "포함하다",
-      "어느 것",
-      "일반적인",
-      "그것"
+      "관련된",
+      "많은",
+      "원인"
     ],
     "answer": "포함하다",
     "meaning": "포함하다",
@@ -2817,10 +2817,10 @@
     "word_id": "EN_V_0041",
     "prompt": "포함하다",
     "choices": [
+      "manage",
+      "wealth",
       "include",
-      "quickly",
-      "both",
-      "likely"
+      "generally"
     ],
     "answer": "include",
     "meaning": "포함하다",
@@ -2831,10 +2831,10 @@
     "word_id": "EN_V_0042",
     "prompt": "contain",
     "choices": [
-      "한 번",
+      "비록 ~일지라도",
+      "관련시키다",
       "포함하다",
-      "비교하다",
-      "처리하다"
+      "문화의"
     ],
     "answer": "포함하다",
     "meaning": "포함하다",
@@ -2845,10 +2845,10 @@
     "word_id": "EN_V_0042",
     "prompt": "포함하다",
     "choices": [
-      "cause",
+      "require",
       "contain",
-      "all",
-      "usually"
+      "always",
+      "while"
     ],
     "answer": "contain",
     "meaning": "포함하다",
@@ -2859,10 +2859,10 @@
     "word_id": "EN_V_0043",
     "prompt": "involve",
     "choices": [
-      "어느 것",
-      "연결하다",
-      "같은",
-      "수반하다"
+      "영구적인",
+      "수반하다",
+      "여기",
+      "천천히"
     ],
     "answer": "수반하다",
     "meaning": "수반하다",
@@ -2873,10 +2873,10 @@
     "word_id": "EN_V_0043",
     "prompt": "수반하다",
     "choices": [
-      "until",
       "involve",
-      "debate",
-      "more"
+      "instead",
+      "therefore",
+      "compare"
     ],
     "answer": "involve",
     "meaning": "수반하다",
@@ -2887,10 +2887,10 @@
     "word_id": "EN_V_0044",
     "prompt": "depend",
     "choices": [
-      "깨닫다",
+      "효과적인",
       "의존하다",
-      "그러므로",
-      "누구"
+      "어디든지",
+      "강하게"
     ],
     "answer": "의존하다",
     "meaning": "의존하다",
@@ -2901,10 +2901,10 @@
     "word_id": "EN_V_0044",
     "prompt": "의존하다",
     "choices": [
-      "anyone",
-      "challenge",
-      "environment",
-      "depend"
+      "more",
+      "then",
+      "depend",
+      "wealth"
     ],
     "answer": "depend",
     "meaning": "의존하다",
@@ -2915,10 +2915,10 @@
     "word_id": "EN_V_0045",
     "prompt": "rely",
     "choices": [
-      "결정",
+      "처리하다",
       "중요한",
-      "관련 있는",
-      "의지하다"
+      "의지하다",
+      "긍정적인"
     ],
     "answer": "의지하다",
     "meaning": "의지하다",
@@ -2929,10 +2929,10 @@
     "word_id": "EN_V_0045",
     "prompt": "의지하다",
     "choices": [
-      "generally",
       "rely",
-      "since",
-      "focus"
+      "factor",
+      "everywhere",
+      "which"
     ],
     "answer": "rely",
     "meaning": "의지하다",
@@ -2943,10 +2943,10 @@
     "word_id": "EN_V_0046",
     "prompt": "focus",
     "choices": [
-      "여기다",
-      "심지어",
       "집중하다",
-      "왜냐하면"
+      "개선하다",
+      "둘 다 ~아닌",
+      "사실은"
     ],
     "answer": "집중하다",
     "meaning": "집중하다",
@@ -2957,10 +2957,10 @@
     "word_id": "EN_V_0046",
     "prompt": "집중하다",
     "choices": [
-      "support",
       "focus",
-      "both",
-      "process"
+      "yet",
+      "achieve",
+      "or"
     ],
     "answer": "focus",
     "meaning": "집중하다",
@@ -2971,10 +2971,10 @@
     "word_id": "EN_V_0047",
     "prompt": "emphasize",
     "choices": [
-      "영향",
-      "요구하다",
-      "비교하다",
-      "강조하다"
+      "강하게",
+      "이해하다",
+      "강조하다",
+      "~이후로"
     ],
     "answer": "강조하다",
     "meaning": "강조하다",
@@ -2985,10 +2985,10 @@
     "word_id": "EN_V_0047",
     "prompt": "강조하다",
     "choices": [
-      "economic",
-      "many",
+      "similar",
+      "maintain",
       "emphasize",
-      "if"
+      "support"
     ],
     "answer": "emphasize",
     "meaning": "강조하다",
@@ -2999,10 +2999,10 @@
     "word_id": "EN_V_0048",
     "prompt": "highlight",
     "choices": [
-      "성공하다",
-      "불가능한",
-      "방법",
-      "강조하다"
+      "안정적인",
+      "건설하다",
+      "강조하다",
+      "하지만"
     ],
     "answer": "강조하다",
     "meaning": "강조하다",
@@ -3014,9 +3014,9 @@
     "prompt": "강조하다",
     "choices": [
       "highlight",
-      "context",
-      "global",
-      "specific"
+      "prevent",
+      "trend",
+      "manage"
     ],
     "answer": "highlight",
     "meaning": "강조하다",
@@ -3027,10 +3027,10 @@
     "word_id": "EN_V_0049",
     "prompt": "recognize",
     "choices": [
-      "인식하다",
-      "어느 것",
-      "왜냐하면",
-      "이것들"
+      "실패하다",
+      "기회",
+      "자원",
+      "인식하다"
     ],
     "answer": "인식하다",
     "meaning": "인식하다",
@@ -3041,10 +3041,10 @@
     "word_id": "EN_V_0049",
     "prompt": "인식하다",
     "choices": [
-      "this",
-      "individual",
-      "role",
-      "recognize"
+      "recognize",
+      "herself",
+      "highlight",
+      "increase"
     ],
     "answer": "recognize",
     "meaning": "인식하다",
@@ -3055,10 +3055,10 @@
     "word_id": "EN_V_0050",
     "prompt": "realize",
     "choices": [
-      "가치",
-      "처리하다",
       "깨닫다",
-      "반응하다"
+      "둘 다",
+      "관련된",
+      "직접적으로"
     ],
     "answer": "깨닫다",
     "meaning": "깨닫다",
@@ -3069,10 +3069,10 @@
     "word_id": "EN_V_0050",
     "prompt": "깨닫다",
     "choices": [
+      "adapt",
       "realize",
-      "relate",
-      "carefully",
-      "easy"
+      "myself",
+      "someone"
     ],
     "answer": "realize",
     "meaning": "깨닫다",
@@ -3083,10 +3083,10 @@
     "word_id": "EN_V_0051",
     "prompt": "understand",
     "choices": [
-      "천천히",
-      "구조",
-      "불가능한",
-      "이해하다"
+      "이해하다",
+      "가정하다",
+      "그래서",
+      "환경의"
     ],
     "answer": "이해하다",
     "meaning": "이해하다",
@@ -3097,10 +3097,10 @@
     "word_id": "EN_V_0051",
     "prompt": "이해하다",
     "choices": [
-      "yourself",
+      "otherwise",
+      "particularly",
       "understand",
-      "affect",
-      "major"
+      "hardly"
     ],
     "answer": "understand",
     "meaning": "이해하다",
@@ -3111,10 +3111,10 @@
     "word_id": "EN_V_0052",
     "prompt": "interpret",
     "choices": [
-      "연결하다",
-      "간접적으로",
-      "해석하다",
-      "~후에"
+      "흔한",
+      "환경",
+      "누구의",
+      "해석하다"
     ],
     "answer": "해석하다",
     "meaning": "해석하다",
@@ -3125,10 +3125,10 @@
     "word_id": "EN_V_0052",
     "prompt": "해석하다",
     "choices": [
-      "little",
-      "interpret",
-      "whenever",
-      "handle"
+      "both",
+      "certain",
+      "everything",
+      "interpret"
     ],
     "answer": "interpret",
     "meaning": "해석하다",
@@ -3139,10 +3139,10 @@
     "word_id": "EN_V_0053",
     "prompt": "respond",
     "choices": [
+      "중요한",
       "반응하다",
-      "지역의",
-      "~처럼",
-      "이론"
+      "기능",
+      "범위"
     ],
     "answer": "반응하다",
     "meaning": "반응하다",
@@ -3153,9 +3153,9 @@
     "word_id": "EN_V_0053",
     "prompt": "반응하다",
     "choices": [
-      "much",
+      "than",
+      "regard",
       "respond",
-      "global",
       "carefully"
     ],
     "answer": "respond",
@@ -3167,10 +3167,10 @@
     "word_id": "EN_V_0054",
     "prompt": "react",
     "choices": [
-      "비교하다",
-      "결과를 낳다",
       "반응하다",
-      "효과적인"
+      "가정하다",
+      "두 번",
+      "중요한"
     ],
     "answer": "반응하다",
     "meaning": "반응하다",
@@ -3181,10 +3181,10 @@
     "word_id": "EN_V_0054",
     "prompt": "반응하다",
     "choices": [
-      "react",
-      "respond",
-      "yet",
-      "either"
+      "analysis",
+      "every",
+      "regard",
+      "react"
     ],
     "answer": "react",
     "meaning": "반응하다",
@@ -3195,10 +3195,10 @@
     "word_id": "EN_V_0055",
     "prompt": "adapt",
     "choices": [
-      "영향을 미치다",
-      "의사소통",
-      "어려운",
-      "적응하다"
+      "~까지",
+      "아무도 ~않다",
+      "적응하다",
+      "관련시키다"
     ],
     "answer": "적응하다",
     "meaning": "적응하다",
@@ -3209,10 +3209,10 @@
     "word_id": "EN_V_0055",
     "prompt": "적응하다",
     "choices": [
-      "argument",
+      "change",
+      "simple",
       "adapt",
-      "distribution",
-      "no one"
+      "react"
     ],
     "answer": "adapt",
     "meaning": "적응하다",
@@ -3223,10 +3223,10 @@
     "word_id": "EN_V_0056",
     "prompt": "adjust",
     "choices": [
-      "이미",
       "조절하다",
-      "제안하다",
-      "그것"
+      "성공하다",
+      "이것들",
+      "기본적으로"
     ],
     "answer": "조절하다",
     "meaning": "조절하다",
@@ -3237,10 +3237,10 @@
     "word_id": "EN_V_0056",
     "prompt": "조절하다",
     "choices": [
-      "lead",
-      "if",
-      "adjust",
-      "regard"
+      "important",
+      "create",
+      "control",
+      "adjust"
     ],
     "answer": "adjust",
     "meaning": "조절하다",
@@ -3252,9 +3252,9 @@
     "prompt": "achieve",
     "choices": [
       "달성하다",
-      "영향력",
-      "완전히",
-      "어려운"
+      "누구를",
+      "사회",
+      "유지하다"
     ],
     "answer": "달성하다",
     "meaning": "달성하다",
@@ -3265,10 +3265,10 @@
     "word_id": "EN_V_0057",
     "prompt": "달성하다",
     "choices": [
-      "if",
-      "whose",
-      "achieve",
-      "never"
+      "adapt",
+      "clearly",
+      "much",
+      "achieve"
     ],
     "answer": "achieve",
     "meaning": "달성하다",
@@ -3279,10 +3279,10 @@
     "word_id": "EN_V_0058",
     "prompt": "accomplish",
     "choices": [
+      "~전에",
+      "어디든지",
       "성취하다",
-      "어딘가에",
-      "줄이다",
-      "가끔"
+      "여기다"
     ],
     "answer": "성취하다",
     "meaning": "성취하다",
@@ -3293,10 +3293,10 @@
     "word_id": "EN_V_0058",
     "prompt": "성취하다",
     "choices": [
-      "responsibility",
-      "because",
+      "power",
       "accomplish",
-      "though"
+      "local",
+      "improve"
     ],
     "answer": "accomplish",
     "meaning": "성취하다",
@@ -3307,10 +3307,10 @@
     "word_id": "EN_V_0059",
     "prompt": "fail",
     "choices": [
-      "부",
-      "그것 자체",
-      "실패하다",
-      "특히"
+      "증거",
+      "함께",
+      "직접적으로",
+      "실패하다"
     ],
     "answer": "실패하다",
     "meaning": "실패하다",
@@ -3321,10 +3321,10 @@
     "word_id": "EN_V_0059",
     "prompt": "실패하다",
     "choices": [
-      "access",
+      "themselves",
+      "itself",
       "fail",
-      "yet",
-      "solution"
+      "impact"
     ],
     "answer": "fail",
     "meaning": "실패하다",
@@ -3335,10 +3335,10 @@
     "word_id": "EN_V_0060",
     "prompt": "succeed",
     "choices": [
-      "확실한",
-      "어디에나",
-      "그들 자신",
-      "성공하다"
+      "성공하다",
+      "함께",
+      "직접적으로",
+      "곧"
     ],
     "answer": "성공하다",
     "meaning": "성공하다",
@@ -3349,10 +3349,10 @@
     "word_id": "EN_V_0060",
     "prompt": "성공하다",
     "choices": [
-      "obviously",
+      "cause",
+      "every",
       "succeed",
-      "effect",
-      "many"
+      "population"
     ],
     "answer": "succeed",
     "meaning": "성공하다",
@@ -3363,10 +3363,10 @@
     "word_id": "EN_A_0001",
     "prompt": "important",
     "choices": [
-      "어디든지",
+      "빠른",
       "중요한",
-      "대신에",
-      "다양한"
+      "아무것도 ~않다",
+      "명백하게"
     ],
     "answer": "중요한",
     "meaning": "중요한",
@@ -3377,10 +3377,10 @@
     "word_id": "EN_A_0001",
     "prompt": "중요한",
     "choices": [
-      "highlight",
-      "change",
-      "same",
-      "important"
+      "important",
+      "everything",
+      "various",
+      "manage"
     ],
     "answer": "important",
     "meaning": "중요한",
@@ -3391,9 +3391,9 @@
     "word_id": "EN_A_0002",
     "prompt": "significant",
     "choices": [
-      "곧",
       "이론",
-      "반면에",
+      "도움이 되는",
+      "다루다",
       "중요한"
     ],
     "answer": "중요한",
@@ -3405,10 +3405,10 @@
     "word_id": "EN_A_0002",
     "prompt": "중요한",
     "choices": [
+      "until",
+      "affect",
       "significant",
-      "common",
-      "such",
-      "assume"
+      "opportunity"
     ],
     "answer": "significant",
     "meaning": "중요한",
@@ -3420,9 +3420,9 @@
     "prompt": "essential",
     "choices": [
       "필수적인",
-      "무제한의",
-      "저것",
-      "접근 가능한"
+      "개선하다",
+      "세계적인",
+      "성공하다"
     ],
     "answer": "필수적인",
     "meaning": "필수적인",
@@ -3433,10 +3433,10 @@
     "word_id": "EN_A_0003",
     "prompt": "필수적인",
     "choices": [
-      "deal",
+      "soon",
+      "here",
       "essential",
-      "yet",
-      "everyone"
+      "unlikely"
     ],
     "answer": "essential",
     "meaning": "필수적인",
@@ -3447,10 +3447,10 @@
     "word_id": "EN_A_0004",
     "prompt": "necessary",
     "choices": [
-      "어떤 것",
-      "제안하다",
-      "많은",
-      "필요한"
+      "영향",
+      "느린",
+      "필요한",
+      "원칙"
     ],
     "answer": "필요한",
     "meaning": "필요한",
@@ -3461,10 +3461,10 @@
     "word_id": "EN_A_0004",
     "prompt": "필요한",
     "choices": [
-      "necessary",
-      "either",
-      "most",
-      "social"
+      "succeed",
+      "quite",
+      "whom",
+      "necessary"
     ],
     "answer": "necessary",
     "meaning": "필요한",
@@ -3475,10 +3475,10 @@
     "word_id": "EN_A_0005",
     "prompt": "critical",
     "choices": [
-      "함께",
-      "하지만",
+      "둘 다",
+      "반응하다",
       "중대한",
-      "사소한"
+      "연결하다"
     ],
     "answer": "중대한",
     "meaning": "중대한",
@@ -3490,9 +3490,9 @@
     "prompt": "중대한",
     "choices": [
       "critical",
-      "compare",
-      "although",
-      "adapt"
+      "manage",
+      "communication",
+      "all"
     ],
     "answer": "critical",
     "meaning": "중대한",
@@ -3503,10 +3503,10 @@
     "word_id": "EN_A_0006",
     "prompt": "major",
     "choices": [
-      "깨닫다",
-      "드물게",
+      "아무도 ~않다",
+      "하지만",
       "주요한",
-      "체계"
+      "지역의"
     ],
     "answer": "주요한",
     "meaning": "주요한",
@@ -3517,10 +3517,10 @@
     "word_id": "EN_A_0006",
     "prompt": "주요한",
     "choices": [
-      "impossible",
-      "now",
       "major",
-      "connect"
+      "strongly",
+      "local",
+      "appropriate"
     ],
     "answer": "major",
     "meaning": "주요한",
@@ -3531,10 +3531,10 @@
     "word_id": "EN_A_0007",
     "prompt": "minor",
     "choices": [
-      "현대의",
-      "불가능한",
-      "줄이다",
-      "사소한"
+      "사소한",
+      "정책",
+      "강조하다",
+      "이미"
     ],
     "answer": "사소한",
     "meaning": "사소한",
@@ -3545,10 +3545,10 @@
     "word_id": "EN_A_0007",
     "prompt": "사소한",
     "choices": [
-      "if",
-      "power",
+      "then",
+      "decision",
       "minor",
-      "everything"
+      "such"
     ],
     "answer": "minor",
     "meaning": "사소한",
@@ -3559,10 +3559,10 @@
     "word_id": "EN_A_0008",
     "prompt": "common",
     "choices": [
-      "사소한",
-      "제안하다",
-      "요구하다",
-      "흔한"
+      "세계적인",
+      "저것들",
+      "흔한",
+      "거의 없는 (가산)"
     ],
     "answer": "흔한",
     "meaning": "흔한",
@@ -3573,9 +3573,9 @@
     "word_id": "EN_A_0008",
     "prompt": "흔한",
     "choices": [
-      "significant",
-      "now",
-      "impact",
+      "generation",
+      "already",
+      "herself",
       "common"
     ],
     "answer": "common",
@@ -3587,10 +3587,10 @@
     "word_id": "EN_A_0009",
     "prompt": "general",
     "choices": [
-      "~할 때마다",
-      "구체적인",
+      "가장 많은",
+      "많은",
       "일반적인",
-      "부분적으로"
+      "지지하다"
     ],
     "answer": "일반적인",
     "meaning": "일반적인",
@@ -3601,10 +3601,10 @@
     "word_id": "EN_A_0009",
     "prompt": "일반적인",
     "choices": [
-      "now",
+      "analyze",
+      "ourselves",
       "general",
-      "allow",
-      "efficient"
+      "here"
     ],
     "answer": "general",
     "meaning": "일반적인",
@@ -3615,10 +3615,10 @@
     "word_id": "EN_A_0010",
     "prompt": "specific",
     "choices": [
-      "지금",
-      "방법",
-      "구체적인",
-      "적응하다"
+      "환경의",
+      "사회",
+      "다양한",
+      "구체적인"
     ],
     "answer": "구체적인",
     "meaning": "구체적인",
@@ -3629,10 +3629,10 @@
     "word_id": "EN_A_0010",
     "prompt": "구체적인",
     "choices": [
-      "assume",
+      "which",
+      "standard",
       "specific",
-      "argue",
-      "communication"
+      "somewhere"
     ],
     "answer": "specific",
     "meaning": "구체적인",
@@ -3643,10 +3643,10 @@
     "word_id": "EN_A_0011",
     "prompt": "various",
     "choices": [
-      "다양한",
-      "인식하다",
-      "그것",
-      "대신에"
+      "그녀 자신",
+      "영향을 주다",
+      "맥락",
+      "다양한"
     ],
     "answer": "다양한",
     "meaning": "다양한",
@@ -3657,10 +3657,10 @@
     "word_id": "EN_A_0011",
     "prompt": "다양한",
     "choices": [
+      "build",
+      "effective",
       "various",
-      "unlikely",
-      "environment",
-      "allow"
+      "scale"
     ],
     "answer": "various",
     "meaning": "다양한",
@@ -3671,10 +3671,10 @@
     "word_id": "EN_A_0012",
     "prompt": "different",
     "choices": [
+      "결정",
       "다른",
-      "아직",
-      "이끌다",
-      "안정적인"
+      "결과를 낳다",
+      "함께"
     ],
     "answer": "다른",
     "meaning": "다른",
@@ -3685,10 +3685,10 @@
     "word_id": "EN_A_0012",
     "prompt": "다른",
     "choices": [
+      "control",
+      "value",
       "different",
-      "very",
-      "because",
-      "until"
+      "recent"
     ],
     "answer": "different",
     "meaning": "다른",
@@ -3699,10 +3699,10 @@
     "word_id": "EN_A_0013",
     "prompt": "similar",
     "choices": [
-      "이미",
+      "저것",
       "비슷한",
-      "하지만",
-      "거의"
+      "누구",
+      "강하게"
     ],
     "answer": "비슷한",
     "meaning": "비슷한",
@@ -3713,10 +3713,10 @@
     "word_id": "EN_A_0013",
     "prompt": "비슷한",
     "choices": [
-      "partly",
-      "handle",
+      "though",
+      "anyone",
       "similar",
-      "never"
+      "now"
     ],
     "answer": "similar",
     "meaning": "비슷한",
@@ -3727,10 +3727,10 @@
     "word_id": "EN_A_0014",
     "prompt": "same",
     "choices": [
-      "해로운",
-      "의지하다",
+      "그러한",
+      "둘 다 ~아닌",
       "같은",
-      "너 자신"
+      "행동"
     ],
     "answer": "같은",
     "meaning": "같은",
@@ -3741,10 +3741,10 @@
     "word_id": "EN_A_0014",
     "prompt": "같은",
     "choices": [
-      "major",
-      "require",
-      "challenge",
-      "same"
+      "same",
+      "easy",
+      "never",
+      "deal"
     ],
     "answer": "same",
     "meaning": "같은",
@@ -3755,10 +3755,10 @@
     "word_id": "EN_A_0015",
     "prompt": "related",
     "choices": [
+      "부정적인",
       "관련된",
-      "아무도 ~않다",
-      "기회",
-      "분석하다"
+      "설명하다",
+      "이해하다"
     ],
     "answer": "관련된",
     "meaning": "관련된",
@@ -3769,10 +3769,10 @@
     "word_id": "EN_A_0015",
     "prompt": "관련된",
     "choices": [
-      "income",
-      "maintain",
-      "temporary",
-      "related"
+      "focus",
+      "related",
+      "even",
+      "different"
     ],
     "answer": "related",
     "meaning": "관련된",
@@ -3783,10 +3783,10 @@
     "word_id": "EN_A_0016",
     "prompt": "relevant",
     "choices": [
-      "통제",
-      "이해하다",
-      "달성하다",
-      "관련 있는"
+      "매우",
+      "명백하게",
+      "관련 있는",
+      "반면에"
     ],
     "answer": "관련 있는",
     "meaning": "관련 있는",
@@ -3797,9 +3797,9 @@
     "word_id": "EN_A_0016",
     "prompt": "관련 있는",
     "choices": [
-      "concept",
-      "risk",
-      "oppose",
+      "form",
+      "that",
+      "succeed",
       "relevant"
     ],
     "answer": "relevant",
@@ -3811,10 +3811,10 @@
     "word_id": "EN_A_0017",
     "prompt": "appropriate",
     "choices": [
-      "많은",
-      "적절한",
-      "문제",
-      "가능한"
+      "강하게",
+      "사회적인",
+      "그들 자신",
+      "적절한"
     ],
     "answer": "적절한",
     "meaning": "적절한",
@@ -3825,10 +3825,10 @@
     "word_id": "EN_A_0017",
     "prompt": "적절한",
     "choices": [
-      "separately",
       "appropriate",
-      "major",
-      "adjust"
+      "especially",
+      "temporary",
+      "directly"
     ],
     "answer": "appropriate",
     "meaning": "적절한",
@@ -3839,8 +3839,8 @@
     "word_id": "EN_A_0018",
     "prompt": "suitable",
     "choices": [
-      "분석하다",
-      "강하게",
+      "오직",
+      "반응하다",
       "적합한",
       "곧"
     ],
@@ -3853,9 +3853,9 @@
     "word_id": "EN_A_0018",
     "prompt": "적합한",
     "choices": [
-      "responsibility",
-      "impact",
-      "handle",
+      "himself",
+      "authority",
+      "relevant",
       "suitable"
     ],
     "answer": "suitable",
@@ -3867,10 +3867,10 @@
     "word_id": "EN_A_0019",
     "prompt": "effective",
     "choices": [
-      "문제",
-      "~이후로",
       "효과적인",
-      "중요한"
+      "저것들",
+      "~이후로",
+      "그렇지 않으면"
     ],
     "answer": "효과적인",
     "meaning": "효과적인",
@@ -3881,10 +3881,10 @@
     "word_id": "EN_A_0019",
     "prompt": "효과적인",
     "choices": [
-      "whereas",
-      "often",
+      "every",
+      "then",
       "effective",
-      "someone"
+      "succeed"
     ],
     "answer": "effective",
     "meaning": "효과적인",
@@ -3895,10 +3895,10 @@
     "word_id": "EN_A_0020",
     "prompt": "efficient",
     "choices": [
-      "막다",
-      "경향",
-      "약간",
-      "효율적인"
+      "효율적인",
+      "고려하다",
+      "저기",
+      "그래서"
     ],
     "answer": "효율적인",
     "meaning": "효율적인",
@@ -3909,10 +3909,10 @@
     "word_id": "EN_A_0020",
     "prompt": "효율적인",
     "choices": [
-      "whenever",
-      "opportunity",
-      "suitable",
-      "efficient"
+      "efficient",
+      "society",
+      "cultural",
+      "choice"
     ],
     "answer": "efficient",
     "meaning": "효율적인",
@@ -3923,10 +3923,10 @@
     "word_id": "EN_A_0021",
     "prompt": "useful",
     "choices": [
-      "도전",
-      "변화시키다",
-      "가정하다",
-      "유용한"
+      "나 자신",
+      "유용한",
+      "역할",
+      "그것 자체"
     ],
     "answer": "유용한",
     "meaning": "유용한",
@@ -3937,10 +3937,10 @@
     "word_id": "EN_A_0021",
     "prompt": "유용한",
     "choices": [
-      "than",
-      "related",
+      "focus",
+      "many",
       "useful",
-      "analyze"
+      "global"
     ],
     "answer": "useful",
     "meaning": "유용한",
@@ -3952,9 +3952,9 @@
     "prompt": "helpful",
     "choices": [
       "도움이 되는",
-      "무제한의",
-      "분명한",
-      "개선하다"
+      "현대의",
+      "가능성이 높은",
+      "한 번"
     ],
     "answer": "도움이 되는",
     "meaning": "도움이 되는",
@@ -3965,9 +3965,9 @@
     "word_id": "EN_A_0022",
     "prompt": "도움이 되는",
     "choices": [
-      "reduce",
-      "effective",
-      "harmful",
+      "behavior",
+      "herself",
+      "rapid",
       "helpful"
     ],
     "answer": "helpful",
@@ -3979,10 +3979,10 @@
     "word_id": "EN_A_0023",
     "prompt": "harmful",
     "choices": [
-      "문화의",
-      "해로운",
-      "그들 자신",
-      "드물게"
+      "영향력",
+      "이미",
+      "해결책",
+      "해로운"
     ],
     "answer": "해로운",
     "meaning": "해로운",
@@ -3993,10 +3993,10 @@
     "word_id": "EN_A_0023",
     "prompt": "해로운",
     "choices": [
-      "access",
+      "explain",
+      "cause",
       "harmful",
-      "decision",
-      "after"
+      "process"
     ],
     "answer": "harmful",
     "meaning": "해로운",
@@ -4008,9 +4008,9 @@
     "prompt": "positive",
     "choices": [
       "긍정적인",
-      "기능",
-      "원인",
-      "~이후로"
+      "형성하다",
+      "다루다",
+      "주장"
     ],
     "answer": "긍정적인",
     "meaning": "긍정적인",
@@ -4021,10 +4021,10 @@
     "word_id": "EN_A_0024",
     "prompt": "긍정적인",
     "choices": [
-      "society",
-      "positive",
-      "create",
-      "factor"
+      "unlimited",
+      "process",
+      "neither",
+      "positive"
     ],
     "answer": "positive",
     "meaning": "긍정적인",
@@ -4035,10 +4035,10 @@
     "word_id": "EN_A_0025",
     "prompt": "negative",
     "choices": [
+      "거의 ~않다",
+      "누구를",
       "부정적인",
-      "의지하다",
-      "요인",
-      "분석하다"
+      "강하게"
     ],
     "answer": "부정적인",
     "meaning": "부정적인",
@@ -4049,10 +4049,10 @@
     "word_id": "EN_A_0025",
     "prompt": "부정적인",
     "choices": [
-      "value",
       "negative",
-      "useful",
-      "or"
+      "adapt",
+      "principle",
+      "yet"
     ],
     "answer": "negative",
     "meaning": "부정적인",
@@ -4063,10 +4063,10 @@
     "word_id": "EN_A_0026",
     "prompt": "possible",
     "choices": [
-      "~할 때마다",
       "가능한",
-      "쉽게",
-      "여기다"
+      "성취하다",
+      "만약 ~라면",
+      "너무"
     ],
     "answer": "가능한",
     "meaning": "가능한",
@@ -4077,10 +4077,10 @@
     "word_id": "EN_A_0026",
     "prompt": "가능한",
     "choices": [
-      "describe",
+      "otherwise",
       "possible",
-      "partly",
-      "create"
+      "barely",
+      "quite"
     ],
     "answer": "possible",
     "meaning": "가능한",
@@ -4091,10 +4091,10 @@
     "word_id": "EN_A_0027",
     "prompt": "impossible",
     "choices": [
-      "맥락",
+      "이것",
       "불가능한",
-      "많은",
-      "어느 것"
+      "선택",
+      "명확한"
     ],
     "answer": "불가능한",
     "meaning": "불가능한",
@@ -4105,10 +4105,10 @@
     "word_id": "EN_A_0027",
     "prompt": "불가능한",
     "choices": [
-      "obvious",
-      "principle",
+      "depend",
       "impossible",
-      "realize"
+      "such",
+      "range"
     ],
     "answer": "impossible",
     "meaning": "불가능한",
@@ -4119,10 +4119,10 @@
     "word_id": "EN_A_0028",
     "prompt": "likely",
     "choices": [
-      "우리 자신들",
-      "정의하다",
-      "~하지 않는 한",
-      "가능성이 높은"
+      "누구의",
+      "가능성이 높은",
+      "반면에",
+      "자원"
     ],
     "answer": "가능성이 높은",
     "meaning": "가능성이 높은",
@@ -4133,10 +4133,10 @@
     "word_id": "EN_A_0028",
     "prompt": "가능성이 높은",
     "choices": [
-      "constant",
-      "everything",
-      "research",
-      "likely"
+      "likely",
+      "slow",
+      "somewhere",
+      "behavior"
     ],
     "answer": "likely",
     "meaning": "가능성이 높은",
@@ -4147,10 +4147,10 @@
     "word_id": "EN_A_0029",
     "prompt": "unlikely",
     "choices": [
-      "~처럼",
+      "지속적인",
       "가능성이 낮은",
-      "무언가",
-      "한계"
+      "가끔",
+      "제공하다"
     ],
     "answer": "가능성이 낮은",
     "meaning": "가능성이 낮은",
@@ -4161,10 +4161,10 @@
     "word_id": "EN_A_0029",
     "prompt": "가능성이 낮은",
     "choices": [
-      "emphasize",
       "unlikely",
-      "what",
-      "generation"
+      "decision",
+      "realize",
+      "so"
     ],
     "answer": "unlikely",
     "meaning": "가능성이 낮은",
@@ -4175,10 +4175,10 @@
     "word_id": "EN_A_0030",
     "prompt": "certain",
     "choices": [
-      "확실한",
-      "결코 ~않다",
-      "공동체",
-      "많은 (불가산)"
+      "발전시키다",
+      "야기하다",
+      "일반적으로",
+      "확실한"
     ],
     "answer": "확실한",
     "meaning": "확실한",
@@ -4189,10 +4189,10 @@
     "word_id": "EN_A_0030",
     "prompt": "확실한",
     "choices": [
+      "twice",
       "certain",
-      "evidence",
-      "issue",
-      "assume"
+      "no one",
+      "change"
     ],
     "answer": "certain",
     "meaning": "확실한",
@@ -4203,10 +4203,10 @@
     "word_id": "EN_A_0031",
     "prompt": "uncertain",
     "choices": [
-      "불확실한",
-      "제공하다",
-      "너 자신",
-      "빠르게"
+      "한계",
+      "안정적인",
+      "유지하다",
+      "불확실한"
     ],
     "answer": "불확실한",
     "meaning": "불확실한",
@@ -4217,10 +4217,10 @@
     "word_id": "EN_A_0031",
     "prompt": "불확실한",
     "choices": [
-      "indirectly",
-      "rather",
+      "income",
       "uncertain",
-      "include"
+      "carefully",
+      "than"
     ],
     "answer": "uncertain",
     "meaning": "불확실한",
@@ -4231,10 +4231,10 @@
     "word_id": "EN_A_0032",
     "prompt": "clear",
     "choices": [
+      "심각하게",
       "명확한",
-      "소득",
-      "발전시키다",
-      "느린"
+      "누구든지",
+      "어디에나"
     ],
     "answer": "명확한",
     "meaning": "명확한",
@@ -4245,9 +4245,9 @@
     "word_id": "EN_A_0032",
     "prompt": "명확한",
     "choices": [
-      "deal",
-      "constant",
-      "form",
+      "develop",
+      "especially",
+      "rely",
       "clear"
     ],
     "answer": "clear",
@@ -4259,9 +4259,9 @@
     "word_id": "EN_A_0033",
     "prompt": "obvious",
     "choices": [
-      "생산하다",
-      "한 번",
-      "소득",
+      "반면에",
+      "일시적인",
+      "둘 다 ~아닌",
       "분명한"
     ],
     "answer": "분명한",
@@ -4273,10 +4273,10 @@
     "word_id": "EN_A_0033",
     "prompt": "분명한",
     "choices": [
-      "whose",
-      "relevant",
-      "obvious",
-      "develop"
+      "behavior",
+      "seriously",
+      "recognize",
+      "obvious"
     ],
     "answer": "obvious",
     "meaning": "분명한",
@@ -4287,10 +4287,10 @@
     "word_id": "EN_A_0034",
     "prompt": "complex",
     "choices": [
-      "복잡한",
-      "영향을 주다",
-      "두 번",
-      "둘 다"
+      "고려하다",
+      "결정",
+      "여기",
+      "복잡한"
     ],
     "answer": "복잡한",
     "meaning": "복잡한",
@@ -4301,10 +4301,10 @@
     "word_id": "EN_A_0034",
     "prompt": "복잡한",
     "choices": [
-      "each",
-      "complex",
-      "minor",
-      "related"
+      "suggest",
+      "even though",
+      "choice",
+      "complex"
     ],
     "answer": "complex",
     "meaning": "복잡한",
@@ -4315,10 +4315,10 @@
     "word_id": "EN_A_0035",
     "prompt": "simple",
     "choices": [
-      "확실한",
       "단순한",
-      "아무것도 ~않다",
-      "저것들"
+      "~전에",
+      "지지하다",
+      "이미"
     ],
     "answer": "단순한",
     "meaning": "단순한",
@@ -4329,10 +4329,10 @@
     "word_id": "EN_A_0035",
     "prompt": "단순한",
     "choices": [
-      "challenge",
-      "many",
-      "important",
-      "simple"
+      "authority",
+      "indirectly",
+      "simple",
+      "attitude"
     ],
     "answer": "simple",
     "meaning": "단순한",
@@ -4343,10 +4343,10 @@
     "word_id": "EN_A_0036",
     "prompt": "difficult",
     "choices": [
-      "거의 없는 (불가산)",
-      "사실은",
+      "반대하다",
+      "규모",
       "어려운",
-      "한 번"
+      "원칙"
     ],
     "answer": "어려운",
     "meaning": "어려운",
@@ -4357,10 +4357,10 @@
     "word_id": "EN_A_0036",
     "prompt": "어려운",
     "choices": [
+      "together",
       "difficult",
-      "everything",
-      "temporary",
-      "realize"
+      "critical",
+      "rely"
     ],
     "answer": "difficult",
     "meaning": "어려운",
@@ -4371,10 +4371,10 @@
     "word_id": "EN_A_0037",
     "prompt": "easy",
     "choices": [
-      "둘 다",
-      "이끌다",
+      "접근",
+      "일반적으로",
       "쉬운",
-      "명백하게"
+      "강조하다"
     ],
     "answer": "쉬운",
     "meaning": "쉬운",
@@ -4385,10 +4385,10 @@
     "word_id": "EN_A_0037",
     "prompt": "쉬운",
     "choices": [
-      "achieve",
-      "everywhere",
+      "somewhere",
       "easy",
-      "similar"
+      "and",
+      "same"
     ],
     "answer": "easy",
     "meaning": "쉬운",
@@ -4399,10 +4399,10 @@
     "word_id": "EN_A_0038",
     "prompt": "available",
     "choices": [
-      "효율적인",
-      "건설하다",
-      "이용 가능한",
-      "사회"
+      "제공하다",
+      "선택",
+      "심각하게",
+      "이용 가능한"
     ],
     "answer": "이용 가능한",
     "meaning": "이용 가능한",
@@ -4413,10 +4413,10 @@
     "word_id": "EN_A_0038",
     "prompt": "이용 가능한",
     "choices": [
-      "responsibility",
-      "adjust",
-      "cultural",
-      "available"
+      "most",
+      "before",
+      "available",
+      "permanent"
     ],
     "answer": "available",
     "meaning": "이용 가능한",
@@ -4427,10 +4427,10 @@
     "word_id": "EN_A_0039",
     "prompt": "accessible",
     "choices": [
-      "누군가",
       "접근 가능한",
-      "경향",
-      "나중에"
+      "간접적으로",
+      "체계",
+      "결코 ~않다"
     ],
     "answer": "접근 가능한",
     "meaning": "접근 가능한",
@@ -4441,10 +4441,10 @@
     "word_id": "EN_A_0039",
     "prompt": "접근 가능한",
     "choices": [
+      "principle",
+      "so",
       "accessible",
-      "analyze",
-      "although",
-      "much"
+      "however"
     ],
     "answer": "accessible",
     "meaning": "접근 가능한",
@@ -4455,10 +4455,10 @@
     "word_id": "EN_A_0040",
     "prompt": "limited",
     "choices": [
-      "요구하다",
+      "항상",
+      "지지하다",
       "제한된",
-      "의존하다",
-      "아직"
+      "이론"
     ],
     "answer": "제한된",
     "meaning": "제한된",
@@ -4469,10 +4469,10 @@
     "word_id": "EN_A_0040",
     "prompt": "제한된",
     "choices": [
-      "depend",
-      "limited",
-      "whose",
-      "role"
+      "responsibility",
+      "suitable",
+      "society",
+      "limited"
     ],
     "answer": "limited",
     "meaning": "제한된",
@@ -4483,10 +4483,10 @@
     "word_id": "EN_A_0041",
     "prompt": "unlimited",
     "choices": [
-      "강조하다",
+      "한계",
+      "아무도 ~않다",
       "무제한의",
-      "오직",
-      "항상"
+      "여기"
     ],
     "answer": "무제한의",
     "meaning": "무제한의",
@@ -4497,10 +4497,10 @@
     "word_id": "EN_A_0041",
     "prompt": "무제한의",
     "choices": [
-      "control",
-      "result",
-      "issue",
-      "unlimited"
+      "offer",
+      "responsibility",
+      "unlimited",
+      "anything"
     ],
     "answer": "unlimited",
     "meaning": "무제한의",
@@ -4511,10 +4511,10 @@
     "word_id": "EN_A_0042",
     "prompt": "varied",
     "choices": [
+      "세계적인",
       "다양한",
-      "지속적인",
-      "막다",
-      "가끔"
+      "적응하다",
+      "영향"
     ],
     "answer": "다양한",
     "meaning": "다양한",
@@ -4525,10 +4525,10 @@
     "word_id": "EN_A_0042",
     "prompt": "다양한",
     "choices": [
-      "negative",
-      "varied",
-      "even",
-      "suitable"
+      "unstable",
+      "form",
+      "culture",
+      "varied"
     ],
     "answer": "varied",
     "meaning": "다양한",
@@ -4539,10 +4539,10 @@
     "word_id": "EN_A_0043",
     "prompt": "stable",
     "choices": [
-      "그러한",
+      "유지하다",
       "안정적인",
-      "많은 (불가산)",
-      "꽤"
+      "명백하게",
+      "누군가"
     ],
     "answer": "안정적인",
     "meaning": "안정적인",
@@ -4553,10 +4553,10 @@
     "word_id": "EN_A_0043",
     "prompt": "안정적인",
     "choices": [
-      "debate",
+      "population",
       "stable",
-      "decision",
-      "essential"
+      "specific",
+      "negative"
     ],
     "answer": "stable",
     "meaning": "안정적인",
@@ -4567,10 +4567,10 @@
     "word_id": "EN_A_0044",
     "prompt": "unstable",
     "choices": [
-      "형성하다",
-      "많은 (불가산)",
+      "대신에",
+      "정책",
       "불안정한",
-      "복잡한"
+      "저기"
     ],
     "answer": "불안정한",
     "meaning": "불안정한",
@@ -4581,10 +4581,10 @@
     "word_id": "EN_A_0044",
     "prompt": "불안정한",
     "choices": [
-      "such",
-      "unstable",
-      "create",
-      "together"
+      "each",
+      "standard",
+      "that",
+      "unstable"
     ],
     "answer": "unstable",
     "meaning": "불안정한",
@@ -4595,10 +4595,10 @@
     "word_id": "EN_A_0045",
     "prompt": "constant",
     "choices": [
-      "너 자신",
-      "저것",
+      "특히",
+      "중대한",
       "지속적인",
-      "간접적으로"
+      "어딘가에"
     ],
     "answer": "지속적인",
     "meaning": "지속적인",
@@ -4609,10 +4609,10 @@
     "word_id": "EN_A_0045",
     "prompt": "지속적인",
     "choices": [
-      "many",
-      "uncertain",
       "constant",
-      "likely"
+      "unlikely",
+      "compare",
+      "anything"
     ],
     "answer": "constant",
     "meaning": "지속적인",
@@ -4623,10 +4623,10 @@
     "word_id": "EN_A_0046",
     "prompt": "temporary",
     "choices": [
+      "사실은",
       "일시적인",
-      "생산하다",
-      "주장하다",
-      "창조하다"
+      "여전히",
+      "심지어"
     ],
     "answer": "일시적인",
     "meaning": "일시적인",
@@ -4637,9 +4637,9 @@
     "word_id": "EN_A_0046",
     "prompt": "일시적인",
     "choices": [
-      "unless",
-      "together",
-      "what",
+      "particularly",
+      "attitude",
+      "anywhere",
       "temporary"
     ],
     "answer": "temporary",
@@ -4651,10 +4651,10 @@
     "word_id": "EN_A_0047",
     "prompt": "permanent",
     "choices": [
-      "안정적인",
+      "규모",
+      "모든",
       "영구적인",
-      "어려운",
-      "저기"
+      "지금"
     ],
     "answer": "영구적인",
     "meaning": "영구적인",
@@ -4665,10 +4665,10 @@
     "word_id": "EN_A_0047",
     "prompt": "영구적인",
     "choices": [
+      "cause",
+      "relate",
       "permanent",
-      "concept",
-      "this",
-      "same"
+      "emphasize"
     ],
     "answer": "permanent",
     "meaning": "영구적인",
@@ -4679,10 +4679,10 @@
     "word_id": "EN_A_0048",
     "prompt": "rapid",
     "choices": [
+      "의존하다",
+      "창조하다",
       "빠른",
-      "대신에",
-      "대조하다",
-      "결과"
+      "~전에"
     ],
     "answer": "빠른",
     "meaning": "빠른",
@@ -4693,10 +4693,10 @@
     "word_id": "EN_A_0048",
     "prompt": "빠른",
     "choices": [
-      "positive",
       "rapid",
-      "realize",
-      "temporary"
+      "process",
+      "argument",
+      "carefully"
     ],
     "answer": "rapid",
     "meaning": "빠른",
@@ -4707,10 +4707,10 @@
     "word_id": "EN_A_0049",
     "prompt": "slow",
     "choices": [
-      "거의 없는 (가산)",
-      "해석하다",
-      "느린",
-      "수반하다"
+      "수반하다",
+      "명백하게",
+      "원인",
+      "느린"
     ],
     "answer": "느린",
     "meaning": "느린",
@@ -4721,10 +4721,10 @@
     "word_id": "EN_A_0049",
     "prompt": "느린",
     "choices": [
+      "impact",
+      "accomplish",
       "slow",
-      "context",
-      "allow",
-      "still"
+      "offer"
     ],
     "answer": "slow",
     "meaning": "느린",
@@ -4735,10 +4735,10 @@
     "word_id": "EN_A_0050",
     "prompt": "recent",
     "choices": [
-      "허용하다",
-      "한 번",
       "최근의",
-      "가치"
+      "성취하다",
+      "해결책",
+      "빠른"
     ],
     "answer": "최근의",
     "meaning": "최근의",
@@ -4749,10 +4749,10 @@
     "word_id": "EN_A_0050",
     "prompt": "최근의",
     "choices": [
-      "helpful",
-      "define",
       "concept",
-      "recent"
+      "collective",
+      "recent",
+      "totally"
     ],
     "answer": "recent",
     "meaning": "최근의",
@@ -4763,10 +4763,10 @@
     "word_id": "EN_A_0051",
     "prompt": "modern",
     "choices": [
+      "어디든지",
+      "환경",
       "현대의",
-      "어느 것",
-      "해로운",
-      "누군가"
+      "둘 다 ~아닌"
     ],
     "answer": "현대의",
     "meaning": "현대의",
@@ -4777,10 +4777,10 @@
     "word_id": "EN_A_0051",
     "prompt": "현대의",
     "choices": [
-      "emphasize",
+      "environmental",
+      "almost",
       "modern",
-      "what",
-      "anywhere"
+      "contrast"
     ],
     "answer": "modern",
     "meaning": "현대의",
@@ -4791,10 +4791,10 @@
     "word_id": "EN_A_0052",
     "prompt": "traditional",
     "choices": [
-      "둘 다 ~아닌",
-      "가장 많은",
-      "역할",
-      "전통적인"
+      "따로",
+      "관련 있는",
+      "전통적인",
+      "유용한"
     ],
     "answer": "전통적인",
     "meaning": "전통적인",
@@ -4806,9 +4806,9 @@
     "prompt": "전통적인",
     "choices": [
       "traditional",
-      "seriously",
-      "economic",
-      "something"
+      "rapid",
+      "manage",
+      "challenge"
     ],
     "answer": "traditional",
     "meaning": "전통적인",
@@ -4819,10 +4819,10 @@
     "word_id": "EN_A_0053",
     "prompt": "social",
     "choices": [
-      "집단의",
-      "가치",
-      "쉬운",
-      "사회적인"
+      "여전히",
+      "명백하게",
+      "사회적인",
+      "아무도 ~않다"
     ],
     "answer": "사회적인",
     "meaning": "사회적인",
@@ -4833,10 +4833,10 @@
     "word_id": "EN_A_0053",
     "prompt": "사회적인",
     "choices": [
-      "debate",
-      "temporary",
-      "social",
-      "slowly"
+      "improve",
+      "cultural",
+      "permanent",
+      "social"
     ],
     "answer": "social",
     "meaning": "사회적인",
@@ -4847,10 +4847,10 @@
     "word_id": "EN_A_0054",
     "prompt": "economic",
     "choices": [
-      "불안정한",
-      "그 자신",
-      "경제의",
-      "하지만"
+      "나중에",
+      "유지하다",
+      "일부",
+      "경제의"
     ],
     "answer": "경제의",
     "meaning": "경제의",
@@ -4861,10 +4861,10 @@
     "word_id": "EN_A_0054",
     "prompt": "경제의",
     "choices": [
-      "stable",
+      "understand",
       "economic",
-      "local",
-      "essential"
+      "nothing",
+      "myself"
     ],
     "answer": "economic",
     "meaning": "경제의",
@@ -4875,10 +4875,10 @@
     "word_id": "EN_A_0055",
     "prompt": "cultural",
     "choices": [
+      "강하게",
       "문화의",
-      "태도",
-      "개인의",
-      "어느 것"
+      "연결하다",
+      "기능"
     ],
     "answer": "문화의",
     "meaning": "문화의",
@@ -4889,10 +4889,10 @@
     "word_id": "EN_A_0055",
     "prompt": "문화의",
     "choices": [
-      "relate",
-      "include",
-      "that",
-      "cultural"
+      "consider",
+      "varied",
+      "cultural",
+      "strongly"
     ],
     "answer": "cultural",
     "meaning": "문화의",
@@ -4903,10 +4903,10 @@
     "word_id": "EN_A_0056",
     "prompt": "environmental",
     "choices": [
-      "인구",
-      "필요한",
-      "접근법",
-      "환경의"
+      "가치",
+      "환경의",
+      "가능성이 높은",
+      "요인"
     ],
     "answer": "환경의",
     "meaning": "환경의",
@@ -4917,10 +4917,10 @@
     "word_id": "EN_A_0056",
     "prompt": "환경의",
     "choices": [
-      "hardly",
       "environmental",
-      "handle",
-      "some"
+      "limited",
+      "together",
+      "reduce"
     ],
     "answer": "environmental",
     "meaning": "환경의",
@@ -4931,10 +4931,10 @@
     "word_id": "EN_A_0057",
     "prompt": "individual",
     "choices": [
-      "부분적으로",
-      "~보다",
+      "개인",
       "개인의",
-      "이점"
+      "집중하다",
+      "세대"
     ],
     "answer": "개인의",
     "meaning": "개인의",
@@ -4945,10 +4945,10 @@
     "word_id": "EN_A_0057",
     "prompt": "개인의",
     "choices": [
-      "focus",
-      "basically",
-      "individual",
-      "unless"
+      "different",
+      "maintain",
+      "concept",
+      "individual"
     ],
     "answer": "individual",
     "meaning": "개인의",
@@ -4959,10 +4959,10 @@
     "word_id": "EN_A_0058",
     "prompt": "collective",
     "choices": [
-      "무언가",
       "집단의",
-      "관리하다",
-      "책임"
+      "그 자신",
+      "권위",
+      "지금"
     ],
     "answer": "집단의",
     "meaning": "집단의",
@@ -4973,10 +4973,10 @@
     "word_id": "EN_A_0058",
     "prompt": "집단의",
     "choices": [
-      "influence",
-      "limit",
-      "realize",
-      "collective"
+      "collective",
+      "context",
+      "simple",
+      "although"
     ],
     "answer": "collective",
     "meaning": "집단의",
@@ -4988,9 +4988,9 @@
     "prompt": "global",
     "choices": [
       "세계적인",
-      "구체적인",
-      "천천히",
-      "인구"
+      "가능성이 높은",
+      "그리고",
+      "가능성이 낮은"
     ],
     "answer": "세계적인",
     "meaning": "세계적인",
@@ -5001,10 +5001,10 @@
     "word_id": "EN_A_0059",
     "prompt": "세계적인",
     "choices": [
-      "similar",
-      "or",
+      "compare",
+      "unstable",
       "global",
-      "relationship"
+      "succeed"
     ],
     "answer": "global",
     "meaning": "세계적인",
@@ -5015,10 +5015,10 @@
     "word_id": "EN_A_0060",
     "prompt": "local",
     "choices": [
+      "권위",
+      "분배",
       "지역의",
-      "이해하다",
-      "관련시키다",
-      "인식하다"
+      "느린"
     ],
     "answer": "지역의",
     "meaning": "지역의",
@@ -5029,10 +5029,10 @@
     "word_id": "EN_A_0060",
     "prompt": "지역의",
     "choices": [
-      "suggest",
-      "barely",
+      "seriously",
       "local",
-      "accessible"
+      "simple",
+      "community"
     ],
     "answer": "local",
     "meaning": "지역의",
@@ -5043,10 +5043,10 @@
     "word_id": "EN_AD_0001",
     "prompt": "very",
     "choices": [
-      "매우",
-      "권위",
-      "원칙",
-      "관련시키다"
+      "항상",
+      "도전",
+      "집단의",
+      "매우"
     ],
     "answer": "매우",
     "meaning": "매우",
@@ -5058,9 +5058,9 @@
     "prompt": "매우",
     "choices": [
       "very",
-      "regard",
-      "function",
-      "simple"
+      "critical",
+      "effect",
+      "whereas"
     ],
     "answer": "very",
     "meaning": "매우",
@@ -5071,10 +5071,10 @@
     "word_id": "EN_AD_0002",
     "prompt": "too",
     "choices": [
-      "공동체",
-      "영향을 미치다",
-      "증가하다",
-      "너무"
+      "심각하게",
+      "보통",
+      "너무",
+      "흔한"
     ],
     "answer": "너무",
     "meaning": "너무",
@@ -5085,10 +5085,10 @@
     "word_id": "EN_AD_0002",
     "prompt": "너무",
     "choices": [
-      "describe",
-      "since",
-      "treat",
-      "too"
+      "contain",
+      "too",
+      "influence",
+      "environmental"
     ],
     "answer": "too",
     "meaning": "너무",
@@ -5099,10 +5099,10 @@
     "word_id": "EN_AD_0003",
     "prompt": "quite",
     "choices": [
+      "책임",
+      "제안하다",
       "꽤",
-      "소득",
-      "그것",
-      "허용하다"
+      "~할 때"
     ],
     "answer": "꽤",
     "meaning": "꽤",
@@ -5113,10 +5113,10 @@
     "word_id": "EN_AD_0003",
     "prompt": "꽤",
     "choices": [
-      "analyze",
-      "react",
+      "nothing",
+      "herself",
       "quite",
-      "relevant"
+      "uncertain"
     ],
     "answer": "quite",
     "meaning": "꽤",
@@ -5127,10 +5127,10 @@
     "word_id": "EN_AD_0004",
     "prompt": "rather",
     "choices": [
+      "쉬운",
       "꽤",
-      "비슷한",
-      "분석",
-      "의지하다"
+      "저기",
+      "제안하다"
     ],
     "answer": "꽤",
     "meaning": "꽤",
@@ -5141,10 +5141,10 @@
     "word_id": "EN_AD_0004",
     "prompt": "꽤",
     "choices": [
-      "though",
       "rather",
-      "generally",
-      "however"
+      "nearly",
+      "even",
+      "there"
     ],
     "answer": "rather",
     "meaning": "꽤",
@@ -5155,10 +5155,10 @@
     "word_id": "EN_AD_0005",
     "prompt": "almost",
     "choices": [
-      "부",
-      "적절한",
-      "거의",
-      "문화의"
+      "쉽게",
+      "무제한의",
+      "그렇지 않으면",
+      "거의"
     ],
     "answer": "거의",
     "meaning": "거의",
@@ -5169,9 +5169,9 @@
     "word_id": "EN_AD_0005",
     "prompt": "거의",
     "choices": [
-      "same",
-      "everywhere",
-      "policy",
+      "explain",
+      "individual",
+      "there",
       "almost"
     ],
     "answer": "almost",
@@ -5183,9 +5183,9 @@
     "word_id": "EN_AD_0006",
     "prompt": "nearly",
     "choices": [
-      "그 자신",
-      "중대한",
-      "분배",
+      "도전",
+      "확실한",
+      "~이후로",
       "거의"
     ],
     "answer": "거의",
@@ -5197,10 +5197,10 @@
     "word_id": "EN_AD_0006",
     "prompt": "거의",
     "choices": [
-      "handle",
-      "anyone",
-      "whom",
-      "nearly"
+      "population",
+      "impact",
+      "nearly",
+      "slow"
     ],
     "answer": "nearly",
     "meaning": "거의",
@@ -5211,10 +5211,10 @@
     "word_id": "EN_AD_0007",
     "prompt": "just",
     "choices": [
-      "단지",
-      "어려운",
-      "공동체",
-      "꽤"
+      "그 자신",
+      "저것들",
+      "복잡한",
+      "단지"
     ],
     "answer": "단지",
     "meaning": "단지",
@@ -5225,10 +5225,10 @@
     "word_id": "EN_AD_0007",
     "prompt": "단지",
     "choices": [
-      "just",
-      "usually",
-      "indirectly",
-      "population"
+      "whom",
+      "everyone",
+      "theory",
+      "just"
     ],
     "answer": "just",
     "meaning": "단지",
@@ -5239,10 +5239,10 @@
     "word_id": "EN_AD_0008",
     "prompt": "only",
     "choices": [
+      "쉽게",
+      "세대",
       "오직",
-      "건설하다",
-      "결과를 낳다",
-      "경향"
+      "문화"
     ],
     "answer": "오직",
     "meaning": "오직",
@@ -5253,9 +5253,9 @@
     "word_id": "EN_AD_0008",
     "prompt": "오직",
     "choices": [
-      "what",
-      "related",
+      "barely",
       "only",
+      "allow",
       "solution"
     ],
     "answer": "only",
@@ -5267,9 +5267,9 @@
     "word_id": "EN_AD_0009",
     "prompt": "even",
     "choices": [
-      "지속적인",
-      "허용하다",
-      "그러한",
+      "결코 ~않다",
+      "해결책",
+      "중대한",
       "심지어"
     ],
     "answer": "심지어",
@@ -5281,10 +5281,10 @@
     "word_id": "EN_AD_0009",
     "prompt": "심지어",
     "choices": [
-      "many",
-      "debate",
-      "even",
-      "possible"
+      "yourself",
+      "limited",
+      "relationship",
+      "even"
     ],
     "answer": "even",
     "meaning": "심지어",
@@ -5295,10 +5295,10 @@
     "word_id": "EN_AD_0010",
     "prompt": "still",
     "choices": [
-      "문화의",
-      "정의하다",
       "여전히",
-      "원칙"
+      "모두",
+      "공동체",
+      "주장하다"
     ],
     "answer": "여전히",
     "meaning": "여전히",
@@ -5309,10 +5309,10 @@
     "word_id": "EN_AD_0010",
     "prompt": "여전히",
     "choices": [
-      "still",
-      "significant",
-      "describe",
-      "rather"
+      "himself",
+      "specific",
+      "result",
+      "still"
     ],
     "answer": "still",
     "meaning": "여전히",
@@ -5323,10 +5323,10 @@
     "word_id": "EN_AD_0011",
     "prompt": "already",
     "choices": [
-      "접근 가능한",
-      "성취하다",
-      "부분적으로",
-      "이미"
+      "간접적으로",
+      "제공하다",
+      "이미",
+      "여전히"
     ],
     "answer": "이미",
     "meaning": "이미",
@@ -5337,10 +5337,10 @@
     "word_id": "EN_AD_0011",
     "prompt": "이미",
     "choices": [
+      "normally",
+      "too",
       "already",
-      "generation",
-      "especially",
-      "improve"
+      "likely"
     ],
     "answer": "already",
     "meaning": "이미",
@@ -5351,10 +5351,10 @@
     "word_id": "EN_AD_0012",
     "prompt": "yet",
     "choices": [
-      "비교하다",
-      "어느 것",
-      "의존하다",
-      "아직"
+      "아직",
+      "요인",
+      "아무도 ~않다",
+      "반응하다"
     ],
     "answer": "아직",
     "meaning": "아직",
@@ -5365,10 +5365,10 @@
     "word_id": "EN_AD_0012",
     "prompt": "아직",
     "choices": [
-      "but",
-      "whom",
-      "already",
-      "yet"
+      "everywhere",
+      "limited",
+      "yet",
+      "much"
     ],
     "answer": "yet",
     "meaning": "아직",
@@ -5379,10 +5379,10 @@
     "word_id": "EN_AD_0013",
     "prompt": "soon",
     "choices": [
+      "부분적으로",
+      "~까지",
       "곧",
-      "역할",
-      "명확한",
-      "긍정적인"
+      "처리하다"
     ],
     "answer": "곧",
     "meaning": "곧",
@@ -5393,10 +5393,10 @@
     "word_id": "EN_AD_0013",
     "prompt": "곧",
     "choices": [
-      "someone",
-      "both",
-      "carefully",
-      "soon"
+      "soon",
+      "seriously",
+      "quite",
+      "and"
     ],
     "answer": "soon",
     "meaning": "곧",
@@ -5407,10 +5407,10 @@
     "word_id": "EN_AD_0014",
     "prompt": "later",
     "choices": [
-      "~후에",
-      "나중에",
-      "~이후로",
-      "기회"
+      "이용 가능한",
+      "명확한",
+      "이점",
+      "나중에"
     ],
     "answer": "나중에",
     "meaning": "나중에",
@@ -5421,10 +5421,10 @@
     "word_id": "EN_AD_0014",
     "prompt": "나중에",
     "choices": [
-      "influence",
-      "seriously",
+      "basically",
       "later",
-      "relationship"
+      "there",
+      "only"
     ],
     "answer": "later",
     "meaning": "나중에",
@@ -5435,10 +5435,10 @@
     "word_id": "EN_AD_0015",
     "prompt": "now",
     "choices": [
-      "모든 것",
-      "줄이다",
       "지금",
-      "불확실한"
+      "적합한",
+      "어딘가에",
+      "왜냐하면"
     ],
     "answer": "지금",
     "meaning": "지금",
@@ -5449,10 +5449,10 @@
     "word_id": "EN_AD_0015",
     "prompt": "지금",
     "choices": [
+      "everywhere",
       "now",
-      "support",
-      "structure",
-      "maintain"
+      "argue",
+      "particularly"
     ],
     "answer": "now",
     "meaning": "지금",
@@ -5463,10 +5463,10 @@
     "word_id": "EN_AD_0016",
     "prompt": "then",
     "choices": [
-      "집중하다",
+      "역할",
+      "많은",
       "그때",
-      "기능",
-      "관계"
+      "정의하다"
     ],
     "answer": "그때",
     "meaning": "그때",
@@ -5477,10 +5477,10 @@
     "word_id": "EN_AD_0016",
     "prompt": "그때",
     "choices": [
-      "increase",
-      "traditional",
+      "generation",
+      "always",
       "then",
-      "research"
+      "someone"
     ],
     "answer": "then",
     "meaning": "그때",
@@ -5491,9 +5491,9 @@
     "word_id": "EN_AD_0017",
     "prompt": "always",
     "choices": [
-      "저것",
+      "~후에",
+      "같은",
       "이미",
-      "모든",
       "항상"
     ],
     "answer": "항상",
@@ -5505,10 +5505,10 @@
     "word_id": "EN_AD_0017",
     "prompt": "항상",
     "choices": [
-      "who",
-      "soon",
+      "slowly",
+      "simple",
       "always",
-      "prevent"
+      "role"
     ],
     "answer": "always",
     "meaning": "항상",
@@ -5519,10 +5519,10 @@
     "word_id": "EN_AD_0018",
     "prompt": "usually",
     "choices": [
-      "~이후로",
       "보통",
-      "이용 가능한",
-      "이것"
+      "야기하다",
+      "곧",
+      "빠르게"
     ],
     "answer": "보통",
     "meaning": "보통",
@@ -5533,10 +5533,10 @@
     "word_id": "EN_AD_0018",
     "prompt": "보통",
     "choices": [
-      "community",
-      "issue",
-      "contain",
-      "usually"
+      "efficient",
+      "usually",
+      "global",
+      "general"
     ],
     "answer": "usually",
     "meaning": "보통",
@@ -5547,9 +5547,9 @@
     "word_id": "EN_AD_0019",
     "prompt": "often",
     "choices": [
-      "거의 없는 (불가산)",
-      "구체적인",
-      "저것들",
+      "복잡한",
+      "이끌다",
+      "강하게",
       "자주"
     ],
     "answer": "자주",
@@ -5561,10 +5561,10 @@
     "word_id": "EN_AD_0019",
     "prompt": "자주",
     "choices": [
-      "limit",
       "often",
-      "form",
-      "wealth"
+      "treat",
+      "normally",
+      "indirectly"
     ],
     "answer": "often",
     "meaning": "자주",
@@ -5575,10 +5575,10 @@
     "word_id": "EN_AD_0020",
     "prompt": "sometimes",
     "choices": [
-      "주요한",
-      "무제한의",
+      "이점",
+      "제공하다",
       "가끔",
-      "그렇지 않으면"
+      "누구를"
     ],
     "answer": "가끔",
     "meaning": "가끔",
@@ -5589,10 +5589,10 @@
     "word_id": "EN_AD_0020",
     "prompt": "가끔",
     "choices": [
-      "environment",
-      "require",
+      "effective",
       "sometimes",
-      "already"
+      "twice",
+      "contain"
     ],
     "answer": "sometimes",
     "meaning": "가끔",
@@ -5603,10 +5603,10 @@
     "word_id": "EN_AD_0021",
     "prompt": "rarely",
     "choices": [
+      "의사소통",
+      "과정",
       "드물게",
-      "느린",
-      "그렇지 않으면",
-      "부"
+      "자주"
     ],
     "answer": "드물게",
     "meaning": "드물게",
@@ -5617,10 +5617,10 @@
     "word_id": "EN_AD_0021",
     "prompt": "드물게",
     "choices": [
-      "opportunity",
-      "control",
       "rarely",
-      "though"
+      "such",
+      "community",
+      "useful"
     ],
     "answer": "rarely",
     "meaning": "드물게",
@@ -5632,9 +5632,9 @@
     "prompt": "never",
     "choices": [
       "결코 ~않다",
-      "그때",
-      "~까지",
-      "중대한"
+      "이점",
+      "야기하다",
+      "영구적인"
     ],
     "answer": "결코 ~않다",
     "meaning": "결코 ~않다",
@@ -5645,10 +5645,10 @@
     "word_id": "EN_AD_0022",
     "prompt": "결코 ~않다",
     "choices": [
-      "method",
-      "directly",
-      "anything",
-      "never"
+      "never",
+      "accomplish",
+      "twice",
+      "value"
     ],
     "answer": "never",
     "meaning": "결코 ~않다",
@@ -5659,10 +5659,10 @@
     "word_id": "EN_AD_0023",
     "prompt": "again",
     "choices": [
-      "다시",
-      "아무도 ~않다",
-      "필요한",
-      "개인"
+      "경제의",
+      "형성하다",
+      "누군가",
+      "다시"
     ],
     "answer": "다시",
     "meaning": "다시",
@@ -5673,10 +5673,10 @@
     "word_id": "EN_AD_0023",
     "prompt": "다시",
     "choices": [
-      "involve",
+      "most",
+      "seriously",
       "again",
-      "even though",
-      "what"
+      "who"
     ],
     "answer": "again",
     "meaning": "다시",
@@ -5687,10 +5687,10 @@
     "word_id": "EN_AD_0024",
     "prompt": "once",
     "choices": [
-      "이미",
+      "복잡한",
+      "누구",
       "한 번",
-      "보통",
-      "어딘가에"
+      "이끌다"
     ],
     "answer": "한 번",
     "meaning": "한 번",
@@ -5701,10 +5701,10 @@
     "word_id": "EN_AD_0024",
     "prompt": "한 번",
     "choices": [
-      "connect",
-      "significant",
-      "impact",
-      "once"
+      "possible",
+      "adapt",
+      "once",
+      "strongly"
     ],
     "answer": "once",
     "meaning": "한 번",
@@ -5715,10 +5715,10 @@
     "word_id": "EN_AD_0025",
     "prompt": "twice",
     "choices": [
-      "두 번",
-      "영향",
-      "제공하다",
-      "사회"
+      "비교하다",
+      "~이후로",
+      "효율적인",
+      "두 번"
     ],
     "answer": "두 번",
     "meaning": "두 번",
@@ -5730,9 +5730,9 @@
     "prompt": "두 번",
     "choices": [
       "twice",
-      "connect",
-      "issue",
-      "very"
+      "influence",
+      "traditional",
+      "specific"
     ],
     "answer": "twice",
     "meaning": "두 번",
@@ -5743,10 +5743,10 @@
     "word_id": "EN_AD_0026",
     "prompt": "here",
     "choices": [
-      "대신에",
-      "~하지 않는 한",
-      "여기",
-      "처리하다"
+      "역할",
+      "규모",
+      "의존하다",
+      "여기"
     ],
     "answer": "여기",
     "meaning": "여기",
@@ -5757,10 +5757,10 @@
     "word_id": "EN_AD_0026",
     "prompt": "여기",
     "choices": [
-      "policy",
-      "environmental",
-      "here",
-      "itself"
+      "that",
+      "include",
+      "generally",
+      "here"
     ],
     "answer": "here",
     "meaning": "여기",
@@ -5771,10 +5771,10 @@
     "word_id": "EN_AD_0027",
     "prompt": "there",
     "choices": [
+      "이것",
       "저기",
-      "너 자신",
-      "그것 자체",
-      "해결책"
+      "고려하다",
+      "거의 없는 (가산)"
     ],
     "answer": "저기",
     "meaning": "저기",
@@ -5785,10 +5785,10 @@
     "word_id": "EN_AD_0027",
     "prompt": "저기",
     "choices": [
-      "there",
-      "when",
-      "control",
-      "most"
+      "herself",
+      "factor",
+      "quite",
+      "there"
     ],
     "answer": "there",
     "meaning": "저기",
@@ -5799,10 +5799,10 @@
     "word_id": "EN_AD_0028",
     "prompt": "everywhere",
     "choices": [
-      "가능성이 높은",
-      "항상",
+      "~전에",
       "어디에나",
-      "심각하게"
+      "완전히",
+      "약간"
     ],
     "answer": "어디에나",
     "meaning": "어디에나",
@@ -5813,10 +5813,10 @@
     "word_id": "EN_AD_0028",
     "prompt": "어디에나",
     "choices": [
-      "now",
-      "rapid",
+      "slowly",
       "everywhere",
-      "as"
+      "behavior",
+      "debate"
     ],
     "answer": "everywhere",
     "meaning": "어디에나",
@@ -5827,10 +5827,10 @@
     "word_id": "EN_AD_0029",
     "prompt": "somewhere",
     "choices": [
-      "이용 가능한",
-      "정의하다",
-      "가능성이 높은",
-      "어딘가에"
+      "사회적인",
+      "어딘가에",
+      "너무",
+      "의존하다"
     ],
     "answer": "어딘가에",
     "meaning": "어딘가에",
@@ -5842,9 +5842,9 @@
     "prompt": "어딘가에",
     "choices": [
       "somewhere",
-      "cause",
-      "increase",
-      "influence"
+      "effect",
+      "although",
+      "improve"
     ],
     "answer": "somewhere",
     "meaning": "어딘가에",
@@ -5855,10 +5855,10 @@
     "word_id": "EN_AD_0030",
     "prompt": "anywhere",
     "choices": [
-      "접근",
-      "어디든지",
-      "기회",
-      "제안하다"
+      "결과",
+      "현대의",
+      "원인",
+      "어디든지"
     ],
     "answer": "어디든지",
     "meaning": "어디든지",
@@ -5869,9 +5869,9 @@
     "word_id": "EN_AD_0030",
     "prompt": "어디든지",
     "choices": [
-      "role",
-      "assume",
       "everything",
+      "positive",
+      "varied",
       "anywhere"
     ],
     "answer": "anywhere",
@@ -5883,10 +5883,10 @@
     "word_id": "EN_AD_0031",
     "prompt": "clearly",
     "choices": [
-      "생산하다",
-      "따로",
-      "가장 많은",
-      "분명히"
+      "~할 때",
+      "인식하다",
+      "분명히",
+      "집중하다"
     ],
     "answer": "분명히",
     "meaning": "분명히",
@@ -5897,10 +5897,10 @@
     "word_id": "EN_AD_0031",
     "prompt": "분명히",
     "choices": [
-      "challenge",
-      "treat",
       "clearly",
-      "herself"
+      "assume",
+      "increase",
+      "affect"
     ],
     "answer": "clearly",
     "meaning": "분명히",
@@ -5911,10 +5911,10 @@
     "word_id": "EN_AD_0032",
     "prompt": "obviously",
     "choices": [
-      "영구적인",
       "명백하게",
-      "그녀 자신",
-      "만약 ~라면"
+      "이미",
+      "사실은",
+      "누구의"
     ],
     "answer": "명백하게",
     "meaning": "명백하게",
@@ -5925,10 +5925,10 @@
     "word_id": "EN_AD_0032",
     "prompt": "명백하게",
     "choices": [
+      "rarely",
       "obviously",
-      "quickly",
-      "somewhere",
-      "again"
+      "neither",
+      "explain"
     ],
     "answer": "obviously",
     "meaning": "명백하게",
@@ -5939,10 +5939,10 @@
     "word_id": "EN_AD_0033",
     "prompt": "actually",
     "choices": [
-      "원칙",
-      "반응하다",
-      "범위",
-      "사실은"
+      "많은",
+      "저것들",
+      "사실은",
+      "이용 가능한"
     ],
     "answer": "사실은",
     "meaning": "사실은",
@@ -5953,9 +5953,9 @@
     "word_id": "EN_AD_0033",
     "prompt": "사실은",
     "choices": [
-      "challenge",
-      "even",
       "himself",
+      "while",
+      "indirectly",
       "actually"
     ],
     "answer": "actually",
@@ -5967,10 +5967,10 @@
     "word_id": "EN_AD_0034",
     "prompt": "basically",
     "choices": [
-      "~까지",
       "기본적으로",
-      "연결하다",
-      "최근의"
+      "사회",
+      "접근 가능한",
+      "대신에"
     ],
     "answer": "기본적으로",
     "meaning": "기본적으로",
@@ -5981,10 +5981,10 @@
     "word_id": "EN_AD_0034",
     "prompt": "기본적으로",
     "choices": [
-      "argue",
-      "somewhere",
-      "influence",
-      "basically"
+      "basically",
+      "risk",
+      "structure",
+      "unlimited"
     ],
     "answer": "basically",
     "meaning": "기본적으로",
@@ -5995,10 +5995,10 @@
     "word_id": "EN_AD_0035",
     "prompt": "generally",
     "choices": [
-      "현대의",
-      "~처럼",
-      "일반적으로",
-      "가능한"
+      "창조하다",
+      "야기하다",
+      "반응하다",
+      "일반적으로"
     ],
     "answer": "일반적으로",
     "meaning": "일반적으로",
@@ -6009,10 +6009,10 @@
     "word_id": "EN_AD_0035",
     "prompt": "일반적으로",
     "choices": [
-      "scale",
-      "stable",
-      "generally",
-      "challenge"
+      "quite",
+      "community",
+      "system",
+      "generally"
     ],
     "answer": "generally",
     "meaning": "일반적으로",
@@ -6023,10 +6023,10 @@
     "word_id": "EN_AD_0036",
     "prompt": "normally",
     "choices": [
-      "맥락",
+      "허용하다",
       "보통",
-      "무언가",
-      "환경의"
+      "강하게",
+      "기준"
     ],
     "answer": "보통",
     "meaning": "보통",
@@ -6037,10 +6037,10 @@
     "word_id": "EN_AD_0036",
     "prompt": "보통",
     "choices": [
-      "different",
-      "normally",
-      "unlimited",
-      "never"
+      "herself",
+      "accomplish",
+      "evidence",
+      "normally"
     ],
     "answer": "normally",
     "meaning": "보통",
@@ -6051,10 +6051,10 @@
     "word_id": "EN_AD_0037",
     "prompt": "especially",
     "choices": [
-      "만약 ~라면",
-      "수반하다",
+      "따로",
+      "빠른",
       "특히",
-      "반응하다"
+      "역할"
     ],
     "answer": "특히",
     "meaning": "특히",
@@ -6065,10 +6065,10 @@
     "word_id": "EN_AD_0037",
     "prompt": "특히",
     "choices": [
-      "involve",
-      "suggest",
+      "achieve",
+      "few",
       "especially",
-      "collective"
+      "that"
     ],
     "answer": "especially",
     "meaning": "특히",
@@ -6079,9 +6079,9 @@
     "word_id": "EN_AD_0038",
     "prompt": "particularly",
     "choices": [
-      "도움이 되는",
-      "방법",
-      "관리하다",
+      "다른",
+      "항상",
+      "그래서",
       "특히"
     ],
     "answer": "특히",
@@ -6093,10 +6093,10 @@
     "word_id": "EN_AD_0038",
     "prompt": "특히",
     "choices": [
-      "argue",
-      "particularly",
-      "concept",
-      "himself"
+      "wealth",
+      "nearly",
+      "together",
+      "particularly"
     ],
     "answer": "particularly",
     "meaning": "특히",
@@ -6107,10 +6107,10 @@
     "word_id": "EN_AD_0039",
     "prompt": "mainly",
     "choices": [
-      "형성하다",
-      "두 번",
-      "불안정한",
-      "주로"
+      "조절하다",
+      "주로",
+      "누구를",
+      "인구"
     ],
     "answer": "주로",
     "meaning": "주로",
@@ -6121,10 +6121,10 @@
     "word_id": "EN_AD_0039",
     "prompt": "주로",
     "choices": [
-      "approach",
-      "anyone",
-      "every",
-      "mainly"
+      "common",
+      "everywhere",
+      "mainly",
+      "access"
     ],
     "answer": "mainly",
     "meaning": "주로",
@@ -6135,10 +6135,10 @@
     "word_id": "EN_AD_0040",
     "prompt": "mostly",
     "choices": [
-      "약간",
+      "방법",
       "대부분",
-      "분명한",
-      "이론"
+      "구체적인",
+      "지지하다"
     ],
     "answer": "대부분",
     "meaning": "대부분",
@@ -6149,10 +6149,10 @@
     "word_id": "EN_AD_0040",
     "prompt": "대부분",
     "choices": [
-      "role",
-      "mostly",
-      "even",
-      "every"
+      "certain",
+      "temporary",
+      "research",
+      "mostly"
     ],
     "answer": "mostly",
     "meaning": "대부분",
@@ -6164,9 +6164,9 @@
     "prompt": "completely",
     "choices": [
       "완전히",
-      "명백하게",
-      "쉽게",
-      "의존하다"
+      "제한된",
+      "대조하다",
+      "범위"
     ],
     "answer": "완전히",
     "meaning": "완전히",
@@ -6177,9 +6177,9 @@
     "word_id": "EN_AD_0041",
     "prompt": "완전히",
     "choices": [
-      "accessible",
-      "scale",
-      "stable",
+      "concept",
+      "until",
+      "anywhere",
       "completely"
     ],
     "answer": "completely",
@@ -6191,10 +6191,10 @@
     "word_id": "EN_AD_0042",
     "prompt": "totally",
     "choices": [
-      "완전히",
-      "의사소통",
-      "모두",
-      "가치"
+      "사실은",
+      "성공하다",
+      "무언가",
+      "완전히"
     ],
     "answer": "완전히",
     "meaning": "완전히",
@@ -6206,9 +6206,9 @@
     "prompt": "완전히",
     "choices": [
       "totally",
-      "separately",
-      "lead",
-      "attitude"
+      "now",
+      "clearly",
+      "as"
     ],
     "answer": "totally",
     "meaning": "완전히",
@@ -6219,10 +6219,10 @@
     "word_id": "EN_AD_0043",
     "prompt": "partly",
     "choices": [
-      "중요한",
-      "특히",
-      "명백하게",
-      "부분적으로"
+      "개인",
+      "부분적으로",
+      "형성하다",
+      "~이후로"
     ],
     "answer": "부분적으로",
     "meaning": "부분적으로",
@@ -6233,10 +6233,10 @@
     "word_id": "EN_AD_0043",
     "prompt": "부분적으로",
     "choices": [
-      "contain",
-      "appropriate",
       "partly",
-      "process"
+      "fail",
+      "respond",
+      "cause"
     ],
     "answer": "partly",
     "meaning": "부분적으로",
@@ -6247,9 +6247,9 @@
     "word_id": "EN_AD_0044",
     "prompt": "slightly",
     "choices": [
-      "그녀 자신",
-      "여전히",
-      "강조하다",
+      "어디든지",
+      "맥락",
+      "~하지 않는 한",
       "약간"
     ],
     "answer": "약간",
@@ -6262,9 +6262,9 @@
     "prompt": "약간",
     "choices": [
       "slightly",
-      "here",
+      "develop",
       "even though",
-      "little"
+      "behavior"
     ],
     "answer": "slightly",
     "meaning": "약간",
@@ -6275,9 +6275,9 @@
     "word_id": "EN_AD_0045",
     "prompt": "seriously",
     "choices": [
-      "보통",
-      "어디에나",
-      "따로",
+      "함께",
+      "의사소통",
+      "누구든지",
       "심각하게"
     ],
     "answer": "심각하게",
@@ -6289,10 +6289,10 @@
     "word_id": "EN_AD_0045",
     "prompt": "심각하게",
     "choices": [
-      "which",
-      "quite",
-      "actually",
-      "seriously"
+      "what",
+      "and",
+      "seriously",
+      "actually"
     ],
     "answer": "seriously",
     "meaning": "심각하게",
@@ -6303,10 +6303,10 @@
     "word_id": "EN_AD_0046",
     "prompt": "strongly",
     "choices": [
-      "가장 많은",
-      "만약 ~라면",
+      "느린",
+      "완전히",
       "강하게",
-      "다시"
+      "많은"
     ],
     "answer": "강하게",
     "meaning": "강하게",
@@ -6317,10 +6317,10 @@
     "word_id": "EN_AD_0046",
     "prompt": "강하게",
     "choices": [
-      "negative",
+      "manage",
+      "hardly",
       "strongly",
-      "challenge",
-      "indirectly"
+      "sometimes"
     ],
     "answer": "strongly",
     "meaning": "강하게",
@@ -6331,10 +6331,10 @@
     "word_id": "EN_AD_0047",
     "prompt": "quickly",
     "choices": [
-      "개인의",
+      "효율적인",
       "빠르게",
-      "단지",
-      "인식하다"
+      "주장",
+      "둘 중 하나"
     ],
     "answer": "빠르게",
     "meaning": "빠르게",
@@ -6345,10 +6345,10 @@
     "word_id": "EN_AD_0047",
     "prompt": "빠르게",
     "choices": [
-      "clearly",
+      "some",
+      "impact",
       "quickly",
-      "emphasize",
-      "impact"
+      "nothing"
     ],
     "answer": "quickly",
     "meaning": "빠르게",
@@ -6359,10 +6359,10 @@
     "word_id": "EN_AD_0048",
     "prompt": "slowly",
     "choices": [
-      "세대",
-      "긍정적인",
-      "결과",
-      "천천히"
+      "깨닫다",
+      "사회적인",
+      "천천히",
+      "~할 때마다"
     ],
     "answer": "천천히",
     "meaning": "천천히",
@@ -6373,10 +6373,10 @@
     "word_id": "EN_AD_0048",
     "prompt": "천천히",
     "choices": [
-      "effect",
+      "concept",
+      "someone",
       "slowly",
-      "appropriate",
-      "herself"
+      "harmful"
     ],
     "answer": "slowly",
     "meaning": "천천히",
@@ -6387,10 +6387,10 @@
     "word_id": "EN_AD_0049",
     "prompt": "carefully",
     "choices": [
-      "거의 없는 (가산)",
-      "불안정한",
+      "빠르게",
+      "적절한",
       "조심스럽게",
-      "그녀 자신"
+      "형성하다"
     ],
     "answer": "조심스럽게",
     "meaning": "조심스럽게",
@@ -6401,10 +6401,10 @@
     "word_id": "EN_AD_0049",
     "prompt": "조심스럽게",
     "choices": [
+      "adjust",
+      "various",
       "carefully",
-      "assume",
-      "minor",
-      "culture"
+      "but"
     ],
     "answer": "carefully",
     "meaning": "조심스럽게",
@@ -6415,10 +6415,10 @@
     "word_id": "EN_AD_0050",
     "prompt": "easily",
     "choices": [
-      "쉽게",
-      "~하는 동안",
-      "문화의",
-      "연결하다"
+      "거의 없는 (불가산)",
+      "분명한",
+      "원칙",
+      "쉽게"
     ],
     "answer": "쉽게",
     "meaning": "쉽게",
@@ -6429,10 +6429,10 @@
     "word_id": "EN_AD_0050",
     "prompt": "쉽게",
     "choices": [
-      "principle",
-      "communication",
+      "describe",
+      "if",
       "easily",
-      "contain"
+      "relate"
     ],
     "answer": "easily",
     "meaning": "쉽게",
@@ -6443,10 +6443,10 @@
     "word_id": "EN_AD_0051",
     "prompt": "hardly",
     "choices": [
-      "그것 자체",
+      "그때",
+      "일반적인",
       "거의 ~않다",
-      "심지어",
-      "가능성이 낮은"
+      "~할 때"
     ],
     "answer": "거의 ~않다",
     "meaning": "거의 ~않다",
@@ -6457,10 +6457,10 @@
     "word_id": "EN_AD_0051",
     "prompt": "거의 ~않다",
     "choices": [
-      "directly",
+      "general",
+      "interpret",
       "hardly",
-      "power",
-      "connect"
+      "twice"
     ],
     "answer": "hardly",
     "meaning": "거의 ~않다",
@@ -6471,10 +6471,10 @@
     "word_id": "EN_AD_0052",
     "prompt": "barely",
     "choices": [
+      "많은 (불가산)",
       "거의 ~않다",
-      "항상",
-      "야기하다",
-      "분석"
+      "영구적인",
+      "비슷한"
     ],
     "answer": "거의 ~않다",
     "meaning": "거의 ~않다",
@@ -6485,10 +6485,10 @@
     "word_id": "EN_AD_0052",
     "prompt": "거의 ~않다",
     "choices": [
+      "support",
+      "difficult",
       "barely",
-      "cause",
-      "certain",
-      "even"
+      "income"
     ],
     "answer": "barely",
     "meaning": "거의 ~않다",
@@ -6499,9 +6499,9 @@
     "word_id": "EN_AD_0053",
     "prompt": "directly",
     "choices": [
-      "발전시키다",
-      "반대하다",
-      "관련 있는",
+      "집중하다",
+      "최근의",
+      "일반적인",
       "직접적으로"
     ],
     "answer": "직접적으로",
@@ -6513,10 +6513,10 @@
     "word_id": "EN_AD_0053",
     "prompt": "직접적으로",
     "choices": [
-      "access",
-      "trend",
+      "affect",
+      "soon",
       "directly",
-      "particularly"
+      "easily"
     ],
     "answer": "directly",
     "meaning": "직접적으로",
@@ -6527,10 +6527,10 @@
     "word_id": "EN_AD_0054",
     "prompt": "indirectly",
     "choices": [
-      "접근법",
       "간접적으로",
-      "주로",
-      "쉬운"
+      "~까지",
+      "무제한의",
+      "고려하다"
     ],
     "answer": "간접적으로",
     "meaning": "간접적으로",
@@ -6541,10 +6541,10 @@
     "word_id": "EN_AD_0054",
     "prompt": "간접적으로",
     "choices": [
-      "until",
       "indirectly",
-      "resource",
-      "everything"
+      "choice",
+      "even though",
+      "system"
     ],
     "answer": "indirectly",
     "meaning": "간접적으로",
@@ -6555,10 +6555,10 @@
     "word_id": "EN_AD_0055",
     "prompt": "together",
     "choices": [
-      "심지어",
-      "가능성이 낮은",
+      "문화",
+      "반응하다",
       "함께",
-      "이미"
+      "더 많은"
     ],
     "answer": "함께",
     "meaning": "함께",
@@ -6569,10 +6569,10 @@
     "word_id": "EN_AD_0055",
     "prompt": "함께",
     "choices": [
-      "adjust",
       "together",
-      "likely",
-      "interpret"
+      "method",
+      "clear",
+      "income"
     ],
     "answer": "together",
     "meaning": "함께",
@@ -6583,10 +6583,10 @@
     "word_id": "EN_AD_0056",
     "prompt": "separately",
     "choices": [
-      "저기",
-      "한계",
-      "주로",
-      "따로"
+      "직접적으로",
+      "그러므로",
+      "따로",
+      "역할"
     ],
     "answer": "따로",
     "meaning": "따로",
@@ -6597,10 +6597,10 @@
     "word_id": "EN_AD_0056",
     "prompt": "따로",
     "choices": [
-      "critical",
-      "slowly",
-      "separately",
-      "because"
+      "always",
+      "such",
+      "decision",
+      "separately"
     ],
     "answer": "separately",
     "meaning": "따로",
@@ -6611,10 +6611,10 @@
     "word_id": "EN_AD_0057",
     "prompt": "instead",
     "choices": [
-      "만약 ~라면",
-      "대신에",
-      "방법",
-      "책임"
+      "다른",
+      "증거",
+      "가치",
+      "대신에"
     ],
     "answer": "대신에",
     "meaning": "대신에",
@@ -6625,10 +6625,10 @@
     "word_id": "EN_AD_0057",
     "prompt": "대신에",
     "choices": [
-      "nearly",
       "instead",
-      "related",
-      "control"
+      "varied",
+      "prevent",
+      "before"
     ],
     "answer": "instead",
     "meaning": "대신에",
@@ -6639,10 +6639,10 @@
     "word_id": "EN_AD_0058",
     "prompt": "otherwise",
     "choices": [
+      "한 번",
+      "반면에",
       "그렇지 않으면",
-      "역할",
-      "깨닫다",
-      "적절한"
+      "항상"
     ],
     "answer": "그렇지 않으면",
     "meaning": "그렇지 않으면",
@@ -6653,10 +6653,10 @@
     "word_id": "EN_AD_0058",
     "prompt": "그렇지 않으면",
     "choices": [
-      "certain",
-      "deal",
-      "maintain",
-      "otherwise"
+      "otherwise",
+      "until",
+      "emphasize",
+      "essential"
     ],
     "answer": "otherwise",
     "meaning": "그렇지 않으면",
@@ -6667,10 +6667,10 @@
     "word_id": "EN_AD_0059",
     "prompt": "therefore",
     "choices": [
-      "그것 자체",
+      "영향을 주다",
       "여전히",
-      "그러므로",
-      "확실한"
+      "이미",
+      "그러므로"
     ],
     "answer": "그러므로",
     "meaning": "그러므로",
@@ -6681,10 +6681,10 @@
     "word_id": "EN_AD_0059",
     "prompt": "그러므로",
     "choices": [
-      "economic",
-      "every",
+      "population",
       "therefore",
-      "value"
+      "indirectly",
+      "together"
     ],
     "answer": "therefore",
     "meaning": "그러므로",
@@ -6695,10 +6695,10 @@
     "word_id": "EN_AD_0060",
     "prompt": "however",
     "choices": [
-      "중요한",
-      "세대",
-      "성공하다",
-      "하지만"
+      "비교하다",
+      "하지만",
+      "왜냐하면",
+      "원칙"
     ],
     "answer": "하지만",
     "meaning": "하지만",
@@ -6709,10 +6709,10 @@
     "word_id": "EN_AD_0060",
     "prompt": "하지만",
     "choices": [
-      "impossible",
-      "change",
-      "however",
-      "slow"
+      "either",
+      "role",
+      "succeed",
+      "however"
     ],
     "answer": "however",
     "meaning": "하지만",
@@ -6723,10 +6723,10 @@
     "word_id": "EN_E_0001",
     "prompt": "and",
     "choices": [
+      "소득",
       "그리고",
-      "어디에나",
-      "관리하다",
-      "관련 있는"
+      "저기",
+      "구조"
     ],
     "answer": "그리고",
     "meaning": "그리고",
@@ -6737,10 +6737,10 @@
     "word_id": "EN_E_0001",
     "prompt": "그리고",
     "choices": [
-      "and",
-      "risk",
-      "oppose",
-      "quickly"
+      "slowly",
+      "otherwise",
+      "myself",
+      "and"
     ],
     "answer": "and",
     "meaning": "그리고",
@@ -6751,10 +6751,10 @@
     "word_id": "EN_E_0002",
     "prompt": "but",
     "choices": [
-      "여기",
+      "접근",
       "하지만",
-      "분명한",
-      "강조하다"
+      "여전히",
+      "관리하다"
     ],
     "answer": "하지만",
     "meaning": "하지만",
@@ -6765,10 +6765,10 @@
     "word_id": "EN_E_0002",
     "prompt": "하지만",
     "choices": [
-      "instead",
-      "but",
-      "contain",
-      "permanent"
+      "themselves",
+      "temporary",
+      "value",
+      "but"
     ],
     "answer": "but",
     "meaning": "하지만",
@@ -6779,9 +6779,9 @@
     "word_id": "EN_E_0003",
     "prompt": "or",
     "choices": [
-      "적응하다",
-      "자주",
-      "왜냐하면",
+      "오직",
+      "아무것도 ~않다",
+      "범위",
       "또는"
     ],
     "answer": "또는",
@@ -6793,10 +6793,10 @@
     "word_id": "EN_E_0003",
     "prompt": "또는",
     "choices": [
-      "produce",
-      "interpret",
-      "or",
-      "define"
+      "succeed",
+      "always",
+      "respond",
+      "or"
     ],
     "answer": "or",
     "meaning": "또는",
@@ -6808,9 +6808,9 @@
     "prompt": "so",
     "choices": [
       "그래서",
-      "두 번",
-      "개인의",
-      "영구적인"
+      "다양한",
+      "복잡한",
+      "결코 ~않다"
     ],
     "answer": "그래서",
     "meaning": "그래서",
@@ -6821,10 +6821,10 @@
     "word_id": "EN_E_0004",
     "prompt": "그래서",
     "choices": [
-      "almost",
       "so",
-      "this",
-      "seriously"
+      "consider",
+      "carefully",
+      "rapid"
     ],
     "answer": "so",
     "meaning": "그래서",
@@ -6835,10 +6835,10 @@
     "word_id": "EN_E_0005",
     "prompt": "because",
     "choices": [
-      "누구를",
-      "유지하다",
-      "특히",
-      "왜냐하면"
+      "어떤 것",
+      "다른",
+      "왜냐하면",
+      "가능성이 높은"
     ],
     "answer": "왜냐하면",
     "meaning": "왜냐하면",
@@ -6849,10 +6849,10 @@
     "word_id": "EN_E_0005",
     "prompt": "왜냐하면",
     "choices": [
-      "whom",
-      "major",
+      "myself",
+      "efficient",
       "because",
-      "unlikely"
+      "harmful"
     ],
     "answer": "because",
     "meaning": "왜냐하면",
@@ -6863,10 +6863,10 @@
     "word_id": "EN_E_0006",
     "prompt": "although",
     "choices": [
-      "개인",
-      "비록 ~일지라도",
-      "여기다",
-      "가능성이 높은"
+      "영향을 주다",
+      "함께",
+      "복잡한",
+      "비록 ~일지라도"
     ],
     "answer": "비록 ~일지라도",
     "meaning": "비록 ~일지라도",
@@ -6877,10 +6877,10 @@
     "word_id": "EN_E_0006",
     "prompt": "비록 ~일지라도",
     "choices": [
-      "possible",
-      "useful",
-      "yourself",
-      "although"
+      "society",
+      "influence",
+      "although",
+      "environment"
     ],
     "answer": "although",
     "meaning": "비록 ~일지라도",
@@ -6891,10 +6891,10 @@
     "word_id": "EN_E_0007",
     "prompt": "though",
     "choices": [
-      "너 자신",
-      "제한된",
-      "나중에",
-      "비록 ~일지라도"
+      "그것",
+      "영향을 주다",
+      "비록 ~일지라도",
+      "불안정한"
     ],
     "answer": "비록 ~일지라도",
     "meaning": "비록 ~일지라도",
@@ -6905,10 +6905,10 @@
     "word_id": "EN_E_0007",
     "prompt": "비록 ~일지라도",
     "choices": [
-      "impact",
+      "cultural",
+      "hardly",
       "though",
-      "manage",
-      "after"
+      "then"
     ],
     "answer": "though",
     "meaning": "비록 ~일지라도",
@@ -6919,10 +6919,10 @@
     "word_id": "EN_E_0008",
     "prompt": "even though",
     "choices": [
-      "느린",
-      "그것",
+      "관계",
       "비록 ~일지라도",
-      "따로"
+      "어려운",
+      "모든"
     ],
     "answer": "비록 ~일지라도",
     "meaning": "비록 ~일지라도",
@@ -6933,10 +6933,10 @@
     "word_id": "EN_E_0008",
     "prompt": "비록 ~일지라도",
     "choices": [
-      "neither",
-      "argument",
-      "later",
-      "even though"
+      "even though",
+      "realize",
+      "cultural",
+      "seriously"
     ],
     "answer": "even though",
     "meaning": "비록 ~일지라도",
@@ -6948,9 +6948,9 @@
     "prompt": "while",
     "choices": [
       "~하는 동안",
-      "~까지",
-      "체계",
-      "둘 다"
+      "요구하다",
+      "관계",
+      "지금"
     ],
     "answer": "~하는 동안",
     "meaning": "~하는 동안",
@@ -6961,9 +6961,9 @@
     "word_id": "EN_E_0009",
     "prompt": "~하는 동안",
     "choices": [
-      "rapid",
-      "basically",
-      "varied",
+      "necessary",
+      "suggest",
+      "every",
       "while"
     ],
     "answer": "while",
@@ -6975,10 +6975,10 @@
     "word_id": "EN_E_0010",
     "prompt": "whereas",
     "choices": [
-      "불가능한",
-      "가치",
+      "~전에",
       "반면에",
-      "관련시키다"
+      "~보다",
+      "의존하다"
     ],
     "answer": "반면에",
     "meaning": "반면에",
@@ -6989,10 +6989,10 @@
     "word_id": "EN_E_0010",
     "prompt": "반면에",
     "choices": [
+      "until",
+      "unstable",
       "whereas",
-      "challenge",
-      "affect",
-      "decision"
+      "somewhere"
     ],
     "answer": "whereas",
     "meaning": "반면에",
@@ -7003,10 +7003,10 @@
     "word_id": "EN_E_0011",
     "prompt": "if",
     "choices": [
+      "달성하다",
+      "막다",
       "만약 ~라면",
-      "아무도 ~않다",
-      "부정적인",
-      "누군가"
+      "주장"
     ],
     "answer": "만약 ~라면",
     "meaning": "만약 ~라면",
@@ -7018,9 +7018,9 @@
     "prompt": "만약 ~라면",
     "choices": [
       "if",
-      "whenever",
-      "minor",
-      "actually"
+      "even though",
+      "important",
+      "realize"
     ],
     "answer": "if",
     "meaning": "만약 ~라면",
@@ -7031,10 +7031,10 @@
     "word_id": "EN_E_0012",
     "prompt": "unless",
     "choices": [
-      "자원",
+      "수반하다",
       "~하지 않는 한",
-      "비록 ~일지라도",
-      "주로"
+      "간접적으로",
+      "많은"
     ],
     "answer": "~하지 않는 한",
     "meaning": "~하지 않는 한",
@@ -7045,10 +7045,10 @@
     "word_id": "EN_E_0012",
     "prompt": "~하지 않는 한",
     "choices": [
+      "maintain",
+      "local",
       "unless",
-      "strongly",
-      "react",
-      "just"
+      "harmful"
     ],
     "answer": "unless",
     "meaning": "~하지 않는 한",
@@ -7059,10 +7059,10 @@
     "word_id": "EN_E_0013",
     "prompt": "when",
     "choices": [
+      "강하게",
       "~할 때",
-      "어디든지",
-      "개념",
-      "왜냐하면"
+      "일부",
+      "그러한"
     ],
     "answer": "~할 때",
     "meaning": "~할 때",
@@ -7074,9 +7074,9 @@
     "prompt": "~할 때",
     "choices": [
       "when",
-      "after",
-      "form",
-      "everything"
+      "trend",
+      "environment",
+      "although"
     ],
     "answer": "when",
     "meaning": "~할 때",
@@ -7087,10 +7087,10 @@
     "word_id": "EN_E_0014",
     "prompt": "whenever",
     "choices": [
-      "심각하게",
-      "나중에",
-      "~할 때",
-      "~할 때마다"
+      "통제",
+      "너 자신",
+      "~할 때마다",
+      "주장하다"
     ],
     "answer": "~할 때마다",
     "meaning": "~할 때마다",
@@ -7101,10 +7101,10 @@
     "word_id": "EN_E_0014",
     "prompt": "~할 때마다",
     "choices": [
-      "power",
-      "prevent",
-      "someone",
-      "whenever"
+      "whenever",
+      "very",
+      "clearly",
+      "unless"
     ],
     "answer": "whenever",
     "meaning": "~할 때마다",
@@ -7115,10 +7115,10 @@
     "word_id": "EN_E_0015",
     "prompt": "before",
     "choices": [
-      "~전에",
-      "방법",
-      "~처럼",
-      "위험"
+      "불안정한",
+      "제공하다",
+      "누구든지",
+      "~전에"
     ],
     "answer": "~전에",
     "meaning": "~전에",
@@ -7129,10 +7129,10 @@
     "word_id": "EN_E_0015",
     "prompt": "~전에",
     "choices": [
+      "there",
       "before",
-      "certain",
-      "unless",
-      "individual"
+      "claim",
+      "everywhere"
     ],
     "answer": "before",
     "meaning": "~전에",
@@ -7144,9 +7144,9 @@
     "prompt": "after",
     "choices": [
       "~후에",
-      "반응하다",
-      "더 많은",
-      "규모"
+      "매우",
+      "선택",
+      "일시적인"
     ],
     "answer": "~후에",
     "meaning": "~후에",
@@ -7157,10 +7157,10 @@
     "word_id": "EN_E_0016",
     "prompt": "~후에",
     "choices": [
-      "slowly",
-      "accomplish",
-      "common",
-      "after"
+      "after",
+      "risk",
+      "understand",
+      "instead"
     ],
     "answer": "after",
     "meaning": "~후에",
@@ -7171,10 +7171,10 @@
     "word_id": "EN_E_0017",
     "prompt": "until",
     "choices": [
-      "증가하다",
-      "도움이 되는",
+      "연구",
       "~까지",
-      "영향을 미치다"
+      "그러한",
+      "가치"
     ],
     "answer": "~까지",
     "meaning": "~까지",
@@ -7185,9 +7185,9 @@
     "word_id": "EN_E_0017",
     "prompt": "~까지",
     "choices": [
-      "some",
-      "everywhere",
-      "together",
+      "unless",
+      "varied",
+      "relate",
       "until"
     ],
     "answer": "until",
@@ -7199,10 +7199,10 @@
     "word_id": "EN_E_0018",
     "prompt": "since",
     "choices": [
+      "다루다",
+      "누구를",
       "~이후로",
-      "이해하다",
-      "의사소통",
-      "분배"
+      "흔한"
     ],
     "answer": "~이후로",
     "meaning": "~이후로",
@@ -7213,10 +7213,10 @@
     "word_id": "EN_E_0018",
     "prompt": "~이후로",
     "choices": [
+      "himself",
+      "both",
       "since",
-      "accomplish",
-      "obviously",
-      "decision"
+      "significant"
     ],
     "answer": "since",
     "meaning": "~이후로",
@@ -7228,9 +7228,9 @@
     "prompt": "as",
     "choices": [
       "~처럼",
-      "완전히",
-      "어딘가에",
-      "쉽게"
+      "저것들",
+      "반면에",
+      "나중에"
     ],
     "answer": "~처럼",
     "meaning": "~처럼",
@@ -7242,9 +7242,9 @@
     "prompt": "~처럼",
     "choices": [
       "as",
-      "population",
-      "nearly",
-      "but"
+      "seriously",
+      "rarely",
+      "nearly"
     ],
     "answer": "as",
     "meaning": "~처럼",
@@ -7255,10 +7255,10 @@
     "word_id": "EN_E_0020",
     "prompt": "than",
     "choices": [
-      "정의하다",
-      "효율적인",
-      "사회적인",
-      "~보다"
+      "그러므로",
+      "~보다",
+      "일반적으로",
+      "사소한"
     ],
     "answer": "~보다",
     "meaning": "~보다",
@@ -7269,10 +7269,10 @@
     "word_id": "EN_E_0020",
     "prompt": "~보다",
     "choices": [
-      "lead",
+      "recognize",
       "than",
-      "necessary",
-      "too"
+      "otherwise",
+      "which"
     ],
     "answer": "than",
     "meaning": "~보다",
@@ -7283,10 +7283,10 @@
     "word_id": "EN_E_0021",
     "prompt": "that",
     "choices": [
-      "확실한",
       "그것",
-      "~전에",
-      "관계"
+      "구체적인",
+      "기회",
+      "심각하게"
     ],
     "answer": "그것",
     "meaning": "그것",
@@ -7297,10 +7297,10 @@
     "word_id": "EN_E_0021",
     "prompt": "그것",
     "choices": [
-      "rather",
-      "or",
-      "never",
-      "that"
+      "depend",
+      "that",
+      "more",
+      "most"
     ],
     "answer": "that",
     "meaning": "그것",
@@ -7311,9 +7311,9 @@
     "word_id": "EN_E_0022",
     "prompt": "which",
     "choices": [
-      "세계적인",
-      "논쟁",
-      "개인의",
+      "어딘가에",
+      "범위",
+      "환경의",
       "어느 것"
     ],
     "answer": "어느 것",
@@ -7325,10 +7325,10 @@
     "word_id": "EN_E_0022",
     "prompt": "어느 것",
     "choices": [
-      "possible",
-      "itself",
-      "policy",
-      "which"
+      "which",
+      "temporary",
+      "much",
+      "impossible"
     ],
     "answer": "which",
     "meaning": "어느 것",
@@ -7340,9 +7340,9 @@
     "prompt": "who",
     "choices": [
       "누구",
-      "부",
-      "이것",
-      "저기"
+      "중요한",
+      "개인",
+      "구체적인"
     ],
     "answer": "누구",
     "meaning": "누구",
@@ -7353,10 +7353,10 @@
     "word_id": "EN_E_0023",
     "prompt": "누구",
     "choices": [
-      "impossible",
-      "although",
       "who",
-      "income"
+      "helpful",
+      "many",
+      "maintain"
     ],
     "answer": "who",
     "meaning": "누구",
@@ -7367,10 +7367,10 @@
     "word_id": "EN_E_0024",
     "prompt": "whom",
     "choices": [
+      "결과",
       "누구를",
-      "다양한",
-      "과정",
-      "야기하다"
+      "주로",
+      "생산하다"
     ],
     "answer": "누구를",
     "meaning": "누구를",
@@ -7381,10 +7381,10 @@
     "word_id": "EN_E_0024",
     "prompt": "누구를",
     "choices": [
-      "interpret",
       "whom",
-      "uncertain",
-      "contrast"
+      "nothing",
+      "much",
+      "various"
     ],
     "answer": "whom",
     "meaning": "누구를",
@@ -7395,10 +7395,10 @@
     "word_id": "EN_E_0025",
     "prompt": "whose",
     "choices": [
-      "사소한",
-      "막다",
-      "요인",
-      "누구의"
+      "사회적인",
+      "대조하다",
+      "누구의",
+      "체계"
     ],
     "answer": "누구의",
     "meaning": "누구의",
@@ -7409,10 +7409,10 @@
     "word_id": "EN_E_0025",
     "prompt": "누구의",
     "choices": [
-      "whose",
-      "otherwise",
-      "helpful",
-      "never"
+      "offer",
+      "global",
+      "slowly",
+      "whose"
     ],
     "answer": "whose",
     "meaning": "누구의",
@@ -7423,10 +7423,10 @@
     "word_id": "EN_E_0026",
     "prompt": "what",
     "choices": [
-      "매우",
-      "영향을 주다",
+      "오직",
+      "수반하다",
       "무엇",
-      "사소한"
+      "여기"
     ],
     "answer": "무엇",
     "meaning": "무엇",
@@ -7437,10 +7437,10 @@
     "word_id": "EN_E_0026",
     "prompt": "무엇",
     "choices": [
+      "benefit",
+      "develop",
       "what",
-      "produce",
-      "available",
-      "easy"
+      "responsibility"
     ],
     "answer": "what",
     "meaning": "무엇",
@@ -7451,10 +7451,10 @@
     "word_id": "EN_E_0027",
     "prompt": "this",
     "choices": [
-      "사회",
-      "가장 많은",
-      "이것",
-      "각각"
+      "오직",
+      "한계",
+      "발전시키다",
+      "이것"
     ],
     "answer": "이것",
     "meaning": "이것",
@@ -7465,10 +7465,10 @@
     "word_id": "EN_E_0027",
     "prompt": "이것",
     "choices": [
-      "this",
-      "only",
-      "environment",
-      "together"
+      "income",
+      "population",
+      "then",
+      "this"
     ],
     "answer": "this",
     "meaning": "이것",
@@ -7479,9 +7479,9 @@
     "word_id": "EN_E_0028",
     "prompt": "that",
     "choices": [
-      "너무",
-      "이론",
-      "여전히",
+      "영향을 주다",
+      "불확실한",
+      "접근",
       "저것"
     ],
     "answer": "저것",
@@ -7493,10 +7493,10 @@
     "word_id": "EN_E_0028",
     "prompt": "저것",
     "choices": [
-      "structure",
-      "society",
       "that",
-      "adapt"
+      "limited",
+      "little",
+      "describe"
     ],
     "answer": "that",
     "meaning": "저것",
@@ -7507,10 +7507,10 @@
     "word_id": "EN_E_0029",
     "prompt": "these",
     "choices": [
-      "많은 (불가산)",
-      "저것들",
-      "이것들",
-      "개선하다"
+      "접근법",
+      "집단의",
+      "세대",
+      "이것들"
     ],
     "answer": "이것들",
     "meaning": "이것들",
@@ -7521,10 +7521,10 @@
     "word_id": "EN_E_0029",
     "prompt": "이것들",
     "choices": [
-      "offer",
-      "environment",
+      "herself",
       "these",
-      "risk"
+      "every",
+      "anything"
     ],
     "answer": "these",
     "meaning": "이것들",
@@ -7535,10 +7535,10 @@
     "word_id": "EN_E_0030",
     "prompt": "those",
     "choices": [
-      "관계",
+      "유용한",
       "저것들",
-      "대부분",
-      "그러한"
+      "너무",
+      "가능성이 낮은"
     ],
     "answer": "저것들",
     "meaning": "저것들",
@@ -7549,10 +7549,10 @@
     "word_id": "EN_E_0030",
     "prompt": "저것들",
     "choices": [
-      "responsibility",
-      "recent",
-      "similar",
-      "those"
+      "those",
+      "economic",
+      "never",
+      "herself"
     ],
     "answer": "those",
     "meaning": "저것들",
@@ -7563,10 +7563,10 @@
     "word_id": "EN_E_0031",
     "prompt": "something",
     "choices": [
+      "정의하다",
+      "~할 때",
       "무언가",
-      "관련 있는",
-      "기회",
-      "한 번"
+      "느린"
     ],
     "answer": "무언가",
     "meaning": "무언가",
@@ -7577,10 +7577,10 @@
     "word_id": "EN_E_0031",
     "prompt": "무언가",
     "choices": [
-      "therefore",
-      "mostly",
       "something",
-      "somewhere"
+      "what",
+      "so",
+      "respond"
     ],
     "answer": "something",
     "meaning": "무언가",
@@ -7591,10 +7591,10 @@
     "word_id": "EN_E_0032",
     "prompt": "anything",
     "choices": [
-      "중요한",
-      "꽤",
+      "여기",
+      "관련된",
       "어떤 것",
-      "개인의"
+      "하지만"
     ],
     "answer": "어떤 것",
     "meaning": "어떤 것",
@@ -7605,10 +7605,10 @@
     "word_id": "EN_E_0032",
     "prompt": "어떤 것",
     "choices": [
-      "environment",
-      "major",
+      "both",
       "anything",
-      "but"
+      "herself",
+      "factor"
     ],
     "answer": "anything",
     "meaning": "어떤 것",
@@ -7619,10 +7619,10 @@
     "word_id": "EN_E_0033",
     "prompt": "nothing",
     "choices": [
-      "영향",
-      "같은",
+      "너무",
       "아무것도 ~않다",
-      "세계적인"
+      "단순한",
+      "자주"
     ],
     "answer": "아무것도 ~않다",
     "meaning": "아무것도 ~않다",
@@ -7633,10 +7633,10 @@
     "word_id": "EN_E_0033",
     "prompt": "아무것도 ~않다",
     "choices": [
-      "once",
-      "very",
+      "efficient",
+      "carefully",
       "nothing",
-      "contrast"
+      "traditional"
     ],
     "answer": "nothing",
     "meaning": "아무것도 ~않다",
@@ -7647,10 +7647,10 @@
     "word_id": "EN_E_0034",
     "prompt": "everything",
     "choices": [
-      "체계",
-      "관련된",
+      "특히",
+      "환경의",
       "모든 것",
-      "여기다"
+      "제공하다"
     ],
     "answer": "모든 것",
     "meaning": "모든 것",
@@ -7661,10 +7661,10 @@
     "word_id": "EN_E_0034",
     "prompt": "모든 것",
     "choices": [
-      "unstable",
+      "until",
       "everything",
-      "relevant",
-      "someone"
+      "few",
+      "interpret"
     ],
     "answer": "everything",
     "meaning": "모든 것",
@@ -7675,10 +7675,10 @@
     "word_id": "EN_E_0035",
     "prompt": "someone",
     "choices": [
-      "해로운",
-      "만약 ~라면",
-      "누군가",
-      "분석하다"
+      "적절한",
+      "명확한",
+      "이해하다",
+      "누군가"
     ],
     "answer": "누군가",
     "meaning": "누군가",
@@ -7689,10 +7689,10 @@
     "word_id": "EN_E_0035",
     "prompt": "누군가",
     "choices": [
-      "temporary",
-      "who",
-      "someone",
-      "himself"
+      "such",
+      "if",
+      "generally",
+      "someone"
     ],
     "answer": "someone",
     "meaning": "누군가",
@@ -7703,10 +7703,10 @@
     "word_id": "EN_E_0036",
     "prompt": "anyone",
     "choices": [
-      "증가하다",
+      "효율적인",
+      "인식하다",
       "누구든지",
-      "중요한",
-      "~전에"
+      "방법"
     ],
     "answer": "누구든지",
     "meaning": "누구든지",
@@ -7717,10 +7717,10 @@
     "word_id": "EN_E_0036",
     "prompt": "누구든지",
     "choices": [
-      "nearly",
-      "require",
       "anyone",
-      "influence"
+      "approach",
+      "effect",
+      "local"
     ],
     "answer": "anyone",
     "meaning": "누구든지",
@@ -7731,10 +7731,10 @@
     "word_id": "EN_E_0037",
     "prompt": "no one",
     "choices": [
-      "설명하다",
-      "행동",
-      "~이후로",
-      "아무도 ~않다"
+      "아무도 ~않다",
+      "중요한",
+      "결코 ~않다",
+      "흔한"
     ],
     "answer": "아무도 ~않다",
     "meaning": "아무도 ~않다",
@@ -7745,10 +7745,10 @@
     "word_id": "EN_E_0037",
     "prompt": "아무도 ~않다",
     "choices": [
-      "often",
+      "if",
+      "especially",
       "no one",
-      "some",
-      "twice"
+      "somewhere"
     ],
     "answer": "no one",
     "meaning": "아무도 ~않다",
@@ -7759,10 +7759,10 @@
     "word_id": "EN_E_0038",
     "prompt": "everyone",
     "choices": [
-      "관련된",
       "모두",
-      "강조하다",
-      "변화시키다"
+      "많은 (불가산)",
+      "불안정한",
+      "적절한"
     ],
     "answer": "모두",
     "meaning": "모두",
@@ -7773,10 +7773,10 @@
     "word_id": "EN_E_0038",
     "prompt": "모두",
     "choices": [
-      "compare",
-      "allow",
+      "approach",
+      "traditional",
       "everyone",
-      "every"
+      "those"
     ],
     "answer": "everyone",
     "meaning": "모두",
@@ -7787,9 +7787,9 @@
     "word_id": "EN_E_0039",
     "prompt": "myself",
     "choices": [
-      "어려운",
-      "필요한",
-      "가장 많은",
+      "그들 자신",
+      "효율적인",
+      "단순한",
       "나 자신"
     ],
     "answer": "나 자신",
@@ -7802,9 +7802,9 @@
     "prompt": "나 자신",
     "choices": [
       "myself",
-      "nearly",
-      "form",
-      "unless"
+      "there",
+      "himself",
+      "therefore"
     ],
     "answer": "myself",
     "meaning": "나 자신",
@@ -7815,10 +7815,10 @@
     "word_id": "EN_E_0040",
     "prompt": "yourself",
     "choices": [
-      "그래서",
-      "너 자신",
-      "누구",
-      "조심스럽게"
+      "어디에나",
+      "분석하다",
+      "다른",
+      "너 자신"
     ],
     "answer": "너 자신",
     "meaning": "너 자신",
@@ -7829,10 +7829,10 @@
     "word_id": "EN_E_0040",
     "prompt": "너 자신",
     "choices": [
-      "limit",
+      "support",
+      "yourself",
       "approach",
-      "what",
-      "yourself"
+      "much"
     ],
     "answer": "yourself",
     "meaning": "너 자신",
@@ -7843,10 +7843,10 @@
     "word_id": "EN_E_0041",
     "prompt": "himself",
     "choices": [
-      "두 번",
       "그 자신",
-      "오직",
-      "증가하다"
+      "주로",
+      "세대",
+      "주요한"
     ],
     "answer": "그 자신",
     "meaning": "그 자신",
@@ -7857,10 +7857,10 @@
     "word_id": "EN_E_0041",
     "prompt": "그 자신",
     "choices": [
-      "treat",
-      "cause",
+      "herself",
+      "whom",
       "himself",
-      "form"
+      "lead"
     ],
     "answer": "himself",
     "meaning": "그 자신",
@@ -7871,10 +7871,10 @@
     "word_id": "EN_E_0042",
     "prompt": "herself",
     "choices": [
-      "이것들",
-      "그녀 자신",
-      "방법",
-      "접근 가능한"
+      "도전",
+      "주장",
+      "자원",
+      "그녀 자신"
     ],
     "answer": "그녀 자신",
     "meaning": "그녀 자신",
@@ -7885,10 +7885,10 @@
     "word_id": "EN_E_0042",
     "prompt": "그녀 자신",
     "choices": [
-      "herself",
-      "efficient",
-      "critical",
-      "nearly"
+      "approach",
+      "carefully",
+      "especially",
+      "herself"
     ],
     "answer": "herself",
     "meaning": "그녀 자신",
@@ -7899,9 +7899,9 @@
     "word_id": "EN_E_0043",
     "prompt": "itself",
     "choices": [
-      "그러한",
-      "정의하다",
-      "접근법",
+      "거의 없는 (가산)",
+      "그들 자신",
+      "대부분",
       "그것 자체"
     ],
     "answer": "그것 자체",
@@ -7913,10 +7913,10 @@
     "word_id": "EN_E_0043",
     "prompt": "그것 자체",
     "choices": [
+      "anything",
+      "suggest",
       "itself",
-      "herself",
-      "both",
-      "argument"
+      "social"
     ],
     "answer": "itself",
     "meaning": "그것 자체",
@@ -7927,10 +7927,10 @@
     "word_id": "EN_E_0044",
     "prompt": "ourselves",
     "choices": [
-      "우리 자신들",
-      "가정하다",
-      "확실한",
-      "해석하다"
+      "공동체",
+      "현대의",
+      "그것",
+      "우리 자신들"
     ],
     "answer": "우리 자신들",
     "meaning": "우리 자신들",
@@ -7941,10 +7941,10 @@
     "word_id": "EN_E_0044",
     "prompt": "우리 자신들",
     "choices": [
-      "since",
-      "quickly",
+      "likely",
+      "individual",
       "ourselves",
-      "who"
+      "still"
     ],
     "answer": "ourselves",
     "meaning": "우리 자신들",
@@ -7955,10 +7955,10 @@
     "word_id": "EN_E_0045",
     "prompt": "themselves",
     "choices": [
-      "너무",
+      "따로",
       "그들 자신",
-      "너 자신",
-      "왜냐하면"
+      "막다",
+      "허용하다"
     ],
     "answer": "그들 자신",
     "meaning": "그들 자신",
@@ -7969,10 +7969,10 @@
     "word_id": "EN_E_0045",
     "prompt": "그들 자신",
     "choices": [
-      "responsibility",
+      "allow",
       "themselves",
-      "neither",
-      "risk"
+      "now",
+      "treat"
     ],
     "answer": "themselves",
     "meaning": "그들 자신",
@@ -7983,10 +7983,10 @@
     "word_id": "EN_E_0046",
     "prompt": "each",
     "choices": [
+      "자원",
       "각각",
-      "그래서",
-      "지역의",
-      "특히"
+      "환경",
+      "둘 중 하나"
     ],
     "answer": "각각",
     "meaning": "각각",
@@ -7997,10 +7997,10 @@
     "word_id": "EN_E_0046",
     "prompt": "각각",
     "choices": [
-      "compare",
+      "negative",
       "each",
-      "significant",
-      "decision"
+      "useful",
+      "slightly"
     ],
     "answer": "each",
     "meaning": "각각",
@@ -8011,10 +8011,10 @@
     "word_id": "EN_E_0047",
     "prompt": "every",
     "choices": [
-      "이것들",
-      "줄이다",
-      "태도",
-      "모든"
+      "대부분",
+      "함께",
+      "모든",
+      "고려하다"
     ],
     "answer": "모든",
     "meaning": "모든",
@@ -8025,10 +8025,10 @@
     "word_id": "EN_E_0047",
     "prompt": "모든",
     "choices": [
-      "contain",
       "every",
-      "define",
-      "factor"
+      "unlimited",
+      "react",
+      "modern"
     ],
     "answer": "every",
     "meaning": "모든",
@@ -8039,10 +8039,10 @@
     "word_id": "EN_E_0048",
     "prompt": "either",
     "choices": [
-      "관련시키다",
-      "왜냐하면",
-      "어디든지",
-      "둘 중 하나"
+      "둘 중 하나",
+      "아무도 ~않다",
+      "구체적인",
+      "나중에"
     ],
     "answer": "둘 중 하나",
     "meaning": "둘 중 하나",
@@ -8053,10 +8053,10 @@
     "word_id": "EN_E_0048",
     "prompt": "둘 중 하나",
     "choices": [
-      "particularly",
-      "mostly",
-      "react",
-      "either"
+      "claim",
+      "unlikely",
+      "either",
+      "soon"
     ],
     "answer": "either",
     "meaning": "둘 중 하나",
@@ -8067,10 +8067,10 @@
     "word_id": "EN_E_0049",
     "prompt": "neither",
     "choices": [
-      "둘 다 ~아닌",
-      "막다",
-      "적절한",
-      "가능성이 낮은"
+      "안정적인",
+      "느린",
+      "관련 있는",
+      "둘 다 ~아닌"
     ],
     "answer": "둘 다 ~아닌",
     "meaning": "둘 다 ~아닌",
@@ -8081,10 +8081,10 @@
     "word_id": "EN_E_0049",
     "prompt": "둘 다 ~아닌",
     "choices": [
+      "influence",
+      "himself",
       "neither",
-      "likely",
-      "claim",
-      "never"
+      "only"
     ],
     "answer": "neither",
     "meaning": "둘 다 ~아닌",
@@ -8095,10 +8095,10 @@
     "word_id": "EN_E_0050",
     "prompt": "both",
     "choices": [
-      "사회",
+      "강조하다",
       "둘 다",
-      "모두",
-      "명백하게"
+      "일반적인",
+      "줄이다"
     ],
     "answer": "둘 다",
     "meaning": "둘 다",
@@ -8109,10 +8109,10 @@
     "word_id": "EN_E_0050",
     "prompt": "둘 다",
     "choices": [
-      "unlikely",
+      "mainly",
       "both",
-      "herself",
-      "whom"
+      "affect",
+      "require"
     ],
     "answer": "both",
     "meaning": "둘 다",
@@ -8123,10 +8123,10 @@
     "word_id": "EN_E_0051",
     "prompt": "all",
     "choices": [
-      "모두",
-      "최근의",
-      "어디든지",
-      "더 많은"
+      "왜냐하면",
+      "어떤 것",
+      "오직",
+      "모두"
     ],
     "answer": "모두",
     "meaning": "모두",
@@ -8137,10 +8137,10 @@
     "word_id": "EN_E_0051",
     "prompt": "모두",
     "choices": [
-      "anything",
-      "control",
-      "all",
-      "modern"
+      "resource",
+      "handle",
+      "relevant",
+      "all"
     ],
     "answer": "all",
     "meaning": "모두",
@@ -8152,9 +8152,9 @@
     "prompt": "some",
     "choices": [
       "일부",
-      "태도",
-      "이용 가능한",
-      "주요한"
+      "하지만",
+      "거의 없는 (불가산)",
+      "나중에"
     ],
     "answer": "일부",
     "meaning": "일부",
@@ -8165,10 +8165,10 @@
     "word_id": "EN_E_0052",
     "prompt": "일부",
     "choices": [
-      "issue",
+      "wealth",
       "some",
-      "very",
-      "benefit"
+      "challenge",
+      "because"
     ],
     "answer": "some",
     "meaning": "일부",
@@ -8179,10 +8179,10 @@
     "word_id": "EN_E_0053",
     "prompt": "many",
     "choices": [
-      "정의하다",
-      "가정하다",
+      "사소한",
+      "이용 가능한",
       "많은",
-      "인식하다"
+      "달성하다"
     ],
     "answer": "많은",
     "meaning": "많은",
@@ -8193,10 +8193,10 @@
     "word_id": "EN_E_0053",
     "prompt": "많은",
     "choices": [
-      "income",
       "many",
-      "process",
-      "assume"
+      "relationship",
+      "policy",
+      "local"
     ],
     "answer": "many",
     "meaning": "많은",
@@ -8207,10 +8207,10 @@
     "word_id": "EN_E_0054",
     "prompt": "much",
     "choices": [
-      "둘 다",
-      "결정",
+      "가능성이 높은",
+      "아무것도 ~않다",
       "많은 (불가산)",
-      "논쟁"
+      "기본적으로"
     ],
     "answer": "많은 (불가산)",
     "meaning": "많은 (불가산)",
@@ -8221,10 +8221,10 @@
     "word_id": "EN_E_0054",
     "prompt": "많은 (불가산)",
     "choices": [
-      "rarely",
-      "collective",
-      "system",
-      "much"
+      "obviously",
+      "much",
+      "useful",
+      "here"
     ],
     "answer": "much",
     "meaning": "많은 (불가산)",
@@ -8235,10 +8235,10 @@
     "word_id": "EN_E_0055",
     "prompt": "few",
     "choices": [
-      "두 번",
-      "거의 없는 (가산)",
-      "증가하다",
-      "의사소통"
+      "대조하다",
+      "포함하다",
+      "정의하다",
+      "거의 없는 (가산)"
     ],
     "answer": "거의 없는 (가산)",
     "meaning": "거의 없는 (가산)",
@@ -8249,10 +8249,10 @@
     "word_id": "EN_E_0055",
     "prompt": "거의 없는 (가산)",
     "choices": [
-      "this",
-      "depend",
-      "claim",
-      "few"
+      "quite",
+      "already",
+      "few",
+      "distribution"
     ],
     "answer": "few",
     "meaning": "거의 없는 (가산)",
@@ -8263,10 +8263,10 @@
     "word_id": "EN_E_0056",
     "prompt": "little",
     "choices": [
-      "~까지",
-      "그녀 자신",
-      "범위",
-      "거의 없는 (불가산)"
+      "거의 없는 (불가산)",
+      "모든 것",
+      "확실한",
+      "여전히"
     ],
     "answer": "거의 없는 (불가산)",
     "meaning": "거의 없는 (불가산)",
@@ -8277,10 +8277,10 @@
     "word_id": "EN_E_0056",
     "prompt": "거의 없는 (불가산)",
     "choices": [
-      "wealth",
+      "after",
+      "responsibility",
       "little",
-      "sometimes",
-      "never"
+      "build"
     ],
     "answer": "little",
     "meaning": "거의 없는 (불가산)",
@@ -8291,10 +8291,10 @@
     "word_id": "EN_E_0057",
     "prompt": "more",
     "choices": [
-      "공동체",
+      "누군가",
       "더 많은",
-      "인식하다",
-      "집중하다"
+      "모든 것",
+      "제한된"
     ],
     "answer": "더 많은",
     "meaning": "더 많은",
@@ -8305,10 +8305,10 @@
     "word_id": "EN_E_0057",
     "prompt": "더 많은",
     "choices": [
-      "argument",
-      "just",
+      "after",
+      "adjust",
       "more",
-      "realize"
+      "while"
     ],
     "answer": "more",
     "meaning": "더 많은",
@@ -8319,10 +8319,10 @@
     "word_id": "EN_E_0058",
     "prompt": "most",
     "choices": [
-      "이것들",
-      "분명히",
-      "영향",
-      "가장 많은"
+      "기회",
+      "가장 많은",
+      "책임",
+      "강하게"
     ],
     "answer": "가장 많은",
     "meaning": "가장 많은",
@@ -8333,10 +8333,10 @@
     "word_id": "EN_E_0058",
     "prompt": "가장 많은",
     "choices": [
-      "understand",
-      "limited",
+      "anywhere",
+      "much",
       "most",
-      "such"
+      "essential"
     ],
     "answer": "most",
     "meaning": "가장 많은",
@@ -8347,10 +8347,10 @@
     "word_id": "EN_E_0059",
     "prompt": "such",
     "choices": [
-      "그 자신",
-      "부정적인",
+      "가장 많은",
+      "그러한",
       "그것",
-      "그러한"
+      "지역의"
     ],
     "answer": "그러한",
     "meaning": "그러한",
@@ -8361,10 +8361,10 @@
     "word_id": "EN_E_0059",
     "prompt": "그러한",
     "choices": [
-      "such",
-      "lead",
-      "normally",
-      "anyone"
+      "community",
+      "slightly",
+      "create",
+      "such"
     ],
     "answer": "such",
     "meaning": "그러한",
